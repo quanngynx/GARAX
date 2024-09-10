@@ -1,0 +1,27 @@
+# Thiết lập dấu kết thúc dòng cho đa nền tảng
+# Tự động phát hiện và chuẩn hóa dấu kết thúc dòng
+* text=auto
+
+# Đánh dấu các tệp JSON, JS, và các tệp cấu hình khác
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.env text eol=lf
+
+# Bỏ qua các tệp nhị phân, không cần xử lý diff
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.exe binary
+
+# Nếu bạn sử dụng Git LFS (Large File Storage) để lưu trữ các tệp lớn
+# Uncomment dòng dưới đây nếu có Git LFS
+# *.psd filter=lfs diff=lfs merge=lfs -text
+
+# Chỉ định rõ các tệp log và data không cần version control
+*.log -text
+*.sql -text
