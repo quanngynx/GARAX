@@ -1,9 +1,9 @@
-function Home() {
+function Sidebar() {
     return ( 
         <div className="">
-            Report Data
+            Sidebar
         </div>
      );
 }
 
-export default Home;
+export default Sidebar;
