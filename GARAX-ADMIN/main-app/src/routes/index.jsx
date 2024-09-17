@@ -1,4 +1,3 @@
-// import { Suspense, lazy } from 'react';
 import { Navigate, useRoutes } from "react-router-dom";
 import { lazy } from "react";
 /** Layouts */
@@ -7,11 +6,13 @@ import OnlyCanvas from '../layouts/custom/onlyCanvas.jsx'
 // ========================================================================================
 
 /** Components */
-const ThongKeDuLieu = lazy(() => import('../pages/index.jsx'))
+// const ThongKeDuLieu = lazy(() => import('../pages/index.jsx'))
 const DanhSachDonHang = lazy(() => import('../pages/DanhSachDonHang.jsx'))
 const DanhSachDatLich = lazy(() => import('../pages/DanhSachDatLich.jsx'))
-const CaiDatTaiKhoan = lazy(() => import('../pages/CaiDatTaiKhoan.jsx'))
+const CaiDatTaiKhoan = lazy(() => import('../pages/caiDatTaiKhoan.jsx'))
 const HoSoNguoiDung = lazy(() => import('../pages/HoSoNguoiDung.jsx'))
+import ThongKeDuLieu from '../pages/index.jsx'
+// import TestLoading from '../pages/test/loading.jsx'
 // ========================================================================================
 import NotFound from './errorNotFound.jsx'
 function Router() {
@@ -51,9 +52,19 @@ function Router() {
         {
           path: 'profile',
           element: <HoSoNguoiDung />
-        }
+        },
       ],
     },
+    // {
+    //   path: 'test',
+    //   element: <OnlyCanvas />,
+    //   children: [
+    //     {
+    //       path: 'loading',
+    //       element: <TestLoading />
+    //     }
+    //   ]
+    // },
     {
       path: '*',
       element: <OnlyCanvas />,

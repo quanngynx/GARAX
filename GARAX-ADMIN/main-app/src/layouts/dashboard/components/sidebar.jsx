@@ -1,6 +1,6 @@
 function Sidebar() {
     return ( 
-        <div className="">
+        <div className="w-[240px]">
             Sidebar
         </div>
      );

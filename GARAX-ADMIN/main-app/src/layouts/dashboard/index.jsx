@@ -1,14 +1,11 @@
-import { Outlet } from "react-router-dom";
-
-import Navbar from "./navbar";
-import Sidebar from "./sidebar";
+import Canvas from "./components/canvas";
+import Sidebar from "./components/sidebar"
 
 function dashboardLayout() {
   return (
-    <div className="bg-[#F2F3F3]">
-      <Navbar />
+    <div className="bg-[#F5F6F7] w-full h-[100vh] flex">
       <Sidebar />
-      <Outlet />
+      <Canvas />
     </div>
   );
 }

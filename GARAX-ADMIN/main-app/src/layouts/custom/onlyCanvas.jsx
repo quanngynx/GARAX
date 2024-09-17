@@ -1,6 +1,6 @@
 function OnlyCanvas() {
     return ( 
-        <div className="">
+        <div className="bg-slate-400 w-full h-[100vh]">
             . . .add cpn
         </div>
      );
