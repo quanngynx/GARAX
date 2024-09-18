@@ -19,7 +19,7 @@ function Sidebar() {
 
             {/* Body */}
             <div className='w-full h-[646px]'>
-                <div className='w-full h-[20px]'>
+                <div className='w-full h-[20px] p-6'>
                     <p className='font-extrabold'>Menu</p>
                 </div>
 
