@@ -5,9 +5,9 @@ function Navbar() {
                 <div className="w-33$ h-[118px]">
                     <div className="w-100% h-[58px] flex justify-between">
                         <div className="text-gray-600">Pages</div>
-                        <div className="text-black">/Dashboard</div>
+                        <div className="text-black font-medium">/Dashboard</div>
                     </div>
-                    <div className="w-100% h-[58px] text-2xl">Dashboard</div>
+                    <div className="w-100% h-[58px] font-semibold text-2xl">Dashboard</div>
                 </div>
                 <div className="w-33% h-[118px] bg-red-300">2</div>
                 <div>3</div>

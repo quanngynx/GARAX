@@ -3,6 +3,7 @@ import { lazy } from "react";
 /** Layouts */
 import DashboardLayout from "../layouts/dashboard/index.jsx";
 import OnlyCanvas from '../layouts/custom/onlyCanvas.jsx'
+import TestLayout from '../layouts/exp/index.jsx'
 // ========================================================================================
 
 /** Components */
@@ -11,8 +12,8 @@ const DanhSachDonHang = lazy(() => import('../pages/DanhSachDonHang.jsx'))
 const DanhSachDatLich = lazy(() => import('../pages/DanhSachDatLich.jsx'))
 const CaiDatTaiKhoan = lazy(() => import('../pages/caiDatTaiKhoan.jsx'))
 const HoSoNguoiDung = lazy(() => import('../pages/HoSoNguoiDung.jsx'))
-import ThongKeDuLieu from '../pages/index.jsx'
-// import TestLoading from '../pages/test/loading.jsx'
+import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
+import TestLoading from '../pages/test/loading.jsx'
 // ========================================================================================
 import NotFound from './errorNotFound.jsx'
 function Router() {
@@ -53,6 +54,14 @@ function Router() {
           path: 'profile',
           element: <HoSoNguoiDung />
         },
+        {
+          path: 'dash-v2',
+          element: <TestLayout />
+        },
+        {
+          path: 'loading',
+          element: <TestLoading />
+        }
       ],
     },
     // {
