@@ -60,7 +60,7 @@ function MenuButton({ icon, label }) {
       <img
         src={icon}
         alt={`${label} Icon`}
-        className="w-[25px] h-[25px] mr-3 group-hover:brightness-0 group-hover:invert transition duration-500"
+        className="w-[25px] h-[25px] mr-3 group-hover:brightness-0 group-hover:invert transition duration-300"
       />
       <p className="text-sm font-semibold">{label}</p>
     </button>
