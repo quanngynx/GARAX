@@ -163,3 +163,6 @@ server/tool/*imported.json
 
 # python venv
 */venv/*
+
+# secret txt
+secret.txt

@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 // import CustomizedDataGrid from './components/CustomizedDataGrid';
 // import HighlightedCard from './components/HighlightedCard';
 // import PageViewsBarChart from './components/PageViewsBarChart';
-import SessionsChart from './components/SessionsChart';
-import StatCard from './components/statCard';
+import SessionsChart from './ThongKeDuLieu/components/SessionsChart';
+import StatCard from './ThongKeDuLieu/components/statCard';
 import ChatCard from "./ThongKeDuLieu/components/cardTapToChat"
 
 const data = [
