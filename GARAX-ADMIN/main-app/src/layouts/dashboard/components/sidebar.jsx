@@ -41,11 +41,11 @@ function Sidebar() {
         {/* Menu Buttons */}
         <div className="w-full h-[300px] p-3">
           <Link to="/statics"><MenuButton icon={dashboardIcon} label="Dashboard" link='/statics' /></Link>
-          <Link to="/setting"><MenuButton icon={accountBoxOutlined} label="Account"link='/setting' /></Link>
+          <Link to="/setting"><MenuButton icon={accountBoxOutlined} label="Account" link='/setting' /></Link>
           <Link to="/orders"><MenuButton icon={orderBoxIcon} label="List Orders" link='/orders'/></Link>
-          <Link to="/booking"><MenuButton icon={imgBooking} label="List Booking"link='/booking/list'/></Link>
+          <Link to="/booking"><MenuButton icon={imgBooking} label="List Booking" link='/booking/list'/></Link>
           <MenuButton icon={imgReportData} label="Report Data" />
-          <Link to="/profile"><MenuButton icon={imgUserDetails} label="User Details"link='/profile'/></Link>
+          <Link to="/profile"><MenuButton icon={imgUserDetails} label="User Details" link='/profile'/></Link>
      
         </div>
       </div>
