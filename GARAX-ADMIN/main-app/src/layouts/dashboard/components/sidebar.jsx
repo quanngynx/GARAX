@@ -1,13 +1,14 @@
 import Button from '@mui/material/Button';
-
+import { useNavigate } from "react-router-dom";
 import imgGarax from "../../../assets/logogarax.png";
 import dashboardIcon from "../../../assets/Dash-icon.svg";
 import accountBoxOutlined from "../../../assets/account-box-outline.svg";
 import imgBooking from "../../../assets/noun-booking-6490549.svg";
 import orderBoxIcon from "../../../assets//noun-delivery-box-540949.svg";
 import imgUserDetails from "../../../assets/noun-user-7147797.svg";
+import { useLocation } from 'react-router-dom';
 import imgReportData from "../../../assets/noun-report-7100695.svg";
-
+import { Link } from 'react-router-dom';
 function Sidebar() {
   return (
     <div className="w-[300px] text-[#0000000] p-3 ">
@@ -39,12 +40,13 @@ function Sidebar() {
 
         {/* Menu Buttons */}
         <div className="w-full h-[300px] p-3">
-          <MenuButton icon={dashboardIcon} label="Dashboard" />
-          <MenuButton icon={accountBoxOutlined} label="Account" />
-          <MenuButton icon={orderBoxIcon} label="List Order" />
-          <MenuButton icon={imgBooking} label="List Booking" />
+          <Link to="/statics"><MenuButton icon={dashboardIcon} label="Dashboard" link='/statics' /></Link>
+          <Link to="/setting"><MenuButton icon={accountBoxOutlined} label="Account"link='/setting' /></Link>
+          <Link to="/orders"><MenuButton icon={orderBoxIcon} label="List Orders" link='/orders'/></Link>
+          <Link to="/booking"><MenuButton icon={imgBooking} label="List Booking"link='/booking/list'/></Link>
           <MenuButton icon={imgReportData} label="Report Data" />
-          <MenuButton icon={imgUserDetails} label="User Details" />
+          <Link to="/profile"><MenuButton icon={imgUserDetails} label="User Details"link='/profile'/></Link>
+     
         </div>
       </div>
     </div>
@@ -52,15 +54,22 @@ function Sidebar() {
 }
 
 // Reusable Button Component
-function MenuButton({ icon, label }) {
+function MenuButton({ icon, label,link}) {
+  const location = useLocation();
+  const path=location.pathname;
   return (
     <button 
-    className="group w-full flex items-center p-2 mt-2 rounded-xl hover:bg-black hover:text-white transition duration-300"
+    className={`group w-full flex items-center p-2 mt-2 rounded-xl transition duration-300 ${
+      path === link ? 'bg-black text-white ' : 'hover:bg-black hover:text-white'
+    }`}
     >
       <img
         src={icon}
-        alt={`${label} Icon`}
-        className="w-[25px] h-[25px] mr-3 group-hover:brightness-0 group-hover:invert transition duration-300"
+        alt={`${label}  Icon`}
+        className={`w-[25px] h-[25px] mr-3 transition duration-300 ${
+          path === link ? 'brightness-0 invert' : 'group-hover:brightness-0 group-hover:invert'
+        }`}
+        
       />
       <p className="text-sm font-semibold">{label}</p>
     </button>
@@ -98,5 +107,7 @@ const CustomButton = ({ text, icon: Icon, image, size = 'medium', variant = 'con
       </Button>
     );
   };
+
+  
 
 export default Sidebar;
