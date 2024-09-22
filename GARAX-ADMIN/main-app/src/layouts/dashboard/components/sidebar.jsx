@@ -60,14 +60,14 @@ function MenuButton({ icon, label,link}) {
   return (
     <button 
     className={`group w-full flex items-center p-2 mt-2 rounded-xl transition duration-300 ${
-      path === link ? 'bg-black text-white ' : 'hover:bg-black hover:text-white'
+      path === link ? 'bg-black text-white ' : 'hover:bg-gray-200 hover:text-black'
     }`}
     >
       <img
         src={icon}
         alt={`${label}  Icon`}
         className={`w-[25px] h-[25px] mr-3 transition duration-300 ${
-          path === link ? 'brightness-0 invert' : 'group-hover:brightness-0 group-hover:invert'
+          path === link ? 'brightness-0 invert' : ''
         }`}
         
       />
