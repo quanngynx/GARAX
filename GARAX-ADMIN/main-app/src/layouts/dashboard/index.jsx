@@ -13,9 +13,9 @@ function dashboardLayout() {
       <div className="flex mb-4">
       <Sidebar />
       <Canvas />
-    </div>
-    <Footer />
-    </div>
+      </div>
+      <Footer />
+      </div>
   );
 }
 

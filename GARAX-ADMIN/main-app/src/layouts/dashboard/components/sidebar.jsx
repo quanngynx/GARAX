@@ -44,7 +44,7 @@ function Sidebar() {
           <Link to="/setting"><MenuButton icon={accountBoxOutlined} label="Account" link='/setting' /></Link>
           <Link to="/orders"><MenuButton icon={orderBoxIcon} label="List Orders" link='/orders'/></Link>
           <Link to="/booking"><MenuButton icon={imgBooking} label="List Booking" link='/booking/list'/></Link>
-          <MenuButton icon={imgReportData} label="Report Data" />
+     
           <Link to="/profile"><MenuButton icon={imgUserDetails} label="User Details" link='/profile'/></Link>
      
         </div>
