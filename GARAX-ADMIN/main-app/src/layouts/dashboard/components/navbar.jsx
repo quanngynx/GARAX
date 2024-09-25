@@ -12,10 +12,9 @@ function Navbar() {
             <div className="w-100% h-[118px] flex justify-between">
                 <div className="w-33$ h-[118px]">
                     <div className="w-100% h-[58px] flex justify-between pt-5">
-                   <XuLy2></XuLy2>
-                     
+                          <XuLy2></XuLy2>
                     </div>
-                      <Xuly></Xuly>   
+                            <Xuly></Xuly>   
                 </div>
                 <div className="w-16% h-[118px]"></div>
                 <div className="w-50% h-[118px] flex justify-between pt-9">
@@ -52,8 +51,6 @@ function XuLy2(){
                     DashBoard
                 </Link>
             )}
-
-
             {currentPath === "/setting" ? (
                 <Typography sx={{ color: 'text.primary', fontWeight: 'bold' }}>Account</Typography>
             ) : (
