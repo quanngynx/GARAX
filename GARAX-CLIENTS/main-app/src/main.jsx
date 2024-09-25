@@ -7,6 +7,7 @@ import reportPerformance from "./utils/reportPerformance.jsx";
 
 import App from "./App";
 import "./index.css";
+import './i18n';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

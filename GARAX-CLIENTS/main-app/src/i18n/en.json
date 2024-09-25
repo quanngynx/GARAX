@@ -1,0 +1,11 @@
+{
+    "common": {
+      "button": {
+        "search": "Search",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "save": "Save"
+      }
+    }
+  }
+  
