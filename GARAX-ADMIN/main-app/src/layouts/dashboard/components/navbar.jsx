@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Breadcrumbs, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
+
 function Navbar() {
     return ( 
         <div className="w-100% h-[120px]">

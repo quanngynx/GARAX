@@ -1,5 +1,4 @@
-import { useNavigate,Navigate, useLocation, useRoutes } from "react-router-dom";
-import { lazy } from "react";
+import { Navigate, useRoutes } from "react-router-dom";
 
 /** Layouts */
 import DashboardLayout from "../layouts/dashboard/index.jsx";
@@ -19,10 +18,19 @@ import LoginPage from '../pages/auth/login.jsx'
 import RegisterPage from '../pages/auth/register.jsx'
 // ========================================================================================
 import NotFound from './errorNotFound.jsx'
-import Sidebar from "../layouts/dashboard/components/sidebar.jsx";
 
 function Router() {
   return useRoutes([
+    {
+      path: 'test',
+      element: <OnlyCanvas />,
+      children: [
+        {
+          path: 'loading',
+          element: <TestLoading />
+        }
+      ]
+    },
     {
       path: 'auth',
       element: <OnlyCanvas />,
@@ -49,10 +57,10 @@ function Router() {
           path: 'statics',
           element: <ThongKeDuLieu />,
         },
-        {
-          path: '/',
-          element: <Navigate to="/orders" replace />
-        },
+        // {
+        //   path: '/',
+        //   element: <Navigate to="/orders" replace />
+        // },
         {
           path: 'orders',
           element: <DanhSachDonHang />
@@ -69,10 +77,10 @@ function Router() {
               // . . .
           ]
         },
-        {
-          path: '/',
-          element: <Navigate to="/setting" replace />
-        },
+        // {
+        //   path: '/',
+        //   element: <Navigate to="/setting" replace />
+        // },
         {
           path: 'setting',
           element: <CaiDatTaiKhoan />
@@ -86,22 +94,12 @@ function Router() {
           path: 'dash-v2',
           element: <TestLayout />
         },
-        {
-          path: 'loading',
-          element: <TestLoading />
-        }
+        // {
+        //   path: 'loading',
+        //   element: <TestLoading />
+        // }
       ],
     },
-    // {
-    //   path: 'test',
-    //   element: <OnlyCanvas />,
-    //   children: [
-    //     {
-    //       path: 'loading',
-    //       element: <TestLoading />
-    //     }
-    //   ]
-    // },
     {
       path: '*',
       element: <OnlyCanvas />,
