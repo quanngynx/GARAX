@@ -9,7 +9,7 @@ import Footer from "./components/footer"
 
 function dashboardLayout() {
   return (
-    <div className='bg-[#F5F6F7] w-full'>
+    <div className='bg-[#F5F6F7] w-full h-full'>
       <div className="flex mb-4">
       <Sidebar />
       <Canvas />

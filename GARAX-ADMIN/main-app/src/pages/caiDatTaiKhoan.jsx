@@ -21,124 +21,14 @@ function caiDatTaiKhoan() {
      function Customer(){
         return(
             <div className="overflow-y-auto w-100% h-[250px]    ">
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
+             
             </div>
         );
     }
      function Staff() {
         return(
             <div className="overflow-y-auto w-100% h-[250px] bg-orange-600">
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
-                <h1>d</h1>
+               
             </div>
             
         );
