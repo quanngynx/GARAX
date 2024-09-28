@@ -1,4 +1,4 @@
-import imagecar from "../../assets/car.png"
+import imagecar from "../../assets/car-big.png"
 function HomePage() {
     return ( 
         <div className="  bg-white p-20 ">

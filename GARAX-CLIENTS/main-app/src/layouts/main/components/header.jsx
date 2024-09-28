@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import iconMenu from "../../../assets/GRAX.svg"
-import iconPhone from "../../../assets/phone.png"
+import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg"
 function header() {
     return ( 
   
