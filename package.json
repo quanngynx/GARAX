@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@fontsource/roboto": "^5.1.0",
-    "react-router-dom": "^6.26.2"
-  }
-}

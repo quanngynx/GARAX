@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 
-import reportPerformance from "./utils/reportPerformance.jsx";
+import reportPerformance from "./utils/reportPerformance.js";
 
 import App from "./App";
 import "./index.css";

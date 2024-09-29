@@ -1,120 +1,35 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import Link from '@mui/material/Link';
+import { Box, Breadcrumbs, Typography, Link } from '@mui/material'
 
-import ListItemButton from '@mui/material/ListItemButton';
-import Collapse from '@mui/material/Collapse';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import {
-  Link as RouterLink,
-  Route,
-  Routes,
-  MemoryRouter,
-  useLocation,
-} from 'react-router-dom';
+import uppercaseFirstCharacter, {} from '../../../helpers/uppercaseFirstCharacter'
 
-const breadcrumbNameMap = {
-  '/auth/login': 'Sign-in',
-  '/auth/register': 'Sign-on',
-  '/statics': 'Important',
-  '/orders': 'Orders',
-  '/booking/list': 'Booking',
-  '/setting': 'Setting',
-  '/profile': 'Profile',
-  '/test': 'Test',
-};
+export default function HeaderCrums() {
 
-function ListItemLink(props) {
-  const { to, open, ...other } = props;
-  const primary = breadcrumbNameMap[to];
+  const paths = window.location.pathname.split('/').slice(1)
 
-  let icon = null;
-  if (open != null) {
-    icon = open ? <ExpandLess /> : <ExpandMore />;
-  }
+  const breadcrumbs= []
+  paths.map((p, index) => {
+    breadcrumbs.push({
+      title: `${p}`,
+      link: `/${paths.slice(0, index + 1).join('/')}`,
+    })
+  })
 
   return (
-    <li>
-      <ListItemButton component={RouterLink} to={to} {...other}>
-        <ListItemText primary={primary} />
-        {icon}
-      </ListItemButton>
-    </li>
-  );
-}
-
-ListItemLink.propTypes = {
-  open: PropTypes.bool,
-  to: PropTypes.string.isRequired,
-};
-
-function LinkRouter(props) {
-  return <Link {...props} component={RouterLink} />;
-}
-
-function Page() {
-  const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
-
-  return (
-    <Breadcrumbs aria-label="breadcrumb">
-      <LinkRouter underline="hover" color="inherit" to="/">
-        Home
-      </LinkRouter>
-      {pathnames.map((value, index) => {
-        const last = index === pathnames.length - 1;
-        const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-
-        return last ? (
-          <Typography key={to} sx={{ color: 'text.primary' }}>
-            {breadcrumbNameMap[to]}
-          </Typography>
-        ) : (
-          <LinkRouter underline="hover" color="inherit" to={to} key={to}>
-            {breadcrumbNameMap[to]}
-          </LinkRouter>
-        );
-      })}
+    <Breadcrumbs aria-label='breadcrumb' sx={{ marginLeft: "4px" }}>
+      {breadcrumbs &&
+        breadcrumbs.map((b, index) =>
+          index !== breadcrumbs.length - 1 ? (
+            <Box key={b.title}>
+              <Link underline='hover' color='inherit' href={b.link}>
+                {uppercaseFirstCharacter(b.title)}
+              </Link>
+            </Box>
+          ) : (
+            <Typography key={b.title}  sx={{ color: "text.primary", fontWeight: "bold" }}>
+              {uppercaseFirstCharacter(b.title)}
+            </Typography>
+          ),
+        )}
     </Breadcrumbs>
-  );
-}
-
-export default function RouterBreadcrumbs() {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  return (
-    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', width: 360 }}>
-        <Routes>
-          <Route path="*" element={<Page />} />
-        </Routes>
-        <Box
-          sx={{ bgcolor: 'background.paper', mt: 1 }}
-          component="nav"
-          aria-label="mailbox folders"
-        >
-          <List>
-            <ListItemLink to="/inbox" open={open} onClick={handleClick} />
-            <Collapse component="li" in={open} timeout="auto" unmountOnExit>
-              <List disablePadding>
-                <ListItemLink sx={{ pl: 4 }} to="/inbox/important" />
-              </List>
-            </Collapse>
-            <ListItemLink to="/trash" />
-            <ListItemLink to="/spam" />
-          </List>
-        </Box>
-      </Box>
-    </MemoryRouter>
-  );
+  )
 }

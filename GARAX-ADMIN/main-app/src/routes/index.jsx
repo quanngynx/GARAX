@@ -66,7 +66,7 @@ function Router() {
           element: <DanhSachDonHang />
         },
         {
-          path: "/booking",
+          path: "booking",
           children: [
               {
                   path: '/booking', element: <Navigate to="/booking/list" replace />,
