@@ -52,65 +52,11 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <LineNavbar />
+      <LineNavbar/>
     </div>
   );
 }
-function XuLy2() {
-  const location = useLocation();
-  const currentPath = location.pathname;
-  return (
-    <Breadcrumbs maxItems={10} aria-label="breadcrumb">
-      {currentPath === "/statics" ? (
-        <Typography sx={{ color: "text.primary", fontWeight: "bold" }}>
-          DashBoard
-        </Typography>
-      ) : (
-        <Link underline="hover" color="inherit" to="/statics">
-          DashBoard
-        </Link>
-      )}
-      {currentPath === "/setting" ? (
-        <Typography sx={{ color: "text.primary", fontWeight: "bold" }}>
-          Account
-        </Typography>
-      ) : (
-        <Link underline="hover" color="inherit" to="/setting">
-          Account
-        </Link>
-      )}
 
-      {currentPath === "/orders" ? (
-        <Typography sx={{ color: "text.primary", fontWeight: "bold" }}>
-          List Orders
-        </Typography>
-      ) : (
-        <Link underline="hover" color="inherit" to="/orders">
-          List Orders
-        </Link>
-      )}
-
-      {currentPath === "/booking/list" ? (
-        <Typography sx={{ color: "text.primary", fontWeight: "bold" }}>
-          List Booking
-        </Typography>
-      ) : (
-        <Link underline="hover" color="inherit" to="/booking/list">
-          List Booking
-        </Link>
-      )}
-      {currentPath === "/profile" ? (
-        <Typography sx={{ color: "text.primary", fontWeight: "bold" }}>
-          User Details
-        </Typography>
-      ) : (
-        <Link underline="hover" color="inherit" to="/profile">
-          User Details
-        </Link>
-      )}
-    </Breadcrumbs>
-  );
-}
 function Xuly() {
   const location = useLocation();
   const currentPath = location.pathname;

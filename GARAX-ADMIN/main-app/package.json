@@ -19,6 +19,7 @@
     "@mui/x-data-grid": "^7.17.0",
     "@mui/x-tree-view": "^7.17.0",
     "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.5.4",
     "nodemailer": "^6.9.15",
