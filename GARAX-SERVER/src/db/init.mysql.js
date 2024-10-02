@@ -3,10 +3,12 @@ const mysql = require('mysql');
 
 const app = express();
 
+// const configdb = require('../config/config.mysql')
+
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '123456',
+  password: '',
   database: 'garrax'
 });
 
@@ -46,5 +48,5 @@ app.get('/api/data', (req, res) => {
 });
 
 app.listen(5176, () => {
-  console.log('Server listening on port 3001');
+  console.log(`Server listening on port ${port}`);
 });
