@@ -1,6 +1,7 @@
 'use strict'
 
 const { StatusCodes, ReasonPhrases } = require('../utils/httpStatusCode')
+const { logger0 } = require('../utils/logger')
 
 const StatusCode = {
   FORBIDEN: 403,
@@ -17,9 +18,13 @@ class ErrorResponse extends Error {
   constructor(message, status) {
     super(message)
     this.status = status
+
+    // Log the error use the winston
+    logger0.error(`${this.status} - ${this.message}`)
   }
 }
 
+// 403
 class ConflictRequestError extends ErrorResponse {
 
   constructor(
@@ -30,6 +35,7 @@ class ConflictRequestError extends ErrorResponse {
   }
 }
 
+// 403
 class BadRequestError extends ErrorResponse {
 
   constructor(
@@ -40,6 +46,7 @@ class BadRequestError extends ErrorResponse {
   }
 }
 
+// 401
 class AuthFailureError extends ErrorResponse {
 
   constructor(
@@ -50,6 +57,7 @@ class AuthFailureError extends ErrorResponse {
   }
 }
 
+// 404
 class NotFoundError extends ErrorResponse {
 
   constructor(
@@ -60,6 +68,7 @@ class NotFoundError extends ErrorResponse {
   }
 }
 
+// 403
 class ForbidenError extends ErrorResponse {
 
   constructor(
@@ -70,10 +79,22 @@ class ForbidenError extends ErrorResponse {
   }
 }
 
+// 421
+class MisdirectedRequest extends ErrorResponse {
+
+  constructor(
+    message = ReasonPhrases.MISDIRECTED_REQUEST,
+    statusCode = StatusCodes.MISDIRECTED_REQUEST
+  ) {
+    super( message, statusCode )
+  }
+}
+
 module.exports = {
   ConflictRequestError,
   BadRequestError,
   AuthFailureError,
   NotFoundError,
-  ForbidenError
+  ForbidenError,
+  MisdirectedRequest
 }
