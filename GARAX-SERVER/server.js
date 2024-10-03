@@ -1,11 +1,18 @@
-const app = require("./src/app")
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const PORT = process.env.PORT || 3056
+const cors = require('cors');
+const authRoutes = require('./src/services/auth');
+require('dotenv').config();
 
-const server = app.listen( PORT, () => {
-    console.log(`GARAX server start with ${PORT}`)
-})
+const app = express();
+app.use(cors());  // Để cho phép React kết nối với Node.jss
+app.use(bodyParser.json());
 
-// process.on('SIGINT', () => {
-//     server.close( () => console.log(`Exit Server Exprerss`))
-// })
+app.use('/auth', authRoutes)
+
+
+const PORT = process.env.PORT || 4001;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

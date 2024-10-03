@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
 function Register() {
     const [username, setusername] = useState('');
     const [password, setPassword] = useState('');
-  
+
     const handleSubmit = (event) => {
-      event.preventDefault();
-      axios.post('http://localhost:5176/auth/register', { username, password })
+      event.preventDefault(); 
+      axios.post('http://localhost:4001/auth/register', {
+        username: username,
+        password: password
+      })
         .then((response) => {
           console.log(response.data);
         })
         .catch((error) => {
-          console.error(error);
+          console.error('Error:', error.response ? error.response.data : error.message);
         });
     };
 
@@ -22,8 +26,8 @@ function Register() {
           Username
         </span>
         <input
-          type="email"
-          name="email"
+          type="username"
+          name="username"
           value={username}
           onChange={(event) => setusername(event.target.value)}
           className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
