@@ -21,6 +21,19 @@ function login() {
      );
 }
 function ButtonLogin(){
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+        axios.post('http://localhost:4001/auth/login', {
+          username: username,
+          password: password
+        })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error('Error:', error.response ? error.response.data : error.message);
+          });
+      };
     return (
         <button className="w-full h-[50px] bg-slate-200 ">
                 <span>login</span>

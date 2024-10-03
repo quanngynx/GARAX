@@ -14,7 +14,7 @@ app.use(morgan("dev"))
 app.use(helmet())
 app.use(compression())
 //init db
-require('./db/init.mongodb')
+// require('./db/init.mysql.js')
 
 checkOverLoad()
 //init routes
