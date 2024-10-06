@@ -1,7 +1,7 @@
 const RateLimit = require('express-rate-limit');
 
-/**
- * @example Chỉ áp dụng cho routes user, nếu bạn muốn.
+/** Chỉ áp dụng cho routes user, nếu bạn muốn.
+ * @example
  * app.use('/user/', apiLimiter);
  */
 const apiLimiter = new RateLimit({
