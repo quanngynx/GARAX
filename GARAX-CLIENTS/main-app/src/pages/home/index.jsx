@@ -55,17 +55,14 @@ const tabsConfig = [
   {
     label: "Spare Parts",
     content: "Content Panel 1",
-    icon: "😍"
   },
   {
     label: "Support Tools",
     content: "Content Panel 2",
-    icon: "🤓"
   },
   {
     label: "Others",
     content: "Content Panel 3",
-    icon: "🤓"
   }
 ];
 
