@@ -14,8 +14,9 @@ function login() {
             </span>
             <input type="email" name="email" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Enter Password" />
             </label>
+            
           <div className="w-full  h-[300px]">
-            <ButtonLogin></ButtonLogin>
+            <ButtonLogin ></ButtonLogin>
           </div>
         </div>
      );
@@ -35,7 +36,7 @@ function ButtonLogin(){
           });
       };
     return (
-        <button className="w-full h-[50px] bg-slate-200 ">
+        <button className="w-full h-[50px] bg-slate-200 " onClick={handleSubmit}>
                 <span>login</span>
         </button>
     );

@@ -6,13 +6,13 @@ const authRoutes = require('./src/routes/access/index');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());  // Để cho phép React kết nối với Node.jss
+app.use(cors());  // Để cho phép React kết nối với Node.js
 app.use(bodyParser.json());
 
 app.use('/auth', authRoutes)
 
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4003;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
