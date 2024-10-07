@@ -10,6 +10,7 @@ import Menu from "../../../assets/iconMenu.svg"
 // import Stack from '@mui/material/Stack';
 import iconMenu from "../../../assets/GRAX.svg"
 import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg"
+import { Link } from "react-router-dom";
 function header() {
     return ( 
   
@@ -29,9 +30,13 @@ function header() {
                         </div>
                        
                         <div>
+                        <Link to="/auth/login">
                             <button className="border border-gray-300 text-black rounded-full px-4 py-2">
                                 <i className="fas fa-user mr-2 "></i> Sign in
+                            
                             </button>
+                            </Link>
+                            
                         </div>
             </div>
         

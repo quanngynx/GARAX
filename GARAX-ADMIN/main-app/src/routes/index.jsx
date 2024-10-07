@@ -14,8 +14,8 @@ import CaiDatTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
 import HoSoNguoiDung from '../pages/HoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
-import LoginPage from '../pages/auth/login.jsx'
-import RegisterPage from '../pages/auth/register.jsx'
+// import LoginPage from '../pages/auth/login.jsx'
+// import RegisterPage from '../pages/auth/register.jsx'
 // ========================================================================================
 import NotFound from './errorNotFound.jsx'
 
@@ -31,20 +31,20 @@ function Router() {
         }
       ]
     },
-    {
-      path: 'auth',
-      element: <OnlyCanvas />,
-      children: [
-        {
-          path: 'login',
-          element: <LoginPage />
-        },
-        {
-          path: 'register',
-          element: <RegisterPage />
-        }
-      ]
-    },
+    // {
+    //   path: 'auth',
+    //   element: <OnlyCanvas />,
+    //   children: [
+    //     {
+    //       path: 'login',
+    //       element: <LoginPage />
+    //     },
+    //     {
+    //       path: 'register',
+    //       element: <RegisterPage />
+    //     }
+    //   ]
+    // },
     {
       path: '/',
       element: <DashboardLayout />,
