@@ -19,7 +19,5 @@ db.connect((err) => {
   }
   console.log('Connected to MySQL database');
 });
-app.get('/auth/register', (req, res) => {
-  res.send('Trang đăng ký - Node.js Backend');
-});
+
 module.exports = db;

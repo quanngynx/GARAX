@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModels');
-const uuid = require('uuid');
+
 require('dotenv').config();
 
 exports.register = (req, res) => {
@@ -13,7 +13,7 @@ exports.register = (req, res) => {
         if (err) return res.status(500).json({ error: 'Internal server error' });
         if (user) return res.status(400).json({ error: 'Username already exists' });
          
-        const IDAcc = uuid.v4()
+
 
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) {
@@ -22,13 +22,13 @@ exports.register = (req, res) => {
             }
 
             // Tạo người dùng mới
-            User.create(IDAcc,username , hashedPassword, (err, userId) => {
+            User.create(username , hashedPassword, (err, userId) => {
                 if (err) return res.status(500).json({ error: 'Error creating user' });
 
        
                 const token = jwt.sign({ IDAcc: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
                 return res.status(201).json({ message: 'User created', token });
-                const refeshToken = jwt.decode({})
+         
             });
         });
     });

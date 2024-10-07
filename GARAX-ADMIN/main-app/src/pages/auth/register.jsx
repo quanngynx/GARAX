@@ -7,10 +7,10 @@ function Register() {
     
     const handleSubmit = (event) => {
       event.preventDefault(); 
-      axios.post('http://localhost:4003/auth/register', {
+      axios.post('http://localhost:5001/auth/register', {
         username: username,
         password: password,
-        IDAcc: IDAcc
+        
       })
         .then((response) => {
           console.log(response.data);
