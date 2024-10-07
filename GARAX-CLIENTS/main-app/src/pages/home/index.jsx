@@ -1,8 +1,17 @@
+import { useNavigate  } from "react-router-dom";
+
 import imagecar from "../../assets/car-big.png";
 
 import FormSearch from "./components/formSearch";
 import FormHelpDesk from "./components/formHelpDesk";
+import CardProduct from "./components/sliderCardProduct";
+import BtnProducts from "./components/buttonFullWidth";
+import AccessibleTabs from "./components/accessibleTabs";
 function HomePage() {
+
+  const history = useNavigate ();
+  const navigateToProductPage = () => history('#');
+
   return (
     <div className="  bg-white p-20 ">
       <div className="relative">
@@ -25,10 +34,39 @@ function HomePage() {
       </div>
 
       <FormHelpDesk />
-      
-      <div className="mt-36 bg-orange-600 w-full h-[100px]"></div>
+
+      <div className="mt-12">
+        <div className="">
+          <div className="px-8">
+            <div className="text-[#050b20] text-[40px] font-bold font-['DM Sans'] leading-10">
+              Featured Listings
+            </div>
+            <AccessibleTabs tabsConfig={tabsConfig}/>
+          </div>
+        </div>
+        <CardProduct />
+        <BtnProducts navigateTo={navigateToProductPage}/>
+      </div>
     </div>
   );
 }
+
+const tabsConfig = [
+  {
+    label: "Spare Parts",
+    content: "Content Panel 1",
+    icon: "😍"
+  },
+  {
+    label: "Support Tools",
+    content: "Content Panel 2",
+    icon: "🤓"
+  },
+  {
+    label: "Others",
+    content: "Content Panel 3",
+    icon: "🤓"
+  }
+];
 
 export default HomePage;

@@ -4,16 +4,24 @@ const User = require('../models/userModels');
 
 require('dotenv').config();
 
-exports.register = (req, res) => {
+const { OK, CREATED, SuccessResponse  } = require("../core/success.response")
+const AccessService = require("../services/access.service")
+
+const register = (req, res) => {
     console.log(req.body)
     const { username,  password } = req.body;
-    
+
 
     User.findByUsername(username, (err, user) => {
         if (err) return res.status(500).json({ error: 'Internal server error' });
         if (user) return res.status(400).json({ error: 'Username already exists' });
+<<<<<<< HEAD
          
 
+=======
+
+        const IDAcc = uuid.v4()
+>>>>>>> fb24e937dc281f3f95639cdcb2b9660b683c144b
 
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) {
@@ -25,7 +33,7 @@ exports.register = (req, res) => {
             User.create(username , hashedPassword, (err, userId) => {
                 if (err) return res.status(500).json({ error: 'Error creating user' });
 
-       
+
                 const token = jwt.sign({ IDAcc: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
                 return res.status(201).json({ message: 'User created', token });
          
@@ -33,7 +41,7 @@ exports.register = (req, res) => {
         });
     });
 };
-exports.login = (req, res) => {
+const login = (req, res) => {
     const { username, password } = req.body;
     username.findByUsername(username, (err, user) => {
         if (err) return res.status(500).json({ error: 'Internal server error' });

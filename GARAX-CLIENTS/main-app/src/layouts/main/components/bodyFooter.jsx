@@ -1,3 +1,6 @@
+import AppleIcon from '../../../assets/icons/apple-brand.svg?react'
+import GgPlayIcon from '../../../assets/icons/playStore-brand.svg?react'
+
 const titleFooter = [
   {
     title: "Company",
@@ -118,12 +121,12 @@ const titleFooter = [
 
 const cardDown = [
   {
-    image: "",
+    brand: <AppleIcon />,
     body1: "Download on the",
     body2: "Apple Store",
   },
   {
-    image: "",
+    brand: <GgPlayIcon />,
     body1: "Get in on",
     body2: "Google Play",
   },
@@ -132,64 +135,64 @@ const cardDown = [
 function bodyFooter() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-8 px-10 py-8">
-    {/* row 1 */}
+      {/* row 1 */}
       <div>
         <h3 className="text-white font-semibold mb-4">Company</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Company
+              Company
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Blog
+              Blog
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Services
+              Services
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            FAQs
+              FAQs
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Terms
+              Terms
             </a>
           </li>
           <li className="py-1">
             <a href="/swagger" className="hover:text-gray-500">
-            Contact Us
+              Contact Us
             </a>
           </li>
         </ul>
       </div>
-    {/* row 2 */}
+      {/* row 2 */}
       <div>
         <h3 className="text-white font-semibold mb-4">Quick Links</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Get in Touch
+              Get in Touch
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Help center
+              Help center
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Live chat
+              Live chat
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            How it works
+              How it works
             </a>
           </li>
           <li className="py-1">
@@ -219,48 +222,48 @@ function bodyFooter() {
           </li>
         </ul>
       </div>
-    {/* row 3 */}
+      {/* row 3 */}
       <div>
         <h3 className="text-white font-semibold mb-4">Our Brands</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Toyota
+              Toyota
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Porsche
+              Porsche
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Audi
+              Audi
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            BMW
+              BMW
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Ford
+              Ford
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Nissan
+              Nissan
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Peugeot
+              Peugeot
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Volkswagen
+              Volkswagen
             </a>
           </li>
           <li className="py-1">
@@ -270,48 +273,48 @@ function bodyFooter() {
           </li>
         </ul>
       </div>
-    {/* row 4 */}
+      {/* row 4 */}
       <div>
         <h3 className="text-white font-semibold mb-4">Vehicles Type</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Sedan
+              Sedan
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Hatchback
+              Hatchback
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            SUV
+              SUV
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Hybrid
+              Hybrid
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Electric
+              Electric
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Coupe
+              Coupe
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Truck
+              Truck
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-            Convertible
+              Convertible
             </a>
           </li>
           <li className="py-1">
@@ -321,9 +324,33 @@ function bodyFooter() {
           </li>
         </ul>
       </div>
-    {/* row 5 */}
-      <div>
-        <h3 className="text-white font-semibold mb-4">Our Mobile App</h3>
+      {/* row 5 */}
+      <div className="">
+        <div className="mb-4">
+          <h3 className="text-white font-semibold mb-4">Our Mobile App</h3>
+
+          {cardDown.map((tab, index) => (
+            <div
+              className=""
+              key={`tab-${index}`}
+            >
+              <div className="flex justify-center items-center">
+                <div className="">{tab.brand}</div>
+                <div className="">
+                  <div className="text-white text-xs font-normal font-['DM Sans'] leading-3">{tab.body1}</div>
+                  <div className="text-white text-[15px] font-medium font-['DM Sans'] leading-[15px]">{tab.body2}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+          <div className=""></div>
+        </div>
+
+        <div className="">
+          <h3 className="text-white font-semibold mb-4">Connect With Us</h3>
+
+          <div className=""></div>
+        </div>
       </div>
     </div>
   );
