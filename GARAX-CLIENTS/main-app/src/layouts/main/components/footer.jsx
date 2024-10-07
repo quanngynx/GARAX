@@ -5,7 +5,7 @@ import Line from "../../../components/line";
 function footer() {
   return (
     <div className="bg-white w-full flex justify-center">
-      <div className="w-[1325.87px] bg-slate-800 mb-6 rounded-2xl">
+      <div className="w-[1440px] bg-slate-800 mb-6 rounded-2xl">
         <HeadFooter />
         <Line />
         <BodyFooter />

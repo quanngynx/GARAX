@@ -3,7 +3,10 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModels');
 require('dotenv').config();
 
-exports.register = (req, res) => {
+const { OK, CREATED, SuccessResponse  } = require("../core/success.response")
+const AccessService = require("../services/access.service")
+
+const register = (req, res) => {
     console.log(req.body)
     const { username,  password } = req.body;
 
@@ -30,7 +33,7 @@ exports.register = (req, res) => {
         });
     });
 };
-exports.login = (req, res) => {
+const login = (req, res) => {
     const { username, password } = req.body;
 
 
@@ -49,3 +52,8 @@ exports.login = (req, res) => {
         });
     });
 };
+
+module.exports = {
+  register,
+  login
+}
