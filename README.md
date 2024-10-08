@@ -1,6 +1,8 @@
 # garrax_website
 
+https://garrax-admin-b818ozf7f-loq-burhs-projects.vercel.app/statics
 
+https://garrax-client-nahjmv75q-loq-burhs-projects.vercel.app/home
 
 ## Getting started
 
