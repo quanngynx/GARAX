@@ -33,7 +33,6 @@ function header() {
                         <Link to="/auth/login">
                             <button className="border border-gray-300 text-black rounded-full px-4 py-2">
                                 <i className="fas fa-user mr-2 "></i> Sign in
-                            
                             </button>
                             </Link>
                             
