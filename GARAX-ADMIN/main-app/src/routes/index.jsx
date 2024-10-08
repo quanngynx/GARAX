@@ -8,10 +8,10 @@ import TestLayout from '../layouts/exp/index.jsx'
 
 /** Components */
 // const ThongKeDuLieu = lazy(() => import('../pages/index.jsx'))
-import DanhSachDonHang from '../pages/DanhSachDonHang.jsx'
-import DanhSachDatLich from '../pages/DanhSachDatLich.jsx'
+import DanhSachDonHang from '../pages/danhSachDonHang.jsx' 
+import DanhSachDatLich from '../pages/danhSachDatLich.jsx'
 import CaiDatTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
-import HoSoNguoiDung from '../pages/HoSoNguoiDung.jsx'
+import HoSoNguoiDung from '../pages/hoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
 // import LoginPage from '../pages/auth/login.jsx'
