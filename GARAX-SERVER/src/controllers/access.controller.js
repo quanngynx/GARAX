@@ -15,13 +15,8 @@ const register = (req, res) => {
     User.findByUsername(username, (err, user) => {
         if (err) return res.status(500).json({ error: 'Internal server error' });
         if (user) return res.status(400).json({ error: 'Username already exists' });
-<<<<<<< HEAD
-         
 
-=======
-
-        const IDAcc = uuid.v4()
->>>>>>> fb24e937dc281f3f95639cdcb2b9660b683c144b
+   
 
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) {
@@ -53,4 +48,8 @@ const login = (req, res) => {
             return res.status(200).json({ message: 'Login successful', token });
         });
     });
+};
+module.exports = {
+    register,
+    login
 };

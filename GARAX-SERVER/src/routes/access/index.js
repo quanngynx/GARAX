@@ -10,7 +10,7 @@
 
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/access.controller');
+const authController = require('../../controllers/access.controller')
 
 // Route đăng ký
 router.post('/register', authController.register);

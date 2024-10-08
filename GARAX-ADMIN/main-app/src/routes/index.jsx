@@ -83,12 +83,12 @@ function Router() {
         // },
         {
           path: 'setting',
-          element: <CaiDatTaiKhoan />
+          element: <CaiDatTaiKhoan/>
           
         },
         {
           path: 'profile',
-          element: <HoSoNguoiDung />
+          element: <HoSoNguoiDung/>
         },
         {
           path: 'dash-v2',
@@ -102,7 +102,7 @@ function Router() {
     },
     {
       path: '*',
-      element: <OnlyCanvas />,
+      element: <OnlyCanvas/>,
       children: [
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" replace /> }
