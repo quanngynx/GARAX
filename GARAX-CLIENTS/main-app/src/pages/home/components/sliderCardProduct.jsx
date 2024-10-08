@@ -98,7 +98,7 @@ const MultiCardCarousel = () => {
         <div className="w-full">
           <div className="relative flex overflow-hidden  group"> {/* ========= PArent ==========*/}
             <div  
-            className="flex justify-center  animate-infinite-scroll group-hover:paused rounded-l-lg"
+            className="flex justify-center animate-infinite-scroll group-hover:paused rounded-l-lg"
             > {/* ========= Child ==========*/}
               {cards.slice(currentIndex, currentIndex + 4).map((card, index) => (
                 <CardProducts card={card} index={index} key={index} />
@@ -106,7 +106,7 @@ const MultiCardCarousel = () => {
             </div>
 
             <div 
-            className="flex justify-center  animate-infinite-scroll group-hover:paused rounded-r-lg"
+            className="flex justify-center animate-infinite-scroll group-hover:paused rounded-r-lg"
             aria-hidden="true"
             > {/* ========= Child ==========*/}
               {cards.slice(currentIndex, currentIndex + 4).map((card, index) => (
