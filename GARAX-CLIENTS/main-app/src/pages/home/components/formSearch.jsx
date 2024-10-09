@@ -54,12 +54,12 @@ function formSearch() {
       <style jsx>{`
         @media (max-width: 768px) {
           .label-select {
-            color: white; /* Đổi màu chữ thành trắng */
+            color: white; 
           }
 
           button {
-            padding: 0.5rem 1rem; /* Điều chỉnh padding cho nhỏ hơn */
-            font-size: 0.875rem; /* Điều chỉnh kích thước chữ cho nhỏ hơn */
+            padding: 0.5rem 1rem; 
+            font-size: 0.875rem; 
           }
         }
       `}</style>
