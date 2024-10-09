@@ -11,14 +11,17 @@ const register = (req, res) => {
     console.log(req.body)
     const { username,  password } = req.body;
 
-
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Username and password are required' });
+    }
     User.findByUsername(username, (err, user) => {
+        console.log(user); // Kiểm tra xem user có được tìm thấy không
         if (err) return res.status(500).json({ error: 'Internal server error' });
         if (user) return res.status(400).json({ error: 'Username already exists' });
 
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) {
-                console.error("Error hashing password:", err); // Thêm logging
+                console.error("Error hashing password:", err); 
                 return res.status(500).json({ error: 'Error hashing password' });
             }
 
@@ -34,7 +37,7 @@ const register = (req, res) => {
 };
 const login = (req, res) => {
     const { username, password } = req.body;
-    username.findByUsername(username, (err, user) => {
+    User.findByUsername(username, (err, user) => {
         if (err) return res.status(500).json({ error: 'Internal server error' });
         if (!user) return res.status(400).json({ error: 'Invalid email or password' });
         bcrypt.compare(password, user.password, (err, isMatch) => {
