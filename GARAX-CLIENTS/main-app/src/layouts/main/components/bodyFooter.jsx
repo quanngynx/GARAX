@@ -376,28 +376,13 @@ function bodyFooter() {
               className="flex items-center"
               key={`tab-${index}`}
             >
-              <div className="flex  items-center py-3 px-4 bg-white/5 rounded-2xl w-[190px] max-w-[190px] mb-4">
+              <div className="flex flex-row items-center py-3 px-4 bg-white/5 rounded-2xl mb-4">
                 <div className="mr-3">{tab.brand}</div>
               </div>
             </div>
           ))}
 
-          <div className="flex items-center">
-            <div className="flex items-center w-[190px] max-w-[190px]">
-              <div className="">
-                <fbIcon />
-              </div>
-              <div className="">
-                <xIcon />
-              </div>
-              <div className="">
-                <insIcon />
-              </div>
-              <div className="">
-                <linkedlnIcon />
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

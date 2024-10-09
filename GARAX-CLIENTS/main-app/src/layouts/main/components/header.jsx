@@ -1,16 +1,8 @@
 import Menu from "../../../assets/iconMenu.svg";
-// import * as React from 'react';
-// import Button from '@mui/material/Button';
-// import ClickAwayListener from '@mui/material/ClickAwayListener';
-// import Grow from '@mui/material/Grow';
-// import Paper from '@mui/material/Paper';
-// import Popper from '@mui/material/Popper';
-// import MenuItem from '@mui/material/MenuItem';
-// import MenuList from '@mui/material/MenuList';
-// import Stack from '@mui/material/Stack';
 import iconMenu from "../../../assets/GRAX.svg";
 import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg";
 import { Link } from "react-router-dom";
+
 function header() {
   return (
    <div className="flex justify-center bg-white shadow-md border-b-gray-100 border-2">
