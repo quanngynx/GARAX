@@ -34,9 +34,9 @@ function HomePage() {
 
         {/* Spacer div to create space between text and form */}
         
-         {/* <div className=" inset-x-0 bottom-0 transform translate-y-[80%] md:translate-y-0">
+         <div className=" inset-x-0 bottom-0 transform translate-y-[80%] md:translate-y-0">
           <FormSearch />
-        </div> */}
+        </div>
       </div>
     </div>
 

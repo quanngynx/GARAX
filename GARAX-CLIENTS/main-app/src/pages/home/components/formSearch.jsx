@@ -1,6 +1,6 @@
 function formSearch() {
   return (
-    <div className="text-black  w-full lg:w-3/4 mx-auto p-4 bg-opacity-90 shadow-lg bg-white rounded-lg ">
+    <div className="text-black  w-full lg:w-3/4 mx-auto p-4 bg-opacity-90 shadow-lg bg-white rounded-lg">
       {/* Các nút All, New, Used */}
       <div className="flex justify-center space-x-4 mb-4">
         <button className="px-4 py-2 text-white bg-blue-600 rounded-full">All</button>
