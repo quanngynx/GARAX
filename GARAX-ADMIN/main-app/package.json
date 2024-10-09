@@ -22,6 +22,7 @@
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.5.4",
+    "i18next": "^23.15.2",
     "nodemailer": "^6.9.15",
     "react": "^18.3.1",
     "react-countup": "^6.5.3",

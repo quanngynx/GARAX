@@ -4,8 +4,8 @@ const User = require('../models/userModels');
 
 require('dotenv').config();
 
-const { OK, CREATED, SuccessResponse  } = require("../core/success.response")
-const AccessService = require("../services/access.service")
+const { OK, CREATED, SuccessResponse  } = require("../middlewares/success.response")
+const AccessService = require("../services/auth.service")
 
 const register = (req, res) => {
     console.log(req.body)
@@ -15,8 +15,6 @@ const register = (req, res) => {
     User.findByUsername(username, (err, user) => {
         if (err) return res.status(500).json({ error: 'Internal server error' });
         if (user) return res.status(400).json({ error: 'Username already exists' });
-
-   
 
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) {
@@ -28,10 +26,8 @@ const register = (req, res) => {
             User.create(username , hashedPassword, (err, userId) => {
                 if (err) return res.status(500).json({ error: 'Error creating user' });
 
-
                 const token = jwt.sign({ IDAcc: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
                 return res.status(201).json({ message: 'User created', token });
-         
             });
         });
     });

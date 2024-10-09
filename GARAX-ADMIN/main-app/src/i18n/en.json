@@ -1,0 +1,38 @@
+{
+  "home-page": {
+    
+  },
+  "login-page": {
+    "tit": "",
+    "label-email": "",
+    "placeholder-email": "",
+    "label-pass": "",
+    "placeholder-pass": "",
+    "toggle-remember-pass": "",
+    "p": "",
+    "btn-login": "",
+    "btn-forget-pass": "",
+    "btn-sign-up": ""
+  },
+  "regis-page": {
+
+  },
+  "sidebar": {
+    "menu": "",
+    "catalog": {
+      "cata-1": "",
+      "cata-2": "",
+      "cata-3": "",
+      "cata-4": "",
+      "cata-5": ""
+    }
+  },
+  "navbar": {
+    "menu": "",
+    "sign-in": "",
+    "sign-up": ""
+  },
+  "footer": {
+    "tit": ""
+  }
+}

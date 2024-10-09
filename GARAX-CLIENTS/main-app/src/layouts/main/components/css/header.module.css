@@ -1,0 +1,13 @@
+@media screen and (min-width: value) and (max-width: value) {
+  /* Style cho các màn hình trong khoảng giá trị specified */
+  .responsiveMobile {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 640px) {
+    .responsiveRange {
+
+    }
+}
+
