@@ -155,7 +155,7 @@ const connectVia = [
 
 function bodyFooter() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-8 px-10 py-8">
+    <div className="grid grid-cols-2 md:sm:grid-cols-5 gap-8 px-10 py-8">
       {/* row 1 */}
       <div>
         <h3 className="text-white font-semibold mb-4">Company</h3>
@@ -371,18 +371,19 @@ function bodyFooter() {
         <div className="">
           <h3 className="text-white font-semibold mb-4">Connect With Us</h3>
 
+          <div className="inline-flex">
           {connectVia.map((tab, index) => (
             <div
               className="flex items-center"
               key={`tab-${index}`}
             >
-              <div className="flex flex-row items-center py-3 px-4 bg-white/5 rounded-2xl mb-4">
-                <div className="mr-3">{tab.brand}</div>
+              <div className="flex flex-row items-center py-3 px-3 bg-white/5 rounded-2xl mb-4 mr-4">
+                <div className="p-1">{tab.brand}</div>
               </div>
             </div>
           ))}
+          </div>
 
-          
         </div>
       </div>
     </div>

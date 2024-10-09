@@ -6,10 +6,10 @@ const app = express();
 // const configdb = require('../config/config.mysql')
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'garrax'
+  host: process.env.HOST_DEV,
+  user: process.env.USER_DEV,
+  password: process.env.PASSWORD_DB_DEV,
+  database: process.env.DATABASE_DEV
 });
 
 db.connect((err) => {
