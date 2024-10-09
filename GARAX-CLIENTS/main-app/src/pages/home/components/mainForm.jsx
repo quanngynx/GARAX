@@ -1,50 +1,56 @@
-function mainForm() {
-    return (
-      <div className="w-[540px]">
-        <div className="text-white text-4xl font-bold font-['DM Sans']">
+function MainForm() {
+  return (
+    <div className="w-full md:w-[540px] p-4 md:p-0">
+      {/* Title */}
+      <div className="text-white text-2xl md:text-4xl font-bold font-['DM Sans'] text-center md:text-left">
         Repairing Oto Requirement
-        </div>
-
-        <div className="text-white text-[15px] font-normal font-['DM Sans'] my-10">
-        Use and fill in this form to send us your requirement about repairing your oto problems
-        </div>
-        
-        <input
-          type="email"
-          id="helper-text"
-          className="h-[58px] my-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Fill your Email"
-        />
-
-        <input
-          type="tel"
-          id="phone-number"
-          className="h-[58px] my-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Fill your phone numbers"
-        />
-
-        <p
-          id="helper-text-explanation"
-          className="mt-2 text-sm text-gray-500 dark:text-gray-400"
-        >
-          We’ll never share your details. Read our
-          <a
-            href="#"
-            className="pl-1 font-medium text-blue-600 hover:underline dark:text-blue-500"
-          >
-            Privacy Policy
-          </a>
-          .
-        </p>
-
-        <button
-          type="submit"
-          className="mt-8 py-4 w-full text-white end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Send us now 
-        </button>
       </div>
-    );
-  }
 
-  export default mainForm
+      {/* Description */}
+      <div className="text-white text-base md:text-[15px] font-normal font-['DM Sans'] my-4 md:my-10 text-center md:text-left">
+        Use and fill in this form to send us your requirement about repairing your oto problems.
+      </div>
+
+      {/* Email Input */}
+      <input
+        type="email"
+        id="helper-text"
+        className="h-[50px] md:h-[58px] my-4 md:my-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Fill your Email"
+      />
+
+      {/* Phone Number Input */}
+      <input
+        type="tel"
+        id="phone-number"
+        className="h-[50px] md:h-[58px] my-4 md:my-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Fill your phone numbers"
+      />
+
+      {/* Privacy Policy */}
+      <p
+        id="helper-text-explanation"
+        className="mt-2 text-sm text-gray-500 text-center md:text-left"
+      >
+        We’ll never share your details. Read our
+        <a
+          href="#"
+          className="pl-1 font-medium text-blue-600 hover:underline"
+        >
+          Privacy Policy
+        </a>
+        .
+      </p>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="mt-6 md:mt-8 py-3 md:py-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm"
+      >
+        Send us now
+      </button>
+    </div>
+  );
+}
+
+export default MainForm;
