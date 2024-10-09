@@ -21,7 +21,8 @@ function Register() {
     };
 
   return (
-    <div className="">
+    <div className="bg-black w-full h-full justify-center p-[10px]">
+      <div className='bg-red-700 flex'>
       <label className="block">
         <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
           Username
@@ -68,6 +69,7 @@ function Register() {
         >
           <span>register</span>
         </button>
+      </div>
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
 function formSearch() {
   return (
-    <div className="text-black  w-full lg:w-3/4 mx-auto p-4 bg-opacity-90 shadow-lg bg-white rounded-lg ">
+    <div className="text-black md:mt-[650px] lg:mt[700px] w-full lg:w-3/4 mx-auto p-4 bg-opacity-90 shadow-lg backdrop-blur-sm rounded-lg">
       {/* Các nút All, New, Used */}
-      <div className="flex justify-center space-x-4 mb-4">
-        <button className="px-4 py-2 text-white bg-blue-600 rounded-full">All</button>
-        <button className="px-4 py-2 text-white bg-blue-600 rounded-full">New</button>
-        <button className="px-4 py-2 text-white bg-blue-600 rounded-full">Used</button>
+      <div className="flex justify-center  space-x-2 mb-4">
+        <button className="px-4 py-2 text-white sm:text-neutral-200 rounded-full">All</button>
+        <button className="px-4 py-2 text-white  rounded-full">New</button>
+        <button className="px-4 py-2 text-white  rounded-full">Used</button>
       </div>
 
       {/* Form phần chọn lọc */}
-      <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-4">
+      <div className="grid  grid-cols-5    md:grid-cols-5 sm:grid-cols-5 gap-5">
         {/* Chọn hãng xe */}
         <div className="w-full">
           <label className="block mb-2">Select Makes</label>
@@ -43,12 +43,26 @@ function formSearch() {
         </div>
 
         {/* Nút tìm kiếm */}
-        <div className="mt-4 lg:mt-0 lg:col-span-4 flex justify-center">
-          <button className="px-6 py-2 bg-blue-600 w-full lg:w-auto text-white rounded-full">
-            Search
+        <div className="w-full  flex items-end">
+          <button className="px-2 py-2 auto-fit bg-blue-600 border-spacing-y-9  flex-shrink-0  md:min-w-[50px] text-black rounded-full">
+            Search  
           </button>
         </div>
       </div>
+
+      {/* Responsive Styles */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .label-select {
+            color: white; 
+          }
+
+          button {
+            padding: 0.5rem 1rem; 
+            font-size: 0.875rem; 
+          }
+        }
+      `}</style>
     </div>
   );
 }
