@@ -52,3 +52,5 @@ function formSearch() {
     </div>
   );
 }
+
+export default formSearch

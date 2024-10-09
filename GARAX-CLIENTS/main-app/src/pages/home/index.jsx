@@ -1,4 +1,4 @@
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import imagecar from "../../assets/car-big.png";
 
@@ -8,9 +8,8 @@ import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
 import AccessibleTabs from "./components/accessibleTabs";
 function HomePage() {
-
-  const history = useNavigate ();
-  const navigateToProductPage = () => history('#');
+  const history = useNavigate();
+  const navigateToProductPage = () => history("#");
 
   return (
     <div className="md:w-full bg-white h-auto p-4 md:p-20">
@@ -74,7 +73,7 @@ const tabsConfig = [
   {
     label: "Others",
     content: "Content Panel 3",
-  }
+  },
 ];
 
 export default HomePage;

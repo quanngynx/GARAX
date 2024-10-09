@@ -1,5 +1,11 @@
-import AppleIcon from '../../../assets/icons/apple-brand.svg?react'
-import GgPlayIcon from '../../../assets/icons/playStore-brand.svg?react'
+import AppleIcon from "../../../assets/icons/apple-brand.svg?react";
+import GgPlayIcon from "../../../assets/icons/playStore-brand.svg?react";
+
+import FbIcon from "../../../assets/icons/fb-brand.svg?react";
+import InsIcon from "../../../assets/icons/ins-brand.svg?react";
+import XIcon from "../../../assets/icons/x-brand.svg?react";
+import LinkedlnIcon from "../../../assets/icons/linkedin-brand.svg?react";
+import { Link } from "react-router-dom";
 
 const titleFooter = [
   {
@@ -129,6 +135,21 @@ const cardDown = [
     brand: <GgPlayIcon />,
     body1: "Get in on",
     body2: "Google Play",
+  },
+];
+
+const connectVia = [
+  {
+    brand: <FbIcon />,
+  },
+  {
+    brand: <XIcon />,
+  },
+  {
+    brand: <InsIcon />,
+  },
+  {
+    brand: <LinkedlnIcon />,
   },
 ];
 
@@ -330,15 +351,16 @@ function bodyFooter() {
           <h3 className="text-white font-semibold mb-4">Our Mobile App</h3>
 
           {cardDown.map((tab, index) => (
-            <div
-              className=""
-              key={`tab-${index}`}
-            >
-              <div className="flex justify-center items-center">
-                <div className="">{tab.brand}</div>
+            <div className="flex items-center" key={`tab-${index}`}>
+              <div className="flex  items-center py-3 px-4 bg-white/5 rounded-2xl w-[190px] max-w-[190px] mb-4">
+                <div className="mr-3">{tab.brand}</div>
                 <div className="">
-                  <div className="text-white text-xs font-normal font-['DM Sans'] leading-3">{tab.body1}</div>
-                  <div className="text-white text-[15px] font-medium font-['DM Sans'] leading-[15px]">{tab.body2}</div>
+                  <div className="text-white text-xs font-normal font-['DM Sans'] leading-3">
+                    {tab.body1}
+                  </div>
+                  <div className="text-white text-[15px] font-medium font-['DM Sans'] leading-[15px]">
+                    {tab.body2}
+                  </div>
                 </div>
               </div>
             </div>
@@ -349,7 +371,18 @@ function bodyFooter() {
         <div className="">
           <h3 className="text-white font-semibold mb-4">Connect With Us</h3>
 
-          <div className=""></div>
+          {connectVia.map((tab, index) => (
+            <div
+              className="flex items-center"
+              key={`tab-${index}`}
+            >
+              <div className="flex flex-row items-center py-3 px-4 bg-white/5 rounded-2xl mb-4">
+                <div className="mr-3">{tab.brand}</div>
+              </div>
+            </div>
+          ))}
+
+          
         </div>
       </div>
     </div>
