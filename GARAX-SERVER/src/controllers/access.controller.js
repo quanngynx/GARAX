@@ -9,7 +9,7 @@ const AccessService = require("../services/auth.service")
 
 const register = (req, res) => {
     console.log(req.body)
-    const { username,  password } = req.body;
+    const { username, password } = req.body;
 
     if (!username || !password) {
         return res.status(400).json({ error: 'Username and password are required' });
@@ -21,7 +21,7 @@ const register = (req, res) => {
 
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) {
-                console.error("Error hashing password:", err); 
+                console.error("Error hashing password:", err);
                 return res.status(500).json({ error: 'Error hashing password' });
             }
 
