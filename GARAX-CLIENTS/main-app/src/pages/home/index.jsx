@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import imagecar from "../../assets/car-big.png";
+import imagecar from "../../assets/car-big.webp";
 
 import FormSearch from "./components/formSearch";
 import FormHelpDesk from "./components/formHelpDesk";

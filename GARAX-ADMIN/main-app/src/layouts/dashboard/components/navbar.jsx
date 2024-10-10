@@ -2,8 +2,6 @@ import iconUser from "../../../assets/iconUser.png";
 import iconBell from "../../../assets/icons8-bell-100.png";
 import iconSun from "../../../assets/icons8-sun-100.png";
 import iconSearch from "../../../assets/icons8-search-50.png";
-import { Link } from "react-router-dom";
-import { Breadcrumbs, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 import BreadCrumbDynamic from './breadcrumb'
@@ -11,7 +9,7 @@ import BreadCrumbDynamic from './breadcrumb'
 function Navbar() {
   return (
     <div className="w-100% h-[120px]">
-      <div className="w-100% h-[118px] flex justify-between">
+      <div className="w-100% h-[118px] sm:flex justify-between">
         <div className="w-33$ h-[118px]">
           <div className="w-100% h-[58px] flex  pt-5">
           Home / <BreadCrumbDynamic />
