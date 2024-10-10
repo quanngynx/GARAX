@@ -56,13 +56,12 @@ function login() {
     </div>
   );
 }
-function ButtonLogin() {
+ function ButtonLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:4006/auth/login", {
-        username: username,
-        password: password,
+    axios.post("http://localhost:5001/auth/login", {
+        email: email,
+        password: password
       })
       .then((response) => {
         console.log(response.data);

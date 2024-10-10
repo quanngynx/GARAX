@@ -4,6 +4,7 @@ import axios from 'axios';
 function Register() {
     const [username, setusername] = useState('');
     const [password, setPassword] = useState('');
+    const [email , setEmail] = useState('');
     
     const handleSubmit = (event) => {
       event.preventDefault(); 
@@ -43,7 +44,7 @@ function Register() {
         <input
           type="password"
           name="password"
-          value=  {password}
+          value={password}
           onChange={(event) => setPassword(event.target.value)}
           className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           placeholder="Enter Password"s
