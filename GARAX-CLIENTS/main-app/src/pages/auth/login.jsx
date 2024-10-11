@@ -78,7 +78,7 @@ function login() {
       className="w-full h-[50px] bg-slate-600 rounded-3xl"
       onClick={handleSubmit}
     >
-      <span>login</span>
+      <span>Login</span>
     </button>
   );
 }

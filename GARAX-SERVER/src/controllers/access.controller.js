@@ -7,15 +7,9 @@ const register = async (req, res) => {
     try {
         const { email, password, fullname, phone } = req.body;
 
-<<<<<<< HEAD
         if (!email || !password) {
             return res.status(400).json({ error: 'Email and password are required' });
         }
-=======
-const register = (req, res) => {
-    console.log(req.body)
-    const { username, password } = req.body;
->>>>>>> ce1d82e2026b21b95236d729dfe09aa515b7816a
 
         // Kiểm tra xem email đã tồn tại chưa
         const user = await User.findByEmail(email);
@@ -35,29 +29,6 @@ const register = (req, res) => {
         console.error('Error registering user:', err);
         return res.status(500).json({ error: 'Internal server error' });
     }
-<<<<<<< HEAD
-=======
-    User.findByUsername(username, (err, user) => {
-        console.log(user); // Kiểm tra xem user có được tìm thấy không
-        if (err) return res.status(500).json({ error: 'Internal server error' });
-        if (user) return res.status(400).json({ error: 'Username already exists' });
-
-        bcrypt.hash(password, 10, (err, hashedPassword) => {
-            if (err) {
-                console.error("Error hashing password:", err);
-                return res.status(500).json({ error: 'Error hashing password' });
-            }
-
-            // Tạo người dùng mới
-            User.create(username , hashedPassword, (err, userId) => {
-                if (err) return res.status(500).json({ error: 'Error creating user' });
-
-                const token = jwt.sign({ IDAcc: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
-                return res.status(201).json({ message: 'User created', token });
-            });
-        });
-    });
->>>>>>> ce1d82e2026b21b95236d729dfe09aa515b7816a
 };
 
 const login = async (req, res) => {
@@ -73,11 +44,11 @@ const login = async (req, res) => {
 
         console.log("Password from request:", password);
         console.log("Hashed password from DB:", user.Password);
-        
-        
+
+
         // if (typeof password === 'string' && typeof user.Password === 'string') {
           //  isMatch = await bcrypt.compare(password, user.Password);
-            
+
         //     console.log("Password match:", isMatch);
         // } else {
         //     console.error("Invalid input for bcrypt.compare():", password, user.Password);
