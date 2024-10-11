@@ -10,7 +10,10 @@ const register = async (req, res) => {
         if (!email || !password) {
             return res.status(400).json({ error: 'Email and password are required' });
         }
-
+        const emailRegex = /^[^\s@]+@[^\s@]+com+$/;
+        if(!emailRegex.test(email)){
+            return res.status(400).json({success: false, message: "Invalid email"})
+        }
         // Kiểm tra xem email đã tồn tại chưa
         const user = await User.findByEmail(email);
         if (user) {
@@ -45,7 +48,6 @@ const login = async (req, res) => {
         console.log("Password from request:", password);
         console.log("Hashed password from DB:", user.Password);
 
-
         // if (typeof password === 'string' && typeof user.Password === 'string') {
           //  isMatch = await bcrypt.compare(password, user.Password);
 
@@ -53,7 +55,8 @@ const login = async (req, res) => {
         // } else {
         //     console.error("Invalid input for bcrypt.compare():", password, user.Password);
         // }
-       const isMatch = await bcrypt.compare(password, user.Password);
+
+       const isMatch = bcrypt.compare(password, user.Password);
         if (isMatch) {
             // Tạo token nếu mật khẩu hợp lệ
             const token = jwt.sign({ IDAcc: user.IDAcc }, process.env.JWT_SECRET, { expiresIn: '1h' });
