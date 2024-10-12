@@ -25,6 +25,7 @@ function login() {
       });
   };
   return (
+<<<<<<< HEAD
     <div className="w-[580px] p-2">
       <div className="text-[#333333] text-[32px] font-medium mb-5">Log in</div>
       <label className="block mb-5">
@@ -79,6 +80,14 @@ function login() {
         </div>
       </div>
     </div>
+=======
+    <button
+      className="w-full h-[50px] bg-slate-600 rounded-3xl"
+      onClick={handleSubmit}
+    >
+      <span>Login</span>
+    </button>
+>>>>>>> caee63a4fde30d620e6ac91563773f06c9302606
   );
 }
 //  function ButtonLogin() {

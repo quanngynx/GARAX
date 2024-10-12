@@ -47,10 +47,10 @@ const login = async (req, res) => {
 
         console.log("Password from request:", password);
         console.log("Hashed password from DB:", user.Password);
-        
+
         // if (typeof password === 'string' && typeof user.Password === 'string') {
           //  isMatch = await bcrypt.compare(password, user.Password);
-            
+
         //     console.log("Password match:", isMatch);
         // } else {
         //     console.error("Invalid input for bcrypt.compare():", password, user.Password);
