@@ -4,11 +4,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./src/routes/access/index');
 require('dotenv').config();
-
 const app = express();
-app.use(cors());  // Để cho phép React kết nối với Node.js
+app.use(cors()); 
 app.use(bodyParser.json());
-
 app.use('/auth', authRoutes)
 
 

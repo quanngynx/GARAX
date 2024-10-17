@@ -3,6 +3,7 @@ import iconMenu from "../../../assets/GRAX.svg";
 import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg";
 import { Link } from "react-router-dom";
 
+
 function Header() {
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center border-b-gray-100 border-2 p-4 md:p-7 bg-white shadow-md">
