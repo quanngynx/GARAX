@@ -19,7 +19,7 @@ function Navbar() {
         <div className="w-16% h-[118px]"></div>
         <div className="w-50% h-[118px] flex justify-between pt-9">
           <div className="w-50% h-[50px] ">
-            <label className=" h-[30px] flex justify-between border border-black rounded-xl mr-3">
+            <label className=" h-[30px] flex justify-between border border-[#9f9f9f] rounded-xl mr-3">
               <img
                 src={iconSearch}
                 className="w-[20px] h-[20px] m-1 "
@@ -28,7 +28,7 @@ function Navbar() {
               <input
                 type="text"
                 placeholder="Type here . . ."
-                className="rounded-xl outline-none w-full bg-white"
+                className="rounded-xl outline-none w-full bg-white text-black text-base font-medium font-['Inter']"
               />
             </label>
           </div>

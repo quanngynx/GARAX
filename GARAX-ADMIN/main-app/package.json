@@ -16,7 +16,7 @@
     "@mui/icons-material": "^6.1.0",
     "@mui/material": "^6.1.0",
     "@mui/x-charts": "^7.17.0",
-    "@mui/x-data-grid": "^7.17.0",
+    "@mui/x-data-grid": "^7.20.0",
     "@mui/x-tree-view": "^7.17.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
@@ -31,6 +31,8 @@
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.26.2",
     "react-toastify": "^10.0.5",
+    "react-use": "^17.5.1",
+    "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
@@ -42,6 +44,8 @@
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "babel-jest": "^29.7.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "dayjs": "^1.11.13",
     "eslint": "^9.9.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
