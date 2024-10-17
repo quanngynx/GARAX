@@ -1,9 +1,9 @@
-import LoadingComponent from "../../components/loading/loading";
+import LoadingReact from "../../components/loading/loading-react";
 
 function LoadingMouse() {
   return (
     <div className="">
-      <LoadingComponent />
+      <LoadingReact />
     </div>
   );
 }

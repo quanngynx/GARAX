@@ -14,6 +14,8 @@ import CaiDatTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
 import HoSoNguoiDung from '../pages/hoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
+
+import TongQuanCaiDat from '../pages/CaiDat/tongQuanCaiDat.jsx'
 // import LoginPage from '../pages/auth/login.jsx'
 // import RegisterPage from '../pages/auth/register.jsx'
 // ========================================================================================
@@ -82,7 +84,7 @@ function Router() {
         //   element: <Navigate to="/setting" replace />
         // },
         {
-          path: 'setting',
+          path: 'account',
           element: <CaiDatTaiKhoan/>
           
         },
@@ -93,6 +95,17 @@ function Router() {
         {
           path: 'dash-v2',
           element: <TestLayout />
+        },
+        {
+          path: 'setting',
+          children: [
+            {
+              path: '/setting', element: <Navigate to="/setting/general-setting" replace />,
+            },
+            {
+              path: 'general-setting', element: <TongQuanCaiDat/>
+            }
+          ]
         },
         // {
         //   path: 'loading',

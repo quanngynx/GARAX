@@ -1,13 +1,13 @@
 import Button from '@mui/material/Button';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import imgGarax from "../../../assets/logogarax.png";
 import dashboardIcon from "../../../assets/Dash-icon.svg";
 import accountBoxOutlined from "../../../assets/account-box-outline.svg";
 import imgBooking from "../../../assets/noun-booking-6490549.svg";
 import orderBoxIcon from "../../../assets//noun-delivery-box-540949.svg";
-import imgUserDetails from "../../../assets/noun-user-7147797.svg";
+import imgUserDetails from "../../../assets/noun-user-7147797-1.svg";
 import { useLocation } from 'react-router-dom';
-import imgReportData from "../../../assets/noun-report-7100695.svg";
+// import imgReportData from "../../../assets/noun-report-7100695.svg";
 import { Link } from 'react-router-dom';
 function Sidebar() {
   return (
@@ -40,11 +40,11 @@ function Sidebar() {
 
         {/* Menu Buttons */}
         <div className="w-full h-[300px] p-3">
-          <Link to="/statics"><MenuButton icon={dashboardIcon} label="Dashboard" link='/statics' /></Link>
-          <Link to="/setting"><MenuButton icon={accountBoxOutlined} label="Account" link='/setting' /></Link>
-          <Link to="/orders"><MenuButton icon={orderBoxIcon} label="List Orders" link='/orders'/></Link>
-          <Link to="/booking"><MenuButton icon={imgBooking} label="List Booking" link='/booking/list'/></Link>
-          <Link to="/profile"><MenuButton icon={imgUserDetails} label="User Details" link='/profile'/></Link>
+          <Link to="/statics"><MenuButton icon={dashboardIcon} label="Bảng điều khiển" link='/statics' /></Link>
+          <Link to="/account"><MenuButton icon={accountBoxOutlined} label="Tài khoản" link='/account' /></Link>
+          <Link to="/orders"><MenuButton icon={orderBoxIcon} label="Đơn hàng" link='/orders'/></Link>
+          <Link to="/booking"><MenuButton icon={imgBooking} label="Đặt lịch" link='/booking/list'/></Link>
+          <Link to="/setting"><MenuButton icon={imgUserDetails} label="Cài đặt" link='/settings'/></Link>
      
         </div>
       </div>
