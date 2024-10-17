@@ -1,21 +1,50 @@
 import axios from "axios";
-
+import DashboardLayout from "../../../../../GARAX-ADMIN/main-app/src/layouts/dashboard/index"
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-// import { Button } from "@mui/material";
+import { useState } from "react";
+import API_ROUTES from "../../api";
+
 
 function login() {
+  const [email, setEmail]= useState('');
+  const [password, setPassword] = useState('');
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(API_ROUTES.LOGIN, { email, password });
+
+  
+      const { token, role } = response.data;
+      localStorage.setItem('token', token);
+
+   
+      if (role === 'Admin') {
+        navigate(DashboardLayout);  // Chuyển đến trang quản lý admin
+      } else {
+        navigate('/home');   // Chuyển đến trang người dùng
+      }
+    } catch (error) {
+      setErrorMessage('Invalid credentials. Please try again.');
+    }
+  };
+
   return (
     <div className="w-[580px] p-2">
       <div className="text-[#333333] text-[32px] font-medium mb-5">Log in</div>
       <label className="block mb-5">
         <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-[14px] font-medium text-[#666666]">
-          Email address or user name
+          Email address 
         </span>
         <input
           type="email"
           name="email"
-          className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          value={email}
+          onChange={(event)=> setEmail(event.target.value)}
+          className="mt-1 px-3 py-2 text-black bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           placeholder="you@example.com"
         />
       </label>
@@ -25,9 +54,11 @@ function login() {
           Password
         </span>
         <input
-          type="email"
-          name="email"
-          className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+          type="passwrod"
+          name="password"
+          value={password}
+          onChange={(event)=>setPassword(event.target.value)}
+          className="mt-1 px-3 py-2 text-black bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           placeholder="Enter Password"
         />
         <FormControlLabel
@@ -41,7 +72,9 @@ function login() {
         By continuing, you agree to the Terms of use and Privacy Policy.
       </div>
       <div className="w-full mt-4 ">
-        <ButtonLogin />
+        <button className="w-full h-[50px] bg-slate-600 rounded-3xl" onClick={handleLogin} >
+          <span>Login</span>
+        </button> 
       </div>
       <div className="flex flex-col justify-center items-center mt-4">
         <a className="">
@@ -54,32 +87,37 @@ function login() {
         </div>
       </div>
     </div>
+
+ 
+
   );
 }
- function ButtonLogin() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios.post("http://localhost:5001/auth/login", {
-        email: email,
-        password: password
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(
-          "Error:",
-          error.response ? error.response.data : error.message
-        );
-      });
-  };
-  return (
-    <button
-      className="w-full h-[50px] bg-slate-600 rounded-3xl"
-      onClick={handleSubmit}
-    >
-      <span>Login</span>
-    </button>
-  );
-}
+//  function ButtonLogin() {
+//   const [email, setEmail]= useState('');
+//   const [password, setPassword] = useState('');
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     axios.post("http://localhost:5001/auth/login", {
+//         email: email,
+//         password: password
+//       })
+//       .then((response) => {
+//         console.log(response.data);
+//       })
+//       .catch((error) => {
+//         console.error(
+//           "Error:",
+//           error.response ? error.response.data : error.message
+//         );
+//       });
+//   };
+//   return (
+//     <button
+//       className="w-full h-[50px] bg-slate-600 rounded-3xl"
+//       onClick={handleSubmit}
+//     >
+//       <span>login</span>
+//     </button>
+//   );
+// }
 export default login;

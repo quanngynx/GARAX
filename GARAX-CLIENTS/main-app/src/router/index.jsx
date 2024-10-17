@@ -7,7 +7,7 @@ import MainLayout from "../layouts/main/index";
 import HomePage from "../pages/home/index";
 import LoginPage from "../pages/auth/login";
 import RegisterPage from "../pages/auth/register";
-// import path from 'path'
+import Verify from "../pages/auth/verified"
 import OnlyCanvas from "../layouts/onlyCanvas/index";
 
 function Routes() {
@@ -32,12 +32,17 @@ function Routes() {
       element: <OnlyCanvas />,
       children: [
         {
-          path: "login",
-          element: <LoginPage />,
+          
+          path: "register",
+          element: <RegisterPage/>,
         },
         {
-          path: "register",
-          element: <RegisterPage />,
+          path:"verify",
+          element: <Verify/>,
+        },
+        {
+          path: "login",
+          element: <LoginPage />,
         },
       ],
     },
