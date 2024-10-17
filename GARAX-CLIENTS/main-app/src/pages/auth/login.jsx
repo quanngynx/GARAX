@@ -1,5 +1,5 @@
 import axios from "axios";
-import DashboardLayout from "../../../../../GARAX-ADMIN/main-app/src/layouts/dashboard/index"
+import { Link } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
@@ -54,7 +54,7 @@ function login() {
           Password
         </span>
         <input
-          type="passwrod"
+          type="password"
           name="password"
           value={password}
           onChange={(event)=>setPassword(event.target.value)}
@@ -82,8 +82,12 @@ function login() {
             Forget your password
           </div>
         </a>
+   
         <div className="text-[#333333] text-[14px] font-normal mt-4">
-          Don’t have an acount? Sign up{" "}
+          Don’t have an acount?
+         
+            <Link className="text-blue-500 font-medium text-primary-600 hover:underline dark:text-primary-500" to="/auth/register"> Sign up</Link>
+        
         </div>
       </div>
     </div>

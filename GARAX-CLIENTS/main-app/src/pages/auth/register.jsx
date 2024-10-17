@@ -12,9 +12,8 @@ function Register() {
     const [confirmpass , setconfirm]= useState('')
     const [phone, setPhone] = useState('');
     const [errorMessage, setErrorMessage] = useState(null);
-    
+    //lưu vào localStorage
     localStorage.setItem('email', email);
-
 
     const handleSubmit = (event) => {
       event.preventDefault(); 
@@ -32,13 +31,13 @@ function Register() {
         .catch((error) => {
           console.error('Error:', error.response ? error.response.data : error.message);
         });
-        if (!email || !fullname || !phone || !password || !confirmpass) {
+        if (!email || !fullname || !phone || !password || !confirmpass){
           setErrorMessage('Please fill out all fields.');
           return;
         }
         const emailRegex = /^[^\s@]+@[^\s@]+com+$/;
         if(!emailRegex.test(email)){
-            setErrorMessage('Format of email is name@company.com ')
+            setErrorMessage('Format of email is name@company.com')
         }
         const phoneRegex = /^[0-9]{11}$/; 
         if(phoneRegex.test(phone)){
