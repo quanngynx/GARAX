@@ -1,19 +1,23 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const authenticateToken = (req, res, next) => {
-    const token = req.body.token;
+const authenticateToken = async (req, res, next) => {
+  const authHeader = await  req.headers['authorization']; // Lấy Authorization header
+  const token = await authHeader && authHeader.split(' ')[1];
 
   if (!token) {
     return res.status(403).json({ message: 'No token provided' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: 'Unauthorized access' });
+      
     }
-    req.user = user; 
-    next(); 
+    console.log(decoded);
+    req.IDAcc=decoded.userID;
+    req.Role=decoded.role;
+    next();
   });
 };
 

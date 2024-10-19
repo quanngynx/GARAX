@@ -1,37 +1,51 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
 import API_ROUTES from "../../api";
 
-
+const adminlayout = import.meta.env.VITE_ADMIN_LAYOUT_URL;
 function login() {
   const [email, setEmail]= useState('');
   const [password, setPassword] = useState('');
-
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(API_ROUTES.LOGIN, { email, password });
-
-  
       const { token, role } = response.data;
-      localStorage.setItem('token', token);
-
-   
-      if (role === 'Admin') {
-        navigate(DashboardLayout);  // Chuyển đến trang quản lý admin
-      } else {
-        navigate('/home');   // Chuyển đến trang người dùng
-      }
+      localStorage.setItem('token',token);
+    if(role==='user'){
+      console.log(role);
+      navigate('/home');
+    }
+    
     } catch (error) {
+      console.log(error);
       setErrorMessage('Invalid credentials. Please try again.');
     }
+  
   };
-
+  // const getUserData = async () => {
+  //   const token = localStorage.getItem('token'); // Lấy token từ localStorage
+  
+  //   try {
+  //     const response = await axios.get('/auth/user', {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`, // Thêm token vào header Authorization
+  //       },
+  //     });
+      
+  //     console.log(response.data);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching user data', error);
+  //   }
+  // };
   return (
     <div className="w-[580px] p-2">
       <div className="text-[#333333] text-[32px] font-medium mb-5">Log in</div>
@@ -82,12 +96,9 @@ function login() {
             Forget your password
           </div>
         </a>
-   
         <div className="text-[#333333] text-[14px] font-normal mt-4">
           Don’t have an acount?
-         
             <Link className="text-blue-500 font-medium text-primary-600 hover:underline dark:text-primary-500" to="/auth/register"> Sign up</Link>
-        
         </div>
       </div>
     </div>
@@ -96,32 +107,5 @@ function login() {
 
   );
 }
-//  function ButtonLogin() {
-//   const [email, setEmail]= useState('');
-//   const [password, setPassword] = useState('');
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     axios.post("http://localhost:5001/auth/login", {
-//         email: email,
-//         password: password
-//       })
-//       .then((response) => {
-//         console.log(response.data);
-//       })
-//       .catch((error) => {
-//         console.error(
-//           "Error:",
-//           error.response ? error.response.data : error.message
-//         );
-//       });
-//   };
-//   return (
-//     <button
-//       className="w-full h-[50px] bg-slate-600 rounded-3xl"
-//       onClick={handleSubmit}
-//     >
-//       <span>login</span>
-//     </button>
-//   );
-// }
+
 export default login;
