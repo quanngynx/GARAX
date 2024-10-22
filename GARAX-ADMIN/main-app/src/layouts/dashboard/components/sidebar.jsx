@@ -44,7 +44,7 @@ function Sidebar() {
           <Link to="/account"><MenuButton icon={accountBoxOutlined} label="Tài khoản" link='/account' /></Link>
           <Link to="/orders"><MenuButton icon={orderBoxIcon} label="Đơn hàng" link='/orders'/></Link>
           <Link to="/booking"><MenuButton icon={imgBooking} label="Đặt lịch" link='/booking/list'/></Link>
-          <Link to="/setting"><MenuButton icon={imgUserDetails} label="Cài đặt" link='/settings'/></Link>
+          <Link to="/setting"><MenuButton icon={imgUserDetails} label="Cài đặt" link='/settings/general-setting'/></Link>
      
         </div>
       </div>

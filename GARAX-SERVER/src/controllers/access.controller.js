@@ -73,14 +73,14 @@ const login = async (req, res) => {
         console.log("Hashed password from DB:", user.Password);
 
        
-       const isMatch = bcrypt.compare(password, user.Password);
+       const isMatch = await bcrypt.compare(password, user.Password);
         if (isMatch) {
             // Tạo token nếu mật khẩu hợp lệ
             const token = jwt.sign({ 
                 userID: user.IDAcc ,
                 role : user.Role
             }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            return res.status(200).json({ message: 'Login successful',token, role:user.Role });
+            return res.status(200).json({ message: 'Login successful',token });
             
         } else {
             console.log("Password mismatch");
@@ -115,7 +115,7 @@ const verify = async (req,res) =>{
             if (currentTime > user.otpTime) {
                 return res.status(400).json({ error: 'OTP has expired' });
             }
-        await       User.deleteOTP(email)
+        await       User.deleteOTP(email);
                     User.updateStatus(email);
             return res.status(200).json({ message: 'OTP verified successfully' });
         }
@@ -128,8 +128,10 @@ const verify = async (req,res) =>{
 };
 
 
+
 module.exports = {
     register,
     login,
     verify,
+    
 };
