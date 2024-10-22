@@ -18,7 +18,7 @@ function pageHeader() {
         return () => clearInterval(interval);
     }, [currentTime]);
   return (
-    <div className="bg-[#F5F6F7] w-full h-[80px] mt-6 px-4 py-6">
+    <div className="bg-[#F5F6F7] w-full h-[80px] mt-6 px-4 py-6 rounded-2xl">
       <div className="flex justify-end items-center w-full h-full">
         <div className="inline-flex text-[#1c1c1c] text-base font-semibold font-['Inter'] leading-[18px]">
           <div className="inline-flex items-center mr-6">
@@ -27,7 +27,7 @@ function pageHeader() {
               <RotateIcon />
             </div>
           </div>
-          <div className="h-11 bg-body flex items-center justify-center rounded-md px-9 font-heading font-bold text-header text-base border border-input-border lg:w-[310px]">
+          <div className="h-11 bg-body flex items-center justify-center rounded-2xl px-9 font-heading font-bold text-header text-base border border-input-border lg:w-[310px]">
                 {dayjs(currentTime).format(`${dateFormat} HH`)}
                 <span className="animate-pulse-fast">:</span>
                 {dayjs(currentTime).format('mm A')}

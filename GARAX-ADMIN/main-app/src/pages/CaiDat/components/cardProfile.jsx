@@ -14,7 +14,7 @@ function cardProfile() {
         <div className="my-6 text-black text-base font-medium font-['Inter'] leading-[18px]">last visit 12/10/2024</div>
         <div className="">
           <button className="bg-[#1E1E1E] px-14 py-2 rounded-2xl text-white font-['Inter'] text-xl font-semibold leading-[18px]">
-            Dang xuat
+            Đăng xuất
           </button>
         </div>
       </div>
