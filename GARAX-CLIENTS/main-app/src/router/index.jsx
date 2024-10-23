@@ -1,12 +1,14 @@
 import { Navigate, useRoutes } from "react-router-dom";
 // layout
 import MainLayout from "../layouts/main/index";
+import OnlyCanvas from "../layouts/onlyCanvas/index";
 // page
 import HomePage from "../pages/home/index";
 import LoginPage from "../pages/auth/login";
 import RegisterPage from "../pages/auth/register";
 import Verify from "../pages/auth/verified"
-import OnlyCanvas from "../layouts/onlyCanvas/index";
+import ProductPage from '../pages/products/index'
+import ProfileUser from '../pages/profile/index'
 
 
 function Routes() {
@@ -16,12 +18,16 @@ function Routes() {
       element: <MainLayout />,
       children: [
         {
-          path: "/",
+          path: "",
           element: <Navigate to="/home" replace />,
         },
         {
           path: "home",
           element: <HomePage />,
+        },
+        {
+          path: "product",
+          element: <ProductPage />,
         }
       ],
     },
@@ -44,6 +50,21 @@ function Routes() {
         },
       ],
     },
+    
+    {
+      path: "user",
+      element: <MainLayout />,
+      children: [
+        {
+          path: "profile",
+          /**
+           * @description protect route
+           * @example element: { <AuthGuard><ProfileUser /></AuthGuard> }
+           */
+          element: <ProfileUser /> 
+        }
+      ]
+    }
   ]);
 }
 
