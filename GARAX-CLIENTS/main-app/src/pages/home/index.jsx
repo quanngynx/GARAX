@@ -7,6 +7,8 @@ import FormHelpDesk from "./components/formHelpDesk";
 import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
 import AccessibleTabs from "./components/accessibleTabs";
+import { useCheckAuth } from "../auth/checkToken";
+import {useEffect} from 'react';
 function HomePage() {
   const history = useNavigate();
   const navigateToProductPage = () => history("/product");
@@ -55,7 +57,7 @@ function HomePage() {
       <CardProduct />
 
       {/* Button to navigate to product page */}
-      <BtnProducts navigateTo={navigateToProductPage} />
+      {/* <BtnProducts navigateTo={navigateToProductPage} /> */}
     </div>
   </div>
   );

@@ -14,6 +14,20 @@ const User = {
         )
     },
 
+    findCusdetails: async(email) => {
+        const query=`
+            SELECT account.* ,customerdetails.Fullname
+            FROM account
+            JOIN customerDetails ON  customerdetails.IDAcc=account.IDAcc
+            WHERE account.Email = ?`;
+
+        return new Promise((resolve, reject) => {
+            db.query(query, [email], (err, results) => {
+                if (err) return reject(err);
+                resolve(results[0]);  // Trả về thông tin của user đầu tiên tìm thấy
+            });
+        });
+    },
     updateStatus: async(email)=>{
         const query = `UPDATE account SET verified  = 1 WHERE email = ?`;
         return new Promise((resolve,reject)=>{
@@ -26,25 +40,15 @@ const User = {
         }
     )
     },
-    // generateOTP :() => {
-    //     return Math.floor(100000 + Math.random() * 900000).toString();  // OTP 6 chữ số
-    // },
-    //  sendOTPEmail: async (email, otp) => {
-    //     const mailOptions = {
-    //         from: process.env.EMAIL_USER,  // Địa chỉ email của bạn
-    //         to: email,  // Email của người dùng
-    //         subject: 'Xác nhận OTP',  // Tiêu đề email
-    //         text: `Mã OTP của bạn là ${otp}`  // Nội dung email chứa OTP
-    //     };
-    
-    //     transporter.sendMail(mailOptions, (error, info) => {
-    //         if (error) {
-    //             console.log('Lỗi khi gửi OTP: ', error);
-    //         } else {
-    //             console.log('OTP đã được gửi: ' + info.response);
-    //         }
-    //     });
-    // },
+    createCustomerDetails: async (IDAcc, fullname, phone) => {
+        const customerDetailsQuery = `INSERT INTO customerdetails (IDAcc, Fullname, Phone) VALUES (?, ?, ?)`;
+        return new Promise((resolve, reject) => {
+            db.query(customerDetailsQuery, [IDAcc, fullname, phone], (err, result) => {
+                if (err) return reject(err);
+                resolve(result);
+            });
+        });
+    },
 
     findByEmail: async (email) => {
         const query = 'SELECT * FROM account WHERE Email = ?';
@@ -56,33 +60,15 @@ const User = {
         });
     },
     // Chuyển thành async function trả về Promise
-    create: async (email, hashedPassword, fullname, phone,otp, otpTime,verified) => {
-        const query1 = 'INSERT INTO account (Email, password, otp, otpTime, verified) VALUES (?, ?, ?, ?, ?)';
-        const query2 = 'INSERT INTO customerDetails (Fullname, Phone) VALUES (?, ?)';
-        try {
-            const resultAccount = await new Promise((resolve, reject) => {
-                db.query(query1, [email, hashedPassword, otp, otpTime, verified], (err, results) => {
-                    if (err) return reject(err);
-                    resolve(results.insertId); 
-                });
+    createAccount: async (email, hashedPassword, otp, otpTime, verified) => {
+        const accountQuery = `INSERT INTO account (Email, Password, otp, otpTime, verified) VALUES (?, ?, ?, ?, ?)`;
+        return new Promise((resolve, reject) => {
+            db.query(accountQuery, [email, hashedPassword, otp, otpTime, verified], (err, result) => {
+                if (err) return reject(err);
+                resolve(result.insertId); // Lấy IDAcc vừa tạo
             });
-          
-            const resultCustomerDetails = await new Promise((resolve, reject) => {
-                db.query(query2, [fullname, phone], (err, results) => {
-                    if (err) return reject(err);
-                    resolve(results.insertId); // Lấy ID từ bảng customerDetails
-                });
-            });
-
-            // Trả về kết quả của cả hai bảng
-            return {
-                accountId: resultAccount,
-                customerDetailsId: resultCustomerDetails
-            };
-
-        } catch (err) {
-            throw new Error('Error creating user: ' + err.message);
-        }
+        });
+      
     }
 };
 

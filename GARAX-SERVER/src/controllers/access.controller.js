@@ -13,8 +13,6 @@ const transporter = nodemailer.createTransport({
       pass:  process.env.EMAIL_PASS,    
     },
   });
-
-
   //cai này la register
 const register = async (req, res) => {
     try {
@@ -46,8 +44,8 @@ const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
        
         // Tạo user mới
-        await User.create(email, hashedPassword, fullname, phone, otp, otpTime, verified);
-       
+       const IDAcc= await User.createAccount(email, hashedPassword, otp, otpTime, verified);
+        User.createCustomerDetails(IDAcc, fullname, phone);
         return res.status(200).json({ message: 'User created' });
 
     } catch (err) {
@@ -60,10 +58,10 @@ const register = async (req, res) => {
 //login ở đây
 const login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password} = req.body;
 
         // Kiểm tra xem email có tồn tại không
-        const user = await User.findByEmail(email);
+        const user = await User.findCusdetails(email);
         if (!user) {
             console.log("User not found:", email); // Ghi lại email không tìm thấy
             return res.status(400).json({ error: 'Invalid email or password' });
@@ -78,9 +76,23 @@ const login = async (req, res) => {
             // Tạo token nếu mật khẩu hợp lệ
             const token = jwt.sign({ 
                 userID: user.IDAcc ,
-                role : user.Role
-            }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            return res.status(200).json({ message: 'Login successful',token });
+                role : user.Role,
+                fullname: user.Fullname,
+            }, process.env.JWT_SECRET, { expiresIn: '10m' });
+            const refreshToken = jwt.sign(
+                {  userID: user.IDAcc ,
+                    role : user.Role,
+                    fullname: user.Fullname,
+                }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'}
+            );
+            res.cookie('jwt', refreshToken,
+                {
+                    httpOnly:true,
+                    samSite:'None',secure:true,
+                    maxAge:24*60*60*1000
+                }
+            );
+            return res.json({ token, role: user.Role , fullname: user.Fullname});
             
         } else {
             console.log("Password mismatch");
@@ -105,8 +117,6 @@ const verify = async (req,res) =>{
         if (!user) {
             return res.status(400).json({ error: 'User not found' });
         }
-
-    
         if (user.otp !== otp) {
             return res.status(400).json({ error: 'Invalid OTP' });
         }

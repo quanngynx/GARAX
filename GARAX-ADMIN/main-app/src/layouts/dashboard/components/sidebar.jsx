@@ -44,8 +44,8 @@ function Sidebar() {
           <Link to="/account"><MenuButton icon={accountBoxOutlined} label="Tài khoản" link='/account' /></Link>
           <Link to="/orders"><MenuButton icon={orderBoxIcon} label="Đơn hàng" link='/orders'/></Link>
           <Link to="/booking"><MenuButton icon={imgBooking} label="Đặt lịch" link='/booking/list'/></Link>
-          <Link to="/setting"><MenuButton icon={imgUserDetails} label="Cài đặt" link='/settings/general-setting'/></Link>
-     
+          <Link to="/setting"><MenuButton icon={imgUserDetails} label="Cài đặt" link='/setting/general-setting'/></Link>
+          
         </div>
       </div>
     </div>
@@ -58,6 +58,7 @@ function MenuButton({ icon, label,link}) {
   const path=location.pathname;
   return (
     <button 
+    
     className={`group w-full flex items-center p-2 mt-2 rounded-xl transition duration-300 ${
       path === link ? 'bg-black text-white ' : 'hover:bg-gray-200 hover:text-black'
     }`}

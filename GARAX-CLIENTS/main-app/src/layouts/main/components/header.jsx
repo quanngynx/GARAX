@@ -3,10 +3,49 @@ import iconBrand from "../../../assets/GRAX.svg";
 import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg";
 import { Link } from "react-router-dom";
 import { cn } from '../../../utils/utils'
-
+import { isTokenExpired } from '../../../pages/auth/checkToken';
+// const jwt_decode = await import('jwt-decode').then(module => module.default || module);
 import Styles from  './css/header.module.css'
-
+import axios from "axios";
+import { useState, useEffect } from "react";
 function Header() {
+ 
+  const [fullname, setFullname] = useState(localStorage.getItem('fullname'));
+  const [token] = useState(localStorage.getItem('token'));
+  const getUserData = async () => {
+    // if (!token || isTokenExpired(token)) {
+    
+    //   localStorage.removeItem('fullname');
+    //   localStorage.removeItem('token');
+    //   setFullname(null);
+    //   return;
+    // }
+    try {
+      const response = await axios.get('/auth/user', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+     
+        setFullname(response.data.fullname); 
+      
+
+    } catch (error) {
+      localStorage.clear();
+      setFullname(null);
+      console.error('Session expired or error fetching user data', error);
+    }
+  };
+  useEffect(() => {
+    if (token && isTokenExpired(token)) {
+      localStorage.removeItem('fullname');
+      localStorage.removeItem('token');
+      setFullname(null);
+    } else if (token&&!fullname===null) {
+      getUserData(); 
+    }
+  }, [token,fullname]);
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center border-b-gray-100 border-2 p-4 md:p-7 bg-white shadow-md">
       {/* Left Section: Menu and Phone */}
@@ -37,17 +76,24 @@ function Header() {
       </div>
 
       <div className="text-black mt-6 sm:hidden block"> 
-        Đăng kí thành viên để tận hưởng nhiều ưu đãi hơn
+        Đăng kí thành viên để tận hưởng nhiều ưu đãi
       </div>
 
-      {/* Right Section: Sign In */}
+     
       <div className="mt-4 md:mt-0">
-        <Link to="/auth/login">
-          <button className="border border-gray-300 hover:border-[#121212] text-black rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-            <i className="fas fa-user mr-2"></i> Sign in
-          </button>
-        </Link>
+      {fullname ? (
+                <div className="flex items-center">
+                    <span className="mr-2 text-black">Hi, {fullname}</span>
+                </div>
+            ) : (
+            <Link to="/auth/login">
+              <button className="border border-gray-300 text-black rounded-full px-[100px] sm:px-4 py-2 flex items-center">
+                <i className="fas fa-user mr-2"></i> Sign in
+              </button>
+            </Link>
+        )}
       </div>
+
     </div>
   );
 }
