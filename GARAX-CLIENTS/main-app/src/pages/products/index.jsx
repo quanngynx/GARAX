@@ -1,43 +1,72 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom'
 
 import { cardProducts } from "../../data/index";
-import ProductsCard from "../home/components/cardProduct";
-import Category from "./components/category";
-import Price from "./components/price";
-
-/** 
- * @example
- * import {useNavigate} from 'react-router-dom
- * 
- * const directTo = useNavigate()
- * directTo('path')
- */
+import ProductsCard from "../../components/card";
+import Products from "./components/products";
+import Recommend from "./components/price";
 
 function ProductPage() {
-    const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const [query, setQuery] = useState("");
+  /**
+   *
+   * @param {*} e
+   * @returns products filtered when click buttons
+   */
+  const handleClick = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+  function filteredData(pro, selected) {
+    let filtered = pro;
 
-    const handleInputChange = (event) => {
-        setQuery(event.target.value);
-    };
 
-    const filteredItems = cardProducts.filter(
-        (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    if (selected) {
+      filtered = filtered.filter(
+        ({ cost, range, transmission, fuel_type, title }) =>
+          cost === selected ||
+          range === selected ||
+          transmission === selected ||
+          fuel_type === selected ||
+          title === selected
+      );
+    }
+    return filtered.map(
+      ({
+        image,
+        title,
+        description,
+        range,
+        transmission,
+        fuel_type,
+        year,
+        cost,
+      }) => (
+        <ProductsCard
+          key={Math.random()}
+          image={image}
+          title={title}
+          description={description}
+          range={range}
+          transmission={transmission}
+          fuel_type={fuel_type}
+          year={year}
+          cost={cost}
+        />
+      )
     );
+  }
+
+  const result = filteredData(cardProducts, selectedCategory);
+  
   return (
     <div className="flex flex-col bg-white justify-center">
       <div className="mb-6">
         <div className="flex flex-col md:w-full bg-white h-auto px-24 mb-6">
-          <Category />
-          <Price />
+          <Recommend handleClick={handleClick}/>
         </div>
         <div className="md:w-full bg-white h-auto px-24">
-          <div className="grid grid-cols-4 gap-2">
-            {cardProducts.map((card, index) => (
-              <ProductsCard card={card} index={index} key={index} />
-            ))}
-          </div>
+          <Products result={result}/>
         </div>
       </div>
     </div>

@@ -43,7 +43,7 @@ function Header() {
       {/* Right Section: Sign In */}
       <div className="mt-4 md:mt-0">
         <Link to="/auth/login">
-          <button className="border border-gray-300 text-black rounded-full px-[100px] sm:px-4 py-2 flex items-center">
+          <button className="border border-gray-300 hover:border-[#121212] text-black rounded-full px-[100px] sm:px-4 py-2 flex items-center">
             <i className="fas fa-user mr-2"></i> Sign in
           </button>
         </Link>

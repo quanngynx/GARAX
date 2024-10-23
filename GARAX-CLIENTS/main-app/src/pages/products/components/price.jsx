@@ -1,73 +1,67 @@
-import Input from "../../../components/input";
+// import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 
-// const inputCate = [
-//   {
-//     // eslint-disable-next-line no-undef
-//     handleChange: { handleChange },
-//     value: "ranges",
-//     title: "ranges",
-//     name: "test",
-//   },
-//   {
-//     // eslint-disable-next-line no-undef
-//     handleChange: { handleChange },
-//     value: "transmission",
-//     title: "transmission",
-//     name: "test",
-//   },
-//   {
-//     // eslint-disable-next-line no-undef
-//     handleChange: { handleChange },
-//     value: "fuel_type",
-//     title: "fuel_type",
-//     name: "test",
-//   },
-//   {
-//     // eslint-disable-next-line no-undef
-//     handleChange: { handleChange },
-//     value: "year",
-//     title: "year",
-//     name: "test",
-//   },
-// ];
+import Button from "../../../components/button";
+
+const currencies = [
+  {
+    value: "USD",
+    label: "$",
+  },
+  {
+    value: "EUR",
+    label: "€",
+  },
+  {
+    value: "BTC",
+    label: "฿",
+  },
+  {
+    value: "JPY",
+    label: "¥",
+  },
+];
+
 // eslint-disable-next-line react/prop-types
-function Price({ handleChange }) {
+function Recommend({ handleClick }) {
   return (
-    <div className="">
-      <h2 className="sidebar-title">Category</h2>
+    <div className="mt-6 flex justify-between">
+      <div className="flex ">
+        <Button onClickHandler={handleClick} value="" title="Tất cả sản phẩm" />
+        <Button onClickHandler={handleClick} value="Toyota" title="Toyota" />
+        <Button onClickHandler={handleClick} value="BMW" title="BMW" />
+        <Button onClickHandler={handleClick} value="T-CRoss" title="T-CRoss" />
+        <Button onClickHandler={handleClick} value="C-Class" title="C-Class" />
+      </div>
 
-      <div className="">
-        <label className="sidebar-label-container">
-          <input onChange={handleChange} type="radio" value="" name="test" />
-          <span className="checkmark"></span>All
-        </label>
-        <Input
-          handleChange={handleChange}
-          value="sneakers"
-          title="Sneakers"
-          name="test"
-        />
-        <Input
-          handleChange={handleChange}
-          value="flats"
-          title="Flats"
-          name="test"
-        />
-        <Input
-          handleChange={handleChange}
-          value="sandals"
-          title="Sandals"
-          name="test"
-        />
-        <Input
-          handleChange={handleChange}
-          value="heels"
-          title="Heels"
-          name="test"
-        />
+      <div className="flex">
+        {/* <Button onClickHandler={handleClick} value="" title="Tất cả sản phẩm" /> */}
+        <Box
+          component="form"
+          sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
+          noValidate
+          autoComplete="off"
+        >
+          <div className="">
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Giá"
+              defaultValue="EUR"
+            >
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value} onClickHandler={handleClick}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </div>
+        </Box>
       </div>
     </div>
   );
 }
 
-export default Price;
+export default Recommend;

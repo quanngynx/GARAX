@@ -8,6 +8,8 @@ import LoginPage from "../pages/auth/login";
 import RegisterPage from "../pages/auth/register";
 import Verify from "../pages/auth/verified"
 import ProductPage from '../pages/products/index'
+import DetailProductPage from '../pages/detailProduct/index'
+
 import ProfileUser from '../pages/profile/index'
 
 
@@ -28,10 +30,14 @@ function Routes() {
         {
           path: "product",
           element: <ProductPage />,
+        },
+        {
+          path: "product/:slug",
+          element: <DetailProductPage />,
         }
       ],
     },
-
+    
     {
       path: "auth",
       element: <OnlyCanvas />,

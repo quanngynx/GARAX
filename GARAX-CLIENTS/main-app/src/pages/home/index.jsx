@@ -9,7 +9,7 @@ import BtnProducts from "./components/buttonFullWidth";
 import AccessibleTabs from "./components/accessibleTabs";
 function HomePage() {
   const history = useNavigate();
-  const navigateToProductPage = () => history("#");
+  const navigateToProductPage = () => history("/product");
 
   return (
     <div className="md:w-full bg-white h-auto p-4 md:p-20">
