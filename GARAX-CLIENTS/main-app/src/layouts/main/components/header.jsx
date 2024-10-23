@@ -87,7 +87,7 @@ function Header() {
                 </div>
             ) : (
             <Link to="/auth/login">
-              <button className="border border-gray-300 text-black rounded-full px-[100px] sm:px-4 py-2 flex items-center">
+              <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
                 <i className="fas fa-user mr-2"></i> Sign in
               </button>
             </Link>
