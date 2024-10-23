@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const authenticateToken = async (req, res, next) => {
-  const authHeader = await  req.headers['authorization']; // Lấy Authorization header
-  const token = await authHeader && authHeader.split(' ')[1];
+const authenticateToken = (req, res, next) => {
+  const authHeader =  req.headers['authorization']; // Lấy Authorization header
+  const token =  authHeader && authHeader.split(' ')[1];
 
   if (!token) {
     return res.status(403).json({ message: 'No token provided' });
@@ -16,7 +16,8 @@ const authenticateToken = async (req, res, next) => {
     }
     console.log(decoded);
     req.IDAcc=decoded.userID;
-    req.Role=decoded.role;
+    req.role=decoded.role;
+    
     next();
   });
 };

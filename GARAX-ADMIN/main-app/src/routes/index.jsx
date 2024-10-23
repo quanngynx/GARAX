@@ -33,23 +33,10 @@ function Router() {
         }
       ]
     },
-    // {
-    //   path: 'auth',
-    //   element: <OnlyCanvas />,
-    //   children: [
-    //     {
-    //       path: 'login',
-    //       element: <LoginPage />
-    //     },
-    //     {
-    //       path: 'register',
-    //       element: <RegisterPage />
-    //     }
-    //   ]
-    // },
+   
     {
       path: '/',
-      element: <DashboardLayout />,
+      element: <DashboardLayout/>,
       children: [
         {
           path: '/',

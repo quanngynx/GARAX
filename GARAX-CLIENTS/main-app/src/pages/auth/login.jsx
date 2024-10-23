@@ -5,7 +5,8 @@ import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
 import API_ROUTES from "../../api";
 
-const adminlayout = import.meta.env.VITE_ADMIN_LAYOUT_URL;
+
+
 function login() {
   const [email, setEmail]= useState('');
   const [password, setPassword] = useState('');
@@ -16,39 +17,27 @@ function login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(API_ROUTES.LOGIN, { email, password });
-      const { token, role } = response.data;
+      const response=await axios.post(API_ROUTES.LOGIN, { email, password });
+      const { token , role,fullname } = response.data;
       localStorage.setItem('token',token);
-    if(role==='user'){
-      console.log(role);
-      navigate('/home');
-    }
-    
+      localStorage.setItem('role',role);
+      localStorage.setItem('fullname',fullname);
+      if(role==='user'){
+        navigate('/home');
+      }
+  
+
+      
     } catch (error) {
       console.log(error);
       setErrorMessage('Invalid credentials. Please try again.');
     }
-  
+
   };
-  // const getUserData = async () => {
-  //   const token = localStorage.getItem('token'); // Lấy token từ localStorage
   
-  //   try {
-  //     const response = await axios.get('/auth/user', {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`, // Thêm token vào header Authorization
-  //       },
-  //     });
-      
-  //     console.log(response.data);
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error('Error fetching user data', error);
-  //   }
-  // };
   return (
-    <div className="w-[580px] p-2">
-      <div className="text-[#333333] text-[32px] font-medium mb-5">Log in</div>
+    <div className="w-[580px] rounded-2xl sm:border-spacing-4  bg-gray-50 sm:border-2 p-5">
+      <div className="text-[#333333]  text-[32px] font-medium mb-5">Log in</div>
       <label className="block mb-5">
         <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-[14px] font-medium text-[#666666]">
           Email address 
@@ -75,6 +64,7 @@ function login() {
           className="mt-1 px-3 py-2 text-black bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           placeholder="Enter Password"
         />
+        {errorMessage && <p className="font-semibold text-red-500 ">{errorMessage}</p>}
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="Remember me"
@@ -90,12 +80,14 @@ function login() {
           <span>Login</span>
         </button> 
       </div>
+      
       <div className="flex flex-col justify-center items-center mt-4">
         <a className="">
           <div className="text-[#333333] text-[14px] font-normal underline">
             Forget your password
           </div>
         </a>
+        
         <div className="text-[#333333] text-[14px] font-normal mt-4">
           Don’t have an acount?
             <Link className="text-blue-500 font-medium text-primary-600 hover:underline dark:text-primary-500" to="/auth/register"> Sign up</Link>

@@ -7,10 +7,15 @@ import FormHelpDesk from "./components/formHelpDesk";
 import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
 import AccessibleTabs from "./components/accessibleTabs";
+import { useCheckAuth } from "../auth/checkToken";
+import {useEffect} from 'react';
 function HomePage() {
-  const history = useNavigate();
-  const navigateToProductPage = () => history("#");
-
+  // const navigate = useNavigate();
+  // // const history = useNavigate();
+  // // const navigateToProductPage = () => history("#");
+  //   useEffect(()=>{
+  //   useCheckAuth(navigate);
+  //   },[navigate]);  
   return (
     <div className="md:w-full bg-white h-auto p-4 md:p-20">
     {/* Image section with overlay text */}
@@ -55,7 +60,7 @@ function HomePage() {
       <CardProduct />
 
       {/* Button to navigate to product page */}
-      <BtnProducts navigateTo={navigateToProductPage} />
+      {/* <BtnProducts navigateTo={navigateToProductPage} /> */}
     </div>
   </div>
   );
