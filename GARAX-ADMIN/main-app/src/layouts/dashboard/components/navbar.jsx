@@ -32,7 +32,7 @@ function Navbar() {
               />
             </label>
           </div>
-          <div className="flex sm:block justify-end">
+          <div className=" flex lg:flex sm:block justify-end">
           <div className="h-[25px] flex justify-between sm:mr-5 mr-1">
             <img
               src={iconUser}
@@ -41,7 +41,7 @@ function Navbar() {
             />
             <div className="hidden sm:block font-semibold text-black">Sign in</div>
           </div>
-          <div className="h-[25px] flex justify-between ">
+          <div className="h-[25px] flex justify-end">
             <img
               src={iconSun}
               className="w-[25px] h-[25px] mr-3"
