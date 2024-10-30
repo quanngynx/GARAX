@@ -10,10 +10,16 @@ import TestLayout from '../layouts/exp/index.jsx'
 // const ThongKeDuLieu = lazy(() => import('../pages/index.jsx'))
 import DanhSachDonHang from '../pages/danhSachDonHang.jsx' 
 import DanhSachDatLich from '../pages/danhSachDatLich.jsx'
-import CaiDatTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
+import DanhSachTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
+import DanhSachTaiKhoanNhanVien from '../pages/DSTaiKhoanNV/index.jsx'
+import DanhSachTaiKhoanKhachHang from '../pages/DSTaiKhoanKH/index.jsx'
 import HoSoNguoiDung from '../pages/hoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
+
+// auth
+import LoginPage from '../pages/auth/login.jsx'
+import RegisterPage from '../pages/auth/register.jsx'
 
 import TongQuanCaiDat from '../pages/CaiDat/tongQuanCaiDat.jsx'
 // import LoginPage from '../pages/auth/login.jsx'
@@ -33,7 +39,34 @@ function Router() {
         }
       ]
     },
-   
+    {
+      path: 'auth',
+      element: <OnlyCanvas />,
+      children: [
+        {
+          path: 'login',
+          element: <LoginPage />,
+        },
+        {
+          path: 'register',
+          element: <RegisterPage />,
+        },
+      ]
+    },
+    // {
+    //   path: 'account',
+    //   element: <DashboardLayout/>,
+    //   children: [
+    //     {
+    //       path: 'staff',
+    //       element: <ThongKeDuLieu />,
+    //     },
+    //     {
+    //       path: 'customer',
+    //       element: <ThongKeDuLieu />,
+    //     },
+    //   ]
+    // },
     {
       path: '/',
       element: <DashboardLayout/>,
@@ -45,11 +78,7 @@ function Router() {
         {
           path: 'statics',
           element: <ThongKeDuLieu />,
-        },
-        // {
-        //   path: '/',
-        //   element: <Navigate to="/orders" replace />
-        // },
+        }, 
         {
           path: 'orders',
           element: <DanhSachDonHang />
@@ -72,8 +101,15 @@ function Router() {
         // },
         {
           path: 'account',
-          element: <CaiDatTaiKhoan/>
-          
+          element: <DanhSachTaiKhoan/>
+        },
+        {
+          path: 'account/staff',
+          element: <DanhSachTaiKhoanNhanVien/>
+        },
+        {
+          path: 'account/customer',
+          element: <DanhSachTaiKhoanKhachHang/>
         },
         {
           path: 'profile',

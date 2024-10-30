@@ -1,5 +1,3 @@
-'use strict'
-
 const express = require('express')
 const router = express.Router()
 const database = require('../db/init.mysql.level0')
@@ -36,5 +34,8 @@ router.get('/api/data', (req, res) => {
     }
   });
 });
+
+router.use('/api', require('./v1/index'))
+// router.use('/api', require('./v2/index'))
 
 module.exports = router

@@ -42,7 +42,7 @@ function Header() {
       localStorage.removeItem('fullname');
       localStorage.removeItem('token');
       setFullname(null);
-    } else if (token&&!fullname===null) {
+    } else if (token && !fullname === null) {
       getUserData(); 
     }
   }, [token,fullname]);
