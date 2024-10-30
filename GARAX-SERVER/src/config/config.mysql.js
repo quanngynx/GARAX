@@ -1,5 +1,3 @@
-'use strict'
-
 const dev = {
   app: {
       port: process.env.PORT_DEV || 3306

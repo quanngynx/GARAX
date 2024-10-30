@@ -57,7 +57,7 @@ function HomePage() {
       <CardProduct />
 
       {/* Button to navigate to product page */}
-      {/* <BtnProducts navigateTo={navigateToProductPage} /> */}
+      <BtnProducts navigateTo={navigateToProductPage} />
     </div>
   </div>
   );
