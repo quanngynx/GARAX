@@ -25,18 +25,19 @@ function login() {
       if(role==='user'){
         navigate('/home');
       }
-  
 
-      
+      else{
+        window.location.replace("http://localhost:5175/statics");
+      }
     } catch (error) {
       console.log(error);
       setErrorMessage('Invalid credentials. Please try again.');
     }
-
   };
-  
+
   return (
-    <div className="w-[580px] rounded-2xl sm:border-spacing-4  bg-gray-50 sm:border-2 p-5">
+   <div className="relative">
+    <div className=" w-[580px] absolute rounded-2xl sm:border-spacing-4  bg-gray-50 sm:border-2 p-5">
       <div className="text-[#333333]  text-[32px] font-medium mb-5">Log in</div>
       <label className="block mb-5">
         <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-[14px] font-medium text-[#666666]">
@@ -72,31 +73,28 @@ function login() {
         />
       </label>
 
-      <div className="text-[#333333] text-[14px] font-normal">
-        By continuing, you agree to the Terms of use and Privacy Policy.
-      </div>
-      <div className="w-full mt-4 ">
-        <button className="w-full h-[50px] bg-slate-600 rounded-3xl" onClick={handleLogin} >
-          <span>Login</span>
-        </button> 
-      </div>
-      
-      <div className="flex flex-col justify-center items-center mt-4">
-        <a className="">
-          <div className="text-[#333333] text-[14px] font-normal underline">
-            Forget your password
+          <div className="text-[#333333] text-[14px] font-normal">
+            By continuing, you agree to the Terms of use and Privacy Policy.
           </div>
-        </a>
-        
-        <div className="text-[#333333] text-[14px] font-normal mt-4">
-          Don’t have an acount?
-            <Link className="text-blue-500 font-medium text-primary-600 hover:underline dark:text-primary-500" to="/auth/register"> Sign up</Link>
-        </div>
-      </div>
+          <div className="w-full mt-4 ">
+            <button className="w-full h-[50px] bg-slate-600 rounded-3xl" onClick={handleLogin} >
+              <span>Login</span>
+            </button> 
+          </div>
+      
+          <div className="flex flex-col justify-center items-center mt-4">
+            <a className="">
+              <div className="text-[#333333] text-[14px] font-normal underline">
+                Forget your password
+              </div>
+            </a>
+            <div className="text-[#333333] text-[14px] font-normal mt-4">
+              Don’t have an acount?
+                <Link className="text-blue-500 font-medium text-primary-600 hover:underline dark:text-primary-500" to="/auth/register"> Sign up</Link>
+            </div>
+          </div>
     </div>
-
- 
-
+    </div>
   );
 }
 

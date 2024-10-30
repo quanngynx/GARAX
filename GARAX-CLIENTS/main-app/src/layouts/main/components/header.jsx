@@ -4,8 +4,7 @@ import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg";
 import { Link } from "react-router-dom";
 import { cn } from '../../../utils/utils'
 import { isTokenExpired } from '../../../pages/auth/checkToken';
-// const jwt_decode = await import('jwt-decode').then(module => module.default || module);
-import Styles from  './css/header.module.css'
+import Styles from  './css/header.module.css';
 import axios from "axios";
 import { useState, useEffect } from "react";
 function Header() {
@@ -13,13 +12,6 @@ function Header() {
   const [fullname, setFullname] = useState(localStorage.getItem('fullname'));
   const [token] = useState(localStorage.getItem('token'));
   const getUserData = async () => {
-    // if (!token || isTokenExpired(token)) {
-    
-    //   localStorage.removeItem('fullname');
-    //   localStorage.removeItem('token');
-    //   setFullname(null);
-    //   return;
-    // }
     try {
       const response = await axios.get('/auth/user', {
         headers: {
@@ -27,7 +19,6 @@ function Header() {
         },
       });
 
-     
         setFullname(response.data.fullname); 
       
 
@@ -42,7 +33,7 @@ function Header() {
       localStorage.removeItem('fullname');
       localStorage.removeItem('token');
       setFullname(null);
-    } else if (token&&!fullname===null) {
+    } else if (fullname===null) {
       getUserData(); 
     }
   }, [token,fullname]);
@@ -51,7 +42,7 @@ function Header() {
       {/* Left Section: Menu and Phone */}
       <div 
       className={cn(
-        'flex sm:items-center sm:space-x-6 space-x-[270px] justify-between', // Tailwind class
+        'flex sm:items-center sm:space-x-5 space-x-[270px] justify-between', // Tailwind class
          Styles.responsiveMobile, // class custom
          Styles.responsiveRange
       )}
@@ -76,7 +67,7 @@ function Header() {
       </div>
 
       <div className="text-black mt-6 sm:hidden block"> 
-        Đăng kí thành viên để tận hưởng nhiều ưu đãi
+        Đăng kí thành viên để có nhiều ưu đãi
       </div>
 
      
