@@ -9,7 +9,7 @@ const cors = require("cors");
 const { default : helmet } = require('helmet')
 const { checkOverLoad } = require('./utils/helpers/checkConnect')
 const app = express()
-
+const router = require('./routes/index')
 //init middlewares
 app.use(cors())
 app.use(morgan("dev"))
@@ -20,11 +20,13 @@ app.use(express.urlencoded({
     extended: true
 }))
 //init db
-// require('./db/init.mysql')
+require('./db/init.mysql.level0')
 
 // checkOverLoad()
 
 //init routes
+app.use('', router)
+
 app.get('/', ( req, res, next) => {
   return res.status(200).json({
       message: 'Hello world!, db!'

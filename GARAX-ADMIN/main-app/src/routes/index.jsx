@@ -13,6 +13,7 @@ import DanhSachDatLich from '../pages/danhSachDatLich.jsx'
 import DanhSachTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
 import DanhSachTaiKhoanNhanVien from '../pages/DSTaiKhoanNV/index.jsx'
 import DanhSachTaiKhoanKhachHang from '../pages/DSTaiKhoanKH/index.jsx'
+import DanhSachGiaoDich from '../pages/DSGiaoDich/index.jsx'
 import HoSoNguoiDung from '../pages/hoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
@@ -93,6 +94,17 @@ function Router() {
                   path: 'list', element: <DanhSachDatLich />
               },
               // . . .
+          ]
+        },
+        {
+          path: 'transactions',
+          children: [
+            {
+              path: '/transactions', element: <Navigate to="/transactions/list" replace />,
+            },
+            {
+              path: 'list', element: <DanhSachGiaoDich />
+            }
           ]
         },
         // {

@@ -68,9 +68,11 @@ function Xuly() {
   } else if (currentPath === "/statics") {
     return <div className="text-[16px] sm:text-4xl font-semibold"> Bảng điều khiển </div>;
   } else if (currentPath === "/booking/list") {
-    return <div className="text-[16px] sm:text-4xl font-semibold"> Danh sách dặt lịch </div>;
+    return <div className="text-[16px] sm:text-4xl font-semibold"> Danh sách đặt lịch </div>;
   } else if (currentPath === "/orders") {
     return <div className="text-[16px] sm:text-4xl font-semibold"> Danh sách đơn hàng </div>;
+  } else if (currentPath === "/transactions/list") {
+    return <div className="text-[16px] sm:text-4xl font-semibold"> Danh sách giao dịch </div>;
   } else {
     return <div className="text-[16px] sm:text-4xl font-semibold"> Chi tiết người dùng </div>;
   }

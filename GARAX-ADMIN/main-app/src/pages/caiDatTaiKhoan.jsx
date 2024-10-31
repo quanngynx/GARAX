@@ -1,8 +1,6 @@
-import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 
-import { Breadcrumbs } from "@mui/material";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -11,14 +9,13 @@ const columns = [
     headerName: "Tên đầy đủ",
     description: "This column has a value getter and is not sortable.",
     sortable: true,
-    width: 160,
-    // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+    width: 260,
   },
   {
     field: "email",
     headerName: "Email",
     type: "string",
-    width: 190,
+    width: 240,
   },
   {
     field: "password",

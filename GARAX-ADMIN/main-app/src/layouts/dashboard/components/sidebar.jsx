@@ -5,6 +5,8 @@ import accountBoxOutlined from "../../../assets/account-box-outline.svg";
 import imgBooking from "../../../assets/noun-booking-6490549.svg";
 import orderBoxIcon from "../../../assets//noun-delivery-box-540949.svg";
 import imgUserDetails from "../../../assets/noun-user-7147797-1.svg";
+import iconTransactions from '../../../assets/money-bill-transfer-solid.svg'
+
 
 import Button from "@mui/material/Button";
 import { useState } from "react";
@@ -194,6 +196,13 @@ function Sidebar() {
                 icon={imgBooking}
                 label="Đặt lịch"
                 link="/booking/list"
+              />
+            </Link>
+            <Link to="/transactions">
+              <MenuButton
+                icon={iconTransactions}
+                label="Giao dịch"
+                link="/transactions/list"
               />
             </Link>
             <Link to="/setting">
