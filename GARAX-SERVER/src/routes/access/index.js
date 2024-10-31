@@ -4,6 +4,7 @@ const authController = require('../../controllers/access.controller')
 const authenticateToken = require('../../middlewares/auth');
 const authorizeRole = require('../../middlewares/authorize');
 const refreshToken = require("../../middlewares/refreshToken")
+
 //đăng ký router register
 router.post('/register', authController.register);
 //đăng ký router verify
@@ -21,4 +22,6 @@ router.post('/login', authController.login);
 router.get('/admin', authenticateToken, authorizeRole(['Admin']), (req, res) => {
     res.status(200).json({ message: 'Welcome Admin' });
   });
+
+router.get('/users',authController.getCustomerDetails);
 module.exports = router;

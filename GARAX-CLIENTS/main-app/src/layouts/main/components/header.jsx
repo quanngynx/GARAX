@@ -18,36 +18,29 @@ function Header() {
           Authorization: `Bearer ${token}`,
         },
       });
-
         setFullname(response.data.fullname); 
-      
-
-    } catch (error) {
+    } catch (error){
       localStorage.clear();
       setFullname(null);
       console.error('Session expired or error fetching user data', error);
     }
   };
   useEffect(() => {
-    if (token && isTokenExpired(token)) {
+    if (token && isTokenExpired(token)){
       localStorage.removeItem('fullname');
       localStorage.removeItem('token');
       setFullname(null);
-<<<<<<< HEAD
     } else if (fullname===null) {
-=======
-    } else if (token && !fullname === null) {
->>>>>>> c3f61de660d92e463a4577264f020ab7cfc1250e
       getUserData(); 
     }
   }, [token,fullname]);
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center border-b-gray-100 border-2 p-4 md:p-7 bg-white shadow-md">
-      {/* Left Section: Menu and Phone */}
+     
       <div 
       className={cn(
-        'flex sm:items-center sm:space-x-5 space-x-[270px] justify-between', // Tailwind class
-         Styles.responsiveMobile, // class custom
+        'flex sm:items-center sm:space-x-5 space-x-[270px] justify-between', 
+         Styles.responsiveMobile, 
          Styles.responsiveRange
       )}
       >

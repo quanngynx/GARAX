@@ -84,7 +84,7 @@ function Verified() {
             variant="contained" 
             color="primary"
             sx={{ width: '100%', height: '50px' }}
-            disabled={loading} // Vô hiệu hoá nút khi đang tải
+            disabled={loading} 
           >
             {loading ? <CircularProgress size={24} color="inherit" /> : 'Verify OTP'}
           </Button>
