@@ -56,6 +56,23 @@ const register = async (req, res) => {
     }
 };
 
+const getCustomerDetails = async (req, res) => {
+    try {
+        const email = req.query.email; // Lấy email từ query params
+        let customers;
+
+        if (email) {
+            customers = await User.findAllUsers(email);
+            if (!customers) return res.status(404).json({ message: 'Customer not found' });
+        } else {
+            customers = await User.findAllUsers();
+        }
+
+        res.status(200).json(customers);
+    } catch (error) {
+        res.status(500).json({ message: `Error fetching customer details: ${error.message}` });
+    }
+};
 
 //login ở đây
 const login = async (req, res) => {
@@ -156,5 +173,5 @@ module.exports = {
     register,
     login,
     verify,
-
+    getCustomerDetails,
 };

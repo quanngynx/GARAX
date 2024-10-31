@@ -13,20 +13,32 @@ const User = {
          }
         )
     },
-
-    findCusdetails: async(email) => {
-        const query=`
-            SELECT account.* ,customerdetails.Fullname
+    findAllUsers: async () => {
+        const query = `
+             SELECT account.IDAcc, account.Email, account.Password, customerdetails.Fullname, customerdetails.Phone
             FROM account
-            JOIN customerDetails ON  customerdetails.IDAcc=account.IDAcc
+            JOIN customerdetails ON customerdetails.IDAcc = account.IDAcc`;
+        try {
+            const [results] = await db.promise().query(query);
+            return results;  // Trả về tất cả thông tin user
+        } catch (err) {
+            throw new Error(`Failed to retrieve users: ${err.message}`);
+        }
+    },
+
+    findCusdetails: async (email) => {
+        const query = `
+            SELECT account.*, customerdetails.Fullname
+            FROM account
+            JOIN customerdetails ON customerdetails.IDAcc = account.IDAcc
             WHERE account.Email = ?`;
 
-        return new Promise((resolve, reject) => {
-            db.query(query, [email], (err, results) => {
-                if (err) return reject(err);
-                resolve(results[0]);  // Trả về thông tin của user đầu tiên tìm thấy
-            });
-        });
+        try {
+            const [results] = await db.promise().query(query, [email]);
+            return results[0];  // Trả về thông tin user đầu tiên
+        } catch (err) {
+            throw new Error(`Failed to find customer details: ${err.message}`);
+        }
     },
     updateStatus: async(email)=>{
         const query = `UPDATE account SET verified  = 1 WHERE email = ?`;

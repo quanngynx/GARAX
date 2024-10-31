@@ -12,7 +12,7 @@ const authenticateToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: 'Unauthorized access' });
-      
+
     }
     console.log(decoded);
     req.IDAcc=decoded.userID;

@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const authRoutes = require('./src/routes/access/index');
 require('dotenv').config();
 const app = express();
 app.use(cors()); 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use('/auth', authRoutes)
 
 
