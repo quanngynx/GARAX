@@ -51,7 +51,7 @@ function Sidebar() {
           <div>
             <img
               src={imgGarax}
-              className="w-[30px] h-[30px]"
+              className="w-[10px] h-[10px]"
               alt="Garax Logo"
             />
           </div>
@@ -175,6 +175,13 @@ function Sidebar() {
                 icon={imgUserDetails}
                 label="Cài đặt"
                 link="/setting/general-setting"
+              />
+            </Link>
+            <Link to="/detail">
+              <MenuButton
+                icon={imgUserDetails}
+                label="Chi tiết sản phẩm"
+                link="/detail"
               />
             </Link>
           </div>

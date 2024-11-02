@@ -6,14 +6,14 @@ import API_ROUTES from "../api";
 
 // Khai báo columns bên ngoài hàm chính để tối ưu
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", minWidth: 120, maxWidth:180 },
   {
     field: "fullName",
     headerName: "Tên đầy đủ",
     description: "This column has a value getter and is not sortable.",
     sortable: true,
-    minWidth: 160,
-    maxWidth:220
+    minWidth: 300,
+    maxWidth:350
   },
   {
     field: "email",
@@ -26,14 +26,15 @@ const columns = [
     field: "password",
     headerName: "Mật khẩu",
     type: "number",
-    minWidth: 190,
+    minWidth: 250,
+    maxWidth: 300,
   },
   {
     field: "phoneNumber",
     headerName: "SĐT",
     type: "number",
-    minWidth: 150,
-    maxWidth:200
+    minWidth: 200,
+    maxWidth:300
   },
 ];
 
