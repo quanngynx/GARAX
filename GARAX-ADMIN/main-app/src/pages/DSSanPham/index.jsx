@@ -1,4 +1,4 @@
-function DSGiaoDich() {
+function DSSanPham() {
     return ( 
         <div className="">
 
@@ -6,4 +6,4 @@ function DSGiaoDich() {
      );
 }
 
-export default DSGiaoDich;
+export default DSSanPham;

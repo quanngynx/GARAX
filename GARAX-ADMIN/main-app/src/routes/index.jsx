@@ -13,7 +13,7 @@ import DanhSachDatLich from '../pages/danhSachDatLich.jsx'
 import DanhSachTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
 import DanhSachTaiKhoanNhanVien from '../pages/DSTaiKhoanNV/index.jsx'
 import DanhSachTaiKhoanKhachHang from '../pages/DSTaiKhoanKH/index.jsx'
-import DanhSachGiaoDich from '../pages/DSGiaoDich/index.jsx'
+import DanhSachSanPham from '../pages/danhSachSanPham.jsx'
 import HoSoNguoiDung from '../pages/hoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
@@ -97,13 +97,13 @@ function Router() {
           ]
         },
         {
-          path: 'transactions',
+          path: 'products',
           children: [
             {
-              path: '/transactions', element: <Navigate to="/transactions/list" replace />,
+              path: '/products', element: <Navigate to="/products/list" replace />,
             },
             {
-              path: 'list', element: <DanhSachGiaoDich />
+              path: 'list', element: <DanhSachSanPham />
             }
           ]
         },
