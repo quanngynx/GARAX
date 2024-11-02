@@ -18,7 +18,7 @@ function login() {
 
     try {
       const response=await axios.post(API_ROUTES.LOGIN, { email, password });
-      const { token , role,fullname } = response.data;
+      const { token , role, fullname } = response.data;
       localStorage.setItem('token',token);
       localStorage.setItem('role',role);
       localStorage.setItem('fullname',fullname);

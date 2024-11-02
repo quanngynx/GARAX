@@ -12,25 +12,28 @@ const columns = [
     headerName: "Tên đầy đủ",
     description: "This column has a value getter and is not sortable.",
     sortable: true,
-    width: 160,
+    minWidth: 160,
+    maxWidth:220
   },
   {
     field: "email",
     headerName: "Email",
     type: "string",
-    width: 240,
+    minWidth: 200,
+    maxWidth:238
   },
   {
     field: "password",
     headerName: "Mật khẩu",
     type: "number",
-    width: 190,
+    minWidth: 190,
   },
   {
     field: "phoneNumber",
     headerName: "SĐT",
     type: "number",
-    width: 190,
+    minWidth: 150,
+    maxWidth:200
   },
 ];
 
@@ -60,33 +63,17 @@ function caiDatTaiKhoan() {
         <div className="p-3 w-full h-[50px] flex">
           <p className="text-2xl font-semibold">Danh sách tài khoản cho khách hàng</p>
         </div>
-        <Paper sx={{ height: 400, width: "100%" }}>
+        <Paper sx={{ height: 400, maxWidth: "97%", overflow: "hidden" }}>
           <DataGrid
             rows={rows}
             columns={columns}
             initialState={{ pagination: { paginationModel } }}
-            pageSizeOptions={[5, 10]}
+            pageSizeOptions={[5, 11]}
             checkboxSelection
-            sx={{ border: 0 }}
+            sx={{ border: 0 , overflowX: 'auto'}}
           />
         </Paper>
       </div>
-
-      {/* <div className="mb-6 sm:mb-36">
-        <div className="p-3 w-full h-[50px] flex">
-          <p className="text-2xl font-semibold">Danh sách tài khoản cho nhân viên</p>
-        </div>
-        <Paper sx={{ height: 400, width: "100%" }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{ pagination: { paginationModel } }}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection
-            sx={{ border: 0 }}
-          />
-        </Paper>
-      </div> */}
     </div>
   );
 }
