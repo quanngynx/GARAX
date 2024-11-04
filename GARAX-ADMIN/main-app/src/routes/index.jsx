@@ -13,10 +13,11 @@ import DanhSachDatLich from '../pages/danhSachDatLich.jsx'
 import DanhSachTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
 import DanhSachTaiKhoanNhanVien from '../pages/DSTaiKhoanNV/index.jsx'
 import DanhSachTaiKhoanKhachHang from '../pages/DSTaiKhoanKH/index.jsx'
-import DanhSachGiaoDich from '../pages/DSGiaoDich/index.jsx'
+import DanhSachSanPham from '../pages/danhSachSanPham.jsx'
 import HoSoNguoiDung from '../pages/hoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
+import Thongtinchitietsanpham from "../pages/Thongtinchitietsanpham.jsx";
 
 // auth
 import LoginPage from '../pages/auth/login.jsx'
@@ -54,20 +55,6 @@ function Router() {
         },
       ]
     },
-    // {
-    //   path: 'account',
-    //   element: <DashboardLayout/>,
-    //   children: [
-    //     {
-    //       path: 'staff',
-    //       element: <ThongKeDuLieu />,
-    //     },
-    //     {
-    //       path: 'customer',
-    //       element: <ThongKeDuLieu />,
-    //     },
-    //   ]
-    // },
     {
       path: '/',
       element: <DashboardLayout/>,
@@ -97,20 +84,30 @@ function Router() {
           ]
         },
         {
-          path: 'transactions',
+          path: 'detail',
+          element:<Thongtinchitietsanpham/>
+        },
+        {
+          path: 'products',
           children: [
             {
-              path: '/transactions', element: <Navigate to="/transactions/list" replace />,
+              path: '/products', element: <Navigate to="/products/list" replace />,
             },
             {
-              path: 'list', element: <DanhSachGiaoDich />
-            }
+              path: 'list', element: <DanhSachSanPham />
+            },
+            // {
+            //   path: 'details',
+            //   element: <Thongtinchitietsanpham/>
+            // }
           ]
         },
+        
         // {
         //   path: '/',
         //   element: <Navigate to="/setting" replace />
         // },
+        
         {
           path: 'account',
           element: <DanhSachTaiKhoan/>

@@ -6,63 +6,53 @@ import API_ROUTES from "../api";
 
 // Khai báo columns bên ngoài hàm chính để tối ưu
 const columns = [
-  { field: "id", headerName: "ID", minWidth: 120, maxWidth:180 },
+  { field: "id", headerName: "ID", minWidth: 20, maxWidth:200 },
   {
     field: "fullName",
-    headerName: "Tên đầy đủ",
+    headerName: "Tên sản phẩm",
     description: "This column has a value getter and is not sortable.",
     sortable: true,
-    minWidth: 300,
-    maxWidth:350
+    minWidth: 150,
+    maxWidth:400
   },
   {
-    field: "email",
-    headerName: "Email",
+    field: "cate",
+    headerName: "Loại",
     type: "string",
-    minWidth: 200,
+    minWidth: 100,
     maxWidth:238
   },
   {
-    field: "password",
-    headerName: "Mật khẩu",
+    field: "price",
+    headerName: "Đơn giá",
     type: "number",
-    minWidth: 250,
+    minWidth: 50,
     maxWidth: 300,
   },
-  {
-    field: "phoneNumber",
-    headerName: "SĐT",
-    type: "number",
-    minWidth: 200,
-    maxWidth:300
-  },
+
 ];
+
+const rows = [
+  { id: 1,fullName:"Phụ tùng oto",cate:"nội",price:"123221345"  },
+  { id: 3,fullName:"Phụ tùng otos",cate:"nội",price:"123221345"  },
+  { id: 2,fullName:"Phụ tùng điện",cate:"ngoại",price:"1232421445"  },
+
+];
+
 
 const paginationModel = { page: 0, pageSize: 5 };
 
-function caiDatTaiKhoan() {
-  const [rows, setRows] = useState([]); // Khai báo useState hợp lệ
-
-  useEffect(() => {
-    axios.get(API_ROUTES.GETUSER)
-      .then((response) => {
-        const user1 = response.data.map(user => ({
-          id: user.IDAcc, 
-          fullName: user.Fullname,
-          email: user.Email,
-          phoneNumber: user.Phone,
-          password: user.Password
-        }));
-        setRows(user1);
-      })
-      .catch((error) => console.error("Error fetching users:", error));
-  }, []);
+function danhSachSanPham() {
+  const handleRowClick = (params) => {
+    
+    
+  };
 
   return (
     <div>
       <div className="mb-6">
         <div className="p-3 w-full h-[50px] flex">
-          <p className="text-2xl font-semibold">Danh sách tài khoản cho khách hàng</p>
+          <p className="text-2xl font-semibold">Danh sách sản phẩm hệ thống</p>
         </div>
         <Paper sx={{ height: 400, maxWidth: "97%", overflow: "hidden" }}>
           <DataGrid
@@ -72,6 +62,7 @@ function caiDatTaiKhoan() {
             pageSizeOptions={[5, 11]}
             checkboxSelection
             sx={{ border: 0 , overflowX: 'auto'}}
+            onRowClick={handleRowClick}
           />
         </Paper>
       </div>
@@ -79,4 +70,4 @@ function caiDatTaiKhoan() {
   );
 }
 
-export default caiDatTaiKhoan;
+export default danhSachSanPham;
