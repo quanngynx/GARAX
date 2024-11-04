@@ -5,27 +5,38 @@ require("dotenv").config()
 const express = require('express')
 const morgan = require('morgan')
 const compression = require('compression')
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const { default : helmet } = require('helmet')
 const { checkOverLoad } = require('./utils/helpers/checkConnect')
 const app = express()
+
+const authRoutes = require('./routes/access/index');
+
 const router = require('./routes/index')
+
 //init middlewares
 app.use(cors())
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(compression())
 app.use(express.json())
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.urlencoded({
     extended: true
 }))
+
 //init db
 require('./db/init.mysql.level0')
+// require('./db/init.mysql.level1')
 
 // checkOverLoad()
 
 //init routes
 app.use('', router)
+app.use('/auth', authRoutes)
 
 app.get('/', ( req, res, next) => {
   return res.status(200).json({

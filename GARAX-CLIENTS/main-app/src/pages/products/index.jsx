@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 import { cardProducts } from "../../data/index";
 import ProductsCard from "../../components/card";
@@ -19,7 +21,6 @@ function ProductPage() {
   };
   function filteredData(pro, selected) {
     let filtered = pro;
-
 
     if (selected) {
       filtered = filtered.filter(
@@ -58,15 +59,21 @@ function ProductPage() {
   }
 
   const result = filteredData(cardProducts, selectedCategory);
-  
+
   return (
     <div className="flex flex-col bg-white justify-center">
       <div className="mb-6">
-        <div className="flex flex-col md:w-full bg-white h-auto px-24 mb-6">
-          <Recommend handleClick={handleClick}/>
+        <div className="flex flex-col md:w-full bg-white h-auto md:px-24 px-3 mb-6">
+          <Recommend handleClick={handleClick} />
         </div>
         <div className="md:w-full bg-white h-auto px-24">
-          <Products result={result}/>
+          <Products result={result} />
+        </div>
+
+        <div className="flex justify-center items-center mt-6">
+          <Stack spacing={2}>
+            <Pagination count={10} variant="outlined" shape="rounded" />
+          </Stack>
         </div>
       </div>
     </div>
