@@ -166,3 +166,6 @@ server/tool/*imported.json
 
 # secret txt
 secret.txt
+.nx/installation
+.nx/cache
+.nx/workspace-data

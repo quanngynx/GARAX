@@ -37,7 +37,6 @@ function Routes() {
         }
       ],
     },
-    
     {
       path: "auth",
       element: <OnlyCanvas />,

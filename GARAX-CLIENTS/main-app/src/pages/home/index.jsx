@@ -7,6 +7,8 @@ import FormHelpDesk from "./components/formHelpDesk";
 import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
 import AccessibleTabs from "./components/accessibleTabs";
+import BroswerByType from './components/broswerByType'
+
 import { useCheckAuth } from "../auth/checkToken";
 import {useEffect} from 'react';
 function HomePage() {
@@ -40,6 +42,15 @@ function HomePage() {
         </div>
       </div>
     </div>
+
+    {/* Broswer by type */}
+    <BroswerByType />
+
+    {/* Why choose us */}
+
+    {/* The best thing for our car */}
+
+    {/* What customer say */}
 
     {/* HelpDesk Form Section */}
     <FormHelpDesk />

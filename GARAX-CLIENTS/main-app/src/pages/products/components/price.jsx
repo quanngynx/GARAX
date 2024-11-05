@@ -27,7 +27,7 @@ const currencies = [
 // eslint-disable-next-line react/prop-types
 function Recommend({ handleClick }) {
   return (
-    <div className="mt-6 flex justify-between">
+    <div className="mt-6 flex flex-col md:flex-row md:justify-between">
       <div className="flex ">
         <Button onClickHandler={handleClick} value="" title="Tất cả sản phẩm" />
         <Button onClickHandler={handleClick} value="Toyota" title="Toyota" />

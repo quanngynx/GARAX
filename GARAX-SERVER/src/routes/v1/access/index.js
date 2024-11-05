@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const authController = require('../../controllers/access.controller')
-const authenticateToken = require('../../middlewares/auth');
-const authorizeRole = require('../../middlewares/authorize');
+const authController = require('../../../controllers/access.controller')
+const authenticateToken = require('../../../middlewares/auth');
+const authorizeRole = require('../../../middlewares/authorize');
 const AuthController = require('../../../controllers/auth.controller')
 const AsyncHandler = require('../../../middlewares/asyncHandler.middleware')
 
