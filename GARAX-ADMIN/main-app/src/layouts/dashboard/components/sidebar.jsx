@@ -51,7 +51,7 @@ function Sidebar() {
           <div>
             <img
               src={imgGarax}
-              className="w-[10px] h-[10px]"
+              className="w-[30px] h-[30px]"
               alt="Garax Logo"
             />
           </div>
