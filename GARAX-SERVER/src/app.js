@@ -11,10 +11,11 @@ const cors = require("cors");
 const { default : helmet } = require('helmet')
 const { checkOverLoad } = require('./utils/helpers/checkConnect')
 const app = express()
-
+const { sequelize } = require('./models/index'); // Import sequelize từ models
+sequelize.sync({alter: true});
 const authRoutes = require('./routes/access/index');
 
-const router = require('./routes/index')
+// const router = require('./routes/index')
 
 //init middlewares
 app.use(cors())
@@ -28,14 +29,12 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-//init db
-require('./db/init.mysql.level0')
-// require('./db/init.mysql.level1')
+require('./db/init.mysql.level1')
 
 // checkOverLoad()
 
 //init routes
-app.use('', router)
+// app.use('', router)
 app.use('/auth', authRoutes)
 
 app.get('/', ( req, res, next) => {

@@ -6,14 +6,14 @@ import API_ROUTES from "../api";
 
 // Khai báo columns bên ngoài hàm chính để tối ưu
 const columns = [
-  { field: "id", headerName: "ID", minWidth: 120, maxWidth:180 },
+  { field: "id", headerName: "ID", width: 70 },
   {
     field: "fullName",
     headerName: "Tên đầy đủ",
     description: "This column has a value getter and is not sortable.",
     sortable: true,
-    minWidth: 300,
-    maxWidth:350
+    minWidth: 160,
+    maxWidth:220
   },
   {
     field: "email",
@@ -26,15 +26,14 @@ const columns = [
     field: "password",
     headerName: "Mật khẩu",
     type: "number",
-    minWidth: 250,
-    maxWidth: 300,
+    minWidth: 190,
   },
   {
     field: "phoneNumber",
     headerName: "SĐT",
     type: "number",
-    minWidth: 200,
-    maxWidth:300
+    minWidth: 150,
+    maxWidth:200
   },
 ];
 
@@ -57,7 +56,7 @@ function caiDatTaiKhoan() {
       })
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
-
+  
   return (
     <div>
       <div className="mb-6">
