@@ -16,7 +16,7 @@ function Header() {
   const [token] = useState(localStorage.getItem("token"));
   const getUserData = async () => {
     try {
-      const response = await axios.get("/auth/user", {
+      const response = await axios.get("/auth/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -106,10 +106,6 @@ function Header() {
             </button>
           </Link>
         )}
-        <button onClick={handleProfile} className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-          <i className="fas fa-user mr-2"></i> Hi, . . .
-        </button>
-        {hideProfile && <ModalProfile />}
       </div>
     </div>
   );

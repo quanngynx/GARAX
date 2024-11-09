@@ -30,17 +30,17 @@ function Register() {
       setErrorMessage('Please fill out all fields.');
       return;
     }
-    const response =  await axios.get(API_ROUTES.GETUSER)
+    // const response =  await axios.post(API_ROUTES.REGISTER)
      
-     const user1 = response.data.map(user =>
-      user.email
-     );
-     // Kiểm tra nếu email đã tồn tại trong danh sách
-     if (user1.includes(email)) {
-      setErrorMessage('Email already exists.');
-      setIsSubmitting(false);
-      return;
-    }
+    //  const user1 = response.data.map(user =>
+    //   user.email
+    //  );
+    //  // Kiểm tra nếu email đã tồn tại trong danh sách
+    //  if (user1.includes(email)) {
+    //   setErrorMessage('Email already exists.');
+    //   setIsSubmitting(false);
+    //   return;
+    // }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setErrorMessage('Format of email is name@company.com');

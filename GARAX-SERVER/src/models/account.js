@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+    
     },
     password: {
       type: DataTypes.STRING,
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     Role: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'user',  // Thêm giá trị mặc định ở đây
+      defaultValue: 'user',  
     },
     otp: {
       type: DataTypes.STRING,

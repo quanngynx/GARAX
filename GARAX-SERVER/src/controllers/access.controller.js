@@ -6,7 +6,8 @@ const nodemailer = require('nodemailer');
 const { Account, CustomerDetails } = require('../models/index');
 const crypto = require('crypto');
 const {token} = require('morgan');
-const { OK, CREATED, SuccessResponse  } = require("../middlewares/success.response")
+const { OK, CREATED, SuccessResponse  } = require("../middlewares/success.response");
+const { error } = require('console');
 
 
 const transporter = nodemailer.createTransport({
@@ -78,10 +79,10 @@ const getCustomerDetails = async (req, res) => {
         let customers;
 
         if (email) {
-            customers = await User.findAll(email);
+            customers = await Account.findAll(email);
             if (!customers) return res.status(404).json({ message: 'Customer not found' });
         } else {
-            customers = await User.findAllUsers();
+            customers = await Account.findAll();
         }
 
         res.status(200).json(customers);
@@ -96,43 +97,52 @@ const login = async (req, res) => {
         const { email, password} = req.body;
 
         // Kiểm tra xem email có tồn tại không
-        const user = await Account.findOne({ where: { email:req.body.email }});
+        const user = await Account.findOne({ where: { email:email }});
+        const user1 = await CustomerDetails.findOne({ where: { IDAcc: user.IDAcc } });
+     
         if (!user) {
             console.log("User not found:", email); // Ghi lại email không tìm thấy
             return res.status(400).json({ error: 'Invalid email or password' });
         }
 
         console.log("Password from request:", password);
-        console.log("Hashed password from DB:", user.Password);
+        console.log("Hashed password from DB:", user.password);
 
-
-       const isMatch = await bcrypt.compare(password, user.Password);
-        if (isMatch) {
-            // Tạo token nếu mật khẩu hợp lệ
-            const token = jwt.sign({
-                userID: user.IDAcc ,
-                role : user.Role,
-                fullname: user.Fullname,
-            }, process.env.JWT_SECRET, { expiresIn: '10m' });
-            const refreshToken = jwt.sign(
-                {  userID: user.IDAcc ,
-                    role : user.Role,
-                    fullname: user.Fullname,
-                }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'}
-            );
-            res.cookie('jwt', refreshToken,
-                {
-                    httpOnly:true,
-                    samSite:'None',secure:true,
-                    maxAge:24*60*60*1000
-                }
-            );
-            return res.json({ token, role: user.Role , fullname: user.Fullname});
-
-        } else {
-            console.log("Password mismatch");
-            return res.status(400).json({ error: 'Invalid email or password' });
+        if(user.verified===false){
+            return res.status(401).json({error: 'You are not verified'});
         }
+        else{ 
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (isMatch) {
+            
+                const token = jwt.sign({
+                    userID: user.IDAcc ,
+                    role : user.Role,
+                    fullname: user1.Fullname,
+                }, process.env.JWT_SECRET, { expiresIn: '10m' });
+                const refreshToken = jwt.sign(
+                    {  userID: user.IDAcc ,
+                        role : user.Role,
+                        fullname: user1.Fullname,
+                    }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'}
+                );
+                res.cookie('jwt', refreshToken,
+                    {
+                        httpOnly:true,
+                        samSite:'None',secure:true,
+                        maxAge:24*60*60*1000
+                    }
+                );
+                return res.json({ token, role: user.Role , fullname: user1.Fullname});
+    
+            } else {
+                console.log("Password mismatch");
+                return res.status(400).json({ error: 'Invalid email or password' });
+            }
+        }
+      
+    
+       
 
     } catch (err) {
         console.error('Error during login:', err);
@@ -146,16 +156,12 @@ const verify = async (req,res) =>{
 
     try {
         const { email, otp } = req.body;
-
-        // Tìm người dùng theo email
         const user = await Account.findOne({ where: { email:req.body.email }});
-        console.log(user.email);
-        console.log("OTP from request:", otp);
-         console.log("OTP from database:", user.otp);
+       
         if (!user) {
             return res.status(400).json({ error: 'User not found' });
         }
-        if (String(otp) !== String(user.otp)) {
+        if (otp !== user.otp) {
             return res.status(400).json({ error: 'Invalid OTP' });
         }
         else {
@@ -163,13 +169,11 @@ const verify = async (req,res) =>{
             if (currentTime > user.otpTime) {
                 return res.status(400).json({ error: 'OTP has expired' });
             }
-        
         }
         await Account.update(
             { otp: null, otpTime: null, verified: '1' },
             { where: { email: email } }
         );
-        
         return res.status(200).json({ message: 'OTP verified successfully' });
 
     } catch (err) {
