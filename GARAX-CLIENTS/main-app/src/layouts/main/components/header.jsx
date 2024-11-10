@@ -103,7 +103,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-white w-full flex justify-center border-b-gray-100 border-2 shadow-md">
+    <div className="bg-white w-full flex justify-center border-b-gray-100 border-2 shadow-md py-4">
       <div className="w-[1351.47px] flex flex-col sm:flex-row justify-between items-center">
         <div
           className={cn(
@@ -151,9 +151,39 @@ function Header() {
           Đăng kí thành viên để có nhiều ưu đãi
         </div>
 
-        <div className="mt-4 md:mt-0">
+        <div className="mt-4 md:mt-0 flex flex-row items-center">
+          <div className="mr-4">
+            <button
+              className=""
+              onClick={() => {
+                setOpen(true);
+                setOpenOrderInfo(false);
+              }}
+            >
+              <div className="flex flex-row justify-between items-center">
+                <div className=" p-1">
+                  <CartTiny />
+                </div>
+                <div className="text-black">Giỏ hàng</div>
+              </div>
+            </button>
+            <DrawersForCart
+              open={open}
+              setOpen={setOpen}
+              onProceed={handleProceedToOrderInfo}
+            />
+            <DrawersInfoForCart
+              open={openOrderInfo}
+              setOpen={setOpenOrderInfo}
+              onProceed={handleProceedToOrderPayment}
+            />
+            <DrawersPaymentForCart
+              open={openOrderPayment}
+              setOpen={setOpenOrderPayment}
+            />
+          </div>
           {fullname ? (
-            <div>
+            <div className="">
               <button
                 onClick={handleProfile}
                 className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
@@ -165,30 +195,11 @@ function Header() {
           ) : (
             <Link to="/auth/login">
               <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-              <UserTiny/> Sign in
+                <UserTiny /> Sign in
               </button>
             </Link>
           )}
         </div>
-        <div className="">
-            <button
-              className=""
-              onClick={() => {
-                setOpen(true);
-                setOpenOrderInfo(false)
-              }}
-            >
-              <div className="flex flex-row justify-between items-center">
-                <div className=" p-1">
-                  <CartTiny />
-                </div>
-                <div className="text-black">Giỏ hàng</div>
-              </div>
-            </button>
-            <DrawersForCart open={open} setOpen={setOpen} onProceed={handleProceedToOrderInfo}/>
-            <DrawersInfoForCart open={openOrderInfo} setOpen={setOpenOrderInfo} onProceed={handleProceedToOrderPayment}/>
-            <DrawersPaymentForCart open={openOrderPayment} setOpen={setOpenOrderPayment} />
-          </div>
       </div>
     </div>
   );
