@@ -12,6 +12,7 @@ import StorageOutlinedIcon from "@mui/icons-material/StorageOutlined";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
+import { Link } from "react-router-dom";
 
 const flyoutMenusData1 = [
   {
@@ -58,13 +59,15 @@ function flyoutMenus() {
       <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
         {i.icon}
       </div>
-      <div>
-        <a href="#" className="font-semibold text-white hover:text-gray-900">
-          {i.tit}
-          <span className="absolute inset-0"></span>
-        </a>
-        <p className="mt-1 text-gray-600">{i.desc}</p>
-      </div>
+      <Link to={"/service"}>
+        <div className="">
+          <a href="#" className="font-semibold text-white hover:text-gray-900">
+            {i.tit}
+            <span className="absolute inset-0"></span>
+          </a>
+          <p className="mt-1 text-gray-600">{i.desc}</p>
+        </div>
+      </Link>
     </div>
   ));
 

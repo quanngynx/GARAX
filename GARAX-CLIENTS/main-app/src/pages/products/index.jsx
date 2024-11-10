@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
@@ -37,6 +37,8 @@ function ProductPage() {
         image,
         title,
         description,
+        // descriptionDetail1,
+        // descriptionDetail2,
         range,
         transmission,
         fuel_type,
@@ -48,6 +50,8 @@ function ProductPage() {
           image={image}
           title={title}
           description={description}
+          // descriptionDetail1={descriptionDetail1}
+          // descriptionDetail2={descriptionDetail2}
           range={range}
           transmission={transmission}
           fuel_type={fuel_type}

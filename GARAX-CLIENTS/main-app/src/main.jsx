@@ -5,15 +5,19 @@ import { HelmetProvider } from "react-helmet-async";
 
 import reportPerformance from "./utils/reportPerformance.js";
 
+import { Provider } from "react-redux";
+import { store } from "./redux/stores/index.jsx";
 import App from "./App";
 import "./index.css";
-import './i18n';
+import "./i18n";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     </HelmetProvider>
   </StrictMode>

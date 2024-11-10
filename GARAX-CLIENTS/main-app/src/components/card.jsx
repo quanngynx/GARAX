@@ -12,6 +12,8 @@ function card({
   image,
   title,
   description,
+  descriptionDetail1,
+  descriptionDetail2,
   range,
   transmission,
   fuel_type,

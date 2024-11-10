@@ -1,8 +1,36 @@
-import { useParams, Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import LeftArrow from '../../../assets/icons/left--vector-tiny.svg?react'
+import { addToCarts } from "../../../redux/stores/cart";
+// import { use } from "i18next";
 
-function product() {
+function product(props) {
+
+  // const { 
+  //   image, 
+  //   title,
+  //   description,
+  //   descriptionDetail1,
+  //   descriptionDetail2,
+  //   range,
+  //   transmission,
+  //   fuel_type,
+  //   year, 
+  //   cost 
+  // } = props.data
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const carts = useSelector(store => store.cart.items)
+  console.log("info cart::", carts)
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const dispatch = useDispatch()
+
+  const handleAddToCart = () => {
+    dispatch(addToCarts({
+      // variable: props
+    }))
+  }
   return (
     <div className="p-6">
       <div className="text-black w-full mb-4">
@@ -63,8 +91,9 @@ function product() {
                 <div className="">1</div>
               </div>
 
-              <div className="bg-[#050b20] rounded-2xl flex justify-center items-center mt-4">
-                <button className="text-white py-4 px-24">
+              <div className="bg-slate-800 rounded-2xl flex justify-center items-center mt-4">
+                <button className="text-white py-4 px-24"
+                onClick={handleAddToCart}>
                   Thêm vào giỏ hàng
                 </button>
               </div>
