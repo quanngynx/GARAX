@@ -75,18 +75,36 @@ const register = async (req, res) => {
 
 const getCustomerDetails = async (req, res) => {
     try {
-        const email = req.query.email; // Lấy email từ query params
+        const email = req.query.email;
         let customers;
 
         if (email) {
-            customers = await Account.findAll(email);
-            if (!customers) return res.status(404).json({ message: 'Customer not found' });
+            console.log("Searching customer by email:", email);
+
+            // Thử lấy thông tin khách hàng với quan hệ CustomerDetails
+            customers = await Account.findOne({
+                where: { email },
+                include: [{ model: CustomerDetails, required: true }]
+            });
+            
+            if (!customers) {
+                console.log("Customer not found for email:", email);
+                return res.status(404).json({ message: 'Customer not found' });
+            }
         } else {
-            customers = await Account.findAll();
+            console.log("Fetching all customers with their details.");
+
+            // Thử lấy tất cả khách hàng cùng thông tin chi tiết
+            customers = await Account.findAll({
+                include: [{ model: CustomerDetails, required: true }]
+            });
         }
 
+        console.log("Fetched customer data:", customers);
         res.status(200).json(customers);
+      
     } catch (error) {
+        console.error("Error in getCustomerDetails:", error); // Thêm log lỗi
         res.status(500).json({ message: `Error fetching customer details: ${error.message}` });
     }
 };
@@ -94,7 +112,7 @@ const getCustomerDetails = async (req, res) => {
 //login ở đây
 const login = async (req, res) => {
     try {
-        const { email, password} = req.body;
+        const { email, password,IDCusDe} = req.body;
 
         // Kiểm tra xem email có tồn tại không
         const user = await Account.findOne({ where: { email:email }});
@@ -109,40 +127,40 @@ const login = async (req, res) => {
         console.log("Hashed password from DB:", user.password);
 
         if(user.verified===false){
-            return res.status(401).json({error: 'You are not verified'});
+            return res.status(401).json({error: 'You are not verify'})
         }
         else{ 
             const isMatch = await bcrypt.compare(password, user.password);
-            if (isMatch) {
+    
+         if (isMatch) {
             
-                const token = jwt.sign({
-                    userID: user.IDAcc ,
+            const token = jwt.sign({
+                userID: user.IDAcc ,
+                role : user.Role,
+                fullname: user1.Fullname,
+            }, process.env.JWT_SECRET, { expiresIn: '10m' });
+            const refreshToken = jwt.sign(
+                {  userID: user.IDAcc ,
                     role : user.Role,
                     fullname: user1.Fullname,
-                }, process.env.JWT_SECRET, { expiresIn: '10m' });
-                const refreshToken = jwt.sign(
-                    {  userID: user.IDAcc ,
-                        role : user.Role,
-                        fullname: user1.Fullname,
-                    }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'}
-                );
-                res.cookie('jwt', refreshToken,
-                    {
-                        httpOnly:true,
-                        samSite:'None',secure:true,
-                        maxAge:24*60*60*1000
-                    }
-                );
-                return res.json({ token, role: user.Role , fullname: user1.Fullname});
-    
-            } else {
-                console.log("Password mismatch");
-                return res.status(400).json({ error: 'Invalid email or password' });
-            }
+                }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'}
+            );
+            res.cookie('jwt', refreshToken,
+                {
+                    httpOnly:true,
+                    samSite:'None',secure:true,
+                    maxAge:24*60*60*1000
+                }
+            );
+            return res.json({ token, role: user.Role , fullname: user1.Fullname});
+
+        } else {
+            console.log("Password mismatch");
+            return res.status(400).json({ error: 'Invalid email or password' });
+        }
+
         }
       
-    
-       
 
     } catch (err) {
         console.error('Error during login:', err);

@@ -40,9 +40,6 @@ function Login() {
         console.log(error);
         setErrorMessage('Invalid credentials. Please try again.');
       }
-    
-   
-    
   };
 
   return (
