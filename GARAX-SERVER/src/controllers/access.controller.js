@@ -1,12 +1,14 @@
 require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModels');
 const nodemailer = require('nodemailer');
+
+const { Account, CustomerDetails } = require('../models/index');
 const crypto = require('crypto');
 const {token} = require('morgan');
+const { OK, CREATED, SuccessResponse  } = require("../middlewares/success.response");
+const { error } = require('console');
 
-const { OK, CREATED, SuccessResponse  } = require("../middlewares/success.response")
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -19,7 +21,8 @@ const transporter = nodemailer.createTransport({
 const register = async (req, res) => {
     try {
         const { email, password, fullname, phone } = req.body;
-
+        console.log('Request body:', req.body);
+        
         if (!email || !password) {
             return res.status(400).json({ error: 'Email and password are required' });
         }
@@ -28,14 +31,17 @@ const register = async (req, res) => {
             return res.status(400).json({success: false, message: "Invalid email"})
         }
 
-        const user = await User.findByEmail(email);
+        const user = await Account.findOne({ where: { email: req.body.email } });
+        console.log(user);
         if (user) {
-            return res.status(400).json({ error: 'Email already exists' });
+           
+          return res.status(400).json({ error: 'Email already exists' });
         }
-
+        
         const verified = 0;
         const otpTime = new Date(Date.now() + 10 * 60 * 1000);
         const otp = crypto.randomInt(100000, 999999).toString();
+
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: email,
@@ -45,11 +51,22 @@ const register = async (req, res) => {
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Tạo user mới
-       const IDAcc= await User.createAccount(email, hashedPassword, otp, otpTime, verified);
-        User.createCustomerDetails(IDAcc, fullname, phone);
-        return res.status(200).json({ message: 'User created' });
-
+         const newAccount = await Account.create({
+            email,
+            password: hashedPassword,
+            otp,
+            otpTime: otpTime,
+            verified,
+        });
+        const newCustomerDetails = await CustomerDetails.create({
+            Fullname: fullname,
+            Phone:  phone,
+            IDAcc: newAccount.IDAcc
+        });
+      
+          
+          return res.status(200).json({ message: 'User created successfully' , newAccount, newCustomerDetails});
+          
     } catch (err) {
         console.error('Error registering user:', err);
         return res.status(500).json({ error: 'Internal server error' });
@@ -62,10 +79,10 @@ const getCustomerDetails = async (req, res) => {
         let customers;
 
         if (email) {
-            customers = await User.findAllUsers(email);
+            customers = await Account.findAll(email);
             if (!customers) return res.status(404).json({ message: 'Customer not found' });
         } else {
-            customers = await User.findAllUsers();
+            customers = await Account.findAll();
         }
 
         res.status(200).json(customers);
@@ -80,43 +97,52 @@ const login = async (req, res) => {
         const { email, password} = req.body;
 
         // Kiểm tra xem email có tồn tại không
-        const user = await User.findCusdetails(email);
+        const user = await Account.findOne({ where: { email:email }});
+        const user1 = await CustomerDetails.findOne({ where: { IDAcc: user.IDAcc } });
+     
         if (!user) {
             console.log("User not found:", email); // Ghi lại email không tìm thấy
             return res.status(400).json({ error: 'Invalid email or password' });
         }
 
         console.log("Password from request:", password);
-        console.log("Hashed password from DB:", user.Password);
+        console.log("Hashed password from DB:", user.password);
 
-
-       const isMatch = await bcrypt.compare(password, user.Password);
-        if (isMatch) {
-            // Tạo token nếu mật khẩu hợp lệ
-            const token = jwt.sign({
-                userID: user.IDAcc ,
-                role : user.Role,
-                fullname: user.Fullname,
-            }, process.env.JWT_SECRET, { expiresIn: '10m' });
-            const refreshToken = jwt.sign(
-                {  userID: user.IDAcc ,
-                    role : user.Role,
-                    fullname: user.Fullname,
-                }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'}
-            );
-            res.cookie('jwt', refreshToken,
-                {
-                    httpOnly:true,
-                    samSite:'None',secure:true,
-                    maxAge:24*60*60*1000
-                }
-            );
-            return res.json({ token, role: user.Role , fullname: user.Fullname});
-
-        } else {
-            console.log("Password mismatch");
-            return res.status(400).json({ error: 'Invalid email or password' });
+        if(user.verified===false){
+            return res.status(401).json({error: 'You are not verified'});
         }
+        else{ 
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (isMatch) {
+            
+                const token = jwt.sign({
+                    userID: user.IDAcc ,
+                    role : user.Role,
+                    fullname: user1.Fullname,
+                }, process.env.JWT_SECRET, { expiresIn: '10m' });
+                const refreshToken = jwt.sign(
+                    {  userID: user.IDAcc ,
+                        role : user.Role,
+                        fullname: user1.Fullname,
+                    }, process.env.REFRESH_TOKEN_SECRET,{expiresIn:'1d'}
+                );
+                res.cookie('jwt', refreshToken,
+                    {
+                        httpOnly:true,
+                        samSite:'None',secure:true,
+                        maxAge:24*60*60*1000
+                    }
+                );
+                return res.json({ token, role: user.Role , fullname: user1.Fullname});
+    
+            } else {
+                console.log("Password mismatch");
+                return res.status(400).json({ error: 'Invalid email or password' });
+            }
+        }
+      
+    
+       
 
     } catch (err) {
         console.error('Error during login:', err);
@@ -130,13 +156,12 @@ const verify = async (req,res) =>{
 
     try {
         const { email, otp } = req.body;
-
-        // Tìm người dùng theo email
-        const user = await User.findByEmail(email);
+        const user = await Account.findOne({ where: { email:req.body.email }});
+       
         if (!user) {
             return res.status(400).json({ error: 'User not found' });
         }
-        if (user.otp !== otp) {
+        if (otp !== user.otp) {
             return res.status(400).json({ error: 'Invalid OTP' });
         }
         else {
@@ -144,11 +169,12 @@ const verify = async (req,res) =>{
             if (currentTime > user.otpTime) {
                 return res.status(400).json({ error: 'OTP has expired' });
             }
-        await       User.deleteOTP(email);
-                    User.updateStatus(email);
-            return res.status(200).json({ message: 'OTP verified successfully' });
         }
-
+        await Account.update(
+            { otp: null, otpTime: null, verified: '1' },
+            { where: { email: email } }
+        );
+        return res.status(200).json({ message: 'OTP verified successfully' });
 
     } catch (err) {
         console.error('Error verifying OTP:', err);

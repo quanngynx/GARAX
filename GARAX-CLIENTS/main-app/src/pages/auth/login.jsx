@@ -24,21 +24,25 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(API_ROUTES.LOGIN, { email, password });
-      const { token, role, fullname } = response.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
-      localStorage.setItem('fullname', fullname);
-      if (role === 'user') {
-        navigate('/home');
-      } else {
-        window.location.replace('http://localhost:5175/statics');
+    
+      try {
+        const response = await axios.post(API_ROUTES.LOGIN, { email, password });
+        const { token, role, fullname } = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', role);
+        localStorage.setItem('fullname', fullname);
+        if (role === 'user') {
+          navigate('/home');
+        } else {
+          window.location.replace('http://localhost:5175/statics');
+        }
+      } catch (error) {
+        console.log(error);
+        setErrorMessage('Invalid credentials. Please try again.');
       }
-    } catch (error) {
-      console.log(error);
-      setErrorMessage('Invalid credentials. Please try again.');
-    }
+    
+   
+    
   };
 
   return (

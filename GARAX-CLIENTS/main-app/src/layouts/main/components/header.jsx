@@ -43,7 +43,7 @@ function Header() {
 
   const getUserData = async () => {
     try {
-      const response = await axios.get("/auth/user", {
+      const response = await axios.get("/auth/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -151,53 +151,24 @@ function Header() {
           Đăng kí thành viên để có nhiều ưu đãi
         </div>
 
-        <div className="mt-4 md:mt-0 flex flex-col md:flex-row-reverse justify-between items-center">
-          <div className="">
-            {fullname ? (
-              <div className="">
-                <button
-                  onClick={handleProfile}
-                  className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
-                >
-                  <i className="fas fa-user mr-2"></i>Hi, {fullname}
-                </button>
-                {hideProfile && <ModalProfile />}
-              </div>
-            ) : (
-              <Link to="/auth/login">
-                <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-                  <UserTiny/> <div className="ml-2">Sign in</div>
-                </button>
-              </Link>
-            )}
+      <div className="mt-4 md:mt-0">
+        {fullname ? (
+          <div>
             <button
               onClick={handleProfile}
               className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
             >
-              <i className="fas fa-user mr-2"></i> Hi, . . .
+              <i className="fas fa-user mr-2"></i>Hi, {fullname}
             </button>
             {hideProfile && <ModalProfile />}
           </div>
-          <div className="">
-            <button
-              className=""
-              onClick={() => {
-                setOpen(true);
-                setOpenOrderInfo(false)
-              }}
-            >
-              <div className="flex flex-row justify-between items-center">
-                <div className=" p-1">
-                  <CartTiny />
-                </div>
-                <div className="text-black">Giỏ hàng</div>
-              </div>
+        ) : (
+          <Link to="/auth/login">
+            <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
+              <i className="fas fa-user mr-2"></i> Sign in
             </button>
-            <DrawersForCart open={open} setOpen={setOpen} onProceed={handleProceedToOrderInfo}/>
-            <DrawersInfoForCart open={openOrderInfo} setOpen={setOpenOrderInfo} onProceed={handleProceedToOrderPayment}/>
-            <DrawersPaymentForCart open={openOrderPayment} setOpen={setOpenOrderPayment} />
-          </div>
-        </div>
+          </Link>
+        )}
       </div>
     </div>
   );

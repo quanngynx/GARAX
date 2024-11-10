@@ -16,24 +16,24 @@ const dev = {
       }
   }
 }
-// const product = {
-//   app: {
-//       port: process.env.PRO_APP_PORT || 3306
-//   },
-//   db: {
-//     host: process.env.PRO_DB_HOST || 'localhost',
-//     user: process.env.PRO_DB_USER || 'root',
-//     password: process.env.PRO_DB_PASSWORD || '123456',
-//     db: process.env.PRO_DB_DB,
-//     dialect: 'mysql',
-//     pool: {
-//       max: 5,
-//       min: 0,
-//       acquire: 30000,
-//       idle: 10000
-//     }
-//   }
-// }
-const config = { dev }
+const production = {
+  app: {
+    port: process.env.PORT_PROD || 3306, // Đổi thành cổng server cho môi trường production
+  },
+  db: {
+    host: process.env.DB_HOST_PROD || 'localhost',
+    user: process.env.DB_USER_PROD || 'root',
+    password: process.env.DB_PASSWORD_PROD || '', // Mật khẩu cho MySQL
+    db: process.env.DB_NAME_PROD || 'garrax_prod', // Đổi tên cơ sở dữ liệu production
+    dialect: 'mysql',
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+  },
+};
+const config = { dev, production }
 const env = process.env.NODE_ENV || 'dev'
 module.exports = config[env]
