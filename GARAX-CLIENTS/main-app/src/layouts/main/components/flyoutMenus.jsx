@@ -90,7 +90,7 @@ function flyoutMenus() {
   ));
 
   return (
-    <div className="flex absolute translate-x-[-28px] left-0 right-0 z-10 mt-5 w-[98vw]"
+    <div className="flex absolute translate-x-[-28px] left-0 right-0 z-10 mt-5 w-[92vw]"
     // style={{ display: isHidden ? 'none' : 'flex' }}
     >
       <div className="w-full max-w-full flex flex-col overflow-hidden rounded-3xl bg-black/90 text-sm/6 shadow-lg ring-1 opacity-90 ring-gray-900/5">
