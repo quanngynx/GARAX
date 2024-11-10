@@ -9,13 +9,10 @@ import { isTokenExpired } from "../../../pages/auth/checkToken";
 import Styles from "./css/header.module.css";
 import FlyoutMenus from "./flyoutMenus";
 import ModalProfile from "./modalProfile";
-
 import IconLogin from "../../../assets/icons/user-heart-svgrepo-com.svg";
-
 import DrawersForCart from "./drawersForCart";
 import DrawersInfoForCart from "./drawersInfoCart";
 import DrawersPaymentForCart from "./drawersPaymentCart";
-
 
 import Menu from "../../../assets/iconMenu.svg";
 import iconBrand from "../../../assets/GRAX.svg";
@@ -107,7 +104,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-white w-full flex justify-center border-b-gray-100 border-2 shadow-md">
+    <div className="bg-white w-full flex justify-center border-b-gray-100 border-2 shadow-md py-4">
       <div className="w-[1351.47px] flex flex-col sm:flex-row justify-between items-center">
         <div
           className={cn(
@@ -131,12 +128,7 @@ function Header() {
             {hideMenu && <FlyoutMenus />}
           </div>
 
-        
-          {/* <Link to="/auth/login">
-            <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-              <i className="fas fa-user mr-2"><img className="h-[25px] w-[25px]" src={IconLogin} /></i> Sign in
-            </button>
-          </Link> */}
+
           {/* Phone Info */}
           <div className="flex items-center">
             <img
@@ -161,8 +153,56 @@ function Header() {
           Đăng kí thành viên để có nhiều ưu đãi
         </div>
 
-        <div className="mt-4 md:mt-0 flex flex-row items-center ">
-        <div className="mr-4">
+        <div className="mt-4 md:mt-0 flex flex-row items-center">
+          <div className="mr-4">
+            <button
+              className=""
+              onClick={() => {
+                setOpen(true);
+                setOpenOrderInfo(false);
+              }}
+            >
+              <div className="flex flex-row justify-between items-center">
+                <div className=" p-1">
+                  <CartTiny />
+                </div>
+                <div className="text-black">Giỏ hàng</div>
+              </div>
+            </button>
+            <DrawersForCart
+              open={open}
+              setOpen={setOpen}
+              onProceed={handleProceedToOrderInfo}
+            />
+            <DrawersInfoForCart
+              open={openOrderInfo}
+              setOpen={setOpenOrderInfo}
+              onProceed={handleProceedToOrderPayment}
+            />
+            <DrawersPaymentForCart
+              open={openOrderPayment}
+              setOpen={setOpenOrderPayment}
+            />
+          </div>
+          {fullname ? (
+            <div className="">
+              <button
+                onClick={handleProfile}
+                className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
+              >
+                <i className="fas fa-user mr-2"></i>Hi, {fullname}
+              </button>
+              {hideProfile && <ModalProfile />}
+            </div>
+          ) : (
+            <Link to="/auth/login">
+            <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
+              <i className="fas fa-user mr-2"><img className="h-[25px] w-[25px]" src={IconLogin} /></i> Sign in
+              </button>
+        </Link>
+          )}
+        </div>
+        {/* <div className="">
             <button
               className=""
               onClick={() => {
@@ -176,31 +216,11 @@ function Header() {
                 </div>
                 <div className="text-black">Giỏ hàng</div>
               </div>
-
             </button>
             <DrawersForCart open={open} setOpen={setOpen} onProceed={handleProceedToOrderInfo}/>
             <DrawersInfoForCart open={openOrderInfo} setOpen={setOpenOrderInfo} onProceed={handleProceedToOrderPayment}/>
             <DrawersPaymentForCart open={openOrderPayment} setOpen={setOpenOrderPayment} />
-          </div>
-          {fullname ? (
-            <div>
-              <button
-                onClick={handleProfile}
-                className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
-              >
-                <i className="fas fa-user mr-2"></i>Hi, {fullname}
-              </button>
-              {hideProfile && <ModalProfile />}
-            </div>
-          ) : (
-            <Link to="/auth/login">
-            <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-              <i className="fas fa-user mr-2"><img className="h-[25px] w-[25px]" src={IconLogin} /></i> Sign in
-            </button>
-          </Link>
-          )}
-        </div>
-        
+          </div> */}
       </div>
     </div>
     
