@@ -17,7 +17,7 @@ import Menu from "../../../assets/iconMenu.svg";
 import iconBrand from "../../../assets/GRAX.svg";
 import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg";
 import CartTiny from "../../../assets/icons/cart-tity.svg?react";
-import UserTiny from '../../../assets/icons/user-tiny.svg?react'
+import UserTiny from "../../../assets/icons/user-tiny.svg?react";
 function Header() {
   const [fullname, setFullname] = useState(localStorage.getItem("fullname"));
   const [token] = useState(localStorage.getItem("token"));
@@ -30,11 +30,11 @@ function Header() {
     if (window.location.hash === "#info-cart-order") {
       setOpen(false);
       setOpenOrderInfo(true);
-      setOpenOrderPayment(false)
+      setOpenOrderPayment(false);
     } else if (window.location.hash === "#info-cart-order#payment-cart-order") {
       setOpen(false);
       setOpenOrderInfo(false);
-      setOpenOrderPayment(true)
+      setOpenOrderPayment(true);
     } else {
       setOpenOrderInfo(false);
       setOpenOrderPayment(false);
@@ -96,8 +96,8 @@ function Header() {
   };
 
   const handleProceedToOrderPayment = () => {
-    // history.replaceState(null, 
-    //   window.location.pathname + window.location.hash, 
+    // history.replaceState(null,
+    //   window.location.pathname + window.location.hash,
     //   window.location.pathname);
     window.location.hash = "#info-cart-order#payment-cart-order";
   };
@@ -151,24 +151,25 @@ function Header() {
           Đăng kí thành viên để có nhiều ưu đãi
         </div>
 
-      <div className="mt-4 md:mt-0">
-        {fullname ? (
-          <div>
-            <button
-              onClick={handleProfile}
-              className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
-            >
-              <i className="fas fa-user mr-2"></i>Hi, {fullname}
-            </button>
-            {hideProfile && <ModalProfile />}
-          </div>
-        ) : (
-          <Link to="/auth/login">
-            <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-              <i className="fas fa-user mr-2"></i> Sign in
-            </button>
-          </Link>
-        )}
+        <div className="mt-4 md:mt-0">
+          {fullname ? (
+            <div>
+              <button
+                onClick={handleProfile}
+                className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
+              >
+                <i className="fas fa-user mr-2"></i>Hi, {fullname}
+              </button>
+              {hideProfile && <ModalProfile />}
+            </div>
+          ) : (
+            <Link to="/auth/login">
+              <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
+                <i className="fas fa-user mr-2"></i> Sign in
+              </button>
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
