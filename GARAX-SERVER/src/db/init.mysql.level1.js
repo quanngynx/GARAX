@@ -9,6 +9,7 @@ const sequelize = new Sequelize(
   process.env.PASSWORD_DB_DEV, {
   host: process.env.HOST_DEV,
   dialect: 'mysql',
+  // dialectModule: require('mysql2'), // Chỉ định mysql2 làm module driver cho Sequelize
   logging:false
 });
 

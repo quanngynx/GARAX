@@ -4,7 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 // pages
-import Login from '../pages/authentication/Login';
+import Login from '../pages/auth/login';
 
 // ----------------------------------------------------------------------
 

@@ -1,8 +1,10 @@
 'use strict'
 
+const { Product } = require('../models/product')
+
 class ProductService {
   static async addNewProduct() {
-
+    // const newProduct = await
   }
 
   static async getProductById() {

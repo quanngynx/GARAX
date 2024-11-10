@@ -5,12 +5,15 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@payos/node": "^1.0.10",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -33,8 +36,10 @@
     "nodemailer": "^6.9.15",
     "nodemailer-express-handlebars": "^6.1.2",
     "nodemon": "^3.1.4",
+    "pointer-wallet": "^1.0.8",
     "sequelize": "^6.37.3",
     "sequelize-cli": "^6.6.2",
+    "sso-pointer": "^1.0.5",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
