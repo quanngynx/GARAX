@@ -30,7 +30,7 @@ function Register() {
       setErrorMessage('Please fill out all fields.');
       return;
     }
-    // const response =  await axios.post(API_ROUTES.REGISTER)
+    // const response =  await axios.get(API_ROUTES.GETUSER)
      
     //  const user1 = response.data.map(user =>
     //   user.email
