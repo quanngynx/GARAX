@@ -1,4 +1,4 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridFooterPlaceholder } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -13,14 +13,14 @@ const columns = [
     description: "This column has a value getter and is not sortable.",
     sortable: true,
     minWidth: 160,
-    maxWidth:220
+    maxWidth: 220
   },
   {
     field: "email",
     headerName: "Email",
     type: "string",
     minWidth: 200,
-    maxWidth:238
+    maxWidth: 238
   },
   {
     field: "password",
@@ -33,26 +33,35 @@ const columns = [
     headerName: "SĐT",
     type: "number",
     minWidth: 150,
-    maxWidth:200
+    maxWidth: 200
   },
+  {
+    field: "Role",
+    headerName: "Chức vụ",
+    type: "string",
+    minWidth: 50,
+    maxWidth: 200
+  }
 ];
 
 const paginationModel = { page: 0, pageSize: 5 };
 
 function caiDatTaiKhoan() {
-  const [rows, setRows] = useState([]); // Khai báo useState hợp lệ
+  const [rows, setRows] = useState([]);
 
   useEffect(() => {
     axios.get(API_ROUTES.GETUSER)
       .then((response) => {
-        const user1 = response.data.map(user => ({
+        const mappedUsers = response.data.map(user => ({
           id: user.IDAcc, 
-          fullName: user.Fullname,
-          email: user.Email,
-          phoneNumber: user.Phone,
-          password: user.Password
+          fullName: user.fullname,
+          email: user.email,
+          password: user.password,
+          phoneNumber: user.phone,
+          Role : user.Role,
         }));
-        setRows(user1);
+        console.log("Fetched user data:", mappedUsers);
+        setRows(mappedUsers);
       })
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
@@ -68,9 +77,9 @@ function caiDatTaiKhoan() {
             rows={rows}
             columns={columns}
             initialState={{ pagination: { paginationModel } }}
-            pageSizeOptions={[5, 11]}
+            pageSizeOptions={[5, 10]}
             checkboxSelection
-            sx={{ border: 0 , overflowX: 'auto'}}
+            sx={{ border: 0, overflowX: 'auto' }}
           />
         </Paper>
       </div>
