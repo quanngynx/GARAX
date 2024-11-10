@@ -7,7 +7,7 @@ import { isTokenExpired } from "../../../pages/auth/checkToken";
 import Styles from "./css/header.module.css";
 import FlyoutMenus from "./flyoutMenus";
 import ModalProfile from "./modalProfile";
-
+import IconLogin from "../../../assets/icons/user-heart-svgrepo-com.svg";
 import Menu from "../../../assets/iconMenu.svg";
 import iconBrand from "../../../assets/GRAX.svg";
 import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg";
@@ -16,7 +16,7 @@ function Header() {
   const [token] = useState(localStorage.getItem("token"));
   const getUserData = async () => {
     try {
-      const response = await axios.get("/auth/users", {
+      const response = await axios.get("/auth/user", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -102,7 +102,7 @@ function Header() {
         ) : (
           <Link to="/auth/login">
             <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-              <i className="fas fa-user mr-2"></i> Sign in
+              <i className="fas fa-user mr-2"><img className="h-[25px] w-[25px]" src={IconLogin} /></i> Sign in
             </button>
           </Link>
         )}

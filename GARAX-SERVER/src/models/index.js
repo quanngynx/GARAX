@@ -18,7 +18,8 @@ const db = {
   Account,
   CustomerDetails,
 };
-
+Account.associate(db);
+CustomerDetails.associate(db);
 
 
 fs
