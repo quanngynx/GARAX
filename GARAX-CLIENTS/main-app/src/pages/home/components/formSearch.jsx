@@ -1,6 +1,6 @@
 function formSearch() {
   return (
-    <div className="text-black md:mt-[650px] lg:mt[700px] w-full lg:w-3/4 mx-auto p-4 bg-opacity-90 shadow-lg backdrop-blur-sm rounded-lg">
+    <div className="text-black md:mt-[650px] lg:mt[700px]  w-full lg:w-3/4 mx-auto p-4 bg-opacity-90 shadow-xl backdrop-blur-sm rounded-lg">
       {/* Các nút All, New, Used */}
       <div className="flex justify-center  space-x-2 mb-4">
         <button className="px-4 py-2 text-white sm:text-neutral-200 rounded-full">All</button>
@@ -9,11 +9,11 @@ function formSearch() {
       </div>
 
       {/* Form phần chọn lọc */}
-      <div className="grid  grid-cols-5    md:grid-cols-5 sm:grid-cols-5 gap-5">
+      <div className="grid  grid-cols-5   md:grid-cols-5 sm:grid-cols-5 gap-5">
         {/* Chọn hãng xe */}
         <div className="w-full">
-          <label className="block mb-2">Select Makes</label>
-          <select className="w-full p-2 border rounded">
+          <label className="block  mb-2">Select Makes</label>
+          <select className="w-full bg-white p-2 border rounded">
             <option>Audi</option>
           </select>
         </div>
@@ -21,7 +21,7 @@ function formSearch() {
         {/* Chọn model xe */}
         <div className="w-full">
           <label className="block mb-2">Select Models</label>
-          <select className="w-full p-2 border rounded">
+          <select className="w-full bg-white p-2 border rounded">
             <option>Q7</option>
           </select>
         </div>
@@ -29,7 +29,7 @@ function formSearch() {
         {/* Chọn năm sản xuất */}
         <div className="w-full">
           <label className="block mb-2">Select Year</label>
-          <select className="w-full p-2 border rounded">
+          <select className="w-full bg-white p-2 border rounded">
             <option>0 - 2024</option>
           </select>
         </div>
@@ -37,7 +37,7 @@ function formSearch() {
         {/* Chọn giá */}
         <div className="w-full">
           <label className="block mb-2">Select Price</label>
-          <select className="w-full p-2 border rounded">
+          <select className="w-full bg-white p-2 border rounded">
             <option>All Prices</option>
           </select>
         </div>

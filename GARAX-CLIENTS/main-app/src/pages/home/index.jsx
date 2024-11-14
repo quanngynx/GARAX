@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
 import imagecar from "../../assets/car-big.webp";
-
+import WhyChooseUs from "./components//Whychose";
 import FormSearch from "./components/formSearch";
 import FormHelpDesk from "./components/formHelpDesk";
 import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
 import AccessibleTabs from "./components/accessibleTabs";
 import BroswerByType from './components/broswerByType'
-
+import BestCar from "./components/Bestcar"
 import { useCheckAuth } from "../auth/checkToken";
 import {useEffect} from 'react';
 function HomePage() {
@@ -16,7 +16,7 @@ function HomePage() {
   const navigateToProductPage = () => history("/product");
 
   return (
-    <div className="md:w-full bg-white h-auto p-4 md:p-20">
+    <div className="md:w-full bg-white h-[100%] p-4 md:p-20">
     {/* Image section with overlay text */}
     <div className="relative">
       <img
@@ -47,9 +47,9 @@ function HomePage() {
     <BroswerByType />
 
     {/* Why choose us */}
-
+    <WhyChooseUs/>
     {/* The best thing for our car */}
-
+    <BestCar/>
     {/* What customer say */}
 
     {/* HelpDesk Form Section */}
