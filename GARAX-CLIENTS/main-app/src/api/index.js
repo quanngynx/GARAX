@@ -10,7 +10,5 @@ const API_ROUTES = {
   REGISTER: `${API_BASE_URL}/auth/register`,
   VERIFY:`${API_BASE_URL}/auth/verify`,
   GETUSER: `${API_BASE_URL}/auth/users`
-  
 };
-
 export default API_ROUTES;

@@ -60,15 +60,12 @@ function Register() {
 
      
     try {
-    
       await axios.post(API_ROUTES.REGISTER,{
         email,
         password,
         fullname,
         phone,
-        
       });
-     
       navigate('/auth/verify');
     } catch (error) {
       console.error('Registration error:', error); 
@@ -179,7 +176,7 @@ function Register() {
             </Button>
           </form>
           <Typography variant="body2" align="center" mt={2}>
-            Already have an account?{' '}
+            Already have an account?{''}
             <Link href="/auth/login" color="primary">
               Login here
             </Link>

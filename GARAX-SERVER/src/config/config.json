@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "test123",
+    "password": "",
     "database": "garrax",
     "host": "localhost",
     "dialect": "mysql",

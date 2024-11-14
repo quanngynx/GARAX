@@ -20,10 +20,11 @@ const router = require('./routes/index')
 //init middlewares
 app.use(cors({
   origin: [
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:5175',
+    'http://localhost:5273',
+    'http://localhost:5274',
+    'http://localhost:5275',
     'http://localhost:3308',
+    'http://localhost:5174',
 
     // // MY DEPLOY
     // 'https://traveloki.vercel.app',

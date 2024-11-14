@@ -11,6 +11,9 @@ const { error } = require('console');
 
 
 const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     service: 'gmail',
     auth: {
       user: process.env.EMAIL_USER,
@@ -96,7 +99,7 @@ const getCustomerDetails = async (req, res) => {
                 console.log("Customer not found for email:", email);
                 return res.status(404).json({ message: 'Customer not found' });
             }
-            // Log các thông tin quan trọng
+
             console.log("Fetched customer data:", {
                 IDAcc: customers.IDAcc,
                 email: customers.email,
