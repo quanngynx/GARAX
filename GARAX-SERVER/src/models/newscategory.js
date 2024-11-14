@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   NewsCategory.init({
-    idNewsCategory: DataTypes.STRING,
+    idNewsCategory: DataTypes.INTEGER,
     title: DataTypes.STRING,
     alias: DataTypes.STRING,
     description: DataTypes.STRING,

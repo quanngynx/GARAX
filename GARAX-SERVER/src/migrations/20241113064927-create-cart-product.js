@@ -2,20 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Orders', {
-      id: {
+    await queryInterface.createTable('CartProducts', {
+      idCartProduct: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idOrder: {
-        type: Sequelize.STRING
+      idUser: {
+        type: Sequelize.INTEGER
       },
-      code: {
-        type: Sequelize.STRING
+      idCartItemsProduct: {
+        type: Sequelize.INTEGER
       },
-      customerName: {
+      name: {
         type: Sequelize.STRING
       },
       phone: {
@@ -27,17 +27,13 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      totalAmount: {
-        type: Sequelize.DECIMAL
+      cartState: {
+        type: Sequelize.ENUM('pending', 'completed', 'cancelled'),
+        defaultValue: 'pending'
       },
-      quantity: {
-        type: Sequelize.INTEGER
-      },
-      typePayment: {
-        type: Sequelize.INTEGER
-      },
-      isActive: {
-        type: Sequelize.BOOLEAN
+      countItems: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       createdAt: {
         allowNull: false,
@@ -50,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Orders');
+    await queryInterface.dropTable('CartProducts');
   }
 };

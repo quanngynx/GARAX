@@ -2,15 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Products', {
-      id: {
+    await queryInterface.createTable('Services', {
+      idService: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idProduct: {
-        type: Sequelize.STRING
+      serviceCategoryId: {
+        type: Sequelize.INTEGER
+      },
+      serviceImageId: {
+        type: Sequelize.INTEGER
+      },
+      serviceDetailId: {
+        type: Sequelize.INTEGER
       },
       title: {
         type: Sequelize.STRING
@@ -18,35 +24,12 @@ module.exports = {
       alias: {
         type: Sequelize.STRING
       },
-      productCode: {
-        type: Sequelize.STRING
-      },
       description: {
         type: Sequelize.STRING
       },
-      detail: {
-        type: Sequelize.STRING
-      },
-      image: {
-        type: Sequelize.STRING
-      },
-      originalPrice: {
-        type: Sequelize.DECIMAL
-      },
-      price: {
-        type: Sequelize.DECIMAL
-      },
-      priceSale: {
-        type: Sequelize.DECIMAL
-      },
-      quantity: {
-        type: Sequelize.INTEGER
-      },
       isActive: {
-        type: Sequelize.BOOLEAN
-      },
-      productCategoryId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
@@ -59,6 +42,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Products');
+    await queryInterface.dropTable('Services');
   }
 };

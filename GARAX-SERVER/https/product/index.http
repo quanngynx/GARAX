@@ -1,0 +1,23 @@
+@BASE_URL = http://localhost/3308/api/v1
+@RESOURCE = products
+
+GET {{BASE_URL}}/{{RESOURCE}}
+
+###
+
+# @TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJhMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEiLCJpYXQiOjE2Mzc2NTg4OTUsImV4cCI6MTYzODI2MzY5NX0.YAoidwbFhi2-sJ2dwLVvcaaWZdLZuw34WQOq_UrUb80
+
+POST http://localhost/3308/
+# authorization: Bearer {{TOKEN}}
+content-type: application/json
+
+
+POST {{BASE_URL}}/{{RESOURCE}}
+# authorization: Bearer {{TOKEN}}
+content-type: application/json
+
+{
+    "nameProduct": "Toyota Camry New",
+    "quantity": 10,
+    "thumble": "https://framerusercontent.com/images/ErwgiAQGhqflp1GJT5ZZf2Xodw.jpg?scale-down-to=1024"
+}

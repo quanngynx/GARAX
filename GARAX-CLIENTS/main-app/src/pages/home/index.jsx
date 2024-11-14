@@ -8,7 +8,7 @@ import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
 import AccessibleTabs from "./components/accessibleTabs";
 import BroswerByType from './components/broswerByType'
-
+import ReviewFeedback from "./components/reviewFeedback";
 import { useCheckAuth } from "../auth/checkToken";
 import {useEffect} from 'react';
 function HomePage() {
@@ -51,7 +51,7 @@ function HomePage() {
     {/* The best thing for our car */}
 
     {/* What customer say */}
-
+    <ReviewFeedback />
     {/* HelpDesk Form Section */}
     <FormHelpDesk />
 

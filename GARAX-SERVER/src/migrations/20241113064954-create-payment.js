@@ -2,20 +2,25 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('ServiceImages', {
-      id: {
+    await queryInterface.createTable('Payments', {
+      idPayment: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idServiceImage: {
-        type: Sequelize.STRING
+      idOrderProduct: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
-      serviceId: {
-        type: Sequelize.STRING
+      amount: {
+        type: Sequelize.FLOAT
       },
-      image: {
+      currency: {
+        type: Sequelize.ENUM('VND', 'USD'),
+        defaultValue: 'VND'
+      },
+      desc: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -29,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ServiceImages');
+    await queryInterface.dropTable('Payments');
   }
 };
