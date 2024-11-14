@@ -15,15 +15,45 @@ const { sequelize } = require('./models/index'); // Import sequelize từ models
 sequelize.sync({alter: true});
 const authRoutes = require('./routes/access/index');
 
-// const router = require('./routes/index')
+const router = require('./routes/index')
 
 //init middlewares
-app.use(cors())
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:3308',
+
+    // // MY DEPLOY
+    // 'https://traveloki.vercel.app',
+    // 'https://traveloki-dash.vercel.app',
+    // "https://client-traveloki-ziu9.onrender.com",
+    // "https://traveloki-dash.onrender.com",
+    // "https://dash-traveloki-testing.netlify.app",
+    // "https://dash-traveloki.netlify.app",
+    // "https://traveloki.netlify.app",
+
+    // "https://api-traveloki.onrender.com",
+
+    // // NGUYEN
+    // "https://pointer.io.vn",
+    // "https://wallet.pointer.io.vn",
+    // "https://presspay-wallet.vercel.app",
+    // "https://presspay.vercel.app",
+
+    // "https://presspay-api.azurewebsites.net",
+    // "https://api-presspay.azurewebsites.net",
+    // "https://api-wallet.pointer.io.vn"
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  credentials: true, // Cho phép credentials (cookies, headers...)
+}))
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(compression())
 app.use(express.json())
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.urlencoded({
     extended: true
@@ -34,7 +64,7 @@ require('./db/init.mysql.level1')
 // checkOverLoad()
 
 //init routes
-// app.use('', router)
+app.use('', router)
 app.use('/auth', authRoutes)
 
 app.get('/', ( req, res, next) => {

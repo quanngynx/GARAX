@@ -5,7 +5,7 @@ const slugify = require('slugify');
 const ProductCategoryModel = require('../models/productcategory');
 
 const { BadRequestError } = require('../middlewares/error.response');
-const { TableHints } = require('sequelize');
+// const { TableHints } = require('sequelize');
 
 class ProductCategoryService {
   static async addNewCategory({ title, alias }) {

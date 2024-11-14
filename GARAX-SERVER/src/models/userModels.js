@@ -67,7 +67,7 @@ const User = {
         return new Promise((resolve, reject) => {
             db.query(query, [email], (err, results) => {
                 if (err) return reject(err);
-                resolve(results[0]); 
+                resolve(results[0]);
             });
         });
     },
@@ -80,7 +80,7 @@ const User = {
                 resolve(result.insertId); // Lấy IDAcc vừa tạo
             });
         });
-      
+
     }
 };
 

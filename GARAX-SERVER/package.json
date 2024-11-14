@@ -6,11 +6,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "migrate:up": "npx sequelize-cli db:migrate",
-    "migrate:undo": "npx sequelize-cli db:migrate:undo"
+    "check": "node --trace-warnings server.js",
+    "migrate:up": "cd src && npx sequelize-cli db:migrate",
+    "migrate:undo": "cd src && npx sequelize-cli db:migrate:undo",
+    "seed:generate": "bash generate-seeds.sh",
+    "seed:run": "bash run-seeds.sh"
   },
   "keywords": [],
   "author": "",
+  "contributors": [
+
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/truongvunguyen3434/garrax_website.git",
+    "directory": "/GARAX-SERVER"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/truongvunguyen3434/garrax_website/-/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "@payos/node": "^1.0.10",
@@ -52,6 +66,7 @@
     "numeral": "^2.0.6",
     "otp-generator": "^4.0.1",
     "sequelize-cli": "^6.6.2",
+    "sequelize-slugify": "^1.6.2",
     "slugify": "^1.6.6",
     "winston": "^3.14.2"
   }

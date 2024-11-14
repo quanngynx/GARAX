@@ -1,52 +1,45 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Services', {
-      id: {
+    await queryInterface.createTable('Products', {
+      idProduct: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idService: {
+      idBrand: {
         type: Sequelize.INTEGER
       },
-      title: {
+      nameProduct: {
         type: Sequelize.STRING
       },
       alias: {
         type: Sequelize.STRING
       },
-      serviceCode: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      detail: {
-        type: Sequelize.STRING
-      },
-      image: {
-        type: Sequelize.STRING
-      },
-      originalPrice: {
-        type: Sequelize.DECIMAL
-      },
-      price: {
-        type: Sequelize.DECIMAL
-      },
-      priceSale: {
-        type: Sequelize.DECIMAL
-      },
-      isActive: {
-        type: Sequelize.BOOLEAN
-      },
-      serviceCategoryId: {
+      thumble: {
         type: Sequelize.STRING
       },
       quantity: {
         type: Sequelize.INTEGER
+      },
+      originalPrice: {
+        type: Sequelize.INTEGER
+      },
+      sold: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      status: {
+        type: Sequelize.ENUM('publish', 'unpublish'),
+        defaultValue: 'publish'
+      },
+      isActive: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
@@ -59,6 +52,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Services');
+    await queryInterface.dropTable('Products');
   }
 };

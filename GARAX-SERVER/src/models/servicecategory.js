@@ -14,10 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ServiceCategory.init({
-    idServiceCategory: DataTypes.STRING,
+    idServiceCategory: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     title: DataTypes.STRING,
-    alias: DataTypes.STRING,
-    isActive: DataTypes.BOOLEAN
+    alias: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'ServiceCategory',

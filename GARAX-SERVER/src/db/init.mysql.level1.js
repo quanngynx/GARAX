@@ -5,11 +5,11 @@ const { Sequelize} = require('sequelize');
 const sequelize = new Sequelize(
   process.env.DATABASE_DEV,
   process.env.USER_DEV,
-  process.env.PASSWORD_DB_DEV, 
+  process.env.PASSWORD_DB_DEV,
   {
   host: process.env.HOST_DEV,
   dialect: 'mysql',
-  // dialectModule: require('mysql2'), // Chỉ định mysql2 làm module driver cho Sequelize
+  dialectModule: require('mysql2'), // Chỉ định mysql2 làm module driver cho Sequelize
   logging:false
 });
 

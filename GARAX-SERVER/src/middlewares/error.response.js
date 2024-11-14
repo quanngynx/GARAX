@@ -1,7 +1,7 @@
 'use strict'
 
 const { StatusCodes, ReasonPhrases } = require('../utils/httpStatusCode')
-const { logger0 } = require('../utils/logger')
+const { logger0 } = require('../utils/winston')
 
 const StatusCode = {
   FORBIDEN: 403,

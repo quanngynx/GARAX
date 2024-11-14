@@ -2,7 +2,7 @@
 const { SuccessResponse, CREATED } = require('../middlewares/success.response')
 const ProductService = require("../services/product.service")
 
-class ProductController {
+class NewsController {
   getAllProducts = async (req, res, next) => {
     new SuccessResponse({
       message: 'Get all product success!',
@@ -13,35 +13,35 @@ class ProductController {
   getProductById = async (req, res, next) => {
     new SuccessResponse({
       message: 'Get product success!',
-      metadata: await ProductService.getProductById(req.params)
+      metadata: await ProductService.getProductById()
     }).send(res)
   }
 
   addNewProduct = async (req, res, next) => {
     new SuccessResponse({
       message: 'Add new product success!',
-      metadata: await ProductService.addNewProduct(req.body)
+      metadata: await ProductService.addNewProduct()
     }).send(res)
   }
 
   updateProductById = async (req, res, next) => {
     new SuccessResponse({
       message: 'Update product success!',
-      metadata: await ProductService.updateProductById(req.params, req.body)
+      metadata: await ProductService.updateProductById()
     }).send(res)
   }
 
   updatePartProductById = async (req, res, next) => {
     new SuccessResponse({
       message: 'Update {} in product success!',
-      metadata: await ProductService.updatePartProductById(req.params, req.body)
+      metadata: await ProductService.updatePartProductById()
     }).send(res)
   }
 
   removeProductById = async (req, res, next) => {
     new SuccessResponse({
       message: 'Remove product success!',
-      metadata: await ProductService.removeProductById(req.params)
+      metadata: await ProductService.removeProductById()
     }).send(res)
   }
 
@@ -55,7 +55,7 @@ class ProductController {
   deleteProductById = async (req, res, next) => {
     new SuccessResponse({
       message: 'Delete product success!',
-      metadata: await ProductService.deleteProductById(req.params)
+      metadata: await ProductService.deleteProductById()
     }).send(res)
   }
 
@@ -69,16 +69,16 @@ class ProductController {
   findAllProductPub = async (req, res, next) => {
     new SuccessResponse({
       message: 'Find all public product success!',
-      metadata: await ProductService.findAllProductPub(req.params, req.query)
+      metadata: await ProductService.findAllProductPub()
     }).send(res)
   }
 
   findAllProduct = async (req, res, next) => {
     new SuccessResponse({
       message: 'Find all product success!',
-      metadata: await ProductService.findAllProduct(req.query)
+      metadata: await ProductService.findAllProduct()
     }).send(res)
   }
 }
 
-module.exports = new ProductController()
+module.exports = new NewsController()
