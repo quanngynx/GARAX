@@ -114,80 +114,9 @@ function Sidebar() {
               onClick={toggle Dropdown}
             />
             <DropDownAccount /> */}
-            <button
-              type="button"
-              aria-controls="dropdown-example"
-              data-collapse-toggle="dropdown-example"
-              className={`group w-full flex items-center p-2 mt-2 rounded-xl transition duration-300 ${
-                isClicked
-                  ? "bg-black text-white "
-                  : "hover:bg-gray-200 hover:text-black"
-              }`}
-              onClick={handleClick}
-            >
-              <img
-                src={accountBoxOutlined}
-                alt={`Tài khoản  Icon`}
-                className={`w-[25px] h-[25px] mr-3 transition duration-300 ${
-                  isClicked ? "brightness-0 invert" : ""
-                }`}
-              />
-              <p className="text-sm font-semibold">Tài khoản</p>
-            </button>
-            <ul id="dropdown-example" className="py-2 space-y-2">
-              <li>
-                <a
-                  href="/account"
-                  className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100  dark:hover:bg-gray-700"
-                >
-                  Nhân viên
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/account"
-                  className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100  dark:hover:bg-gray-700"
-                >
-                  Khách hàng
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/account"
-                  className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100  dark:hover:bg-gray-700"
-                >
-                  abc actor
-                </a>
-              </li>
-            </ul>
-            {isOpen && (
-              <ul id="dropdown-example" className="hidden py-2 space-y-2">
-                <li>
-                  <a
-                    href="/account"
-                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Nhân viên
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/account"
-                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Khách hàng
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/account"
-                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    abc actor
-                  </a>
-                </li>
-              </ul>
-            )}
+            <Link to="/account">
+            <MenuButton icon={accountBoxOutlined} label="Tài khoản" link="/account" />
+            </Link>
             <Link to="/orders">
               <MenuButton icon={orderBoxIcon} label="Đơn hàng" link="/orders" />
             </Link>

@@ -18,13 +18,13 @@ const dev = {
 }
 const production = {
   app: {
-    port: process.env.PORT_PROD || 3306, // Đổi thành cổng server cho môi trường production
+    port: process.env.PORT_PROD || 3306, 
   },
   db: {
     host: process.env.DB_HOST_PROD || 'localhost',
     user: process.env.DB_USER_PROD || 'root',
-    password: process.env.DB_PASSWORD_PROD || '', // Mật khẩu cho MySQL
-    db: process.env.DB_NAME_PROD || 'garrax_prod', // Đổi tên cơ sở dữ liệu production
+    password: process.env.DB_PASSWORD_PROD || '', 
+    db: process.env.DB_NAME_PROD || 'garrax_prod', 
     dialect: 'mysql',
     pool: {
       max: 5,

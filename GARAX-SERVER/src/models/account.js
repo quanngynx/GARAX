@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   class Account extends Model {
     static associate(models) {
       Account.hasOne(models.CustomerDetails, {
+        as: 'CustomerDetail',
         foreignKey: 'IDAcc',
         onDelete: 'CASCADE',
       });
