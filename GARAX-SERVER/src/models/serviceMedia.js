@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ServiceMedia',
+    timestamps: true
   });
   return ServiceImage;
 };

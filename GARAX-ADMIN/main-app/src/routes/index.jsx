@@ -13,12 +13,15 @@ import DanhSachDatLich from '../pages/danhSachDatLich.jsx'
 import DanhSachTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
 import DanhSachTaiKhoanNhanVien from '../pages/DSTaiKhoanNV/index.jsx'
 import DanhSachTaiKhoanKhachHang from '../pages/DSTaiKhoanKH/index.jsx'
-import DanhSachSanPham from '../pages/danhSachSanPham.jsx'
+
+import DanhSachSanPham from '../pages/DSSanPham/index.jsx'
+import TaoSanPham from '../pages/DSSanPham/createProduct.jsx'
+
 import HoSoNguoiDung from '../pages/hoSoNguoiDung.jsx'
 import ThongKeDuLieu from '../pages/ThongKeDuLieu/index.jsx'
 import TestLoading from '../pages/test/loading.jsx'
 import Thongtinchitietsanpham from "../pages/Thongtinchitietsanpham.jsx";
-
+import DanhSachGiaoDich from '../pages/DSGiaoDich/index.jsx'
 // auth
 import LoginPage from '../pages/auth/login.jsx'
 import RegisterPage from '../pages/auth/register.jsx'
@@ -83,10 +86,10 @@ function Router() {
               // . . .
           ]
         },
-        {
-          path: 'detail',
-          element:<Thongtinchitietsanpham/>
-        },
+        // {
+        //   path: 'detail',
+        //   element:<Thongtinchitietsanpham/>
+        // },
         {
           path: 'products',
           children: [
@@ -96,17 +99,28 @@ function Router() {
             {
               path: 'list', element: <DanhSachSanPham />
             },
-            // {
-            //   path: 'details',
-            //   element: <Thongtinchitietsanpham/>
-            // }
+            {
+              path: 'details',
+              element: <Thongtinchitietsanpham/>
+            },
+            {
+              path: 'create',
+              element: <TaoSanPham />
+            }
           ]
         },
         
-        // {
-        //   path: '/',
-        //   element: <Navigate to="/setting" replace />
-        // },
+        {
+          path: 'transactions',
+          children: [
+            {
+              path: '/transactions', element: <Navigate to="/transactions/list" />
+            },
+            {
+              path: 'list', element: <DanhSachGiaoDich />
+            }
+          ]
+        },
         
         {
           path: 'account',
@@ -149,8 +163,8 @@ function Router() {
       path: '*',
       element: <OnlyCanvas/>,
       children: [
+        { path: '*', element: <Navigate to="/404" replace /> },
         { path: '404', element: <NotFound /> },
-        { path: '*', element: <Navigate to="/404" replace /> }
       ]
     },
     { path: '*', element: <Navigate to="/404" replace /> }

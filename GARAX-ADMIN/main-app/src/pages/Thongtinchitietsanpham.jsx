@@ -1,4 +1,4 @@
-import iconBack from "../../../assets/iconBack.png";
+import iconBack from "../assets/iconBack.png";
 
 
 

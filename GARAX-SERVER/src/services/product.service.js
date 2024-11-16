@@ -20,11 +20,13 @@ class ProductService {
     return newProduct
   }
 
-  static async getProductById({ _id }) {
-    const proId = await Product.findByPk(_id)
+  static async getProductById({ id }) {
+    const proId = await Product.findByPk(id)
 
     if(!proId) throw new NotFoundError('error::get Product by _id')
 
+    console.log("_id pro::", proId)
+    console.log(proId instanceof Product);
     return proId
   }
 

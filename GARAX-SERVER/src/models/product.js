@@ -75,6 +75,7 @@ module.exports = (sequelize, DataTypes) => {
           product.alias = slugify(product.nameProduct, { lower: true, trim: true });
         },
       },
+    timestamps: true
     }
   );
   // SequelizeSlugify.slugifyModel(Product, {

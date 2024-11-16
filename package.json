@@ -1,0 +1,16 @@
+{
+  "name": "garrax_website",
+  "version": "1.0.0",
+  "description": "https://garrax-admin-b818ozf7f-loq-burhs-projects.vercel.app/statics",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:all": "cd"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

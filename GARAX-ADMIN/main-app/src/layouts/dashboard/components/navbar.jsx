@@ -2,7 +2,7 @@ import iconUser from "../../../assets/iconUser.png";
 import iconBell from "../../../assets/icons8-bell-100.png";
 import iconSun from "../../../assets/icons8-sun-100.png";
 import iconSearch from "../../../assets/icons8-search-50.png";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import BreadCrumbDynamic from './breadcrumb'
 
@@ -12,14 +12,14 @@ function Navbar() {
       <div className="flex justify-between w-[100%] sm:h-[118px]">
         <div className="sm:h-[118px]">
           <div className="w-100% h-[58px] flex pt-5">
-          Home / <BreadCrumbDynamic />
+          <Link to={''}>Home </Link> / <BreadCrumbDynamic />
           </div>
           <Xuly></Xuly>
         </div>
         {/* <div className="w-16% h-[118px]"></div> */}
         <div className="flex justify-between flex-col-reverse sm:flex-row w-50% sm:h-[118px] sm:pt-9 ">
           <div className=" sm:h-[50px] ">
-            <label className=" h-[30px] flex justify-between border border-[#9f9f9f] rounded-xl mr-3">
+            <label className=" h-[30px] flex justify-between border border-[#9f9f9f] rounded-md mr-3">
               <img
                 src={iconSearch}
                 className="w-[20px] h-[20px] m-1"
@@ -28,7 +28,7 @@ function Navbar() {
               <input
                 type="text"
                 placeholder="Type here . . ."
-                className="rounded-xl outline-none w-full bg-white text-black text-base font-medium font-['Inter']"
+                className="rounded-xl outline-none w-full bg-white text-black text-base font-medium font-['Inter'] py-2"
               />
             </label>
           </div>
@@ -73,6 +73,10 @@ function Xuly() {
     return <div className="text-[16px] sm:text-4xl font-semibold"> Danh sách đơn hàng </div>;
   } else if (currentPath === "/transactions/list") {
     return <div className="text-[16px] sm:text-4xl font-semibold"> Danh sách giao dịch </div>;
+  } else if (currentPath === "/products/create") {
+    return <div className="text-[16px] sm:text-4xl font-semibold"> Thêm sản phẩm </div>;
+  } else if (currentPath === "/products/list") {
+    return <div className="text-[16px] sm:text-4xl font-semibold"> Danh sách sản phẩm hệ thống </div>;
   } else {
     return <div className="text-[16px] sm:text-4xl font-semibold"> Chi tiết người dùng </div>;
   }

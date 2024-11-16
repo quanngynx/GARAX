@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     idProduct: DataTypes.INTEGER
   }, {
     sequelize,
+    timestamps: true,
     modelName: 'ProductDetail',
   });
   return ProductDetail;

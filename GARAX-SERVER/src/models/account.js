@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Account.init({
-    IDAcc: { 
+    IDAcc: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-    
+
     },
     password: {
       type: DataTypes.STRING,
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     Role: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'user',  
+      defaultValue: 'user',
     },
     otp: {
       type: DataTypes.STRING,
@@ -49,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'account',
     tableName: 'account',
+    timestamps: true
   });
 
   return Account;

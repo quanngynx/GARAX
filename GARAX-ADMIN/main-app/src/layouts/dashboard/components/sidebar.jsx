@@ -6,7 +6,7 @@ import imgBooking from "../../../assets/noun-booking-6490549.svg";
 import orderBoxIcon from "../../../assets//noun-delivery-box-540949.svg";
 import imgUserDetails from "../../../assets/noun-user-7147797-1.svg";
 import iconTransactions from '../../../assets/money-bill-transfer-solid.svg'
-
+import boxPackageIcon from '../../../assets/box-package-icon.svg'
 
 import Button from "@mui/material/Button";
 import { useState } from "react";
@@ -116,6 +116,9 @@ function Sidebar() {
             <DropDownAccount /> */}
             <Link to="/account">
             <MenuButton icon={accountBoxOutlined} label="Tài khoản" link="/account" />
+            </Link>
+            <Link to="/products">
+            <MenuButton icon={boxPackageIcon} label="Sản phẩm" link="/products" />
             </Link>
             <Link to="/orders">
               <MenuButton icon={orderBoxIcon} label="Đơn hàng" link="/orders" />

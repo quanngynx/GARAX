@@ -2,18 +2,18 @@
 
 const slugify = require('slugify');
 
-const ProductCategoryModel = require('../models/productcategory');
+const ProductCategory = require('../models');
 
 const { BadRequestError } = require('../middlewares/error.response');
 // const { TableHints } = require('sequelize');
 
 class ProductCategoryService {
   static async addNewCategory({ title, alias }) {
-    const isExist = ProductCategoryModel.findOne({ where: { title: title } });
+    const isExist = ProductCategory.findOne({ where: { title: title } });
 
     if (isExist) throw new BadRequestError('Product category is exist!!!');
 
-    const newProductCate = await ProductCategoryModel.create({
+    const newProductCate = await ProductCategory.create({
       title: title,
       alias: alias,
     });
@@ -25,7 +25,7 @@ class ProductCategoryService {
 
   static async getAllCategory() {
 
-    const allProductCate = await ProductCategoryModel.findAll();
+    const allProductCate = await ProductCategory.findAll();
 
     console.log('AllProductCate:', allProductCate);
 
@@ -33,7 +33,7 @@ class ProductCategoryService {
   }
 
   static async updateTitleCategory({ title }) {
-    const isExist = ProductCategoryModel.findOne({ where: { title: title } });
+    const isExist = ProductCategory.findOne({ where: { title: title } });
 
     if (!isExist) throw new BadRequestError('Product category is not exist!!!');
 
@@ -43,7 +43,7 @@ class ProductCategoryService {
       locale: 'vi',
     });
 
-    const newProductCate = await ProductCategoryModel.update({
+    const newProductCate = await ProductCategory.update({
       title: title,
       alias: alias,
     });
@@ -54,15 +54,15 @@ class ProductCategoryService {
   }
 
   static async deleteTitleCategoryByTitle({ title }) {
-    const isExist = ProductCategoryModel.findOne({ where: { title: title } });
+    const isExist = ProductCategory.findOne({ where: { title: title } });
 
     if (!isExist) throw new BadRequestError('Product category is not exist!!!');
 
-    return await ProductCategoryModel.destroy({ where: { title: title } });
+    return await ProductCategory.destroy({ where: { title: title } });
   }
 
   static async deleteAllTitleCategory({ confirm }) {
-    return confirm ? await ProductCategoryModel.destroy({ truncate: true }) : null;
+    return confirm ? await ProductCategory.destroy({ truncate: true }) : null;
   }
 }
 

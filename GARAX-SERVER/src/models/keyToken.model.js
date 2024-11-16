@@ -47,6 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'keyTokenModel',
+      timestamps: true
     }
   );
   return keyTokenModel;

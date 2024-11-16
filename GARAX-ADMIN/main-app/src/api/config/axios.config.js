@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:3308";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3308";
 
 const API = axios.create({
   baseURL: API_BASE_URL,
@@ -60,3 +59,5 @@ API.interceptors.response.use(
       return Promise.reject(error);
     }
   );
+
+  export const apiInstance = API;

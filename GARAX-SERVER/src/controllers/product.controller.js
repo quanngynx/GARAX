@@ -12,7 +12,7 @@ class ProductController {
 
   getProductById = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Get product success!',
+      message: 'Get product by id success!',
       metadata: await ProductService.getProductById(req.params)
     }).send(res)
   }

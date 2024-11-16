@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const { default: slugify } = require("slugify");
+
 module.exports = (sequelize, DataTypes) => {
   class Service extends Model {
     /**
@@ -33,6 +36,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Service',
+    timestamps: true,
+    hooks: {
+      beforeValidate: (service) => {
+        service.alias = slugify(service.title, { lower: true, trim: true });
+      },
+    },
   });
   return Service;
 };
