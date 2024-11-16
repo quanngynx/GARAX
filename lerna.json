@@ -1,7 +1,0 @@
-{
-  "packages": ["GARAX-ADMIN/*",
-        "GARAX-CLIENTS/*",
-        "GARAX-SERVER"],
-  "version": "1.0.0",
-  "npmClient": "npm"
-}
