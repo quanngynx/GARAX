@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm install",
     "start": "nodemon server.js",
     "check": "node --trace-warnings server.js",
     "migrate:up": "cd src && npx sequelize-cli db:migrate",

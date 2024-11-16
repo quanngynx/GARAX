@@ -6,9 +6,17 @@
   "directories": {
     "doc": "docs"
   },
+  "workspaces": [
+    "GARAX-ADMIN/*",
+    "GARAX-CLIENTS/*",
+    "GARAX-SERVER"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install:all": "cd"
+    "install:all": "lerna run --parallel prepare",
+    "ui": "lerna run --parallel dev",
+    "server": "lerna run --parallel start",
+    "kill-ports": "kill-port --port 8080,8083,8084,8087,8085"
   },
   "keywords": [],
   "author": "",
