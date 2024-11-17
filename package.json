@@ -8,9 +8,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install:all": "cd"
+    "client": "cd GARAX-CLIENTS && cd main-app && npm run dev",
+    "admin": "cd GARAX-ADMIN && cd main-app && npm run dev",
+    "server": "cd GARAX-SERVER && npm start"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.7"
+  }
 }
