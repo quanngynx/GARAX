@@ -60,4 +60,4 @@ API.interceptors.response.use(
     }
   );
 
-  export const apiInstance = API;
+  export default API;
