@@ -4,7 +4,7 @@ require("dotenv").config()
 
 const express = require('express')
 const bodyParser = require('body-parser');
-const productRoutes = require('./routes/product');
+// const productRoutes = require('./routes/product');
 const morgan = require('morgan')
 const compression = require('compression')
 const cookieParser = require('cookie-parser');
@@ -75,8 +75,6 @@ app.get('/', ( req, res, next) => {
   })
 })
 
-app.use(bodyParser.json());
-app.use('/api', productRoutes);
 
 
 //hanlding errors
