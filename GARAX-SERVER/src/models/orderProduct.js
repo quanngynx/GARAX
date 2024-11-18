@@ -11,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      OrderProduct.belongsTo(models.Order, {
+        foreignKey: 'idOrder', // from ProductCategory
+        as: 'order',
+      }); // DONE
+      OrderProduct.belongsTo(models.Product, {
+        foreignKey: 'idProduct', // from ProductCategory
+        as: 'product',
+      }); // DONE
+
     }
   }
   OrderProduct.init({
@@ -20,13 +29,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    idUser: DataTypes.INTEGER,
-    idCartProduct: DataTypes.INTEGER,
-    idCartItemsProduct: DataTypes.INTEGER,
-    status: {
-      type: DataTypes.ENUM('pending','confirmed','shipping','completed','cancelled'),
-      defaultValue: 'pending'
-    },
+    idProduct: DataTypes.INTEGER,
+    idOrder: DataTypes.INTEGER,
+    quantity:DataTypes.FLOAT,
+
     paymentMethod: {
       type: DataTypes.ENUM('cod','presspay','payos','payoneer'),
       defaultValue: 'cod'

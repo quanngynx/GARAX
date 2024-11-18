@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'IDAcc',
         onDelete: 'CASCADE',
       });
+      Account.hasMany(models.Orders, {
+        as: 'order',
+        foreignKey: 'IDAcc',
+      });
     }
   }
 

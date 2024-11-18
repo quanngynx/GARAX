@@ -36,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idCartItemsProduct',  // from Product
         as: 'cartItemsProduct'
       });
+      Product.hasMany(models.OrderProduct, {
+        foreignKey: 'idProduct',  // from Product
+        as: 'orderProduct'
+      });
     }
   }
   Product.init(
@@ -75,7 +79,6 @@ module.exports = (sequelize, DataTypes) => {
           product.alias = slugify(product.nameProduct, { lower: true, trim: true });
         },
       },
-    timestamps: true
     }
   );
   // SequelizeSlugify.slugifyModel(Product, {

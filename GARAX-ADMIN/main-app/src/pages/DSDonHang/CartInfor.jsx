@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Combobox } from '@headlessui/react'
+// import { Combobox } from '@headlessui/react'
 const people = [
     'Wade Cooper',
     'Arlene McCoy',
@@ -24,7 +24,7 @@ function CartInfor(){
             <div className="text-center">Đơn hàng</div>
             <div className="item-center flex justify-between">
                 Email:
-                <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+                {/* <Combobox value={selectedPerson} onChange={setSelectedPerson}>
                     <Combobox.Input onChange={(event) => setQuery(event.target.value)} />
                     <Combobox.Options>
                         {filteredPeople.map((person) => (
@@ -33,7 +33,7 @@ function CartInfor(){
                         </Combobox.Option>
                         ))}
                     </Combobox.Options>
-                </Combobox>
+                </Combobox> */}
 
             </div>
         </div>

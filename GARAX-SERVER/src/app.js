@@ -3,9 +3,10 @@
 require("dotenv").config()
 
 const express = require('express')
+const bodyParser = require('body-parser');
+const productRoutes = require('./routes/product');
 const morgan = require('morgan')
 const compression = require('compression')
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const { default : helmet } = require('helmet')
@@ -73,6 +74,11 @@ app.get('/', ( req, res, next) => {
       message: 'Hello world!, db!'
   })
 })
+
+app.use(bodyParser.json());
+app.use('/api', productRoutes);
+
+
 //hanlding errors
 app.use((req, res, next) => {
   const error = new Error('Not Found')
