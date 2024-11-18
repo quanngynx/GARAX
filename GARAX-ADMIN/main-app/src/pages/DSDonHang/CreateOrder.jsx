@@ -7,9 +7,9 @@ function CreateOrder(){
             <div>
                 Tạo đơn hàng
             </div>
-            <div className="flex justify-between">
-                <ShowProduct/>
-                <CartInfor/>
+            <div className="flex justify-between space-x-20">
+                <ShowProduct className="w-[60%]"/>
+                <CartInfor className="w-[40%]"/>
             </div>
             
         </div>
