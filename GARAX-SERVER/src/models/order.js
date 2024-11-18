@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'orderProducts',  // Alias có thể được sử dụng trong truy vấn
       });
       Order.belongsTo(models.Account, {
-        foreignKey: 'idAcc',
+        foreignKey: 'IDAcc',
         as: 'account',
       });
     }
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      idAcc: DataTypes.INTEGER,
+      IDAcc: DataTypes.INTEGER,
       status: {
         type: DataTypes.ENUM('pending', 'paid'),
         defaultValue: 'pending',
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Order',
-      timestamps: true,  // Chỉ cần một lần duy nhất
+      timestamps: true,
     }
   );
 
