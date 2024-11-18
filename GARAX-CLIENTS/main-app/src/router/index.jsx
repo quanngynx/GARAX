@@ -13,6 +13,8 @@ import Verify from "../pages/auth/verified"
 import ProductPage from '../pages/products/index'
 import DetailProductPage from '../pages/detailProduct/index'
 
+//Payment
+
 // page service
 import ServicePage from '../pages/service/index'
 import CleaningPage from '../pages/cleaning/index'
@@ -21,13 +23,22 @@ import MaintainPage from '../pages/maintain/index'
 import UpgradePage from '../pages/upgrade/index'
 import SupportPage from '../pages/support/index'
 
+
+// Profile
 import ProfileUser from '../pages/profile/index'
+import ProfileUserUser from '../pages/profile/components/profilePage'
+import ProfilePaymentInfo from '../pages/profile/page/paymentInfor/paymentInfor'
+import ProfileTheme from '../pages/profile/page/theme/theme'
+import ProfileNotification from '../pages/profile/page/notification/notification'
+import ProfileSercurity from '../pages/profile/page/sercurity/sercurity'
+import ProfileHistoryAccess from '../pages/profile/page/historyAccess/historyAccess'
 
 import ErrorPage from '../pages/error/index'
 import ErrorPage2 from '../pages/error/error2'
 // Loading
 import Loader from "../components/loading-react";
 import Spinner from "../components/spinner";
+import { patch } from "@mui/material";
 
 
 function Routes() {
@@ -56,6 +67,14 @@ function Routes() {
           path: "service",
           element: <DelayedSuspense delay={1000} fallback={<Loader/>}><ServicePage /></DelayedSuspense>,
         },
+        // {
+        //   path: 'success',
+        //   element: <SuccessPayment />
+        // },
+        // {
+        //   path: 'failed',
+        //   element: <FailedPayment />
+        // }
       ],
     },
     {
@@ -116,7 +135,33 @@ function Routes() {
            * @description protect route
            * @example element: { <AuthGuard><ProfileUser /></AuthGuard> }
            */
-          element: <ProfileUser /> 
+          element: <ProfileUser />,
+          children: [
+            {
+              path: '',
+              element: <ProfileUserUser />
+            },
+            {
+              path: 'payment-infor',
+              element: <ProfilePaymentInfo />
+            },
+            {
+              path: 'theme',
+              element: <ProfileTheme />
+            },
+            {
+              path: 'notification',
+              element: <ProfileNotification />
+            },
+            {
+              path: 'sercurity',
+              element: <ProfileSercurity />
+            },
+            {
+              path: 'history-access',
+              element: <ProfileHistoryAccess />
+            }
+          ] 
         }
       ]
     },

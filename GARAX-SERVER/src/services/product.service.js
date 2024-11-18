@@ -5,14 +5,25 @@ const { Product } = require('../models')
 const { BadRequestError, NotFoundError } = require('../middlewares/error.response');
 // const { all } = require('../routes/v1/products');
 class ProductService {
-  static async addNewProduct({nameProduct, quantity, thumble, originalPrice}) {
+  static async addNewProduct({
+    nameProduct,
+    quantity,
+    thumble,
+    originalPrice,
+    idCartItemsProduct = null,
+    idBrand = null,
+    status = 'publish'
+  }) {
 
     console.log({nameProduct, quantity, thumble})
     const newProduct = await Product.create({
       nameProduct: nameProduct,
       quantity: quantity,
       thumble: thumble,
-      originalPrice: originalPrice
+      originalPrice: originalPrice,
+      idCartItemsProduct: idCartItemsProduct,
+      idBrand: idBrand,
+      status: status
     });
 
     if(!newProduct) throw new BadRequestError('error::create new Product')

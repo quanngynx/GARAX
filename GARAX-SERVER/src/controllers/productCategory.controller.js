@@ -4,6 +4,7 @@ const ProductCategoryService = require("../services/productCategory.service")
 
 class ProductCategoryController {
   addNewCategory = async (req, res, next) => {
+    console.log("body::",req.body)
     new SuccessResponse({
       message: 'Add new product category success!',
       metadata: await ProductCategoryService.addNewCategory(req.body)

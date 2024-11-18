@@ -69,7 +69,7 @@ Product.associate(db);
 // Payment.associate(db);
 Cart.associate(db);
 
-ProductCategory.associate(db);
+// ProductCategory.associate(db);
 ProductDetail.associate(db);
 ProductFeedback.associate(db);
 ProductImage.associate(db);

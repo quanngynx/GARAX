@@ -104,7 +104,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-white w-full flex justify-center border-b-gray-100 border-2 shadow-md py-4">
+    <div className="bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-4">
       <div className="w-[1351.47px] flex flex-col sm:flex-row justify-between items-center">
         <div
           className={cn(
@@ -156,14 +156,14 @@ function Header() {
         <div className="mt-4 md:mt-0 flex flex-row items-center">
           <div className="mr-4">
             <button
-              className=""
+              className="flex items-center"
               onClick={() => {
                 setOpen(true);
                 setOpenOrderInfo(false);
               }}
             >
               <div className="flex flex-row justify-between items-center">
-                <div className=" p-1">
+                <div className="p-1">
                   <CartTiny />
                 </div>
                 <div className="text-black">Giỏ hàng</div>

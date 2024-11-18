@@ -2,25 +2,32 @@
 
 const slugify = require('slugify');
 
-const ProductCategory = require('../models');
+const { ProductCategory } = require('../models');
 
 const { BadRequestError } = require('../middlewares/error.response');
-// const { TableHints } = require('sequelize');
 
 class ProductCategoryService {
-  static async addNewCategory({ title, alias }) {
-    const isExist = ProductCategory.findOne({ where: { title: title } });
+  static async addNewCategory({ title, description = null }) {
+    console.log('title::', title)
 
-    if (isExist) throw new BadRequestError('Product category is exist!!!');
+    // const isExist = await ProductCategory.findOne({ where: { title: title } });
+    // console.log('isExist::', isExist)
+    // if (isExist) throw new BadRequestError('Product category is exist!!!');
 
-    const newProductCate = await ProductCategory.create({
-      title: title,
-      alias: alias,
-    });
+    try {
+      const newProductCate = await ProductCategory.create({
+        title: title,
+        description: description
+      });
 
-    console.log('newProductCate:', newProductCate);
+      console.log('newProductCate:', newProductCate);
+      if(!newProductCate) throw new BadRequestError('error::create new Product')
 
-    return newProductCate;
+      return newProductCate;
+    } catch (error) {
+      console.error('Error in addNewCategory:', error.message);
+    throw error; // Propagate error to upper layer
+    }
   }
 
   static async getAllCategory() {

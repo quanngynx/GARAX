@@ -6,19 +6,26 @@ const { Pointer } = require('pointer-wallet');
 
 const pointer = new Pointer(process.env.POINTER_SECRET_KEY);
 // MODEL
-// const {} = require('../models/product');
+const { OrderProduct } = require('../models/index');
 
 // RESPONSE
 const { NotFoundError } = require('../middlewares/error.response');
-const { notify } = require('../routes/v1/payment');
 
 const payos = new PayOS(
-  'YOUR_PAYOS_CLIENT_ID',
-  'YOUR_PAYOS_API_KEY',
-  'YOUR_PAYOS_CHECKSUM_KEY'
+  process.env.PAYOS_CLIENT_ID,
+  process.env.PAYOS_API_KEY,
+  process.env.PAYOS_CHECKSUM_KEY
 );
+
+const myDomain = process.env.MY_DOMAIN
 // or
-// const payos = new PayOS("YOUR_PAYOS_CLIENT_ID", "YOUR_PAYOS_API_KEY", "YOUR_PAYOS_CHECKSUM_KEY", "YOUR_PARTNER_CODE" );
+
+// const payos = new PayOS(
+//   "YOUR_PAYOS_CLIENT_ID",
+//   "YOUR_PAYOS_API_KEY",
+//   "YOUR_PAYOS_CHECKSUM_KEY",
+//   "YOUR_PARTNER_CODE"
+// );
 
 class PaymentService {
   static async createPaymentLinkPayOS({
@@ -33,18 +40,18 @@ class PaymentService {
 
     // ==================
     const requestData = {
-      orderCode: 234234,
+      orderCode: Number(String(Date.now()).slice(-6)),
       amount: 1000,
       description: 'Thanh toan don hang',
       items: [
-        // {
-        //   name: "Mì tôm hảo hảo ly",
-        //   quantity: 1,
-        //   price: 1000,
-        // }
+        {
+          name: "Mì tôm hảo hảo ly",
+          quantity: 1,
+          price: 1000,
+        }
       ],
-      cancelUrl: 'https://your-domain.com',
-      returnUrl: 'https://your-domain.com',
+      cancelUrl: myDomain,
+      returnUrl: myDomain,
     };
 
     try {

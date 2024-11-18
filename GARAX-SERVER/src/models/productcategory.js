@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      productCategory.belongsTo(models.Product, {
-        foreignKey: 'idProduct', // from productCategory
-        as: 'product',
-      });
     }
   }
   productCategory.init({
@@ -27,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    idProduct: DataTypes.INTEGER,
     title: DataTypes.STRING,
     alias: DataTypes.STRING,
     description: DataTypes.STRING,

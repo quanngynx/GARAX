@@ -7,20 +7,12 @@ import Button from "../../../components/button";
 
 const currencies = [
   {
-    value: "USD",
-    label: "$",
+    value: "up",
+    label: " Giá tăng dần",
   },
   {
-    value: "EUR",
-    label: "€",
-  },
-  {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
+    value: "down",
+    label: " Giá giảm dần",
   },
 ];
 
@@ -28,7 +20,7 @@ const currencies = [
 function Recommend({ handleClick }) {
   return (
     <div className="mt-6 flex flex-col md:flex-row md:justify-between">
-      <div className="flex ">
+      <div className="flex h-[48px]">
         <Button onClickHandler={handleClick} value="" title="Tất cả sản phẩm" />
         <Button onClickHandler={handleClick} value="Toyota" title="Toyota" />
         <Button onClickHandler={handleClick} value="BMW" title="BMW" />
@@ -48,11 +40,20 @@ function Recommend({ handleClick }) {
             <TextField
               id="outlined-select-currency"
               select
-              label="Giá"
+              label="Sắp xếp theo"
               defaultValue="EUR"
+              sx={{
+                "& .MuiInputBase-root": {
+                  height: 40,
+                },
+              }}
             >
               {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value} onClickHandler={handleClick}>
+                <MenuItem
+                  key={option.value}
+                  value={option.value}
+                  onClickHandler={handleClick}
+                >
                   {option.label}
                 </MenuItem>
               ))}
