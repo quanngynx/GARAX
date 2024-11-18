@@ -35,6 +35,7 @@ const ServiceCategory = require('./serviceCategory')(sequelize, Sequelize.DataTy
 const ServiceDetail = require('./serviceDetail')(sequelize, Sequelize.DataTypes);
 const ServiceMedia = require('./serviceMedia')(sequelize, Sequelize.DataTypes);
 
+const Order = require('./order')(sequelize, Sequelize.DataTypes);
 const OrderProduct = require('./orderProduct')(sequelize, Sequelize.DataTypes);
 const Payment = require('./payment')(sequelize, Sequelize.DataTypes);
 
@@ -58,6 +59,7 @@ const db = {
   ServiceDetail,
   ServiceMedia,
 
+  Order,
   OrderProduct,
   Payment,
 };
@@ -82,6 +84,7 @@ CartItemsProduct.associate(db);
 // ServiceDetail.associate(db);
 // ServiceMedia.associate(db);
 
+Order.associate(db)
 OrderProduct.associate(db);
 
 fs.readdirSync(__dirname)
