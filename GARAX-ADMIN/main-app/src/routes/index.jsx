@@ -9,6 +9,7 @@ import TestLayout from '../layouts/exp/index.jsx'
 /** Components */
 // const ThongKeDuLieu = lazy(() => import('../pages/index.jsx'))
 import DanhSachDonHang from '../pages/danhSachDonHang.jsx' 
+import TaoDonHang from '../../src/pages/DSDonHang/CreateOrder.jsx'
 import DanhSachDatLich from '../pages/danhSachDatLich.jsx'
 import DanhSachTaiKhoan from '../pages/caiDatTaiKhoan.jsx'
 import DanhSachTaiKhoanNhanVien from '../pages/DSTaiKhoanNV/index.jsx'
@@ -72,7 +73,22 @@ function Router() {
         }, 
         {
           path: 'orders',
-          element: <DanhSachDonHang />
+          children: [
+            {
+              path: '/orders', element: <Navigate to="/orders/list" replace />,
+            },
+            {
+              path: 'list', element: <DanhSachDonHang />
+            },
+            // {
+            //   path: 'details',
+            //   element: <Thongtinchitietdonhang/>
+            // },
+            {
+              path: 'create',
+              element: <TaoDonHang />
+            }
+          ]
         },
         {
           path: "booking",
@@ -86,10 +102,6 @@ function Router() {
               // . . .
           ]
         },
-        // {
-        //   path: 'detail',
-        //   element:<Thongtinchitietsanpham/>
-        // },
         {
           path: 'products',
           children: [

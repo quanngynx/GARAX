@@ -11,6 +11,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import SubmenuTrigger from './components/SubmenuTrigger';
 import MainFeat from "./components/mainFeat";
+import EditButtonIcon from '../../assets/edit-button-admin.svg?react';
+import EditIcon from "@mui/icons-material/Edit";
 // import SelectFeat from "./components/selectFeat";
 
 const columns = [
@@ -47,29 +49,27 @@ const columns = [
   },
   {
     field: "action",
-    headerName: "Hành động",
-    type: Component,
+    headerName: "",
+    renderCell: (params) => (
+      <div className="items-center flex items-center justify-end gap-3">
+        <NavLink to={`/product-editor/${params.row.id}`} aria-label="Edit">
+          <button  type="button" className="w-28 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs mt-2.5 px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          <EditIcon style={{}} />
+              Chỉnh sửa
+          </button>
+        </NavLink>
+      </div>
+    ),
+    sortable: false,
     minWidth: 150,
     maxWidth: 300,
   },
 ];
 
 const rows = [
-  { id: 1, thumble: "", fullName: "Phụ tùng oto", cate: "nội", price: "123221345", action: () =>
-            <div className="flex items-center justify-end gap-11">
-                <NavLink to="/product-editor" aria-label="Edit">
-                    <i className="icon icon-pen-to-square-regular text-lg leading-none"/>hello
-                </NavLink>
-                <SubmenuTrigger/>
-            </div>
+  { id: 1, thumble: "", fullName: "Phụ tùng oto", cate: "nội", price: "123221345"
             },
-  { id: 3, thumble: "", fullName: "Phụ tùng otos", cate: "nội", price: "123221345", action: () =>
-    <div className="flex items-center justify-end gap-11">
-        <NavLink to="/product-editor" aria-label="Edit">
-            <i className="icon icon-pen-to-square-regular text-lg leading-none"/>hello
-        </NavLink>
-        <SubmenuTrigger/>
-    </div>
+  { id: 3, thumble: "", fullName: "Phụ tùng otos", cate: "nội", price: "123221345"
    },
 ];
 
