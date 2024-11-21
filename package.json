@@ -1,7 +1,7 @@
 {
   "name": "garrax_website",
   "version": "1.0.0",
-  "description": "https://garrax-admin-b818ozf7f-loq-burhs-projects.vercel.app/statics",
+  "description": "",
   "main": "index.js",
   "directories": {
     "doc": "docs"
