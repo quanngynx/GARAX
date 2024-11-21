@@ -6,29 +6,29 @@ function WhyChooseUs() {
     const services = [
       {
         title: "Quality service",
-        description: "We are committed to providing high-quality service with experienced and skilled technicians.",
+        description: "Chúng tôi cam kết cung cấp dịch vụ chất lượng cao với đội ngũ kỹ thuật viên giàu kinh nghiệm và tay nghề cao.",
         icon: <StandardIcon />, 
       },
       {
         title: "Modern equipment",
-        description: "We use modern technology and equipment for diagnostics and repairs, saving time and ensuring accuracy.",
+        description: "Chúng tôi sử dụng công nghệ và thiết bị hiện đại để chẩn đoán và sửa chữa, tiết kiệm thời gian và đảm bảo độ chính xác.",
         icon: <StandardIcon2 />,
       },
       {
         title: "Competitive pricing",
-        description: "Our service prices are reasonable and competitive, ensuring customer satisfaction in terms of cost.",
+        description: "Giá dịch vụ của chúng tôi hợp lý và cạnh tranh, đảm bảo sự hài lòng của khách hàng về mặt chi phí.",
         icon: <StandardIcon3 />,
       },
       {
         title: "Quick turnaround time",
-        description: "We understand the value of your time, so we strive to complete repairs as quickly as possible while maintaining high quality.",
+        description: "Chúng tôi hiểu giá trị thời gian của bạn, vì vậy chúng tôi cố gắng hoàn thành việc sửa chữa nhanh nhất có thể trong khi vẫn đảm bảo chất lượng cao.",
         icon: <StandardIcon4 />,
       },
     ];
   
     return (
       <div className="flex flex-col items-center py-16 bg-[#f8f9fb] mt-16 rounded-lg">
-        <h2 className="text-3xl font-bold text-[#050b20] mb-8">Why Choose Us?</h2>
+        <h2 className="text-3xl font-bold text-[#050b20] mb-8">Những lý do để tin tưởng chúng tôi</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl px-6">
           {services.map((service, index) => (
             <div

@@ -27,7 +27,7 @@ function mainFeat() {
             className="border-[#black] border-0 blue px-4 py-2 mx-4 my-2"
             data={csvData}
           >
-            Export CSV <i className="icon-file-export-solid" />
+            Xuất CSV <i className="icon-file-export-solid" />
           </CSVLink>
         </div>
       </div>

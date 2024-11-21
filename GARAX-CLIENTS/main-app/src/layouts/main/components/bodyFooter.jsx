@@ -162,7 +162,7 @@ function bodyFooter() {
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Company
+              Công ty
             </a>
           </li>
           <li className="py-1">
@@ -172,7 +172,7 @@ function bodyFooter() {
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Services
+              Dịch vụ
             </a>
           </li>
           <li className="py-1">
@@ -182,38 +182,38 @@ function bodyFooter() {
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Terms
+              Chính sách
             </a>
           </li>
           <li className="py-1">
             <a href="/swagger" className="hover:text-gray-500">
-              Contact Us
+              Liên hệ với chúng tôi
             </a>
           </li>
         </ul>
       </div>
       {/* row 2 */}
       <div>
-        <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+        <h3 className="text-white font-semibold mb-4">Link nhanh</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Get in Touch
+              Liên hệ
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Help center
+              Trung tâm giúp đỡ
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Live chat
+              Trò chuyện trực tuyến
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              How it works
+              Cách chúng tôi làm việc
             </a>
           </li>
           <li className="py-1">
@@ -223,29 +223,29 @@ function bodyFooter() {
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Hoạt động & Vui chơi
+              Hoạt động & Truyền thông
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Du thuyền
+              Xe hơi
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Biệt thự
+              Sản phẩm
             </a>
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Căn hộ
+              Đối tác
             </a>
           </li>
         </ul>
       </div>
       {/* row 3 */}
       <div>
-        <h3 className="text-white font-semibold mb-4">Our Brands</h3>
+        <h3 className="text-white font-semibold mb-4">Thương hiệu của chúng tôi</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
@@ -289,14 +289,14 @@ function bodyFooter() {
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Vulnerability Disclosure Program
+            Chương trình phát hiện lỗ hổng
             </a>
           </li>
         </ul>
       </div>
       {/* row 4 */}
       <div>
-        <h3 className="text-white font-semibold mb-4">Vehicles Type</h3>
+        <h3 className="text-white font-semibold mb-4">Thể loại phương tiện</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
@@ -340,7 +340,7 @@ function bodyFooter() {
           </li>
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">
-              Vulnerability Disclosure Program
+              Chương trình phát hiện lỗ hổng
             </a>
           </li>
         </ul>
@@ -348,7 +348,7 @@ function bodyFooter() {
       {/* row 5 */}
       <div className="">
         <div className="mb-4">
-          <h3 className="text-white font-semibold mb-4">Our Mobile App</h3>
+          <h3 className="text-white font-semibold mb-4">Ứng dụng</h3>
 
           {cardDown.map((tab, index) => (
             <div className="flex items-center" key={`tab-${index}`}>
@@ -369,7 +369,7 @@ function bodyFooter() {
         </div>
 
         <div className="">
-          <h3 className="text-white font-semibold mb-4">Connect With Us</h3>
+          <h3 className="text-white font-semibold mb-4">Kết nối với chúng tôi</h3>
 
           <div className="inline-flex">
           {connectVia.map((tab, index) => (

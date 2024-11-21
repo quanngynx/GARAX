@@ -190,7 +190,7 @@ function Header() {
             <Link to="/auth/login">
 
               <button className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base">
-                <img className="h-5 w-5 mr-2" src={IconLogin} alt="Login" /> Sign in
+                <img className="h-5 w-5 mr-2" src={IconLogin} alt="Login" /> Đăng nhập
 
             <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
 

@@ -9,8 +9,8 @@ import { NavLink } from "react-router-dom";
 
 
 const columns = [
-  { field: "id", headerName: "ID Order", minWidth: 20, maxWidth: 200 },
-  { field: "idbooking", headerName: "ID Booking", minWidth: 20, maxWidth: 200 },
+  { field: "id", headerName: "ID đơn hàng", minWidth: 20, maxWidth: 200 },
+  { field: "idbooking", headerName: "ID đặt lịch", minWidth: 20, maxWidth: 200 },
   {
     field: "fullName",
     headerName: "Tên khách hàng",

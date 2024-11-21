@@ -27,7 +27,7 @@ function Navbar() {
               />
               <input
                 type="text"
-                placeholder="Type here . . ."
+                placeholder="Điền vào đây . . ."
                 className="rounded-xl outline-none w-full bg-white text-black text-base font-medium font-['Inter'] py-2"
               />
             </label>
@@ -39,7 +39,7 @@ function Navbar() {
               className="w-[25px] h-[25px] mr-2"
               alt="Userlogin"
             />
-            <div className="hidden sm:block font-semibold text-black">Sign in</div>
+            <div className="hidden sm:block font-semibold text-black">Đăng nhập</div>
           </div>
           <div className="h-[25px] flex justify-end">
             <img

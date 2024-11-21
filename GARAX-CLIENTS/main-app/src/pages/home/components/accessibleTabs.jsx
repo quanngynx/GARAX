@@ -31,7 +31,7 @@ function accessibleTabs({ tabsConfig, defaultIndex }) {
       <div className="tabpanel-wrapper">
         {tabsConfig.map((tab, index) => (
           <section
-            className="text-[#050b20] text-base font-medium font-['DM Sans'] leading-[29.60px]"
+            className="text-base font-medium font-['DM Sans'] leading-[29.60px]"
             key={`tabpanel-${index}`}
             hidden={selectedIndex !== index}
           >

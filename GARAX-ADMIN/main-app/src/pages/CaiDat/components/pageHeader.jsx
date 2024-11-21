@@ -22,7 +22,7 @@ function pageHeader() {
       <div className="flex justify-end items-center w-full h-full">
         <div className="inline-flex text-[#1c1c1c] text-base font-semibold font-['Inter'] leading-[18px]">
           <div className="inline-flex items-center mr-6">
-            <div className="">Data refresh</div>
+            <div className="">Làm mới dữ liệu</div>
             <div className="ml-3">
               <RotateIcon />
             </div>

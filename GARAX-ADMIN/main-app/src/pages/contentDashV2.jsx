@@ -14,9 +14,9 @@ import ChatCard from "./ThongKeDuLieu/components/cardTapToChat"
 
 const data = [
   {
-    title: 'Today’s money',
+    title: 'Tổng tiền hôm nay',
     value: '$7,625',
-    interval: 'Last 30 days',
+    interval: 'Lần cuối 30 ngày trước',
     trend: 'up',
     data: [
       200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320, 360, 340, 380,
@@ -24,9 +24,9 @@ const data = [
     ],
   },
   {
-    title: 'Visits',
+    title: 'Đã thăm',
     value: '3,671',
-    interval: 'Last 30 days',
+    interval: 'Lần cuối 30 ngày trước',
     trend: 'down',
     data: [
       1640, 1250, 970, 1130, 1050, 900, 720, 1080, 900, 450, 920, 820, 840, 600, 820,
@@ -34,9 +34,9 @@ const data = [
     ],
   },
   {
-    title: 'New Clients',
+    title: 'Khách hàng mới',
     value: '156',
-    interval: 'Last 30 days',
+    interval: 'Lần cuối 30 ngày trước',
     trend: 'neutral',
     data: [
       500, 400, 510, 530, 520, 600, 530, 520, 510, 730, 520, 510, 530, 620, 510, 530,
@@ -44,9 +44,9 @@ const data = [
     ],
   },
   {
-    title: 'Total sales',
+    title: 'Tổng doanh thu',
     value: '$222,318',
-    interval: 'Last 30 days',
+    interval: 'Lần cuối 30 ngày trước',
     trend: 'neutral',
     data: [
       500, 400, 510, 530, 520, 600, 530, 520, 510, 730, 520, 510, 530, 620, 510, 530,
@@ -60,7 +60,7 @@ export default function MainGrid() {
     <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
       {/* cards */}
       <Typography component="h2" variant="h6" sx={{ mb: 2, mt: 2 }}>
-        Overview
+        Tổng quan
       </Typography>
       <Grid
         container

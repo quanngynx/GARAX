@@ -96,7 +96,25 @@ function danhSachSanPham() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-0 xl:grid-cols-5 pl-5">
           <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
-            <InputLabel id="demo-select-small-label">Age</InputLabel>
+            <InputLabel id="demo-select-small-label">Danh mục</InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              value={age}
+              label="age"
+              onChange={handleChange}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
+            <InputLabel id="demo-select-small-label">Trạng thái</InputLabel>
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
@@ -114,25 +132,7 @@ function danhSachSanPham() {
           </FormControl>
 
           <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
-            <InputLabel id="demo-select-small-label">Age</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={age}
-              label="Age"
-              onChange={handleChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-
-          <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
-            <InputLabel id="demo-select-small-label">Age</InputLabel>
+            <InputLabel id="demo-select-small-label">Sắp xếp theo</InputLabel>
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
@@ -160,7 +160,7 @@ function danhSachSanPham() {
               className="border-[1px] border-slate-400 rounded-3xl py-2 px-8 mx-4"
               // onClick={handleClearFilters}
             >
-              Clear
+              Làm mới
             </button>
           </div>
         </div>

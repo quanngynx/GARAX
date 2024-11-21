@@ -77,7 +77,7 @@ function HomePage() {
       <div className="mt-8 md:mt-12">
         <div className="px-4 md:px-8">
           <div className="text-[#050b20] text-2xl md:text-[40px] font-bold font-['DM Sans'] leading-7 md:leading-10">
-            Featured Listings
+            Danh sách sản phẩm
           </div>
           <AccessibleTabs tabsConfig={tabsConfig} />
         </div>

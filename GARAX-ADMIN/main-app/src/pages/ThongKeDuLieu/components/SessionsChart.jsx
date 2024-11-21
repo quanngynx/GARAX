@@ -53,7 +53,7 @@ function getDaysInMonth(month, year) {
     <Card variant="outlined" sx={{ width: '100%', bgcolor: '#F5F6F7' }}>
       <CardContent>
         <Typography component="h2" variant="subtitle2" gutterBottom>
-          Sessions
+          Đồ thị tăng trưởng
         </Typography>
         <Stack sx={{ justifyContent: 'space-between' }}>
           <Stack

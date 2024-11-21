@@ -5,26 +5,26 @@ import Avt3 from '../../../assets/icons/home/img/test1-150x150.jpg.png'
 function reviewFeedback() {
   const feedBack = [
     {
-      tit: "Great Work",
+      tit: "Công việc tuyệt vời",
       img: Avt1,
       icon: <QuotationMarks />,
-      detail: "Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance. And we didn't on our original designs.",
+      detail: "Thiết kế tuyệt vời, dễ tùy chỉnh và chất lượng thiết kế tuyệt vời trên nền tảng đám mây để tối ưu hóa hiệu suất. Và chúng tôi đã không làm như vậy với các thiết kế ban đầu của mình.",
       name: "Leslie Alexander",
       role: "Facebook",
     },
     {
-      tit: "Awesome Design",
+      tit: "Thiết kế tuyệt vời",
       img: Avt2,
       icon: <QuotationMarks />,
-      detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam sed do eiusmod",
+      detail: "Thiết kế tuyệt vời, dễ tùy chỉnh và chất lượng thiết kế tuyệt vời trên nền tảng đám mây để tối ưu hóa hiệu suất. Và chúng tôi đã không làm như vậy với các thiết kế ban đầu của mình.",
       name: "Floyd Miles",
       role: "Designer",
     },
     {
-      tit: "Good Job",
+      tit: "Tuyệt với",
       img: Avt3,
       icon: <QuotationMarks />,
-      detail: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.",
+      detail: "Thiết kế tuyệt vời, dễ tùy chỉnh và chất lượng thiết kế tuyệt vời trên nền tảng đám mây để tối ưu hóa hiệu suất. Và chúng tôi đã không làm như vậy với các thiết kế ban đầu của mình.",
       name: "Dianne Russell",
       role: "Marketing",
     },
@@ -59,10 +59,10 @@ function reviewFeedback() {
     <div className="flex flex-col mt-36 max-h-[500px] w-full h-[500px] rounded-2xl">
       <div className="w-full flex flex-row  justify-between items-start">
         <div className="text-[40px] font-bold font-['DM Sans'] leading-10 text-black mb-8">
-          What our customers say
+          Khách hàng nói gì về chúng tôi
         </div>
         <div className="text-[15px] font-normal font-['DM Sans'] leading-7 text-black mb-4 sm:mb-0">
-          Rated 4.7 / 5 based on 28,370 reviews Showing our 4 & 5 star reviews
+          Đánh giá 4.7 / 5 dựa trên 28,370 lượt đánh giá 
         </div>
       </div>
 

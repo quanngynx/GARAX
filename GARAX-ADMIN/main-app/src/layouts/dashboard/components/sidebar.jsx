@@ -1,5 +1,5 @@
 // import { useNavigate } from "react-router-dom";
-import imgGarax from "../../../assets/logogarax.png";
+import imgGarax from "../../../assets/2p7F4lW0kzKewQFvhzHeWac8G7K.svg";
 import dashboardIcon from "../../../assets/Dash-icon.svg";
 import accountBoxOutlined from "../../../assets/account-box-outline.svg";
 import imgBooking from "../../../assets/noun-booking-6490549.svg";
@@ -70,14 +70,14 @@ function Sidebar() {
 
       <div id="default-sidebar" aria-label="Sidebar" className="hidden sm:block top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
         <header className="w-full h-[90px] p-4 flex">
-          <div>
+          <div className="flex items-center">
             <img
               src={imgGarax}
-              className="w-[30px] h-[30px]"
+              className="w-[48px] h-[48px]"
               alt="Garax Logo"
             />
           </div>
-          <div>
+          <div className="flex items-center">
             <svg
               width="108"
               height="27"

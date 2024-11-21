@@ -38,7 +38,7 @@ function formSearch() {
         <div className="w-full">
           <label className="text-white block mb-2 w-max sm:text-white">Chọn giá</label>
           <select className="w-full bg-white p-2 border rounded">
-            <option>All Prices</option>
+            <option>Danh mục sản phẩm</option>
           </select>
         </div>
 

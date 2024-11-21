@@ -28,24 +28,24 @@ function CarServiceSection() {
         {/* Text Section */}
         <div className="max-w-full md:max-w-md text-center md:text-left mt-8 md:mt-0">
           <h2 className="text-2xl sm:text-3xl text-black font-semibold mb-4">
-            The Best Thing For Our Car
+            Những điều tốt nhất cho xe của chúng ta
           </h2>
           <p className="text-gray-600 mb-6">
-            Here are the reasons why you should choose our car repair service:
+            Đây là những lý do tại sao bạn nên chọn dịch vụ sửa xe của chúng tôi:
           </p>
           <ul className="space-y-2 mb-6">
             <li className="text-black flex items-center">
-              <span className="text-blue-500 mr-2">✔</span> Quality services
+              <span className="text-blue-500 mr-2">✔</span> Chất lượng dịch vụ tốt
             </li>
             <li className="flex items-center text-black">
-              <span className="text-blue-500 mr-2">✔</span> Modern equipment
+              <span className="text-blue-500 mr-2">✔</span> Thiết bị hiện đại
             </li>
             <li className="flex items-center text-black">
-              <span className="text-blue-500 mr-2">✔</span> Quick turnaround time
+              <span className="text-blue-500 mr-2">✔</span> Nhanh chóng và tiện lợi
             </li>
           </ul>
           <button className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
-            Get Started
+            Bắt đầu ngay
           </button>
         </div>
       </div>
@@ -53,19 +53,19 @@ function CarServiceSection() {
       <div className="flex space-x-12 mt-12 text-black md:mt-0 text-center py-16 gap-16">
         <div>
           <p className="text-2xl text-black font-semibold">836K</p>
-          <p className="text-gray-600">Orders</p>
+          <p className="text-gray-600">Đơn hàng</p>
         </div>
         <div>
           <p className="text-2xl text-black font-semibold">738M</p>
-          <p className="text-gray-600">Dealer Reviews</p>
+          <p className="text-gray-600">Đánh giá sản phẩm</p>
         </div>
         <div>
           <p className="text-2xl text-black font-semibold">231K</p>
-          <p className="text-gray-600">Visitors Per Day</p>
+          <p className="text-gray-600">Số lượng khách hàng thường ngày</p>
         </div>
         <div>
           <p className="text-2xl text-black font-semibold">2.03M</p>
-          <p className="text-gray-600">Good Responds</p>
+          <p className="text-gray-600">Phản hồi tốt</p>
         </div>
       </div>
     </section>
