@@ -56,7 +56,7 @@ function reviewFeedback() {
     </div>
   ));
   return (
-    <div className="flex flex-col mt-36 max-h-[500px] w-full h-[500px] rounded-2xl">
+    <div className="flex flex-col items-center mt-36 max-h-[500px] w-full h-[500px] rounded-2xl">
       <div className="w-full flex flex-row  justify-between items-start">
         <div className="text-[40px] font-bold font-['DM Sans'] leading-10 text-black mb-8">
           What our customers say
@@ -66,7 +66,7 @@ function reviewFeedback() {
         </div>
       </div>
 
-      <div className="grid gap-8 justify-center items-center grid-cols-3 text-black">
+      <div className="grid gap-8 justify-center items-center sm:gird-col-1 lg:grid-cols-3 text-black">
         {feedBackDiv}
       </div>
     </div>

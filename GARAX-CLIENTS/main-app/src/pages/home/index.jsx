@@ -25,7 +25,7 @@ function HomePage() {
   }
 
   return (
-    <div className="md:w-full bg-white h-[100%] p-4 md:p-20">
+  <div className="md:w-full bg-white h-[100%] p-4 md:p-20">
       {/* Image section with overlay text */}
       <div className="relative">
         <img
@@ -52,6 +52,8 @@ function HomePage() {
         </div>
       </div>
 
+     
+      <div>
       {/* Broswer by type */}
       <BroswerByType />
 
@@ -62,9 +64,15 @@ function HomePage() {
       <Line />
       {/* What customer say */}
       <ReviewFeedback />
+
       {/* HelpDesk Form Section */}
       <FormHelpDesk />
 
+      </div>
+       
+     
+  
+      <div>
       {/* Featured Listings Section */}
       <div className="mt-8 md:mt-12">
         <div className="px-4 md:px-8">
@@ -81,6 +89,7 @@ function HomePage() {
         <BtnProducts navigateTo={navigateToProductPage} />
       </div>
     </div>
+  </div>
   );
 }
 

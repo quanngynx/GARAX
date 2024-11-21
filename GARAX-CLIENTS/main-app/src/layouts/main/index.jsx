@@ -7,10 +7,10 @@ function mainLayout() {
   return (
     <div className="bg-white">
       <ScrollToTop />
-      <Header />
+      <Header/>
       <div className="h-[80px]"></div>
-      <Outlet />
-      <Footer />
+      <Outlet/>
+      <Footer/>
     </div>
   );
 }

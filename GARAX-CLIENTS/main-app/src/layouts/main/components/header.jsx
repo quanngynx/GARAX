@@ -127,17 +127,11 @@ function Header() {
 
             {hideMenu && <FlyoutMenus />}
           </div>
-
-
           {/* Phone Info */}
-          <div className="flex items-center">
-            <img
-              src={iconPhone}
-              className="w-[20px] h-[20px]"
-              alt="Phone Icon"
-            />
-            <span className="text-sm pl-1 text-black">+84 876 787 946</span>
-          </div>
+            <div className="hidden sm:flex items-center space-x-2">
+          <img src={iconPhone} className="w-5 h-5" alt="Phone Icon" />
+          <span className="text-sm text-black">+84 876 787 946</span>
+        </div>
         </div>
 
         {/* Logo Section */}
@@ -184,23 +178,22 @@ function Header() {
               setOpen={setOpenOrderPayment}
             />
           </div>
+          <div className="mt-4 md:mt-0 flex items-center">
           {fullname ? (
-            <div className="">
-              <button
-                onClick={handleProfile}
-                className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center"
-              >
-                <i className="fas fa-user mr-2"></i>Hi, {fullname}
-              </button>
-              {hideProfile && <ModalProfile />}
-            </div>
+            <button
+              onClick={handleProfile}
+              className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base"
+            >
+              <i className="fas fa-user mr-2"></i>Hi, {fullname}
+            </button>
           ) : (
             <Link to="/auth/login">
-            <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-              <i className="fas fa-user mr-2"><img className="h-[25px] w-[25px]" src={IconLogin} /></i> Sign in
+              <button className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base">
+                <img className="h-5 w-5 mr-2" src={IconLogin} alt="Login" /> Sign in
               </button>
-        </Link>
+            </Link>
           )}
+        </div>
         </div>
         {/* <div className="">
             <button
