@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
+    idSession: {
+      type: DataTypes.INTEGER,
+      defaultValue: null
+    },
     idUser: {
       type: DataTypes.INTEGER,
       defaultValue: null

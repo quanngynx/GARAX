@@ -27,7 +27,7 @@ function card({
       <div className="flex-none w-[328px] p-4 bg-white rounded-lg shadow-md mx-4 mb-2">
       <div className="">
         <img
-          className="w-full h-32 object-cover mb-4 rounded-lg"
+          className="w-full h-32 object-contain mb-4 rounded-lg"
           src={image}
           alt={title}
         />

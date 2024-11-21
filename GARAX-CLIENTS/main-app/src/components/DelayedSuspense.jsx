@@ -8,7 +8,6 @@ function DelayedSuspense({ delay, fallback, children }) {
       setShowChildren(true);
     }, delay);
 
-    // Dọn dẹp khi component bị hủy
     return () => clearTimeout(timer);
   }, [delay]);
 

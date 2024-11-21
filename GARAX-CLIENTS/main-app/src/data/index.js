@@ -1,9 +1,9 @@
-import ImageDemo from '../assets/icons/home/img/car9-660x440.jpg.png'
+import ImageDemo from '../assets/images/fuel-eneos.png'
 
 export const cardProducts = [
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 1,
+    image: ImageDemo,
     title: "Toyota Camry New",
     description: "3.5 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -15,8 +15,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 2,
+    image: ImageDemo,
     title: "T-Cross – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -28,8 +28,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 3,
+    image: ImageDemo,
     title: "C-Class – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -41,6 +41,7 @@ export const cardProducts = [
     cost: 40000,
   },
   {
+    id: 4,
     image:
       "https://plus.unsplash.com/premium_vector-1726096327053-ff2956070898?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
     title: "New GLC – 2023",
@@ -55,8 +56,8 @@ export const cardProducts = [
   },
   // ===========================================================================================
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 5,
+    image: ImageDemo,
     title: "Card 5",
     description: "Info which directs to the other page. 7",
     descriptionDetail1: "",
@@ -68,8 +69,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 6,
+    image: ImageDemo,
     title: "Card 6",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -81,8 +82,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 7,
+    image: ImageDemo,
     title: "Card 7",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -94,8 +95,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 8,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -107,8 +108,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 9,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -120,8 +121,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 10,
+    image: ImageDemo,
     title: "Toyota Camry New",
     description: "3.5 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -133,8 +134,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 11,
+    image: ImageDemo,
     title: "T-Cross – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -146,8 +147,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 12,
+    image: ImageDemo,
     title: "C-Class – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -159,6 +160,7 @@ export const cardProducts = [
     cost: 40000,
   },
   {
+    id: 13,
     image:
       "https://plus.unsplash.com/premium_vector-1726096327053-ff2956070898?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
     title: "New GLC – 2023",
@@ -173,8 +175,8 @@ export const cardProducts = [
   },
   // ===========================================================================================
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 14,
+    image: ImageDemo,
     title: "Card 5",
     description: "Info which directs to the other page. 7",
     descriptionDetail1: "",
@@ -186,8 +188,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 15,
+    image: ImageDemo,
     title: "Card 6",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -199,8 +201,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 16,
+    image: ImageDemo,
     title: "Card 7",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -212,8 +214,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 17,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -225,8 +227,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 18,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -238,8 +240,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 19,
+    image: ImageDemo,
     title: "Toyota Camry New",
     description: "3.5 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -251,8 +253,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 20,
+    image: ImageDemo,
     title: "T-Cross – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -264,8 +266,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 21,
+    image: ImageDemo,
     title: "C-Class – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -277,6 +279,7 @@ export const cardProducts = [
     cost: 40000,
   },
   {
+    id: 22,
     image:
       "https://plus.unsplash.com/premium_vector-1726096327053-ff2956070898?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
     title: "New GLC – 2023",
@@ -291,8 +294,8 @@ export const cardProducts = [
   },
   // ===========================================================================================
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 23,
+    image: ImageDemo,
     title: "Card 5",
     description: "Info which directs to the other page. 7",
     descriptionDetail1: "",
@@ -304,8 +307,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 24,
+    image: ImageDemo,
     title: "Card 6",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -317,8 +320,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 25,
+    image: ImageDemo,
     title: "Card 7",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -330,8 +333,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 26,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -343,8 +346,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 27,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -356,8 +359,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 28,
+    image: ImageDemo,
     title: "Toyota Camry New",
     description: "3.5 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -369,8 +372,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 29,
+    image: ImageDemo,
     title: "T-Cross – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -382,8 +385,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 30,
+    image: ImageDemo,
     title: "C-Class – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -395,6 +398,7 @@ export const cardProducts = [
     cost: 40000,
   },
   {
+    id: 31,
     image:
       "https://plus.unsplash.com/premium_vector-1726096327053-ff2956070898?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
     title: "New GLC – 2023",
@@ -409,8 +413,8 @@ export const cardProducts = [
   },
   // ===========================================================================================
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 32,
+    image: ImageDemo,
     title: "Card 5",
     description: "Info which directs to the other page. 7",
     descriptionDetail1: "",
@@ -422,8 +426,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 33,
+    image: ImageDemo,
     title: "Card 6",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -435,8 +439,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 34,
+    image: ImageDemo,
     title: "Card 7",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -448,8 +452,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 35,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -461,8 +465,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 36,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -474,8 +478,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 37,
+    image: ImageDemo,
     title: "Toyota Camry New",
     description: "3.5 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -487,8 +491,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 38,
+    image: ImageDemo,
     title: "T-Cross – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -500,8 +504,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 39,
+    image: ImageDemo,
     title: "C-Class – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -513,6 +517,7 @@ export const cardProducts = [
     cost: 40000,
   },
   {
+    id: 40,
     image:
       "https://plus.unsplash.com/premium_vector-1726096327053-ff2956070898?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
     title: "New GLC – 2023",
@@ -527,8 +532,8 @@ export const cardProducts = [
   },
   // ===========================================================================================
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 41,
+    image: ImageDemo,
     title: "Card 5",
     description: "Info which directs to the other page. 7",
     descriptionDetail1: "",
@@ -540,8 +545,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 42,
+    image: ImageDemo,
     title: "Card 6",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -553,8 +558,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 43,
+    image: ImageDemo,
     title: "Card 7",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -566,8 +571,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 44,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -579,8 +584,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 45,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -592,8 +597,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 46,
+    image: ImageDemo,
     title: "Toyota Camry New",
     description: "3.5 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -605,8 +610,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 47,
+    image: ImageDemo,
     title: "T-Cross – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -618,8 +623,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 48,
+    image: ImageDemo,
     title: "C-Class – 2023",
     description: "4.0 D5 PowerPulse Momentum 5dr AWD…",
     descriptionDetail1: "",
@@ -631,6 +636,7 @@ export const cardProducts = [
     cost: 40000,
   },
   {
+    id: 49,
     image:
       "https://plus.unsplash.com/premium_vector-1726096327053-ff2956070898?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
     title: "New GLC – 2023",
@@ -645,8 +651,8 @@ export const cardProducts = [
   },
   // ===========================================================================================
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 50,
+    image: ImageDemo,
     title: "Card 5",
     description: "Info which directs to the other page. 7",
     descriptionDetail1: "",
@@ -658,8 +664,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 51,
+    image: ImageDemo,
     title: "Card 6",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -671,8 +677,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 52,
+    image: ImageDemo,
     title: "Card 7",
     description: "Info which directs to the other page. 8",
     descriptionDetail1: "",
@@ -684,8 +690,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 53,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",
@@ -697,8 +703,8 @@ export const cardProducts = [
     cost: 40000,
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_vector-1727937751750-8674dbe0ef87?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+    id: 54,
+    image: ImageDemo,
     title: "Card 8",
     description: "Info which directs to the other page. 1",
     descriptionDetail1: "",

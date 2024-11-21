@@ -122,7 +122,7 @@ function Header() {
               onClick={handleMenu}
             >
               <img src={Menu} className="w-[20px] h-[20px]" alt="Menu Icon" />
-              <span className="pl-2 text-sm text-black">Menu</span>
+              <span className="pl-2 text-sm text-black">Danh mục</span>
             </button>
 
             {hideMenu && <FlyoutMenus />}
@@ -197,7 +197,7 @@ function Header() {
           ) : (
             <Link to="/auth/login">
             <button className="border border-gray-300 text-black hover:border-[#121212] rounded-full px-[100px] sm:px-4 py-2 flex items-center">
-              <i className="fas fa-user mr-2"><img className="h-[25px] w-[25px]" src={IconLogin} /></i> Sign in
+              <i className="fas fa-user mr-2"><img className="h-[25px] w-[25px]" src={IconLogin} /></i> Đăng nhập
               </button>
         </Link>
           )}

@@ -27,7 +27,7 @@ function WhyChooseUs() {
     ];
   
     return (
-      <div className="flex flex-col items-center py-16 bg-[#f8f9fb] mt-16">
+      <div className="flex flex-col items-center py-16 bg-[#f8f9fb] mt-16 rounded-lg">
         <h2 className="text-3xl font-bold text-[#050b20] mb-8">Why Choose Us?</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl px-6">
           {services.map((service, index) => (

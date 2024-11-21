@@ -5,7 +5,7 @@ function CarServiceSection() {
     <section className="flex flex-col items-center md:flex-col md:justify-center px-8 py-12 gap-8">
       {/* Image Section */}
       <div className='flex flex-row items-center md:flex-row md:justify-center'>
-      <div className="flex space-x-4 items-end">
+      <div className="ld:flex hidden space-x-4 items-end">
         <div className="w-48 h-48 bg-gray-200 rounded-lg overflow-hidden">
           {/* Small Image */}
           <img
@@ -46,7 +46,7 @@ function CarServiceSection() {
       </div>
       </div>
 
-      <div className="flex space-x-12 mt-12 text-black md:mt-0 text-center py-16 gap-16">
+      <div className="hidden sm:flex space-x-12 mt-12 text-black md:mt-0 text-center py-16 gap-16">
         <div>
           <p className="text-2xl text-black font-semibold">836K</p>
           <p className="text-gray-600 ">Orders</p>

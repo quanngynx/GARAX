@@ -1,5 +1,5 @@
-import { useState, useEffect  } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useState  } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import {
   Dialog,
@@ -12,6 +12,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import BinTiny from "../../../assets/icons/bin-tiny.svg?react";
 
+import ImageProd from '../../../assets/images/fuel-eneos.png'
 function drawersForCart({ open, setOpen, onProceed }) {
   // const [open, setOpen] = useState(true);
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -91,7 +92,7 @@ function drawersForCart({ open, setOpen, onProceed }) {
                         <div className="text-[#6d6e72]">
                           <img
                             className="w-[88px] h-auto"
-                            src="https://product.hstatic.net/200000722513/product/ava_a3fe472a1c8b4ebbbf00dadad7daa25f.png"
+                            src={ImageProd}
                           ></img>
                         </div>
                         <button className="w-full">
@@ -103,9 +104,9 @@ function drawersForCart({ open, setOpen, onProceed }) {
                       </div>
                       <div className="text-black ml-4">
                         <div className="font-semibold">
-                          Toyota Camry New - title
+                          Toyota Camry New
                         </div>
-                        <div className="">code product</div>
+                        <div className="">ABC-12345-S-BL</div>
                       </div>
                     </div>
 
