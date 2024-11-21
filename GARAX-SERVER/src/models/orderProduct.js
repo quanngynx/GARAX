@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idProduct', // from ProductCategory
         as: 'product',
       }); // DONE
-
     }
   }
   OrderProduct.init({
@@ -31,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     idProduct: DataTypes.INTEGER,
     idOrder: DataTypes.INTEGER,
+    idSession: DataTypes.INTEGER,
     quantity:DataTypes.FLOAT,
-
     paymentMethod: {
-      type: DataTypes.ENUM('cod','presspay','payos','payoneer'),
+      type: DataTypes.ENUM('cod','presspay','payos','payoneer', 'momo'),
       defaultValue: 'cod'
     },
     paymentStatus: {

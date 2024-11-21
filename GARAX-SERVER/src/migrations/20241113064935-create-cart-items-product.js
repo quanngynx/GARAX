@@ -12,6 +12,9 @@ module.exports = {
       idCartProduct: {
         type: Sequelize.INTEGER
       },
+      idProduct: {
+        type: Sequelize.INTEGER
+      },
       quantity: {
         type: Sequelize.INTEGER
       },

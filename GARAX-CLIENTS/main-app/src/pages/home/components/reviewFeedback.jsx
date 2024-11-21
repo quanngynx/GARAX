@@ -31,7 +31,7 @@ function reviewFeedback() {
   ];
 
   const feedBackDiv = feedBack.map((i) => (
-    <div key={i}>
+    <div key={i} className='sm:block flex justify-center'>
       <div className="w-[428px] min-h-[280px] bg-[#ebf7fe] rounded-2xl shadow">
         <div className="p-8">
           {/* TITLE */}
@@ -56,17 +56,17 @@ function reviewFeedback() {
     </div>
   ));
   return (
-    <div className="flex flex-col items-center mt-36 max-h-[500px] w-full h-[500px] rounded-2xl">
+    <div className="flex flex-col mt-36 max-h-[500px] w-full h-[500px] rounded-2xl">
       <div className="w-full flex flex-row  justify-between items-start">
         <div className="text-[40px] font-bold font-['DM Sans'] leading-10 text-black mb-8">
           What our customers say
         </div>
-        <div className="text-[15px] font-normal font-['DM Sans'] leading-7 text-white">
+        <div className="text-[15px] font-normal font-['DM Sans'] leading-7 text-black mb-4 sm:mb-0">
           Rated 4.7 / 5 based on 28,370 reviews Showing our 4 & 5 star reviews
         </div>
       </div>
 
-      <div className="grid gap-8 justify-center items-center sm:gird-col-1 lg:grid-cols-3 text-black">
+      <div className="grid gap-8 justify-center items-center grid-cols-3 text-black">
         {feedBackDiv}
       </div>
     </div>

@@ -12,6 +12,9 @@ module.exports = {
       idUser: {
         type: Sequelize.INTEGER
       },
+      idSession: {
+        type: Sequelize.INTEGER
+      },
       idCartProduct: {
         type: Sequelize.INTEGER
       },
@@ -23,7 +26,7 @@ module.exports = {
         defaultValue: 'pending'
       },
       paymentMethod: {
-        type: Sequelize.ENUM('cod','presspay','payos','payoneer'),
+        type: Sequelize.ENUM('cod','presspay','payos','payoneer', 'momo'),
         defaultValue: 'cod'
       },
       paymentStatus: {

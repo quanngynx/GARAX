@@ -12,9 +12,9 @@ function rightContent() {
               This entire section is required.
             </p>
           </div>
-          <div className="md:flex-1 mt-2 mb:mt-0 md:px-3">
+          <div className="md:flex-1 mb:mt-0 md:px-3">
             <div className="mb-4">
-              <label className="block uppercase tracking-wide text-xs font-bold">
+              <label className="block uppercase tracking-wide text-xs font-bold mb-2">
                 Họ tên
               </label>
               <input
@@ -26,7 +26,7 @@ function rightContent() {
             </div>
             <div className="md:flex mb-4">
               <div className="md:flex-1 md:pr-3">
-                <label className="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">
+                <label className="block uppercase tracking-wide text-charcoal-darker text-xs font-bold mb-2">
                   Địa chỉ nhà ở
                 </label>
                 <input
@@ -37,7 +37,7 @@ function rightContent() {
                 />
               </div>
               <div className="md:flex-1 md:pl-3">
-                <label className="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">
+                <label className="block uppercase tracking-wide text-charcoal-darker text-xs font-bold mb-2">
                   Địa chỉ email
                 </label>
                 <input
@@ -46,7 +46,7 @@ function rightContent() {
                   name="address_number"
                   placeholder="#3"
                 />
-                <span className="text-xs mb-4 font-thin">
+                <span className="text-xs mb-4 font-extralight">
                   We lied, this isn&apost required.
                 </span>
               </div>
@@ -57,9 +57,9 @@ function rightContent() {
           <div className="md:w-1/3">
             <legend className="uppercase tracking-wide text-sm">Liên hệ</legend>
           </div>
-          <div className="md:flex-1 mt-2 mb:mt-0 md:px-3">
+          <div className="md:flex-1 mb:mt-0 md:px-3">
             <div className="mb-4">
-              <label className="block uppercase tracking-wide text-xs font-bold">
+              <label className="block uppercase tracking-wide text-xs font-bold mb-2">
                 Số điện thoại
               </label>
               <input

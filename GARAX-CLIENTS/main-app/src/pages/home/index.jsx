@@ -36,11 +36,11 @@ function HomePage() {
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
           <div className="absolute flex flex-col justify-center items-center text-center">
             <h1 className="text-2xl md:text-4xl font-bold">
-              A Vehicle For Every Lifestyle
+            Một chiếc xe cho mọi phong cách sống
             </h1>
-            <h1 className="text-2xl md:text-4xl font-bold">Today</h1>
+            <h1 className="text-2xl md:text-4xl font-bold">Hôm nay</h1>
             <p className="mt-2 text-sm md:text-base">
-              Find cars for sale and for rent near you
+            Tìm xe bán và cho thuê gần bạn
             </p>
           </div>
 

@@ -1,11 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 function leftSidebar() {
+ // eslint-disable-next-line react-hooks/rules-of-hooks
+ const navigate = useNavigate()
+  const handleLogout = () => {
+    navigate('/')
+    window.location.reload()
+  }
+
   return (
     <div className="w-[30%]">
       <div className="flex flex-col pr-8 text-black">
@@ -65,9 +72,9 @@ function leftSidebar() {
             </Link>
           </AccordionDetails>
           <AccordionDetails>
-            <Link to={'/user/profile/history-access'}>
-              <Typography>Đăng xuất</Typography>
-            </Link>
+            <button onClick={handleLogout}>
+            <Typography>Đăng xuất</Typography>
+            </button>
           </AccordionDetails>
         </Accordion>
       </div>

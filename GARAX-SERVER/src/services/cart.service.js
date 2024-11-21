@@ -3,16 +3,39 @@
 const { Cart } = require('../models')
 const { CartItemsProduct } = require('../models')
 
-class NewsService {
-  static async createUserCart({ userId, product }) {
-    const query = { idUser: userId, cartState: 'pending' }
-    return await Cart.create( query )
+class CartService {
+  static async createUserCart({ userId }) {
+    const cart = { idUser: userId, cartState: 'pending' }
+
+    return await Cart.create( cart )
   }
 
-  static async addToCart({ idUser }, { }) {
-    const isExistCart = await Cart.findOne({ where: { idUser: idUser } })
+  static async addToCart({ userId, productItems }) {
+    const isExistCart = await Cart.findOne({
+      where: {
+        idUser: userId,
+        cartState: 'pending'
+      }
+    })
 
-    if(!isExistCart) return await Cart.createUserCart({ userId, product })
+    if(!isExistCart) return await CartService.createUserCart({ userId })
+
+    console.log("isExistCart::", isExistCart)
+    const existingProduct = await CartItemsProduct.findOne({
+      where: { idCartProduct: isExistCart.idCartProduct, productId: productItems.idProduct }
+    });
+
+    // if (existingProduct) {
+    //   existingProduct.quantity += product.quantity || 1;
+    //   await existingProduct.save();
+    // } else {
+    //   // Thêm mới sản phẩm
+    //   await CartProduct.create({
+    //     cartId: cart.id,
+    //     productId: product.productId,
+    //     quantity: product.quantity || 1
+    //   });
+    // }
 
   }
 
@@ -57,4 +80,4 @@ class NewsService {
   }
 }
 
-module.exports = NewsService
+module.exports = CartService

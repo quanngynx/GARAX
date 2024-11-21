@@ -5,17 +5,25 @@ function CarServiceSection() {
   return (
     <section className="flex flex-col items-center px-4 py-8 md:px-8 md:py-12 gap-8">
       {/* Image Section */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-        <div className="flex space-x-4 items-end">
-          <div className="w-32 h-32 sm:w-48 sm:h-48 bg-gray-200 rounded-lg overflow-hidden">
-            {/* Small Image */}
-            <img src={car1} alt="Car 1" className="w-full h-full object-cover" />
-          </div>
-          <div className="w-48 h-64 sm:w-64 sm:h-80 bg-gray-200 rounded-lg overflow-hidden">
-            {/* Large Image */}
-            <img src={car2} alt="Car 2" className="w-full h-full object-cover" />
-          </div>
+      <div className='flex flex-row items-center md:flex-row md:justify-center'>
+      <div className="flex space-x-4 items-end">
+        <div className="w-48 h-48 bg-gray-200 rounded-lg overflow-hidden">
+          {/* Small Image */}
+          <img
+            src={car1} 
+            alt="Car 1"
+            className="w-full h-full object-cover"
+          />
         </div>
+        <div className="w-64 h-80 bg-gray-200 rounded-lg overflow-hidden">
+          {/* Large Image */}
+          <img
+            src={car2} 
+            alt="Car 2"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
 
         {/* Text Section */}
         <div className="max-w-full md:max-w-md text-center md:text-left mt-8 md:mt-0">
@@ -42,8 +50,7 @@ function CarServiceSection() {
         </div>
       </div>
 
-      {/* Statistics Section */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-8 text-center">
+      <div className="flex space-x-12 mt-12 text-black md:mt-0 text-center py-16 gap-16">
         <div>
           <p className="text-2xl text-black font-semibold">836K</p>
           <p className="text-gray-600">Orders</p>
