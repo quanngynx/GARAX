@@ -83,6 +83,7 @@ function ProductPage() {
   };
 
   const handlePageChange2 = (event, value) => {
+    
     setCurrentPage(value);
   };
   

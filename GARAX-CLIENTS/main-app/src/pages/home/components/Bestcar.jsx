@@ -3,9 +3,9 @@ import car2 from "../../../assets/icons/car2.svg";
 
 function CarServiceSection() {
   return (
-    <section className="flex flex-col items-center px-4 py-8 md:px-8 md:py-12 gap-8">
+    <section className="flex flex-col justify-between items-center px-4 py-8 md:px-8 md:py-12 gap-8">
       {/* Image Section */}
-      <div className='flex flex-row items-center md:flex-row md:justify-center'>
+      <div className='flex flex-row items-center md:flex-row md:justify-center gap-0 sm:gap-8'>
       <div className="flex space-x-4 items-end">
         <div className="w-48 h-48 bg-gray-200 rounded-lg overflow-hidden">
           {/* Small Image */}
