@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <div className="w-[100%] h-[120px]">
       <div className="flex justify-between w-[100%] sm:h-[118px]">
-        <div className="sm:h-[118px]">
+        <div className="sm:h-[118px]"> 
           <div className="w-100% h-[58px] flex pt-5">
           <Link to={''}>Home </Link> / <BreadCrumbDynamic />
           </div>

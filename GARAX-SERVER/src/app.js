@@ -21,6 +21,7 @@ const router = require('./routes/index')
 //init middlewares
 app.use(cors({
   origin: [
+    'http://localhost:3000', // URL Next.js
     'http://localhost:5273',
     'http://localhost:5274',
     'http://localhost:5275',
@@ -74,8 +75,6 @@ app.get('/', ( req, res, next) => {
       message: 'Hello world!, db!'
   })
 })
-
-
 
 //hanlding errors
 app.use((req, res, next) => {

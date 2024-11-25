@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+// import setupLocatorUI from "@locator/runtime";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -23,6 +24,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  // if (process.env.NODE_ENV === "development") {
+  //   setupLocatorUI();
+  // }
+
   return (
     <html lang="en">
       <body
