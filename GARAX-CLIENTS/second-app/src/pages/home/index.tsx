@@ -3,7 +3,9 @@ import { useEffect } from "react";
 
 import { useCheckAuth } from "../auth/checkToken";
 
-import imagecar from "../../assets/car-big.webp";
+import { ITabsConfig } from './interfaces'
+
+import imagecar from "../../assets/home/images/car-big.webp";
 import WhyChooseUs from "./components/Whychose";
 import FormSearch from "./components/formSearch";
 import FormHelpDesk from "./components/formHelpDesk";
@@ -14,6 +16,22 @@ import BroswerByType from "./components/broswerByType";
 import BestCar from "./components/Bestcar";
 import ReviewFeedback from "./components/reviewFeedback";
 import Line from "../../components/line/line";
+
+const tabsConfig: ITabsConfig[] = [
+  {
+    label: "Spare Parts",
+    content: "Content Panel 1",
+  },
+  {
+    label: "Support Tools",
+    content: "Content Panel 2",
+  },
+  {
+    label: "Others",
+    content: "Content Panel 3",
+  },
+];
+
 function HomePage() {
   const history = useNavigate();
   const navigateToProductPage = () => {
@@ -92,20 +110,5 @@ function HomePage() {
   </div>
   );
 }
-
-const tabsConfig = [
-  {
-    label: "Spare Parts",
-    content: "Content Panel 1",
-  },
-  {
-    label: "Support Tools",
-    content: "Content Panel 2",
-  },
-  {
-    label: "Others",
-    content: "Content Panel 3",
-  },
-];
 
 export default HomePage;

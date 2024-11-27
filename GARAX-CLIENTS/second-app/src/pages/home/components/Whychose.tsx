@@ -1,7 +1,7 @@
-import StandardIcon from '../../../assets/icons/home/f1.svg.svg?react'
-import StandardIcon2 from '../../../assets/icons/home/f2.svg?react'
-import StandardIcon3 from '../../../assets/icons/home/f3.svg?react'
-import StandardIcon4 from '../../../assets/icons/home/f4.svg?react'
+import StandardIcon from '../../../assets/home/icons/f1.svg.svg?react'
+import StandardIcon2 from '../../../assets/home/icons/f2.svg?react'
+import StandardIcon3 from '../../../assets/home/icons/f3.svg?react'
+import StandardIcon4 from '../../../assets/home/icons/f4.svg?react'
 function WhyChooseUs() {
     const services = [
       {

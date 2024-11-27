@@ -1,6 +1,8 @@
 import { useState  } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import { drawersCartInterfaces } from './interfaces'
+
 import {
   Dialog,
   DialogBackdrop,
@@ -10,14 +12,14 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-import BinTiny from "../../../assets/icons/bin-tiny.svg?react";
+import BinTiny from "../../../assets/home/icons/bin-tiny.svg?react";
 
-import ImageProd from '../../../assets/images/fuel-eneos.png'
-function drawersForCart({ open, setOpen, onProceed }) {
+import ImageProd from '../../../assets/home/images/fuel-eneos.png'
+function drawersForCart({ open, setOpen, onProceed } : drawersCartInterfaces) {
   // const [open, setOpen] = useState(true);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [searchParams] = useSearchParams();
-  const GiaVe = parseFloat(searchParams.get("GiaVe")) || 1;
+  const GiaVe = parseFloat(searchParams.get("GiaVe") ?? "1");
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [count, setCount] = useState(1);

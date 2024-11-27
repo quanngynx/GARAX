@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import { drawersPaymentInterfaces } from './interfaces/index'
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -19,18 +20,18 @@ import {
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-function drawersForCart({ open, setOpen }) {
+function drawersForCart({ open, setOpen } : drawersPaymentInterfaces) {
   // const [open, setOpen] = useState(true);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [searchParams] = useSearchParams();
 
-  const GiaVe = parseFloat(searchParams.get("GiaVe")) || 1;
+  const GiaVe: number = parseFloat(searchParams.get("GiaVe")  ?? "1");
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [count, setCount] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(GiaVe);
+  // const [totalPrice, setTotalPrice] = useState(GiaVe);
   // const [phuongtien, setPhuongTien] = useState(null);
   // const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const [inforOrder, setInforOrder] = useState({
     fullName: "",
@@ -250,5 +251,5 @@ function drawersForCart({ open, setOpen }) {
     </Dialog>
   );
 }
-
 export default drawersForCart;
+

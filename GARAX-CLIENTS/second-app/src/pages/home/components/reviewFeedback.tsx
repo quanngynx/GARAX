@@ -1,9 +1,12 @@
-import QuotationMarks from '../../../assets/icons/Quotation-Marks.svg?react'
-import Avt1 from '../../../assets/icons/home/img/test1-150x150.jpg.png'
-import Avt2 from '../../../assets/icons/home/img/test1-150x150.jpg.png'
-import Avt3 from '../../../assets/icons/home/img/test1-150x150.jpg.png'
+import QuotationMarks from '../../../assets/home/icons/Quotation-Marks.svg?react'
+import Avt1 from '../../../assets/home/images/test1-150x150.jpg.png'
+import Avt2 from '../../../assets/home/images/test1-150x150.jpg.png'
+import Avt3 from '../../../assets/home/images/test1-150x150.jpg.png'
+
+import { IReviewFeedback } from '../interfaces/index'
+
 function reviewFeedback() {
-  const feedBack = [
+  const feedBack: IReviewFeedback[] = [
     {
       tit: "Công việc tuyệt vời",
       img: Avt1,
@@ -32,7 +35,7 @@ function reviewFeedback() {
 
   const feedBackDiv = feedBack.map((i) => (
     <div key={i} className='sm:block flex justify-center'>
-      <div className="w-[428px] min-h-[280px] bg-[#ebf7fe] rounded-2xl shadow">
+      <div className="min-h-[280px] bg-[#ebf7fe] rounded-2xl shadow">
         <div className="p-8">
           {/* TITLE */}
           <div className="flex flex-row justify-between items-center">

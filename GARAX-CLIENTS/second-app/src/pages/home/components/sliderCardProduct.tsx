@@ -1,7 +1,7 @@
 import { useState  } from 'react';
 
 import CardProducts from './cardProduct' 
-import { cardProducts } from '../../../data/index'
+import { cardProducts } from '../../../__mock__/index'
 
 const MultiCardCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);

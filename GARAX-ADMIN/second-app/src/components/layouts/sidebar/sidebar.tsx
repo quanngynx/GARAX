@@ -71,11 +71,11 @@ function sidebar() {
 
                     {/* Menu Buttons */}
                     <div className="w-full h-[300px] p-3">
-                        <Link href="/statics">
+                        <Link href="/dashboard/statictists">
                             <ButtonBar
                                 // icon={dashboardIcon}
                                 label="Bảng điều khiển"
-                                link="/statics"
+                                link="/dashboard/statictists"
                             />
                         </Link>
                         {/* <MenuButtonDropdown

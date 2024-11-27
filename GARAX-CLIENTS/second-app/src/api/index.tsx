@@ -16,7 +16,7 @@ export default API_ROUTES;
 // --------------------------Product---------------------------------
 export const getAllProducts = () =>
   API.get(`/products`);
-export const getProductById = (id: unknown) => 
+export const getProductById = (id: string) => 
   API.get(`/products/${id}`);
 
 // --------------------------Cart------------------------------------

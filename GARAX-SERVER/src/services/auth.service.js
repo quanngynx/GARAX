@@ -14,3 +14,11 @@ const KeyTokenService = require('./keyToken.service')
 
 const { getInfoData } = require('../utils/')
 const { createTokenPair , getAccessToken, getUserProfile } = require('./auth/utils');
+
+class AuthJWTService {
+  static async handleRefreshToken() {
+
+  }
+}
+
+module.exports = AuthJWTService

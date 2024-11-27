@@ -9,3 +9,5 @@ export const store = configureStore({
         // . . . user,
     }
 })
+
+export type RootState = ReturnType<typeof store.getState>;

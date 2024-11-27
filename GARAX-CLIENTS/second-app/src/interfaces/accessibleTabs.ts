@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
+import { ITabsConfig } from "../pages/home/interfaces"
 
 export interface accessibleTabsInterface {
-    tabsConfig: ReactNode, 
+    tabsConfig: ITabsConfig, 
     defaultIndex: ReactNode
 }

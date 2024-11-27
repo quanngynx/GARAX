@@ -1,4 +1,4 @@
-import AnaylistIcon from "../../../assets/icons/anyalist-icon-solid.svg?react";
+import AnaylistIcon from "../../../assets/home/icons/anyalist-icon-solid.svg?react";
 // import CursorEffectIcon from "../../../assets/icons/cusor-effect-icon-solid.svg?react";
 // import SecurityIcon from "../../../assets/icons/security-solid.svg?react";
 // import MultiAppIcon from "../../../assets/icons/multi-app-solid.svg?react";
@@ -7,11 +7,11 @@ import AnaylistIcon from "../../../assets/icons/anyalist-icon-solid.svg?react";
 // import CallingTinyIcon from '../../../assets/icons/calling-tiny.svg?react'
 
 // import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
-import CleaningServicesOutlinedIcon from "@mui/icons-material/CleaningServicesOutlined";
-import StorageOutlinedIcon from "@mui/icons-material/StorageOutlined";
-import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
-import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
-import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
+import CleaningServicesOutlinedIcon from "../../../assets/home/icons/noun-cleaning-1944288.svg?react";
+import StorageOutlinedIcon from "../../../assets/home/icons/noun-storage-7387355.svg?react";
+import SupportAgentOutlinedIcon from "../../../assets/home/icons/noun-support-agent-7186583.svg?react";
+import ScheduleSendOutlinedIcon from "../../../assets/home/icons/noun-send-on-schedule-6956073.svg?react";
+import FeedbackOutlinedIcon from "../../../assets/home/icons/noun-feedback-7388185.svg?react";
 import { Link } from "react-router-dom";
 
 const flyoutMenusData1 = [

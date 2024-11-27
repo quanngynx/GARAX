@@ -4,7 +4,7 @@ export default function Authlayout({
     children: React.ReactNode;
   }>) {
     return ( 
-        <div className="">
+        <div className="bg-slate-100 w-full h-[100vh] flex justify-center items-center">
             {children}
         </div>
      );

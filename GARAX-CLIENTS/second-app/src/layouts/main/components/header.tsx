@@ -1,24 +1,24 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 
 import { cn } from "../../../utils/utils";
 import { isTokenExpired } from "../../../pages/auth/checkToken";
-import Styles from "./css/header.module.css";
+import Styles from "./sass/header.module.css";
 import FlyoutMenus from "./flyoutMenus";
-import ModalProfile from "./modalProfile";
-import IconLogin from "../../../assets/icons/user-heart-svgrepo-com.svg";
+// import ModalProfile from "./modalProfile";
+import IconLogin from "../../../assets/layout/user-heart-svgrepo-com.svg?react";
 import DrawersForCart from "./drawersForCart";
 import DrawersInfoForCart from "./drawersInfoCart";
 import DrawersPaymentForCart from "./drawersPaymentCart";
 
-import Menu from "../../../assets/iconMenu.svg";
-import iconBrand from "../../../assets/GRAX.svg";
-import iconPhone from "../../../assets/noun-display-big-notch-4064633.svg";
-import CartTiny from "../../../assets/icons/cart-tity.svg?react";
-import UserTiny from "../../../assets/icons/user-tiny.svg?react";
+import MenuIcon from "../../../assets/layout/iconMenu.svg?react";
+import iconBrand from "../../../assets/layout/GRAX.svg";
+import iconPhone from "../../../assets/layout/noun-display-big-notch-4064633.svg";
+import CartTiny from "../../../assets/layout/cart-tity.svg?react";
+// import UserTiny from "../../../assets/icons/user-tiny.svg?react";
 function Header() {
   const [fullname, setFullname] = useState(localStorage.getItem("fullname"));
   const [token] = useState(localStorage.getItem("token"));
@@ -58,8 +58,7 @@ function Header() {
   };
   useEffect(() => {
     if (token && isTokenExpired(token)) {
-      localStorage.removeItem("fullname");
-      localStorage.removeItem("token");
+      localStorage.clear()
       setFullname(null);
     } else if (fullname === null) {
       getUserData();
@@ -121,7 +120,8 @@ function Header() {
               aria-expanded="false"
               onClick={handleMenu}
             >
-              <img src={Menu} className="w-[20px] h-[20px]" alt="Menu Icon" />
+              {/* <img src={Menu} className="w-[20px] h-[20px]" alt="Menu Icon" /> */}
+              <MenuIcon />
               <span className="pl-2 text-sm text-black">Danh mục</span>
             </button>
 
@@ -190,7 +190,8 @@ function Header() {
             <Link to="/auth/login">
 
               <button className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base">
-                <img className="h-5 w-5 mr-2" src={IconLogin} alt="Login" /> Đăng nhập
+                <IconLogin />
+                <div className="ml-1">Đăng nhập</div>
               </button>
             </Link>
           )}

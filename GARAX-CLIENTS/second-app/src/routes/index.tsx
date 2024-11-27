@@ -10,13 +10,13 @@ import HomePage from "../pages/home/index";
 import LoginPage from "../pages/auth/login";
 import RegisterPage from "../pages/auth/register";
 import Verify from "../pages/auth/verified"
-// import ProductPage from '../pages/products/index'
-// import DetailProductPage from '../pages/detailProduct/index'
+import ProductPage from '../pages/products/index'
+import DetailProductPage from '../pages/detailProduct/index'
 
 //Payment
 
 // page service
-// import ServicePage from '../pages/service/index'
+import ServicePage from '../pages/service/index'
 // import CleaningPage from '../pages/cleaning/index'
 // import TestingPage from '../pages/testing/index'
 // import MaintainPage from '../pages/maintain/index'
@@ -58,14 +58,14 @@ function Routes() {
               path: "product",
               element: <ProductPage />,
             },
-            {
-              path: "product/:slug",
-              element: <DetailProductPage />,
-            },
-            {
-              path: "service",
-              element: <DelayedSuspense delay={1000} fallback={<Loader/>}><ServicePage /></DelayedSuspense>,
-            },
+            // {
+            //   path: "product/:slug",
+            //   element: <DetailProductPage />,
+            // },
+            // {
+            //   path: "service",
+            //   element: <DelayedSuspense delay={1000} fallback={<Loader/>}><ServicePage /></DelayedSuspense>,
+            // },
             // {
             //   path: 'success',
             //   element: <SuccessPayment />

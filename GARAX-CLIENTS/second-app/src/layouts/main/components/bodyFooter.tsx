@@ -1,11 +1,13 @@
-import AppleIcon from "../../../assets/icons/apple-brand.svg?react";
-import GgPlayIcon from "../../../assets/icons/playStore-brand.svg?react";
+// import { Link } from "react-router-dom";
 
-import FbIcon from "../../../assets/icons/fb-brand.svg?react";
-import InsIcon from "../../../assets/icons/ins-brand.svg?react";
-import XIcon from "../../../assets/icons/x-brand.svg?react";
-import LinkedlnIcon from "../../../assets/icons/linkedin-brand.svg?react";
-import { Link } from "react-router-dom";
+import AppleIcon from "../../../assets/layout/apple-brand.svg?react";
+import GgPlayIcon from "../../../assets/layout/playStore-brand.svg?react";
+
+import FbIcon from "../../../assets/layout/fb-brand.svg?react";
+import InsIcon from "../../../assets/layout/ins-brand.svg?react";
+import XIcon from "../../../assets/layout/x-brand.svg?react";
+import LinkedlnIcon from "../../../assets/layout/linkedin-brand.svg?react";
+
 
 const titleFooter = [
   {

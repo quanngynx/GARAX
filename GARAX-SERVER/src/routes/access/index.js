@@ -25,4 +25,5 @@ router.get('/admin', authenticateToken, authorizeRole(['Admin']), (req, res) => 
   });
 
 router.get('/users',authController.getCustomerDetails);
+
 module.exports = router;

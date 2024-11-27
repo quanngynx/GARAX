@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LeftArrow from '../../../assets/icons/left--vector-tiny.svg?react'
 import { addToCarts } from "../../../redux/stores/cart";
+import { RootState } from "../../../redux/stores";
 // import { use } from "i18next";
 
-function product(props) {
+function product(props: unknown) {
 
   // const { 
   //   image, 
@@ -20,7 +21,7 @@ function product(props) {
   // } = props.data
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const carts = useSelector(store => store.cart.items)
+  const carts = useSelector((store: RootState) => store.cart.items)
   console.log("info cart::", carts)
 
   // eslint-disable-next-line react-hooks/rules-of-hooks

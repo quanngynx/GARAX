@@ -1,7 +1,7 @@
 function SettingPage() {
     return ( 
         <div className="">
-            SettingPage
+            Thống kê doanh thu
         </div>
      );
 }

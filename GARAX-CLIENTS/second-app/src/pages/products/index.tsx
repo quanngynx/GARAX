@@ -3,8 +3,8 @@ import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-import { cardProducts } from "../../data/index";
-import ProductsCard from "../../components/card";
+import { cardProducts } from "../../__mock__";
+import ProductsCard from "../../components/card/card";
 import Products from "./components/products";
 import Recommend from "./components/price";
 
@@ -17,7 +17,7 @@ function ProductPage() {
 
   // const totalPages = Math.ceil(cardProducts.length / itemsPerPage);
 
-  const goToPage = (pageNumber) => {
+  const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
@@ -78,7 +78,7 @@ function ProductPage() {
     );
   }
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
