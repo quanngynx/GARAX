@@ -1,8 +1,12 @@
 import { SearchOutlined } from '@ant-design/icons';
 
-function SearchOutlinedIcon() {
+interface ISearchOutlinedIcon {
+    classname: string
+}
+
+function SearchOutlinedIcon({ classname } : ISearchOutlinedIcon) {
     return ( 
-        <SearchOutlined  className='w-[20px] h-[20px] m-1'/>
+        <SearchOutlined  className={classname}/>
      );
 }
 

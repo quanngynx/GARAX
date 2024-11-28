@@ -1,9 +1,10 @@
-// import { Navbar } from '../../components/layouts'
-import { Sidebar } from "../../components/layouts";
 
-function dashboard() {
+// import { Navbar } from '../../components/layouts'
+// import { Sidebar } from "../../components/layouts";
+
+function DashboardPage() {
     return (
-        <div className="bg-[#F5F6F7] w-full min-h-[81vh]">
+        <div className="w-full min-h-[81vh]">
             <div className="flex mb-4">
                 {/* <Sidebar /> */}
                 {/* <Canvas /> */}
@@ -13,4 +14,4 @@ function dashboard() {
     );
 }
 
-export default dashboard;
+export default DashboardPage;

@@ -1,58 +1,14 @@
 import Link from "next/link";
 
+import { FieldProfilePanel } from '../constants'
 
 function profilePanel() {
-  const ListInput = [
-    {
-      label: "Tên đầu",
-      placeHolder: "Nguyễn",
-    },
-    {
-      label: "Quốc gia",
-      placeHolder: "Việt Nam",
-    },
-    {
-      label: "Tên cuối",
-      placeHolder: "A",
-    },
-    {
-      label: "Thành phố",
-      placeHolder: "HCM",
-    },
-    {
-      label: "Email",
-      placeHolder: "nguyenvân@gmail.com",
-    },
-    {
-      label: "Quận, tỉnh thành",
-      placeHolder: "q.12",
-    },
-    {
-      label: "Số điện thoại",
-      placeHolder: "0374444252",
-    },
-    {
-      label: "Địa chỉ",
-      placeHolder: "abc 12/12/12, phường Trung Mỹ Tây, q.12, HCM",
-    },
-    {
-      label: "Mật khẩu",
-      placeHolder: "**********************",
-    },
-    {
-      label: "Ứng dụng được GARAX ủy quyền",
-      placeHolder: "SSO-pointer, . . .",
-    },
-  ];
   return (
     <div className="w-full">
-      <div className="text-[#212121] text-[32px] font-semibold font-['Roboto'] leading-normal mb-4">
-        Thông tin chi tiết
-      </div>
       <div className="">
         <form>
           <div className="grid grid-cols-2 gap-6">
-            {ListInput.map((label, index) => (
+            {FieldProfilePanel.map((label, index) => (
               <div key={index} className="flex flex-col">
                 <label className="mb-2 text-gray-700">{label.label}</label>
                 <input

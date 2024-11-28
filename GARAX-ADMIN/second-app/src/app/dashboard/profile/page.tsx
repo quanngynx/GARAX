@@ -1,9 +1,8 @@
-function ProfilePage() {
+import { ProfilePage } from "@/container/profile";
+function ProfilePages() {
     return ( 
-        <div className="text-black">
-            Profile Page
-        </div>
+        <ProfilePage />
      );
 }
 
-export default ProfilePage;
+export default ProfilePages;

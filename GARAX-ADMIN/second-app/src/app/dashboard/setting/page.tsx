@@ -1,8 +1,10 @@
+import { ProfilePage } from "@/container/profile";
+
 function SettingPage() {
     return ( 
-        <div className="">
-            Setting Pages
-        </div>
+        <>
+        <ProfilePage />
+        </>
      );
 }
 

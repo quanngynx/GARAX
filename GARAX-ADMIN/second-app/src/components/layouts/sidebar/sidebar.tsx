@@ -37,7 +37,7 @@ function sidebar() {
             <div
                 id="default-sidebar"
                 aria-label="Sidebar"
-                className="bg-white rounded-2xl shadow hidden sm:block top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+                className="bg-white rounded-2xl shadow hidden sm:block top-0 left-0 z-40 w-64 h-[96vh] transition-transform -translate-x-full sm:translate-x-0"
             >
                 <header className="w-full h-[90px] p-4 flex">
                     <div className="flex items-center">
@@ -66,11 +66,11 @@ function sidebar() {
                 {/* Body */}
                 <div className="w-full">
                     <div className="w-full h-[20px] p-6">
-                        <p className="font-extrabold">Menu</p>
+                        <p className="font-bold">Quản lý</p>
                     </div>
 
                     {/* Menu Buttons */}
-                    <div className="w-full h-[300px] p-3">
+                    <div className="w-full p-3">
                         <Link href="/dashboard/statictists">
                             <ButtonBar
                                 // icon={dashboardIcon}
@@ -106,10 +106,10 @@ function sidebar() {
                                 link="/transactions/list"
                             />
                         </Link>
-                        <Link href="/setting">
+                        <Link href="/dashboard/setting">
                             <ButtonBar
                                 label="Cài đặt"
-                                link="/setting/general-setting"
+                                link="/setting/setting"
                             />
                         </Link>
                     </div>

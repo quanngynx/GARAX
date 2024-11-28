@@ -20,7 +20,7 @@ const path = ''
           path === link ? "brightness-0 invert" : ""
         }`}
       /> */}
-      <p className="text-sm font-semibold">{bar.label}</p>
+      <p className="text-sm font-medium">{bar.label}</p>
     </button>
   );
 }

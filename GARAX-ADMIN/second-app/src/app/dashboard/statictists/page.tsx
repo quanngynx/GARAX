@@ -1,9 +1,10 @@
-function SettingPage() {
+import { StatictisticsPage } from "../../../container/statictist";
+
+
+function StatictisticsPages() {
     return ( 
-        <div className="">
-            Thống kê doanh thu
-        </div>
+        <StatictisticsPage />
      );
 }
 
-export default SettingPage;
+export default StatictisticsPages;

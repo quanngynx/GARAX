@@ -7,9 +7,11 @@ import MainProfile from "./components/mainProfile";
 
 function ProfilePage() {
     return (
-        <div className="">
+        <div className="w-full">
             <PageHeader />
-
+            <div className="text-[#212121] text-[32px] font-semibold font-['Roboto'] leading-normal mb-4">
+                Thông tin chi tiết
+            </div>
             <div className="w-full flex mt-6">
                 {/* Left */}
                 <div className="mr-6">

@@ -1,6 +1,6 @@
 function LineFullWidth() {
     return ( 
-        <div className="w-100% h-[1px] bg-black mt-4 sm:mt-0"></div>
+        <div className="w-100% h-[0.5] bg-slate-300 mt-4 sm:mt-0"></div>
      );
 }
 

@@ -1,24 +1,24 @@
-// import NotiTniy from "../../../assets/noti-tiny.svg?react";
-// import EnvelopTiny from '../../../assets/envelope-solid-tiny.svg?react'
-// import PhoneTiny from '../../../assets/Phone_fill.svg?react'
-// import LoadFileTiny from '../../../assets/Load_list_fill.svg?react'
+import EnvelopTiny from '../../../components/icons/envelopeSolid'
+import NotiTiny from "../../../components/icons/notification";
+import PhoneTiny from '../../../components/icons/phoneTiny'
+import LoadFileTiny from '../../../components/icons/loadList'
 
 import LinkCV from "./linkCV";
 const extendInfor = [
   {
-    // icon: <EnvelopTiny />,
+    icon: <EnvelopTiny />,
     showInfo: "nguyenvana@gmail.com",
   },
   {
-    // icon: <NotiTniy />,
+    icon: <NotiTiny />,
     showInfo: "abc 12/12/12, phường Trung Mỹ Tây, q.12, HCM",
   },
   {
-    // icon: <PhoneTiny />,
+    icon: <PhoneTiny />,
     showInfo: "+84 374-4444-252",
   },
   {
-    // icon: <LoadFileTiny />,
+    icon: <LoadFileTiny />,
     showInfo: <LinkCV />,
   },
 ];
