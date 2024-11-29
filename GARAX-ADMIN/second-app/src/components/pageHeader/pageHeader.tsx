@@ -1,10 +1,12 @@
+"use client";
+
 import {useState, useEffect} from 'react';
 import {useWindowSize} from 'react-use';
 
 import dayjs from 'dayjs';
 
-import RotateIcon from "../../../assets/rotate-solid.svg?react";
-function pageHeader() {
+import { RotateSolidIcon } from '../icons';
+function PageHeader({ namePage } : { namePage: string }) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [currentTime, setCurrentTime] = useState(new Date());
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -18,19 +20,22 @@ function pageHeader() {
         return () => clearInterval(interval);
     }, [currentTime]);
   return (
-    <div className="bg-[#F5F6F7] w-full h-[80px] mt-6 px-4 py-6 rounded-2xl">
-      <div className="flex justify-end items-center w-full h-full">
+    <div className="bg-[#F5F6F7] w-full h-[80px] mt-6 px-4 py-6 rounded-xl mb-8">
+      <div className="flex justify-between items-center w-full h-full">
+        <div className="font-bold text-2xl font-['Inter'] leading-[18px]">{namePage}</div>
         <div className="inline-flex text-[#1c1c1c] text-base font-semibold font-['Inter'] leading-[18px]">
+          <button className=''>
           <div className="inline-flex items-center mr-6">
             <div className="">Làm mới dữ liệu</div>
             <div className="ml-3">
-              <RotateIcon />
+              <RotateSolidIcon className="inline-block transition-transform duration-300 ease-in-out hover:rotate-180"/>
             </div>
           </div>
-          <div className="h-11 bg-body flex items-center justify-center rounded-2xl px-9 font-heading font-bold text-header text-base border border-input-border lg:w-[310px]">
-            {dayjs(currentTime).format(`${dateFormat} HH`)}
-            <span className="animate-pulse-fast">:</span>
-            {dayjs(currentTime).format('mm A')}
+          </button>
+          <div className="h-11 bg-body flex items-center justify-center rounded-2xl px-9 font-bold text-base border lg:w-max">
+                {dayjs(currentTime).format(`${dateFormat} HH`)}
+                <span className="animate-pulse-fast">:</span>
+                {dayjs(currentTime).format('mm A')}
             </div>
         </div>
       </div>
@@ -38,4 +43,4 @@ function pageHeader() {
   );
 }
 
-export default pageHeader;
+export default PageHeader;

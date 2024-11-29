@@ -91,8 +91,8 @@ function sidebar() {
                                 link="/account"
                             />
                         </Link>
-                        <Link href="/products">
-                            <ButtonBar label="Sản phẩm" link="/products" />
+                        <Link href="/dashboard/products-management">
+                            <ButtonBar label="Sản phẩm" link="/dashboard/products-management" />
                         </Link>
                         <Link href="/orders">
                             <ButtonBar label="Đơn hàng" link="/orders" />

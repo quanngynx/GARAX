@@ -3,19 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: #E2E8F0;
-  --foreground: #171717;
+    --background: #e2e8f0;
+    --foreground: #171717;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+    .shadow-custom {
+        box-shadow: 0 1px 10px rgba(2, 202, 171, 0.35);
+    }
+}
+
+.custom-datepicker .ant-input::placeholder {
+    @apply placeholder-slate-700; 
 }

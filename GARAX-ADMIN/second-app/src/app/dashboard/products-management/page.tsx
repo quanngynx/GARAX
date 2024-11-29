@@ -1,9 +1,9 @@
-function ProductsManagementPage() {
-    return ( 
-        <div className="">
-            ProductsManagementPage
-        </div>
-     );
+import ProductsManagementPage from "@/container/productsManagement/page";
+
+function ProductsManagementPages() {
+    return (
+        <ProductsManagementPage />
+    );
 }
 
-export default ProductsManagementPage;
+export default ProductsManagementPages;

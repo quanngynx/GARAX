@@ -68,7 +68,10 @@ function Sidebar() {
         <i className="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
       </span>
 
-      <div id="default-sidebar" aria-label="Sidebar" className="hidden sm:block top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
+      <div 
+      id="default-sidebar" 
+      aria-label="Sidebar" 
+      className="hidden sm:block top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
         <header className="w-full h-[90px] p-4 flex">
           <div className="flex items-center">
             <img

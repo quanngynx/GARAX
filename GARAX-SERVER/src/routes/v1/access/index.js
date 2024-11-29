@@ -20,4 +20,22 @@ const AsyncHandler = require('../../../middlewares/asyncHandler.middleware')
 // router.get('/products/pub', AsyncHandler(ProductController.findAllProductPub))
 // router.get('/products', AsyncHandler(ProductController.findAllProduct))
 
+router.post('/register', authController.register);
+router.post('/verify',authController.verify)
+//đăng ký router refresh token
+router.get('/user', authenticateToken , authorizeRole(['user','Admin']), (req, res) => {
+  res.send(`User ID: ${req.IDAcc} ${req.role} `);
+});
+router.post('/refreshToken',refreshToken);
+
+//đăng ký router login
+router.post('/login', authController.login);
+
+//dăng ký router role admin
+router.get('/admin', authenticateToken, authorizeRole(['Admin']), (req, res) => {
+    res.status(200).json({ message: 'Welcome Admin' });
+  });
+
+router.get('/users',authController.getCustomerDetails);
+
 module.exports = router

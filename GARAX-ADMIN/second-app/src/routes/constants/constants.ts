@@ -1,4 +1,4 @@
 export const ROOTS = {
-    DASHBOARD: '/',
+    DASHBOARD: '/dashboard',
     AUTH: '/auth'
   };

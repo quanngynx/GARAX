@@ -113,7 +113,7 @@ function RegisterPage() {
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Already have an account?
                                 <Link href="/auth/login">
-                                    <button className="text-blue-500 font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                    <button className="ml-1 text-blue-500 font-medium text-primary-600 hover:underline dark:text-primary-500">
                                         Login here
                                     </button>
                                 </Link>

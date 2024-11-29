@@ -5,7 +5,7 @@ const authController = require('../../controllers/access.controller')
 const authenticateToken = require('../../middlewares/auth');
 const authorizeRole = require('../../middlewares/authorize');
 const refreshToken = require("../../middlewares/refreshToken")
-// const { Account, CustomerDetails } = require('../models/index');
+
 //đăng ký router register
 router.post('/register', authController.register);
 //đăng ký router verify

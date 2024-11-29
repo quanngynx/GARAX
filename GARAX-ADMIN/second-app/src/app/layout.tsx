@@ -3,8 +3,6 @@ import localFont from "next/font/local";
 // import setupLocatorUI from "@locator/runtime";
 import "./globals.css";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
     variable: "--font-geist-sans",
@@ -16,7 +14,6 @@ const geistMono = localFont({
     weight: "100 900",
 });
 
-const queryClient = new QueryClient();
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -37,11 +34,8 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <QueryClientProvider client={queryClient}>
-                    {children}
-                </QueryClientProvider>
+                {children}
             </body>
         </html>
     );
 }
-
