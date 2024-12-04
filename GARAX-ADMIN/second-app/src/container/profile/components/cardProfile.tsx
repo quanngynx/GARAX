@@ -1,11 +1,11 @@
-// import Image from "next/image";
-// import DemoAva from "../../../assets/Kaung-MinnKent.jpg";
+import Image from "next/image";
+import DemoAva from "../../../components/images/Kaung-MinnKent.jpg";
 function cardProfile() {
   return (
-    <div className="w-[342px] px-14 py-[23px] bg-[#f5f6f7] rounded-2xl justify-center items-center flex">
+    <div className="w-[342px] px-14 py-[23px] bg-[#e2e8f0] rounded-xl justify-center items-center flex">
       <div className="flex flex-col justify-center items-center">
         <div className="">
-          {/* <Image src={DemoAva} alt="Demo" /> */}
+          <Image src={DemoAva} alt="Demo" className="rounded-full"/>
         </div>
         <div className="my-6 text-black text-[28px] font-semibold font-['Inter'] leading-[18px]">Nguyen Van A</div>
         <div className="text-white text-xl font-medium font-['Inter'] leading-[18px] bg-red-600 py-2 px-3 rounded-2xl">

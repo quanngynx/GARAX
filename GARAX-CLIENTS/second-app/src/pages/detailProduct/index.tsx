@@ -4,6 +4,10 @@ import { useParams, Link } from "react-router-dom";
 // import LeftArrow from '../../assets/icons/left--vector-tiny.svg?react'
 
 import Product from './components/product'
+import RelatestListProducts from "./components/relatestListProducts";
+
+
+
 function detailProduct() {
   const contextDemo = [
     {
@@ -19,7 +23,7 @@ function detailProduct() {
     },
   ];
   return (
-    <div className="w-full bg-white flex justify-center items-center pb-6 pt-6">
+    <div className="w-full bg-white flex flex-col justify-center items-center pb-6 pt-6">
       <div className="w-[1361.47px] bg-slate-100 rounded-2xl">
         <div className="">
           <Product />
@@ -31,7 +35,10 @@ function detailProduct() {
           <div className="text-black px-10 py-2 font-bold">- Relative products</div>
           <div className="text-black px-10 py-2 font-bold">- List products</div>
         </div>
+
       </div>
+      
+      <RelatestListProducts />
     </div>
   );
 }

@@ -1,4 +1,6 @@
-function SnvelopeSolidIcon() {
+import type { SVGProps } from "react";
+
+function SnvelopeSolidIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="20"
@@ -6,6 +8,7 @@ function SnvelopeSolidIcon() {
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            {...props}
         >
             <rect width="20" height="20" fill="#1E1E1E" />
             <g id="dashboard/primary/Ke61 toan" clipPath="url(#clip0_0_1)">

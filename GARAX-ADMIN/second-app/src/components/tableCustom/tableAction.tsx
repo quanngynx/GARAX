@@ -1,13 +1,24 @@
 import { Space } from "antd";
-import Link from "next/link";
+// import Link from "next/link";
 import { EditOutlined } from '@ant-design/icons';
+import { SetStateAction } from "react";
 
-export function TableAction() {
+interface ITableStateAction {
+    param: string
+    setParam: SetStateAction<string>
+}
+
+interface ITableAction {
+    handleSetParam: () => void
+}
+export function TableAction({ handleSetParam } : ITableAction) {
+
     return (
         <Space size="middle">
-            <Link href={""}>
+            <button className="p-2"
+            onClick={handleSetParam}>
             <EditOutlined />
-            </Link>
+            </button>
             <a>Delete</a>
         </Space>
     );

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import LeftArrow from '../../../assets/icons/left--vector-tiny.svg?react'
 import { addToCarts } from "../../../redux/stores/cart";
 import { RootState } from "../../../redux/stores";
-// import { use } from "i18next";
+
+import RelatestListProducts from "./relatestListProducts";
+
+import LeftArrow from '../../../assets/ListProduct/icons/left--vector-tiny.svg?react'
 
 function product(props: unknown) {
 
@@ -102,6 +104,8 @@ function product(props: unknown) {
           </div>
         </div>
       </div>
+
+      <RelatestListProducts />
     </div>
   );
 }

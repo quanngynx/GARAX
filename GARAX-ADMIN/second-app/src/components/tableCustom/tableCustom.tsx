@@ -1,7 +1,8 @@
-import { Space, Table } from "antd";
+import { Table } from "antd";
 import type { TableProps } from "antd";
 import { TableAction } from "./tableAction";
 import { TableData } from "./TableData";
+// import { PATH_DASHBOARD } from "@/routes/paths";
 
 type ColumnsType<T extends object> = TableProps<T>["columns"];
 
@@ -12,35 +13,6 @@ interface DataType {
     address: string;
     tags: string[];
 }
-const columns: ColumnsType<DataType> = [
-    {
-        title: "Name",
-        dataIndex: "name",
-        key: "name",
-        render: (text) => <a>{text}</a>,
-    },
-    {
-        title: "Age",
-        dataIndex: "age",
-        key: "age",
-    },
-    {
-        title: "Address",
-        dataIndex: "address",
-        key: "address",
-    },
-    {
-        title: "Tags",
-        key: "tags",
-        dataIndex: "tags",
-        render: (tags: string[]) => <TableData tags={tags} />
-    },
-    {
-        title: "Action",
-        key: "action",
-        render: (_) => <TableAction />
-    },
-];
 
 const data: DataType[] = [
     {
@@ -66,7 +38,49 @@ const data: DataType[] = [
     },
 ];
 
-export function TableCustom() {
+
+
+export default function TableCustom() {
+    // const router = useRouter()
+// PATH_DASHBOARD.admin.products.edit
+    const handleNavigateToSlug = (name: string) => {
+        const slugName = name.toLowerCase().replace(/\s+/g, "-");
+        console.log("table name::", slugName);
+        // router.push(`/dashboard/products-management/${slugName}`)
+    };
+    const columns: ColumnsType<DataType> = [
+        {
+            title: "Tên sản phẩm",
+            dataIndex: "name",
+            key: "name",
+            render: (text) => <a>{text}</a>,
+        },
+        {
+            title: "SKU",
+            dataIndex: "age",
+            key: "age",
+        },
+        {
+            title: "Mã đối tác",
+            dataIndex: "address",
+            key: "address",
+        },
+        {
+            title: "Tên đối tác",
+            key: "tags",
+            dataIndex: "tags",
+            render: (tags: string[]) => <TableData tags={tags} />,
+        },
+        {
+            title: "Action",
+            key: "action",
+            render: (_, record) => (
+                <TableAction
+                    handleSetParam={() => handleNavigateToSlug(record.name)}
+                />
+            ),
+        },
+    ];
     return (
         <Table<DataType>
             columns={columns}

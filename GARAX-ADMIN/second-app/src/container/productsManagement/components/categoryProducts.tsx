@@ -3,25 +3,33 @@
 import { ButtonPrimary } from "@/components/button";
 import { DatePickerCustom } from "@/components/datePicker";
 import { DropdownCustom } from "@/components/dropdown";
+import OptionsOutline from "@/components/icons/optionsOutline";
+import { SettingOutlined, ToolOutlined } from "@ant-design/icons";
 
 function CategoryProductsFilter() {
     return (
         <div className="flex justify-between items-center mb-5">
             <div className="flex flex-row gap-4">
                 <div className="flex items-center">
-                    <DropdownCustom nameDropdown="Danh mục sản phẩm" />
+                    <DropdownCustom
+                        icon={<ToolOutlined />}
+                        nameDropdown="Danh mục sản phẩm"
+                    />
                 </div>
 
                 <div className="flex items-center">
-                    <DatePickerCustom namePlaceholder="Từ ngày"/>
+                    <DatePickerCustom namePlaceholder="Từ ngày" />
                 </div>
 
                 <div className="flex items-center">
-                    <DatePickerCustom namePlaceholder="Đến ngày"/>
+                    <DatePickerCustom namePlaceholder="Đến ngày" />
                 </div>
 
                 <div className="flex items-center">
-                    <DropdownCustom nameDropdown="Tùy chọn bổ sung" />
+                    <DropdownCustom
+                        icon={<OptionsOutline />}
+                        nameDropdown="Tùy chọn bổ sung"
+                    />
                 </div>
             </div>
 
@@ -39,7 +47,6 @@ function CategoryProductsFilter() {
                     className="border-1 border-solid border-[#01C8A9] shadow-custom"
                 />
             </div>
-
         </div>
     );
 }

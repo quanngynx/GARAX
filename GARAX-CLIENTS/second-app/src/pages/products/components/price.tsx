@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 
-import Button from "../../../components/button";
+import Button from "../../../components/button/button";
 
 const currencies = [
   {
@@ -16,8 +16,11 @@ const currencies = [
   },
 ];
 
-// eslint-disable-next-line react/prop-types
-function Recommend({ handleClick }) {
+interface IRecommend {
+  handleClick: () => void
+}
+
+function Recommend({ handleClick } : IRecommend) {
   return (
     <div className="mt-6 flex flex-col md:flex-row md:justify-between">
       <div className="flex h-[48px]">

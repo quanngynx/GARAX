@@ -4,8 +4,10 @@ import { useDropzone } from "react-dropzone";
 import styles from "../styles/Home.module.css";
 
 function mediaProduct() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [selectedImages, setSelectedImages] = useState([]);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     acceptedFiles.forEach((file) => {
       setSelectedImages((prevState) => [...prevState, file]);

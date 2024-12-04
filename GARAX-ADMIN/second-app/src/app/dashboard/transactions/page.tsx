@@ -1,9 +1,9 @@
-function TransactionPage() {
-    return ( 
-        <div className="">
+import { TransactionsPage } from "@/container/transactions";
 
-        </div>
+function TransactionPages() {
+    return ( 
+        <TransactionsPage />
      );
 }
 
-export default TransactionPage;
+export default TransactionPages;

@@ -1,4 +1,4 @@
-import { StatictisticsPage } from "../../../container/statictist";
+import { StatictisticsPage } from "@/container/statictist";
 
 
 function StatictisticsPages() {

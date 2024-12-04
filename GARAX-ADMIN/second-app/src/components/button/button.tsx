@@ -8,12 +8,14 @@ export function ButtonPrimary({
     nameBtn,
     sizeType,
     type,
-    className
+    className,
+    handleFc
 }: {
     nameBtn: string;
     sizeType: SizeType;
     type: Type;
     className: string;
+    handleFc?: () => void
 }) {
     return (
         <Button
@@ -22,6 +24,7 @@ export function ButtonPrimary({
             shape="round"
             icon={<PlusCircleOutlined />}
             size={sizeType}
+            onClick={handleFc}
         >
             {nameBtn}
         </Button>

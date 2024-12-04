@@ -36,7 +36,7 @@ function WhyChooseUs() {
               className="flex flex-col items-center p-6 bg-white rounded-xl shadow-lg text-center transition-transform transform hover:scale-105"
             >
               <div className="text-4xl mb-4 text-[#7f56d9]">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-[#050b20 ] mb-2">{service.title}</h3>
+              <h3 className="text-xl font-semibold text-[#050b20 ] mb-2 text-black">{service.title}</h3>
               <p className="text-gray-600">{service.description}</p>
             </div>
           ))}

@@ -1,25 +1,36 @@
 import { Link } from "react-router-dom";
 import slugify from "slugify";
 
-import TopRightTinyIcon from "../assets/icons/topRight-vector-tiny.svg?react";
-import RangeTinyIcon from "../assets/icons/range-tiny.svg?react";
-import FuelTypeTinyIcon from "../assets/icons/fuel-type-tiny.svg?react";
-import TransmissionTypeTinyIcon from "../assets/icons/transmission-car-tiny.svg?react";
-import ScheduleTinyIcon from "../assets/icons/schedule-tiny.svg?react";
+import TopRightTinyIcon from "../../assets/home/icons/topRight-vector-tiny.svg?react";
+import RangeTinyIcon from "../../assets/home/icons/range-tiny.svg?react";
+import FuelTypeTinyIcon from "../../assets/home/icons/fuel-type-tiny.svg?react";
+import TransmissionTypeTinyIcon from "../../assets/home/icons/transmission-car-tiny.svg?react";
+import ScheduleTinyIcon from "../../assets/home/icons/schedule-tiny.svg?react";
 import LineFull from "../line/line";
+
+type TCard = {
+  image: string
+  title: string
+  description: string
+  descriptionDetail1: string
+  descriptionDetail2: string
+  range: string
+  transmission: string
+  fuel_type: string
+  year: string
+  cost: string
+}
 
 function card({
   image,
   title,
   description,
-  descriptionDetail1,
-  descriptionDetail2,
   range,
   transmission,
   fuel_type,
   year,
   cost,
-}) {
+} : TCard) {
   const slug = slugify(title, { lower: true, strict: true })
   const productPath = `${slug}`;
   return (

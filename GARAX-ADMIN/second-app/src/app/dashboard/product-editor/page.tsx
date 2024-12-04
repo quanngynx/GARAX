@@ -1,7 +1,7 @@
 function ProductEditPage() {
     return ( 
         <div className="">
-
+           Edit Products
         </div>
      );
 }

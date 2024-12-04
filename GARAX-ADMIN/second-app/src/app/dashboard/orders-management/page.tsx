@@ -1,9 +1,9 @@
-function OrdersManagementPage() {
+import OrdersManagementPage from "@/container/orders-management/page";
+
+function OrdersManagementPages() {
     return ( 
-        <div className="">
-            OrdersManagementPage
-        </div>
+        <OrdersManagementPage />
      );
 }
 
-export default OrdersManagementPage;
+export default OrdersManagementPages;

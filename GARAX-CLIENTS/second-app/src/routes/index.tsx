@@ -25,8 +25,8 @@ import ServicePage from '../pages/service/index'
 
 
 // Profile
-// import ProfileUser from '../pages/profile/index'
-// import ProfileUserUser from '../pages/profile/components/profilePage'
+import ProfileUser from '../pages/profile/index'
+import ProfileUserUser from '../pages/profile/components/profilePage'
 // import ProfilePaymentInfo from '../pages/profile/page/paymentInfor/paymentInfor'
 // import ProfileTheme from '../pages/profile/page/theme/theme'
 // import ProfileNotification from '../pages/profile/page/notification/notification'
@@ -58,10 +58,10 @@ function Routes() {
               path: "product",
               element: <ProductPage />,
             },
-            // {
-            //   path: "product/:slug",
-            //   element: <DetailProductPage />,
-            // },
+            {
+              path: "product/:slug",
+              element: <DetailProductPage />,
+            },
             // {
             //   path: "service",
             //   element: <DelayedSuspense delay={1000} fallback={<Loader/>}><ServicePage /></DelayedSuspense>,
@@ -124,46 +124,46 @@ function Routes() {
             },
           ],
         },
-        // {
-        //   path: "user",
-        //   element: <MainLayout />,
-        //   children: [
-        //     {
-        //       path: "profile",
-        //       /**
-        //        * @description protect route
-        //        * @example element: { <AuthGuard><ProfileUser /></AuthGuard> }
-        //        */
-        //       element: <ProfileUser />,
-        //       children: [
-        //         {
-        //           path: '',
-        //           element: <ProfileUserUser />
-        //         },
-        //         {
-        //           path: 'payment-infor',
-        //           element: <ProfilePaymentInfo />
-        //         },
-        //         {
-        //           path: 'theme',
-        //           element: <ProfileTheme />
-        //         },
-        //         {
-        //           path: 'notification',
-        //           element: <ProfileNotification />
-        //         },
-        //         {
-        //           path: 'sercurity',
-        //           element: <ProfileSercurity />
-        //         },
-        //         {
-        //           path: 'history-access',
-        //           element: <ProfileHistoryAccess />
-        //         }
-        //       ] 
-        //     }
-        //   ]
-        // },
+        {
+          path: "user",
+          element: <MainLayout />,
+          children: [
+            {
+              path: "profile",
+              /**
+               * @description protect route
+               * @example element: { <AuthGuard><ProfileUser /></AuthGuard> }
+               */
+              element: <ProfileUser />,
+              children: [
+                {
+                  path: '',
+                  element: <ProfileUserUser />
+                },
+                // {
+                //   path: 'payment-infor',
+                //   element: <ProfilePaymentInfo />
+                // },
+                // {
+                //   path: 'theme',
+                //   element: <ProfileTheme />
+                // },
+                // {
+                //   path: 'notification',
+                //   element: <ProfileNotification />
+                // },
+                // {
+                //   path: 'sercurity',
+                //   element: <ProfileSercurity />
+                // },
+                // {
+                //   path: 'history-access',
+                //   element: <ProfileHistoryAccess />
+                // }
+              ] 
+            }
+          ]
+        },
         // {
         //   path: "test",
         //   element: <OnlyCanvas />,

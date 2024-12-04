@@ -22,7 +22,7 @@ function administrationPanel() {
         Công cụ quản trị
       </div>
 
-      <div className="text-[#212121] text-[32px] font-semibold font-['Roboto'] leading-normal mt-4 mb-4">
+      <div className="text-[#212121] text-[32px] font-semibold font-['Roboto'] leading-normal mt-4">
         {ListFeat.map((i, index) => (
             <div key={index} className='inline-flex items-center mr-4'>
                 <div className='mr-2'>{i.icon}</div>

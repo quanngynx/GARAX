@@ -1,16 +1,19 @@
-import React from "react";
-import { SettingOutlined } from "@ant-design/icons";
+import React, { ReactNode } from "react";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
 
 const items: MenuProps["items"] = [
     {
-        label: <a href="https://www.antgroup.com">1st menu item</a>,
+        label: <button>Động cơ</button>,
         key: "0",
     },
     {
-        label: <a href="https://www.aliyun.com">2nd menu item</a>,
+        label: <button>Điện</button>,
         key: "1",
+    },
+    {
+        label: <button>Nội & Ngoại</button>,
+        key: "2",
     },
     {
         type: "divider",
@@ -21,7 +24,9 @@ const items: MenuProps["items"] = [
     },
 ];
 
-export function DropdownCustom({ nameDropdown }: { nameDropdown: string; }) {
+interface IDropdownCustom { nameDropdown: string; icon: ReactNode }
+
+export function DropdownCustom({ nameDropdown, icon }: IDropdownCustom ) {
     return (
         <Dropdown
             className="rounded-md focus-within:border-blue-500 hover:border-blue-500 border-gray-300"
@@ -32,7 +37,7 @@ export function DropdownCustom({ nameDropdown }: { nameDropdown: string; }) {
             <a onClick={(e) => e.preventDefault()}>
                 <Button >
                     {nameDropdown}
-                    <SettingOutlined />
+                    {icon}
                 </Button>
             </a>
         </Dropdown>
