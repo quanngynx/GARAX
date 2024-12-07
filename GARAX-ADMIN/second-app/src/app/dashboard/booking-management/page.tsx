@@ -1,9 +1,10 @@
-function BookingManagementPage() {
+import { BookingManagementPage } from "@/container/bookingManagement";
+
+function BookingManagementPages() {
     return ( 
-        <div className="">
-            BookingManagementPage
-        </div>
+        <BookingManagementPage />
      );
 }
 
-export default BookingManagementPage;
+export default BookingManagementPages;
+

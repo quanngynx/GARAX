@@ -38,7 +38,7 @@ function AddInforProduct() {
         },
       ];
       return (
-        <div className="w-[60%]">
+        <div className="w-[60%] border-[0.5px] border-solid border-slate-300 rounded-2xl px-[16px] py-[24px]">
           {/* <div className="text-[#212121] text-[32px] font-semibold font-['Roboto'] leading-normal mb-4">
             Thông tin chi tiết
           </div> */}
@@ -60,10 +60,10 @@ function AddInforProduct() {
           </div>
     
           <div className="flex justify-between items-center gap-4 mt-8">
-            <button className="rounded-full py-2 bg-[#1E1E1E] w-full text-white text-xl font-bold font-['Roboto'] leading-normal">
+            <button className="rounded-full py-2 bg-[#1E1E1E] hover:transition-custom hover:text-[#1E1E1E] hover:shadow-black w-full text-white text-xl border-[0.5px] border-solid border-[#1E1E1E] font-bold font-['Roboto'] leading-normal">
               Lưu bản nháp
             </button>
-            <button className="rounded-full py-2 bg-[#1E1E1E] w-full text-white text-xl font-bold font-['Roboto'] leading-normal">
+            <button className="rounded-full py-2 bg-[#1E1E1E] hover:shadow-black w-full text-white text-xl font-bold font-['Roboto'] border-[0.5px] border-solid border-[#1E1E1E] leading-normal">
               Cập nhật thông tin
             </button>
           </div>

@@ -1,5 +1,5 @@
 {
-  "home-page": {
+  "dashboard": {
     
   },
   "login-page": {
@@ -17,14 +17,14 @@
   "regis-page": {
 
   },
-  "header": {
+  "sidenav": {
     "menu": "Danh mục",
     "sign-in": "Đăng nhập",
     "tit": "Đăng kí thành viên để tận hưởng nhiều ưu đãi hơn",
     "sign-up": "Đăng kí",
     "mainBtnMoile": "Đăng kí/Đăng nhập"
   },
-  "footer": {
+  "navbar": {
     "head-footer": {
       "tit": "",
       "pagraph": "",

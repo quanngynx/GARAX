@@ -20,7 +20,7 @@ function PageHeader({ namePage } : { namePage: string }) {
         return () => clearInterval(interval);
     }, [currentTime]);
   return (
-    <div className="bg-[#e2e8f0] w-full h-[80px] mt-6 px-4 py-6 rounded-xl mb-8">
+    <div className="bg-white border-[0.5px] border-solid border-slate-400 w-full my-6 px-4 py-4 rounded-xl">
       <div className="flex justify-between items-center w-full h-full">
         <div className="font-bold text-2xl font-['Inter'] leading-[18px]">{namePage}</div>
         <div className="inline-flex text-[#1c1c1c] text-base font-semibold font-['Inter'] leading-[18px]">

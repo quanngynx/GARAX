@@ -13,6 +13,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 
 import { TValuesMediaProduct } from "../types";
+import { UploadOutline } from "@/components/icons";
 
 function AddMediaProduct() {
     const defaultValues: TValuesMediaProduct = {
@@ -61,7 +62,7 @@ function AddMediaProduct() {
     });
 
     return (
-        <div className="w-[40%] mr-8">
+        <div className="w-[40%] border-[0.5px] border-solid border-slate-300 rounded-2xl px-[16px] py-[24px]">
             <div className="">
                 <div className="flex flex-col">
                     <label className="mb-2 text-gray-700">Hình ảnh</label>
@@ -72,10 +73,10 @@ function AddMediaProduct() {
                             {isDragActive ? (
                                 <p>Drop file(s) here ...</p>
                             ) : (
-                                <p>
-                                    Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn
-                                    tệp
-                                </p>
+                                <div className="flex flex-col justify-center items-center">
+                                    <UploadOutline ClassName="text-3xl"/>
+                                   <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
+                                </div>
                             )}
                         </div>
                         <div className={styles.images}>
@@ -106,12 +107,12 @@ function AddMediaProduct() {
                 </div>
 
                 <div className="field-wrapper flex flex-col mt-5">
-                    <label className="field-label" htmlFor="description">
+                    <label className="field-label mb-[16px]" htmlFor="description">
                         Description
                     </label>
                     <textarea
                         className={classNames(
-                            `field-input !h-[160px] !py-[15px] !overflow-y-auto`,
+                            `field-input !h-[150px] !py-[15px] !overflow-y-auto border-[0.5px]`,
                             { "field-input--error": errors.description },
                         )}
                         id="description"

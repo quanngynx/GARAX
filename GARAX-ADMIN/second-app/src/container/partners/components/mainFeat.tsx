@@ -16,7 +16,7 @@ function MainFeat() {
         <div className="flex justify-between mb-5">
             <div className="flex border-1 border-black gap-4">
                 <ButtonPrimary
-                    nameBtn="Thêm mới sản phẩm"
+                    nameBtn="Thêm đối tác"
                     sizeType="large"
                     type="primary"
                     className="bg-[#00BA9D] border-1 border-solid border-[#01C8A9] shadow-custom"
@@ -31,7 +31,7 @@ function MainFeat() {
             </div>
 
             <div className="flex items-center gap-4">
-                <AutoCompletePrimary placeHolder="Lọc theo tên đại lý..."/>
+                <AutoCompletePrimary placeHolder="Lọc theo tên đối tác..."/>
 
                 <DropdownCustom
                     icon={<SettingOutlined />}

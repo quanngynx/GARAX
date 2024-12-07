@@ -1,4 +1,4 @@
-import OrdersManagementPage from "@/container/orders-management/page";
+import OrdersManagementPage from "@/container/ordersManagement/page";
 
 function OrdersManagementPages() {
     return ( 

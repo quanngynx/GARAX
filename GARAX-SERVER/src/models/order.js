@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Define association with OrderProduct
       Order.hasMany(models.OrderProduct, {
-        foreignKey: 'idOrder', // Đảm bảo trường này tồn tại trong OrderProduct
+        foreignKey: 'idOrder', // Trường này tồn tại trong OrderProduct
         as: 'orderProducts',  // Alias có thể được sử dụng trong truy vấn
       });
       Order.belongsTo(models.Account, {

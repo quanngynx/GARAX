@@ -98,9 +98,9 @@ const items: MenuItem[] = [
         label: "Phân quyền người dùng",
         icon: <HeroiconsOutlineUserGroup width={16} height={16}/>,
         children: [
-            { key: "9", label: "Nhóm người dùng" },
-            { key: "10", label: "Phân quyền" },
-            { key: "11", label: "Quản lý quyền truy cập" },
+            { key: PATH_DASHBOARD.admin.users.root, label: "Nhóm người dùng" },
+            { key: PATH_DASHBOARD.admin.users.permission, label: "Phân quyền" },
+            { key: PATH_DASHBOARD.admin.users.access_management, label: "Quản lý quyền truy cập" },
         ],
     },
     {

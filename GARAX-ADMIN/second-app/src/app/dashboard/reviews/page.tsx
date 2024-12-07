@@ -1,9 +1,9 @@
-function ReviewsPage() {
-    return ( 
-        <div className="">
+import ReviewsPage from "@/container/reviews/page";
 
-        </div>
+function ReviewsPages() {
+    return ( 
+        <ReviewsPage />
      );
 }
 
-export default ReviewsPage;
+export default ReviewsPages;

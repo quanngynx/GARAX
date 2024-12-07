@@ -81,6 +81,7 @@ export const PATH_DASHBOARD = {
         users: {
             root: path(ROOTS.DASHBOARD, "/users"),
             permission: path(ROOTS.DASHBOARD, "/users/permission"),
+            access_management: path(ROOTS.DASHBOARD, "/users/access-management"),
         },
         account_setting: path(ROOTS.DASHBOARD, "/setting"),
         settings: {
