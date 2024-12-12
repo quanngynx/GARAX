@@ -1,0 +1,1 @@
+export const ROUTES_ORDERS: string = 'orders';

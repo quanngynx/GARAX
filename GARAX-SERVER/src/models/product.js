@@ -1,5 +1,7 @@
 'use strict';
-const { Model } = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 
 const { default: slugify } = require("slugify");
 
@@ -12,77 +14,43 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.hasMany(models.ProductCategory, {
-        foreignKey: 'idProduct', // from ProductCategory
-        as: 'productCategory',
-      }); // DONE
-      Product.hasOne(models.ProductDetail, {
-        foreignKey: 'idProduct', // from ProductDetail
-        as: 'productDetail',
-      }); // DONE
-      Product.hasMany(models.ProductMedia, {
-        foreignKey: 'idProductMedia',
-        as: 'productMedia',
-      }); // DONE
-      Product.hasMany(models.ProductFeedback, {
-        foreignKey: 'idProductFeedback',
-        as: 'productFeedback',
-      }); // DONE
-      Product.belongsTo(models.Brand, {
-        foreignKey: 'idBrand',
-        as: 'brand',
-      }); // DONE
-      Product.belongsTo(models.CartItemsProduct, {
-        foreignKey: 'idCartItemsProduct',  // from Product
-        as: 'cartItemsProduct'
-      });
-      Product.hasMany(models.OrderProduct, {
-        foreignKey: 'idProduct',  // from Product
-        as: 'orderProduct'
-      });
     }
   }
-  Product.init(
-    {
-      idProduct: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER
-      },
-      idCartItemsProduct: DataTypes.INTEGER,
-      idBrand: DataTypes.INTEGER,
-      nameProduct: DataTypes.STRING,
-      alias: DataTypes.STRING,
-      thumble: DataTypes.STRING,
-      quantity: DataTypes.INTEGER,
-      originalPrice: DataTypes.INTEGER,
-      sold: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-      },
-      status: {
-        type: DataTypes.ENUM('publish', 'unpublish'),
-        defaultValue: 'publish'
-      },
-      isActive: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true
+  Product.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: DataTypes.STRING,
+    slug: DataTypes.STRING,
+    desc: DataTypes.JSON,
+    views: DataTypes.INTEGER,
+    tags: DataTypes.ENUM,
+    manufacturingDate: DataTypes.BIGINT,
+    minPrice: DataTypes.INTEGER,
+    maxPrice: DataTypes.INTEGER,
+    categoryId: DataTypes.STRING,
+    subCategoryId: DataTypes.STRING,
+    sub2CategoryId: DataTypes.STRING,
+    sub3CategoryId: DataTypes.STRING,
+    videoId: DataTypes.STRING,
+    brandId: DataTypes.STRING,
+    status: DataTypes.ENUM,
+    createBy: DataTypes.STRING,
+    updateBy: DataTypes.STRING
+  },{
+    sequelize,
+    modelName: 'Product',
+    tableName: 'products',
+    timestamps: true,
+    hooks: {
+      beforeValidate: (product) => {
+        product.slug = slugify(product.name, { lower: true, trim: true });
       },
     },
-    {
-      sequelize,
-      modelName: 'Product',
-      timestamps: true,
-      hooks: {
-        beforeValidate: (product) => {
-          product.alias = slugify(product.nameProduct, { lower: true, trim: true });
-        },
-      },
-    }
-  );
-  // SequelizeSlugify.slugifyModel(Product, {
-  //   source: ['nameProduct'],
-  // });
+  });
   return Product;
 };
+
+

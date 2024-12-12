@@ -5,42 +5,42 @@ const ProductService = require("../services/product.service")
 class ProductController {
   getAllProducts = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Get all product success!',
+      message: 'Lấy tất cả hàng hóa thành công!',
       metadata: await ProductService.getAllProducts()
     }).send(res)
   }
 
   getProductById = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Get product by id success!',
+      message: 'Lấy hàng hóa bằng id thành công!',
       metadata: await ProductService.getProductById(req.params)
     }).send(res)
   }
 
   addNewProduct = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Add new product success!',
+      message: 'Thêm mới hàng hóa thành công!',
       metadata: await ProductService.addNewProduct(req.body)
     }).send(res)
   }
 
   updateProductById = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Update product success!',
+      message: `Cập nhật hàng hóa ${req.params._id} thành công!`,
       metadata: await ProductService.updateProductById(req.params, req.body)
     }).send(res)
   }
 
   updatePartProductById = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Update {} in product success!',
+      message: `Cập nhật hàng hóa ${req.params._id} thành công!`,
       metadata: await ProductService.updatePartProductById(req.params, req.body)
     }).send(res)
   }
 
   removeProductById = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Remove product success!',
+      message: `Remove product ${req.params._id} success!`,
       metadata: await ProductService.removeProductById(req.params)
     }).send(res)
   }
@@ -54,7 +54,7 @@ class ProductController {
 
   deleteProductById = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Delete product success!',
+      message: `Delete product ${req.params._id} success!`,
       metadata: await ProductService.deleteProductById(req.params)
     }).send(res)
   }
@@ -75,7 +75,7 @@ class ProductController {
 
   findAllProduct = async (req, res, next) => {
     new SuccessResponse({
-      message: 'Find all product success!',
+      message: `Find all product with query::${req.query.nameProd} success!`,
       metadata: await ProductService.findAllProduct(req.query)
     }).send(res)
   }

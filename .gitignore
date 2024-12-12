@@ -170,3 +170,5 @@ secret.txt
 .nx/cache
 .nx/workspace-data
 /GARAX-SERVER/src/config/config.json
+
+src.md

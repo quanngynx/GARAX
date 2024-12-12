@@ -19,7 +19,7 @@ export function TableAction({ handleSetParam } : ITableAction) {
             onClick={handleSetParam}>
             <EditOutlined />
             </button>
-            <a>Delete</a>
+            <a>Xóa</a>
         </Space>
     );
 }

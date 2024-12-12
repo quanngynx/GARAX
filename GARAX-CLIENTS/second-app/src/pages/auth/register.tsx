@@ -6,6 +6,8 @@ import {
   Paper,
   Box,
   Link,
+  Checkbox,
+  FormControlLabel,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -14,11 +16,10 @@ import BackGroundGarax from '../../assets/auth/images/background1.png';
 
 function Register() {
   const navigate = useNavigate();
-  const [fullname, setFullname] = useState('');
+  const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [confirmpass, setConfirmPass] = useState('');
-  const [phone, setPhone] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   localStorage.setItem('email', email);
@@ -26,7 +27,7 @@ function Register() {
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     setIsSubmitting(true);
-    if (!email || !fullname || !phone || !password || !confirmpass) {
+    if (!email || !userName || !password || !confirmpass) {
       setErrorMessage('Please fill out all fields.');
       return;
     }
@@ -47,24 +48,16 @@ function Register() {
       return;
     }
 
-    const phoneRegex = /^[0-9]{10,11}$/;
-    if (!phoneRegex.test(phone)) {
-      setErrorMessage('Phone number is not valid.');
-      return;
-    }
-
     if (password !== confirmpass) {
       setErrorMessage('Password and confirm password do not match.');
       return;
     }
-
      
     try {
       await axios.post(API_ROUTES.REGISTER,{
+        userName,
         email,
         password,
-        fullname,
-        phone,
       });
       navigate('/auth/verify');
     } catch (error) {
@@ -97,7 +90,7 @@ function Register() {
         }}
       />
         <Paper
-          elevation={10}
+          elevation={12}
           sx={{
           flex: { xs: 1, md: 0.35 },
           justifyContent:'center',
@@ -110,35 +103,27 @@ function Register() {
           }}
         >
           <Typography variant="h4" component="h1" gutterBottom align="center" fontWeight={'600'}>
-            Create an account
+            Đăng kí
           </Typography>
           <form onSubmit={handleSubmit}>
+            <div className='flex justify-between items-center'>
             <TextField
-              fullWidth
               margin="normal"
-              label="Your email"
+              label="Tên người dùng"
+              value={userName}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <TextField
+              margin="normal"
+              label="Địa chỉ email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-            />
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Your name"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
               required
             />
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Your phone"
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
+            </div>
             <TextField
               fullWidth
               margin="normal"
@@ -162,6 +147,7 @@ function Register() {
                 {errorMessage}
               </Typography>
             )}
+            <FormControlLabel required control={<Checkbox />} label="Bạn đã đọc và đồng ý với các điều khoản dịch vụ và chính sách quyền riêng tư của chúng tôi" />
             <Button
               type="submit"
               fullWidth
@@ -174,9 +160,9 @@ function Register() {
             </Button>
           </form>
           <Typography variant="body2" align="center" mt={2}>
-            Already have an account?{''}
+            Đã có tài khoản?{' '}
             <Link href="/auth/login" color="primary">
-              Login here
+              Đăng nhập ở đây
             </Link>
           </Typography>
         </Paper>

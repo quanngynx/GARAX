@@ -17,11 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ServiceCategory.init({
-    idServiceCategory: {
-      allowNull: false,
-      autoIncrement: true,
+    id: {
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      autoIncrement: true,
     },
     title: DataTypes.STRING,
     alias: DataTypes.STRING

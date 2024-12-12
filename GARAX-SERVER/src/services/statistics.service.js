@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 
 const { BadRequestError } = require('../middlewares/error.response')

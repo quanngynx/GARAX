@@ -1,104 +1,131 @@
-'use strict'
+'use strict';
 
-const JWT = require('jsonwebtoken')
+const JWT = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
-const asyncHandler  = require('../../middlewares/asyncHandler.middeware')
-const { AuthFailureError, NotFoundError } = require('../../middlewares/error.response')
+const KeyTokenService = require('../../services/keyToken.service');
 
-const HEADER = {
-  API_KEY: 'x-api-key',
-  CLIENT_ID: 'x-client-id',
-  AUTHORIZATION: 'authorization',
-  REFRESHTOKEN: 'refreshtoken'
-}
+const asyncHandler = require('../../middlewares/asyncHandler.middleware');
+const {
+  AuthFailureError,
+  NotFoundError,
+} = require('../../middlewares/error.response');
 
-const createTokenPair = async ( payLoad, publicKey, privateKey ) => {
+const { TOKENS, HEADER } = require('../../constants');
+
+const TYPEOF_ALGORITHM_AT = TOKENS.OPTIONS_1.AT.ALGORITHM;
+const TYPEOF_EXPIRESIN_AT = TOKENS.OPTIONS_1.AT.EXPIRESIN;
+const TYPEOF_ALGORITHM_RT = TOKENS.OPTIONS_1.RT.ALGORITHM;
+const TYPEOF_EXPIRESIN_RT = TOKENS.OPTIONS_1.RT.EXPIRESIN;
+
+const createTokenPair = async (payLoad, publicKey, privateKey) => {
   try {
-      const accessToken = await JWT.sign( payLoad, privateKey, {
-          algorithm: 'RS256',
-          expiresIn: '2 days'
-      })
+    const accessToken = await JWT.sign(payLoad, privateKey, {
+      algorithm: TYPEOF_ALGORITHM_AT,
+      expiresIn: TYPEOF_EXPIRESIN_AT,
+    });
 
-      const refreshToken = await JWT.sign( payLoad, privateKey, {
-          algorithm: 'RS256',
-          expiresIn: '7 days'
-      })
+    const refreshToken = await JWT.sign(payLoad, privateKey, {
+      algorithm: TYPEOF_ALGORITHM_RT,
+      expiresIn: TYPEOF_EXPIRESIN_RT,
+    });
 
-      JWT.verify( accessToken, publicKey, (err, decode) => {
-          if(err){
-              console.error(`error verify::`, err)
-          } else{
-              console.log(`decode verify::`, decode)
-          }
-      })
-      return { accessToken, refreshToken }
-  } catch (error) {
+    JWT.verify(accessToken, publicKey, (err, decode) => {
+      if (err) {
+        console.error(`error verify::`, err);
+      } else {
+        console.log(`decode verify::`, decode);
+      }
+    });
+    return { accessToken, refreshToken };
+  } catch (error) {}
+};
 
-  }
-}
-
-const authentication = asyncHandler( async (req, res, next) => {
+const authentication = asyncHandler(async (req, res, next) => {
   /**
-  * @author Quan
-  * 1 - Check userId missing??
-  * 2 - get accessToken
-  * 3 - verifyToken
-  * 4 - check user in db
-  * 5 - check keyStore with this userId
-  * 6 - OK all?? return next
-  */
+   * @author Quan
+   * 1 - Check userId missing??
+   * 2 - get accessToken
+   * 3 - verifyToken
+   * 4 - check user in db
+   * 5 - check keyStore with this userId
+   * 6 - OK all?? return next
+   */
 
-  // // 1.
-  // const userId = req.headers[HEADER.CLIENT_ID]
-  // if (!userId) throw new AuthFailureError('Invalid Request! - 53')
+  const userId = req.headers[HEADER.CLIENT_ID];
+  if (!userId) throw new AuthFailureError('Invalid Request! - 53');
 
-  // // 2.
-  // const keyStore = await KeyTokenService.findByUserId( userId )
-  // if (!keyStore) throw new NotFoundError('Not found keyStore! - 57')
+  const keyStore = await KeyTokenService.findByUserId(userId);
+  if (!keyStore) throw new NotFoundError('Not found keyStore! - 57');
 
-  // // 3.
-  // if(req.headers[HEADER.REFRESHTOKEN]){
-  //   try {
-  //     const refreshToken = req.headers[HEADER.REFRESHTOKEN]
-  //     const decodeUser = JWT.verify( refreshToken, keyStore.privateKey )
+  if (req.headers[HEADER.REFRESHTOKEN]) {
+    try {
+      const refreshToken = req.headers[HEADER.REFRESHTOKEN];
+      const decodeUser = JWT.verify(refreshToken, keyStore.privateKey);
 
-  //     if(userId !== decodeUser.userId) throw new AuthFailureError('Invalid userId! - 65')
+      if (userId !== decodeUser.userId)
+        throw new AuthFailureError('Invalid userId! - 65');
 
-  //     req.keyStore = keyStore
-  //     req.user = decodeUser
-  //     req.refreshToken = refreshToken
+      req.keyStore = keyStore;
+      req.user = decodeUser;
+      req.refreshToken = refreshToken;
 
-  //     return next()
+      return next();
+    } catch (error) {
+      throw error;
+    }
+  }
+  const accessToken = req.headers[HEADER.AUTHORIZATION];
+  if (!accessToken) throw new AuthFailureError('Invalid Request! - 78');
 
-  //   } catch (error) {
-  //     throw error
-  //   }
-  // }
-  // const accessToken = req.headers[HEADER.AUTHORIZATION]
-  // if (!accessToken) throw new AuthFailureError('Invalid Request! - 78')
+  try {
+    const decodeUser = JWT.verify(accessToken, keyStore.publicKey);
 
-  // try {
-  //   const decodeUser = JWT.verify( accessToken, keyStore.publicKey )
+    if (userId !== decodeUser.userId)
+      throw new AuthFailureError('Invalid userId! - 83');
 
-  //   if(userId !== decodeUser.userId) throw new AuthFailureError('Invalid userId! - 83')
+    req.keyStore = keyStore;
+    req.user = decodeUser;
 
-  //   req.keyStore = keyStore
-  //   req.user = decodeUser // { userId, email }
+    return next();
+  } catch (error) {
+    throw error;
+  }
+});
 
-  //   return next()
+const verifyJWT = async (token, keySecret) => {
+  return await JWT.verify(token, keySecret);
+};
 
-  // } catch (error) {
-  //   throw error
-  // }
-})
-
-
-const verifyJWT = async ( token, keySecret ) => {
-  return await JWT.verify( token, keySecret )
+const sendOtpByNodemailer = async ({ title, otp, toEmail }) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.NODEMAILER_MAIL_USERNAME,
+        pass: process.env.NODEMAILER_MAIL_PASSWORD
+      }
+    });
+    const options = {
+      from: process.env.EMAIL_USER,
+      to: toEmail,
+      subject: title,
+      text: `Mã OTP của bạn là: ${otp}`,
+    }
+    transporter.sendMail(
+      options,
+      (error, info) =>
+        error ? console.log(error) : console.log('Email sent: ' + info.response)
+    )
+  } catch (error) {
+    console.error(error)
+    return error
+  }
 }
 
 module.exports = {
   createTokenPair,
-  authenticationUser,
+  authentication,
   verifyJWT,
-}
+  sendOtpByNodemailer
+};

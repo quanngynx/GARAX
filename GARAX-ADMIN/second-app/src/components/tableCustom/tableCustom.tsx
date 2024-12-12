@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC } from "react";
 import { Table } from "antd";
 import type { TableProps, TableColumnsType } from "antd";
 import { createStyles } from 'antd-style';
@@ -6,10 +8,12 @@ import { TableData } from "./Data/TableData";
 import { TablePagination } from "./Pagination/tablePagination";
 import { LineFullWidth } from "../line";
 // import { DoubleScrollBar } from "./ScrollTopBottom/doubleScrollTable";
-import { RefObject, useRef } from "react";
-// import { PATH_DASHBOARD } from "@/routes/paths";
+// import { RefObject, useRef } from "react";
+import { handleNavigateToSlug } from "@/utils/navigateToSlug";
+import { PATH_DASHBOARD } from "@/routes/paths";
 
 // type ColumnsType<T extends object> = TableColumnsType<T>["columns"];
+type FixedType = 'left' | 'right' | undefined
 
 interface DataType {
     key: React.Key;
@@ -17,15 +21,15 @@ interface DataType {
     age: number;
     address: string;
     tags: string[];
+    fixed?: FixedType;
+    hidden?: boolean;
 }
-
-const data = Array.from({ length: 100 }).map<DataType>((_, i) => ({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-    tags: ["nice", "developer"],
-  }));
+//     key: i,
+//     name: `Edward King ${i}`,
+//     age: 32,
+//     address: `London, Park Lane no. ${i}`,
+//     tags: ["nice", "developer"],
+//   }));
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -36,8 +40,9 @@ const useStyle = createStyles(({ css, token }) => {
           ${antCls}-table-body,
           ${antCls}-table-content {
             scrollbar-width: thin;
-            scrollbar-color: #eaeaea transparent;
+            scrollbar-color: #e2e8f0 transparent;
             scrollbar-gutter: stable;
+            scrollbar-border: 1px solid #f6f7ed;
           }
         }
       }
@@ -45,20 +50,23 @@ const useStyle = createStyles(({ css, token }) => {
   };
 });
 
-export default function TableCustom() {
+interface TableCustomProps {
+    columns: TableColumnsType<any>;
+    data: any[];
+}
+
+export const TableCustom: FC<TableCustomProps> = ({
+    columns,
+    data,
+}) => {
     const { styles } = useStyle();
-    // const router = useRouter()
+    
     // PATH_DASHBOARD.admin.products.edit
-    const handleNavigateToSlug = (name: string) => {
-        const slugName = name.toLowerCase().replace(/\s+/g, "-");
-        console.log("table name::", slugName);
-        // router.push(`/dashboard/products-management/${slugName}`)
-    };
 
-    const tableContainerRef: RefObject<HTMLDivElement> =
-        useRef<HTMLDivElement>(null);
+    // const tableContainerRef: RefObject<HTMLDivElement> =
+    //     useRef<HTMLDivElement>(null);
 
-    // #region Selection aobject
+    // #region Selection a object
     const rowSelection: TableProps<DataType>["rowSelection"] = {
         onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
             console.log(
@@ -72,93 +80,94 @@ export default function TableCustom() {
             name: record.name,
         }),
     };
+    //     {
+    //         title: "Tên sản phẩm",
+    //         dataIndex: "name",
+    //         key: "name",
+    //         render: (text: string) => <a>{text}</a>,
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "SKU",
+    //         dataIndex: "age",
+    //         key: "age",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Số lượng tồn",
+    //         dataIndex: "age",
+    //         key: "age",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Mã đối tác",
+    //         dataIndex: "address",
+    //         key: "address",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Tên đối tác",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         render: (tags: string[]) => <TableData tags={tags} />,
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Mã nhà phân phối",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Nhà phân phối",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Ngày sản xuất",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Ngày tạo",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Nhân viên tạo",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Lịch sử cập nhật",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Nhân viên cập nhật",
+    //         key: "tags",
+    //         dataIndex: "tags",
+    //         width: 200,
+    //     },
+    //     {
+    //         title: "Hành động",
+    //         key: "action",
+    //         render: (_: unknown, record: { name: string; }) => (
+    //             <TableAction
+    //                 handleSetParam={() => handleNavigateToSlug(PATH_DASHBOARD.admin.products.edit, record.name)}
+    //             />
+    //         ),
+    //         width: 125,
+    //         fixed: 'right' as FixedType,
+    //         hidden: false
+    //     },
+    // ].filter(item => !item.hidden);
 
-    const columns: TableColumnsType<DataType> = [
-        {
-            title: "Tên sản phẩm",
-            dataIndex: "name",
-            key: "name",
-            render: (text) => <a>{text}</a>,
-            width: 200,
-        },
-        {
-            title: "SKU",
-            dataIndex: "age",
-            key: "age",
-            width: 100,
-        },
-        {
-            title: "Số lượng tồn",
-            dataIndex: "age",
-            key: "age",
-            width: 200,
-        },
-        {
-            title: "Mã đối tác",
-            dataIndex: "address",
-            key: "address",
-            width: 200,
-        },
-        {
-            title: "Tên đối tác",
-            key: "tags",
-            dataIndex: "tags",
-            render: (tags: string[]) => <TableData tags={tags} />,
-            width: 200,
-        },
-        {
-            title: "Mã nhà phân phối",
-            key: "tags",
-            dataIndex: "tags",
-            width: 200,
-        },
-        {
-            title: "Nhà phân phối",
-            key: "tags",
-            dataIndex: "tags",
-            width: 200,
-        },
-        {
-            title: "Ngày sản xuất",
-            key: "tags",
-            dataIndex: "tags",
-            width: 200,
-        },
-        {
-            title: "Ngày tạo",
-            key: "tags",
-            dataIndex: "tags",
-            width: 200,
-        },
-        {
-            title: "Nhân viên tạo",
-            key: "tags",
-            dataIndex: "tags",
-            width: 200,
-        },
-        {
-            title: "Lịch sử cập nhật",
-            key: "tags",
-            dataIndex: "tags",
-            width: 200,
-        },
-        {
-            title: "Nhân viên cập nhật",
-            key: "tags",
-            dataIndex: "tags",
-            width: 200,
-        },
-        {
-            title: "Action",
-            key: "action",
-            render: (_, record) => (
-                <TableAction
-                    handleSetParam={() => handleNavigateToSlug(record.name)}
-                />
-            ),
-            width: 200,
-        },
-    ];
     return (
         <div>
             <TablePagination />
@@ -169,15 +178,16 @@ export default function TableCustom() {
                 <Table<DataType>
                     className={styles.customTable}
                     columns={columns}
+                    dataSource={data}
                     rowSelection={{ 
                         type: "checkbox", 
-                        ...rowSelection 
+                        ...rowSelection,
+                        fixed: true 
                     }}
                     pagination={{ 
                         position: ["topRight"],
                         pageSize: 50
                     }}
-                    dataSource={data}
                     scroll={{ 
                         x: "max-content",
                         y: 55 * 5

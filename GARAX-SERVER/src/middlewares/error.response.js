@@ -18,8 +18,6 @@ class ErrorResponse extends Error {
   constructor(message, status) {
     super(message)
     this.status = status
-
-    // Log the error use the winston
     logger0.error(`${this.status} - ${this.message}`)
   }
 }

@@ -1,4 +1,5 @@
-'use strict';
+"use strict";
+
 require('dotenv').config()
 
 const PayOS = require('@payos/node');

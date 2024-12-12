@@ -9,13 +9,15 @@ export function ButtonPrimary({
     sizeType,
     type,
     className,
-    handleFc
+    handleFc,
+    isLoading
 }: {
     nameBtn: string;
     sizeType: SizeType;
     type: Type;
     className: string;
-    handleFc?: () => void
+    handleFc?: () => void;
+    isLoading?: boolean
 }) {
     return (
         <Button
@@ -25,6 +27,7 @@ export function ButtonPrimary({
             icon={<PlusCircleOutlined />}
             size={sizeType}
             onClick={handleFc}
+            loading={isLoading}
         >
             {nameBtn}
         </Button>

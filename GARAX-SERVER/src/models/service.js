@@ -17,11 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Service.init({
-    idService: {
-      allowNull: false,
-      autoIncrement: true,
+    id: {
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      autoIncrement: true,
     },
     serviceCategoryId: DataTypes.INTEGER,
     serviceImageId: DataTypes.INTEGER,
@@ -32,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
-    },
+    }
   }, {
     sequelize,
     modelName: 'Service',

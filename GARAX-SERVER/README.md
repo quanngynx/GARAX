@@ -1,5 +1,45 @@
 # GARAX-SERVER
 
+### Acount
+
+- npx sequelize-cli model:generate --name Account --attributes userName:string,lastName:string,gender:enum,dob:bigint,email:string,phone:string,avatar:string,password:string,emptyPassword:string,googleId:string,pointerId:string,roleId:string
+
+### OTP code
+
+
+
+### Permission
+
+npx sequelize-cli model:generate --name Permission --attributes keyAccept:string,valueAccept:string,isActive:boolean
+
+### ItemPermission
+
+npx sequelize-cli model:generate --name ItemPermission --attributes itemKeyAccept:string,itemValueAccept:string,isActive:boolean
+
+### KeyToken
+
+- npx sequelize-cli model:generate --name KeyToken --attributes privateKey:string,publicKey:string,refreshToken:string,refreshTokenUsed:json,userId:string
+
+### ApiKey
+
+npx sequelize-cli model:generate --name ApiKey --attributes key:string,isActive:boolean,groupPermissionId:string,permissionId:string
+
+### Address
+
+npx sequelize-cli model:generate --name Address --attributes type:enum,streetRoad:string,wardOrCommune:string,district:string,city:string,userId:string
+
+### Currency
+
+npx sequelize-cli model:generate --name Currency --attributes currency:string,desc:string
+
+### Image
+
+npx sequelize-cli model:generate --name Image --attributes image:string,coverImage:string,alt:string,original:string,typeSize:enum,typeImage:string,productId:string
+
+### Video
+
+npx sequelize-cli model:generate --name Video --attributes directoryPath:string,alt:string,original:string
+
 ### Service
 
 - npx sequelize-cli model:generate --name Service --attributes idService:string,serviceCategoryId:string,serviceImageId:string,serviceDetailId:string,title:string,alias:string,description:string,isActive:boolean
@@ -18,39 +58,35 @@ npx sequelize-cli model:generate --name ServiceDetail --attributes idServiceDeta
 
 ### Product
 
-npx sequelize-cli model:generate --name Product --attributes idProduct:string,idProductDetail:string,idProductMedia:string,idProductFeedback:string,idBrand:string,nameProduct:string,alias:string,quantity:INTEGER,sold:INTEGER,status:ENUM,isActive:BOOLEAN
+npx sequelize-cli model:generate --name Product --attributes name:string,slug:string,desc:json,views:integer,tags:enum,manufacturingDate:bigint,minPrice:integer,maxPrice:integer,categoryId:string,subCategoryId:string,sub2CategoryId:string,sub3CategoryId:string,videoId:string,idBrand:string,status:enum,createBy:string,updateBy:string
 
-### ProductDetail
+### Product Variant
 
-npx sequelize-cli model:generate --name ProductDetail --attributes idProductDetail:string
+npx sequelize-cli model:generate --name ProductVariantValues --attributes price:integer,oldPrice:integer,stock:integer,sold:integer,sku:string,manufacturingDate:bigint,productId:string,addOverSpecsId:string,addOverDetailSpecsId:string,createBy:string,updateBy:string
 
-### ProductMedia
+### specificationDetailProduct
 
-npx sequelize-cli model:generate --name ProductMedia --attributes idProductDetail:string
+npx sequelize-cli model:generate --name SpecificationDetailProduct --attributes groupName:string,groupKey:string,groupValue:string,isOriginalProduct:boolean
 
-### ProductFeedback
+### specificationProduct
 
-npx sequelize-cli model:generate --name ProductFeedback --attributes idProductDetail:string
+npx sequelize-cli model:generate --name SpecificationProduct --attributes name:string,key:string,value:string,isOriginalProduct:boolean
+
+### CategoryProduct
+
+npx sequelize-cli model:generate --name CategoryProduct --attributes name:string,slug:string,desc:json,countProduct:integer,isParentCategory:boolean,isActive:boolean,imageId:string,parentId:string
 
 ### Brand
 
 npx sequelize-cli model:generate --name Brand --attributes idProductDetail:string,name:string
 
-### CartProduct - Using by customers
+### Cart
 
-npx sequelize-cli model:generate --name CartProduct --attributes idCartProduct:string,idUser:string,idCartItemsProduct:string,name:string,phone:string,address:string,email:string,cartState:ENUM,countItems:INTEGER
+npx sequelize-cli model:generate --name Cart --attributes sessionId:string,userId:string
 
-### CartItemsProduct - Using by customers
+### CartItems
 
-npx sequelize-cli model:generate --name CartItemsProduct --attributes idCartItemsProduct:string,idCartProduct:string,quantity:INTEGER
-
-<!-- ### CartStaff - Using by staffs in dashboard
-
-npx sequelize-cli model:generate --name CartStaff --attributes idCartStaff:string,idUser:string,idCartItemsStaff:string,cartState:ENUM,countItems:INTEGER -->
-
-<!-- ### CartItemsStaff - Using by customers
-
-npx sequelize-cli model:generate --name CartItemsProduct --attributes idCartItemsStaff:string,idCartStaff:string,quantity:INTEGER -->
+npx sequelize-cli model:generate --name CartItems --attributes qty:integer,cartId:string,productVariantId:string
 
 ### OrderProduct - Using by customers
 
@@ -67,3 +103,19 @@ npx sequelize-cli model:generate --name OrderStaff --attributes idOrderStaff:str
 ### Payment - Using by customers
 
 npx sequelize-cli model:generate --name Payment --attributes idPayment:string,idOrderProduct:string,amount:float,currency:ENUM,desc:string
+
+# Category systems
+
+1. Product
+
+- level 1: multi brand
+- level 2: multi typeof car
+- level 3: multi model car
+- level 4: multi typeof model car
+
+2. Service:
+
+- level 1: multi service
+- level 2: multi package
+
+[design-api](https://hocspringboot.net/2020/10/26/mot-so-nguyen-tac-thiet-ke-api/?fbclid=IwY2xjawHDr6BleHRuA2FlbQIxMAABHTisRKr6fTya628moBSRaWnrMtXd22DISP715WRVBwmiR5FloOtaVacf2w_aem_rgxt8HaamS80eu1bctU8YQ#11_HTTP_status_code_va_error_message)

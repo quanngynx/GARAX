@@ -5,14 +5,28 @@ const nodemailer = require('nodemailer');
 
 const { Account, CustomerDetails } = require('../models/index');
 const crypto = require('crypto');
-const { token } = require('morgan');
 const {
   OK,
   CREATED,
   SuccessResponse,
 } = require('../middlewares/success.response');
 
-const AuthJWTService = require('../services/auth.service')
+const AccessService = require('../services/access.service')
+
+class AccessController {
+  handleRefreshToken = async (req, res, next) => {
+    new SuccessResponse({
+      message: 'Get token success!',
+      metadata: await AccessService.handleRefreshToken({
+        refreshToken: req.refreshToken,
+        user: req.user,
+        keyStore: req.keyStore,
+      }),
+    }).send(res);
+  };
+}
+
+module.exports = new AccessController()
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -248,17 +262,6 @@ const verify = async (req, res) => {
     console.error('Error verifying OTP:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
-
-const handleRefreshToken = async (req, res, next) => {
-  new SuccessResponse({
-    message: 'Get token success!',
-    metadata: await AuthJWTService.handleRefreshToken({
-      refreshToken: req.refreshToken,
-      user: req.user,
-      keyStore: req.keyStore,
-    }),
-  }).send(res);
 };
 
 module.exports = {

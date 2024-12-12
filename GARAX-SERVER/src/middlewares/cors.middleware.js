@@ -7,7 +7,11 @@
  * @param {*} next - Express next function
  */
 const corsMiddleware = (req, res, next) => {
-  const allowedOrigins = ['http://localhost:3050', 'http://localhost:3052'];
+  const allowedOrigins = [
+    'http://localhost:3050',
+    'http://localhost:3052',
+
+  ];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {

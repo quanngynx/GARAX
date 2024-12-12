@@ -1,0 +1,1 @@
+export const ver_API: string = 'v1'

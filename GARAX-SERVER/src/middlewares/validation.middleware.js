@@ -1,4 +1,3 @@
-
 const validatorHandler = (req, res, next, schema) => {
     const { error } = schema.validate(req.body);
 

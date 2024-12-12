@@ -1,10 +1,14 @@
 "use client";
 
-import TableCustoms from "@/components/tableCustom";
+import { TableCustom } from "@/components/tableCustom";
+import { columns, data } from "./Data/TableData";
 
 function TableProducts() {
     return ( 
-        <TableCustoms />
+        <TableCustom 
+        columns={columns}
+        data={data}
+        />
      );
 }
 

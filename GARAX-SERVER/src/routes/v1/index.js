@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 router.use('/v1',require('./access/index'))
+router.use('/v1',require('./auth/index'))
 router.use('/v1',require('./account/index'))
 router.use('/v1',require('./order/index'))
 router.use('/v1',require('./checkout/index'))

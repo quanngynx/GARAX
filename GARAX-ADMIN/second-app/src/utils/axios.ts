@@ -3,11 +3,22 @@
 import axios, { AxiosRequestConfig } from 'axios';
 // import { useRouter } from 'next/navigation';
 
-import { NEXT_HOST_API } from '../constants';
+import { NODE_LOCAL_API } from '../constants';
 
 //----------------------------------------------------------------------
 
-const axiosInstance = axios.create({ baseURL: NEXT_HOST_API });
+const axiosInstance = axios.create({ 
+    baseURL: NODE_LOCAL_API,
+    headers: {
+      "Content-Type": "application/json",
+      //   'x-api-key': import.meta.env.VITE_SECRET_API_KEY
+    }, 
+    // withCredentials: true,
+    // credentials: 'include',
+});
+
+// axiosInstance.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 
 axiosInstance.interceptors.request.use(
   (config) => {
@@ -21,11 +32,11 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  (res) => {
-    if(res && res.data) {
-      return res.data
+  (response) => {
+    if(response && response.data) {
+      return response.data
     }
-    return res
+    return response
   },
   async (error) => {
     //  const originalRequest = error.config;

@@ -1,60 +1,47 @@
 'use strict';
-const { Model } = require('sequelize');
-
+const {
+  Model
+} = require('sequelize');
+const { COMMON } = require('../constants');
+const gender = COMMON.USERS.GENDER
 module.exports = (sequelize, DataTypes) => {
   class Account extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      Account.hasOne(models.CustomerDetails, {
-        as: 'CustomerDetail',
-        foreignKey: 'IDAcc',
-        onDelete: 'CASCADE',
-      });
-      Account.hasMany(models.Order, {
-        as: 'order',
-        foreignKey: 'IDAcc',
-      });
+      // define association here
     }
   }
-
   Account.init({
-    IDAcc: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-
+    userName: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    gender: {
+      type: DataTypes.ENUM(gender.MALE, gender.FEMALE, gender.OTHER),
+      defaultValue: gender.MALE
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Role: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'user',
-    },
-    otp: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    otpTime: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    verified: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-      allowNull: false,
-    }
+    dob: DataTypes.BIGINT,
+    email: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    avatar: DataTypes.STRING,
+    password: DataTypes.STRING,
+    emptyPassword: DataTypes.BOOLEAN,
+    googleId: DataTypes.STRING,
+    pointerId: DataTypes.STRING,
+    roleId: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'account',
-    tableName: 'account',
+    modelName: 'Account',
+    tableName: 'accounts',
     timestamps: true
   });
-
   return Account;
 };

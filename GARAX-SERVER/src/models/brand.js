@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Brand.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     idBrand: {
       allowNull: false,
       autoIncrement: true,
@@ -24,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Brand',
+    tableName: 'brands',
     timestamps: true
   });
   return Brand;

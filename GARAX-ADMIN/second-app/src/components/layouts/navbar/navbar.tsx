@@ -35,12 +35,12 @@ function Navbar() {
                 {/* <div className="w-16% h-[118px]"></div> */}
                 <div className="flex justify-between flex-col-reverse sm:flex-row w-50%">
                     <div className="">
-                        <label className=" h-[30px] flex justify-between border-[0.5px] border-gray-300 bg-[#E0E6EE] rounded-md mr-3 focus:border-slate-600">
-                            <SearchOutlined classname="w-[20px] h-[20px] m-1" styled={{ fontWeight: 600 }}/>
+                        <label className=" h-[30px] flex justify-between border-[0.5px] border-gray-300 bg-[#E0E6EE] focus-within:bg-white  rounded-md mr-3 focus:border-slate-600">
+                            <SearchOutlined classname="w-[20px] h-[20px] m-1 focus:bg-white" styled={{ fontWeight: 600 }}/>
                             <input
                                 type="text"
                                 placeholder="Tìm kiếm..."
-                                className="rounded-md outline-none w-full bg-[#E0E6EE] text-black text-base font-medium font-['Inter'] py-2"
+                                className="rounded-md outline-none w-full bg-[#E0E6EE] focus:bg-white text-black text-base font-medium font-['Inter'] py-2"
                             />
                         </label>
                     </div>

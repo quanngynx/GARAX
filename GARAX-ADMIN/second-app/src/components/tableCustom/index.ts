@@ -1,6 +1,8 @@
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
 
-const TableCustoms = dynamic(() => import('./tableCustom'), { ssr: false });
+// const TableCustoms = dynamic(() => import('./tableCustom'), { ssr: false });
 
-export default TableCustoms
+// export default TableCustoms
+
+export * from './tableCustom'

@@ -17,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   News.init({
-    idNews: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     title: DataTypes.STRING,
     alias: DataTypes.STRING,
     description: DataTypes.STRING,
