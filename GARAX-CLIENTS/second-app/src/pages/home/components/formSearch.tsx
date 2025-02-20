@@ -2,7 +2,7 @@ function formSearch() {
   return (
     <div className="text-black md:mt-[650px] lg:mt[700px] w-full lg:w-3/4 sm:w-1/4 mx-auto p-4 bg-opacity-90 shadow-xl backdrop-blur-sm rounded-lg">
       {/* Các nút All, New, Used */}
-      <div className="flex justify-center space-x-2 mb-4">
+      <div className="flex justify-start space-x-2">
         <button className="px-4 py-2 text-white sm:text-neutral-200 rounded-full">Tất cả</button>
         <button className="px-4 py-2 text-white  rounded-full">Mới</button>
         <button className="px-4 py-2 text-white  rounded-full">Đã sử dụng</button>
@@ -43,15 +43,15 @@ function formSearch() {
         </div>
 
         {/* Nút tìm kiếm */}
-        <div className="w-full  flex items-end">
-          <button className="px-2 py-2 auto-fit bg-blue-600 border-spacing-y-9  flex-shrink-0  md:min-w-[50px] text-white text-sm rounded-full">
+        <div className="w-full flex items-end">
+          <button className="px-4 py-2 auto-fit bg-blue-600 border-spacing-y-9  flex-shrink-0  md:min-w-[50px] text-white text-sm rounded-full">
             Tìm kiếm  
           </button>
         </div>
       </div>
 
       {/* Responsive Styles */}
-      <style jsx>{`
+      {/* <style jsx>{`
         @media (max-width: 768px) {
           .label-select {
             color: white; 
@@ -62,7 +62,7 @@ function formSearch() {
             font-size: 0.875rem; 
           }
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 }

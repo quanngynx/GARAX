@@ -29,12 +29,15 @@ const items: MenuItem[] = [
         style: {
             height: 90,
         },
-        icon: (
+        label: (
             <header className="">
                 <div className="flex items-center">
                     <LogoBrandIcon wid="48px" hei="48px" />
                 </div>
-                <div className="flex items-center">
+                <div 
+                className="flex items-center"
+                // style={}
+                >
                     <NameBrandIcon />
                 </div>
             </header>
@@ -126,7 +129,11 @@ const items: MenuItem[] = [
     },
 ];
 
-function SidebarCustom() {
+interface ISidebarCustom {
+    collapsed: boolean
+} 
+
+function SidebarCustom({ collapsed }: ISidebarCustom) {
      
     const router = useRouter()
     const onClick: MenuProps["onClick"] = (e) => {
@@ -147,6 +154,7 @@ function SidebarCustom() {
             defaultOpenKeys={["sub1"]}
             mode="inline"
             items={items}
+            inlineCollapsed={collapsed}
         />
     );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { accessibleTabsInterface } from "../../../interfaces/accessibleTabs";
-import Line from "../../../components/line/line";
+import { accessibleTabsInterface } from "@/interfaces/accessibleTabs";
+import Line from "@/components/line/line";
 import LineChild from "./lineChild";
 
 function accessibleTabs({ tabsConfig, defaultIndex }: accessibleTabsInterface) {

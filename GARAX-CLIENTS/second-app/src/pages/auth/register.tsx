@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import API_ROUTES from '../../api';
-import BackGroundGarax from '../../assets/auth/images/background1.png';
+import API_ROUTES from '@/api';
+import BackGroundGarax from '@/assets/auth/images/background1.png';
 
 function Register() {
   const navigate = useNavigate();

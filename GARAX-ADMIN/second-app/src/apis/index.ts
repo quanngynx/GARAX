@@ -12,7 +12,7 @@ import {
     ROUTES_BOOKING,
     ROUTES_ORDERS,
     ROUTES_TRANSACTIONS,
-    ROUTES_USERS,
+    // ROUTES_USERS,
     ver_API,
 } from "./constants";
 import { ROUTES_PRODUCTS } from "./constants/products";

@@ -1,7 +1,7 @@
-import QuotationMarks from '../../../assets/home/icons/Quotation-Marks.svg?react'
-import Avt1 from '../../../assets/home/images/test1-150x150.jpg.png'
-import Avt2 from '../../../assets/home/images/test1-150x150.jpg.png'
-import Avt3 from '../../../assets/home/images/test1-150x150.jpg.png'
+import QuotationMarks from '@/assets/home/icons/Quotation-Marks.svg?react'
+import Avt1 from '@/assets/home/images/test1-150x150.jpg.png'
+import Avt2 from '@/assets/home/images/test1-150x150.jpg.png'
+import Avt3 from '@/assets/home/images/test1-150x150.jpg.png'
 
 import { IReviewFeedback } from '../interfaces/index'
 

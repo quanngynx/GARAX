@@ -10,6 +10,13 @@ class ProductController {
     }).send(res)
   }
 
+  getAllProductsWithoutOptions = async (req, res, next) => {
+    new SuccessResponse({
+      message: 'Lấy tất cả hàng hóa thành công!',
+      metadata: await ProductService.getAllProductsWithoutOptions()
+    }).send(res)
+  }
+
   getProductById = async (req, res, next) => {
     new SuccessResponse({
       message: 'Lấy hàng hóa bằng id thành công!',
@@ -23,6 +30,8 @@ class ProductController {
       metadata: await ProductService.addNewProduct(req.body)
     }).send(res)
   }
+
+
 
   updateProductById = async (req, res, next) => {
     new SuccessResponse({

@@ -3,12 +3,12 @@ import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-import { cardProducts } from "../../__mock__";
-import ProductsCard from "../../components/card/card";
+import { cardProducts } from "@/__mock__";
+import ProductsCard from "@/components/card/card";
 import Products from "./components/products";
 import Recommend from "./components/price";
 
-function ProductPage() {
+export function ProductPage() {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -141,5 +141,3 @@ function ProductPage() {
     </div>
   );
 }
-
-export default ProductPage;

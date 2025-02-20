@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 // import defaultTheme from "tailwindcss/defaultTheme";
 // import colors from "tailwindcss/colors";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
-
+import aspectRatio from '@tailwindcss/aspect-ratio'
 
 /** @type {import('tailwindcss').Config} */
 // module.exports = {
@@ -46,7 +46,11 @@ export default {
       },
     },
   },
+  corePlugins: {
+    aspectRatio: false,
+  },
   plugins: [
-    addVariablesForColors
+    addVariablesForColors,
+    aspectRatio
   ],
 } satisfies Config;

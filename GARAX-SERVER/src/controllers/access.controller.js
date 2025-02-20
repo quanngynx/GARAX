@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
-const { Account, CustomerDetails } = require('../models/index');
+const { Account } = require('../models/index');
 const crypto = require('crypto');
 const {
   OK,

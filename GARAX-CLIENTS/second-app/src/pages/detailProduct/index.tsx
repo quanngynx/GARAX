@@ -8,7 +8,7 @@ import RelatestListProducts from "./components/relatestListProducts";
 
 
 
-function detailProduct() {
+export function DetailProductPage() {
   const contextDemo = [
     {
       title: "Toyota Camry New",
@@ -42,5 +42,3 @@ function detailProduct() {
     </div>
   );
 }
-
-export default detailProduct;

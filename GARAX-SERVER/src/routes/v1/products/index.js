@@ -3,7 +3,17 @@ const router = express.Router()
 const AsyncHandler = require('../../../middlewares/asyncHandler.middleware')
 const ProductController = require('../../../controllers/product.controller')
 
+/**
+ * @description authorization
+ * @method GET : any user
+ * @method POST : staff, admin
+ * @method PUT : staff, admin
+ * @method PATCH : staff, admin
+ * @method DELETE : admin
+ */
+
 router.get('/products', AsyncHandler(ProductController.getAllProducts))
+router.get('/products/without-options', AsyncHandler(ProductController.getAllProductsWithoutOptions))
 router.get('/products/:id', AsyncHandler(ProductController.getProductById))
 
 router.post('/products', AsyncHandler(ProductController.addNewProduct))

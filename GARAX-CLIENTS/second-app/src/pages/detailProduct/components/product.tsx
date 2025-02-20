@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCarts } from "../../../redux/stores/cart";
-import { RootState } from "../../../redux/stores";
+// import { useSelector, useDispatch } from "react-redux";
+// import { addToCarts } from "@/redux/stores/cart";
+// import { RootState } from "@/redux/stores";
 
 import RelatestListProducts from "./relatestListProducts";
 
-import LeftArrow from '../../../assets/ListProduct/icons/left--vector-tiny.svg?react'
+import LeftArrow from '@/assets/ListProduct/icons/left--vector-tiny.svg?react'
 
 function product(props: unknown) {
 
@@ -23,16 +23,15 @@ function product(props: unknown) {
   // } = props.data
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const carts = useSelector((store: RootState) => store.cart.items)
-  console.log("info cart::", carts)
+  // const carts = useSelector((store: RootState) => store.cart.items)
+  // console.log("info cart::", carts)
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const handleAddToCart = () => {
-    dispatch(addToCarts({
-      // variable: props
-    }))
+    // dispatch(addToCarts({
+    //   // variable: props
+    // }))
   }
   return (
     <div className="p-6">

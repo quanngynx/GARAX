@@ -20,12 +20,12 @@ const TYPEOF_EXPIRESIN_RT = TOKENS.OPTIONS_1.RT.EXPIRESIN;
 
 const createTokenPair = async (payLoad, publicKey, privateKey) => {
   try {
-    const accessToken = await JWT.sign(payLoad, privateKey, {
+    const accessToken = JWT.sign(payLoad, privateKey, {
       algorithm: TYPEOF_ALGORITHM_AT,
       expiresIn: TYPEOF_EXPIRESIN_AT,
     });
 
-    const refreshToken = await JWT.sign(payLoad, privateKey, {
+    const refreshToken = JWT.sign(payLoad, privateKey, {
       algorithm: TYPEOF_ALGORITHM_RT,
       expiresIn: TYPEOF_EXPIRESIN_RT,
     });

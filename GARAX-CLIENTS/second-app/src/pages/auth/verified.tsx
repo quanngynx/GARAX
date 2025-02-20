@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import API_ROUTES from "../../api";
+import API_ROUTES from "@/api";
 import { Box, Button, FormHelperText, Typography } from "@mui/material";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { Controller, useForm } from "react-hook-form";

@@ -23,7 +23,9 @@ const OtpCode = require('./otpcode')(sequelize, Sequelize.DataTypes);
 const ItemPermission = require('./itempermission')(sequelize, Sequelize.DataTypes);
 const Permission = require('./permission')(sequelize, Sequelize.DataTypes);
 
-// const Product = require('./product')(sequelize, Sequelize.DataTypes);
+const Product = require('./product')(sequelize, Sequelize.DataTypes);
+
+const Address = require('./address')(sequelize, Sequelize.DataTypes);
 // const ProductCategory = require('./productCategory')(sequelize, Sequelize.DataTypes);
 // const ProductDetail = require('./productDetail')(sequelize, Sequelize.DataTypes);
 // const ProductFeedback = require('./productFeedback')(sequelize, Sequelize.DataTypes);
@@ -49,7 +51,11 @@ const db = {
   KeyToken,
   OtpCode,
   ItemPermission,
-  Permission
+  Permission,
+
+  Product,
+
+  Address
 };
 
 Account.associate(db);
@@ -58,6 +64,10 @@ KeyToken.associate(db);
 OtpCode.associate(db);
 ItemPermission.associate(db);
 Permission.associate(db);
+
+Product.associate(db);
+
+Address.associate(db);
 
 fs.readdirSync(__dirname)
   .filter((file) => {

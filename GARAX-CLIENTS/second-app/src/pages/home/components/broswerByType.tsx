@@ -1,6 +1,6 @@
 import CardTypeService from "./cardTypeService";
 
-import TopLeftTiny from '../../../assets/home/icons/topRight-vector-tiny.svg?react'
+import TopLeftTiny from '@/assets/home/icons/topRight-vector-tiny.svg?react'
 
 function broswerByType() {
   return (

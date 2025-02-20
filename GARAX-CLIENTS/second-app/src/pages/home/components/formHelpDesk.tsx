@@ -1,4 +1,4 @@
-import thumbleForm from "../../../assets/home/images/slide-booking.webp";
+import thumbleForm from "@/assets/home/images/slide-booking.webp";
 
 import MainForm from "./mainForm.tsx";
 

@@ -26,7 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     slug: DataTypes.STRING,
     desc: DataTypes.JSON,
     views: DataTypes.INTEGER,
-    tags: DataTypes.ENUM,
+    tags: {
+      type: DataTypes.ENUM('test'),
+      defaultValue: 'test'
+    },
     manufacturingDate: DataTypes.BIGINT,
     minPrice: DataTypes.INTEGER,
     maxPrice: DataTypes.INTEGER,
@@ -36,7 +39,10 @@ module.exports = (sequelize, DataTypes) => {
     sub3CategoryId: DataTypes.STRING,
     videoId: DataTypes.STRING,
     brandId: DataTypes.STRING,
-    status: DataTypes.ENUM,
+    status: {
+      type: DataTypes.ENUM('publish', 'draft'),
+      defaultValue: 'publish'
+    },
     createBy: DataTypes.STRING,
     updateBy: DataTypes.STRING
   },{

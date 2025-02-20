@@ -2,15 +2,15 @@
 import { FC } from "react";
 import { Table } from "antd";
 import type { TableProps, TableColumnsType } from "antd";
-import { createStyles } from 'antd-style';
-import { TableAction } from "./ColumnAction/tableAction";
-import { TableData } from "./Data/TableData";
+import { createStyles, CssUtil, FullToken } from 'antd-style';
+// import { TableAction } from "./ColumnAction/tableAction";
+// import { TableData } from "./Data/TableData";
 import { TablePagination } from "./Pagination/tablePagination";
 import { LineFullWidth } from "../line";
 // import { DoubleScrollBar } from "./ScrollTopBottom/doubleScrollTable";
 // import { RefObject, useRef } from "react";
-import { handleNavigateToSlug } from "@/utils/navigateToSlug";
-import { PATH_DASHBOARD } from "@/routes/paths";
+// import { handleNavigateToSlug } from "@/utils/navigateToSlug";
+// import { PATH_DASHBOARD } from "@/routes/paths";
 
 // type ColumnsType<T extends object> = TableColumnsType<T>["columns"];
 type FixedType = 'left' | 'right' | undefined
@@ -31,8 +31,11 @@ interface DataType {
 //     tags: ["nice", "developer"],
 //   }));
 
+// type StyleProps = { css: CssUtil; token: FullToken }
+
 const useStyle = createStyles(({ css, token }) => {
-  const { antCls } = token;
+  const { componentCls }: string = token;
+console.log("Token::", token);
   return {
     customTable: css`
       ${antCls}-table {

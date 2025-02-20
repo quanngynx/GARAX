@@ -1,12 +1,12 @@
 import { Space } from "antd";
 // import Link from "next/link";
 import { EditOutlined } from '@ant-design/icons';
-import { SetStateAction } from "react";
+// import { Dispatch, SetStateAction } from "react";
 
-interface ITableStateAction {
-    param: string
-    setParam: SetStateAction<string>
-}
+// interface ITableStateAction {
+//     param: string
+//     setParam: Dispatch<SetStateAction<string>>
+// }
 
 interface ITableAction {
     handleSetParam: () => void

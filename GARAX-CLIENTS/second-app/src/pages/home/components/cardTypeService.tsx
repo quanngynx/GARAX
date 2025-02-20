@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import BrowseHome1 from "../../../assets/home/images/browse-home-1.png";
-import BrowseHome2 from "../../../assets/home/images/browse-home-2.png";
-import BrowseHome3 from "../../../assets/home/images/browse-home-3.png";
-import BrowseHome4 from "../../../assets/home/images/browse-home-4.png";
-import BrowseHome5 from "../../../assets/home/images/browse-home-5.png";
+import BrowseHome1 from "@/assets/home/images/browse-home-1.png";
+import BrowseHome2 from "@/assets/home/images/browse-home-2.png";
+import BrowseHome3 from "@/assets/home/images/browse-home-3.png";
+import BrowseHome4 from "@/assets/home/images/browse-home-4.png";
+import BrowseHome5 from "@/assets/home/images/browse-home-5.png";
 
 function CardTypeService() {
   const cateCard = [ 

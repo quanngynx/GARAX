@@ -1,4 +1,4 @@
-function paymentInfor() {
+export function paymentInfor() {
     return ( 
         <div className="text-black">
         <div className="">
@@ -7,5 +7,3 @@ function paymentInfor() {
         </div>
      );
 }
-
-export default paymentInfor;

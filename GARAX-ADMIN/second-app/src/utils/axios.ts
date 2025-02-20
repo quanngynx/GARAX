@@ -1,6 +1,6 @@
 'use client';
 
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 // import { useRouter } from 'next/navigation';
 
 import { NODE_LOCAL_API } from '../constants';
@@ -10,15 +10,16 @@ import { NODE_LOCAL_API } from '../constants';
 const axiosInstance = axios.create({ 
     baseURL: NODE_LOCAL_API,
     headers: {
-      "Content-Type": "application/json",
-      //   'x-api-key': import.meta.env.VITE_SECRET_API_KEY
+      'Content-Type': 'application/json',
+      //   'Authorization': '',
+      //   'x-api-key': import.meta.env.VITE_SECRET_API_KEY,
     }, 
     // withCredentials: true,
     // credentials: 'include',
 });
 
-// axiosInstance.defaults.withCredentials = true
 // axios.defaults.withCredentials = true
+axios.defaults.baseURL = NODE_LOCAL_API
 
 axiosInstance.interceptors.request.use(
   (config) => {

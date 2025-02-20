@@ -1,12 +1,12 @@
 import slugify from "slugify";
 
-import TopRightTinyIcon from "../../../assets/home/icons/topRight-vector-tiny.svg?react";
-import RangeTinyIcon from "../../../assets/home/icons/range-tiny.svg?react";
-import FuelTypeTinyIcon from "../../../assets/home/icons/fuel-type-tiny.svg?react";
-import TransmissionTypeTinyIcon from "../../../assets/home/icons/transmission-car-tiny.svg?react";
-import ScheduleTinyIcon from "../../../assets/home/icons/schedule-tiny.svg?react";
+import TopRightTinyIcon from "@/assets/home/icons/topRight-vector-tiny.svg?react";
+import RangeTinyIcon from "@/assets/home/icons/range-tiny.svg?react";
+import FuelTypeTinyIcon from "@/assets/home/icons/fuel-type-tiny.svg?react";
+import TransmissionTypeTinyIcon from "@/assets/home/icons/transmission-car-tiny.svg?react";
+import ScheduleTinyIcon from "@/assets/home/icons/schedule-tiny.svg?react";
 
-import LineFull from "../../../components/line/line";
+import LineFull from "@/components/line/line";
 
 import { Link } from "react-router-dom";
 

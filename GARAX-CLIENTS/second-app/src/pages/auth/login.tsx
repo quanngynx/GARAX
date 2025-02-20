@@ -13,8 +13,8 @@ import {
   Link,
   Divider,
 } from '@mui/material';
-import API_ROUTES from '../../api';
-import backgroundImage from '../../assets/auth/images/background1.png';
+import API_ROUTES from '@/api';
+import backgroundImage from '@/assets/auth/images/background1.png';
 
 function Login() {
   const [email, setEmail] = useState('');

@@ -5,7 +5,7 @@ import { useCheckAuth } from "../auth/checkToken";
 
 import { ITabsConfig } from './interfaces'
 
-import imagecar from "../../assets/home/images/car-big.webp";
+import imagecar from "@/assets/home/images/car-big.webp";
 import WhyChooseUs from "./components/Whychose";
 import FormSearch from "./components/formSearch";
 import FormHelpDesk from "./components/formHelpDesk";
@@ -15,7 +15,7 @@ import AccessibleTabs from "./components/accessibleTabs";
 import BroswerByType from "./components/broswerByType";
 import BestCar from "./components/Bestcar";
 import ReviewFeedback from "./components/reviewFeedback";
-import Line from "../../components/line/line";
+import Line from "@/components/line/line";
 
 const tabsConfig: ITabsConfig[] = [
   {
@@ -32,7 +32,7 @@ const tabsConfig: ITabsConfig[] = [
   },
 ];
 
-function HomePage() {
+export function HomePage(): JSX.Element {
   const history = useNavigate();
   const navigateToProductPage = () => {
     history("/product");
@@ -69,27 +69,25 @@ function HomePage() {
           </div>
         </div>
       </div>
-
-     
       <div>
       {/* Broswer by type */}
       <BroswerByType />
 
       {/* Why choose us */}
       <WhyChooseUs />
+
       {/* The best thing for our car */}
       <BestCar />
+
       <Line />
+
       {/* What customer say */}
       <ReviewFeedback />
 
       {/* HelpDesk Form Section */}
       <FormHelpDesk />
-
+      
       </div>
-       
-     
-  
       <div>
       {/* Featured Listings Section */}
       <div className="mt-8 md:mt-12">
@@ -111,4 +109,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+ 

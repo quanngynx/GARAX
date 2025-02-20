@@ -2,6 +2,10 @@
 const {
   Model
 } = require('sequelize');
+
+const { COMMON } = require('../constants')
+
+const { HOME, OFFICE } = COMMON.ADDRESS
 module.exports = (sequelize, DataTypes) => {
   class Address extends Model {
     /**
@@ -11,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Account, {
+        foreignKey: 'userId',
+        as: 'account',
+      });
     }
   }
   Address.init({
@@ -19,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    type: DataTypes.ENUM,
+    type: {
+      type : DataTypes.ENUM(HOME, OFFICE),
+      defaultValue: HOME
+    },
     streetRoad: DataTypes.STRING,
     wardOrCommune: DataTypes.STRING,
     district: DataTypes.STRING,

@@ -92,9 +92,9 @@ npx sequelize-cli model:generate --name CartItems --attributes qty:integer,cartI
 
 npx sequelize-cli model:generate --name OrderProduct --attributes idOrderProduct:string,idUser:string,idCartProduct:string,idCartItemsProduct:string,status:ENUM,paymentMethod:ENUM,paymentStatus:ENUM,subTotal:FLOAT,shippingFee:FLOAT,total:FLOAT
 
-<!-- ### OrderItemsProduct - Using by customers
+### OrderItemsProduct - Using by customers
 
-npx sequelize-cli model:generate --name OrderItemsProduct --attributes idOrderProduct:string,idUser:string -->
+npx sequelize-cli model:generate --name Order --attributes fullname:string,phone:string,isReceiveAtStore:boolean,paymentMethod:enum,paymentStatus:enum,subTotalFromProd:float,shippingFee:float,discount:float,total:float,userId:string,addressId:string,cartId:string,createBy:string,updateBy:string
 
 <!-- ### OrderStaff- Using by staffs in dashboard
 
@@ -102,7 +102,7 @@ npx sequelize-cli model:generate --name OrderStaff --attributes idOrderStaff:str
 
 ### Payment - Using by customers
 
-npx sequelize-cli model:generate --name Payment --attributes idPayment:string,idOrderProduct:string,amount:float,currency:ENUM,desc:string
+npx sequelize-cli model:generate --name Payment --attributes amount:string,desc:string,orderId:string,currencyId:string
 
 # Category systems
 

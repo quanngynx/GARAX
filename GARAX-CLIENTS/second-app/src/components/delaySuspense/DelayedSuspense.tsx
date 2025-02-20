@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense } from "react";
-import { delaySuspenseInterface } from '../../interfaces/delaySuspense'
+import { delaySuspenseInterface } from '@/interfaces/delaySuspense'
 function DelayedSuspense({ delay, fallback, children } : delaySuspenseInterface) {
   const [showChildren, setShowChildren] = useState(false);
 
