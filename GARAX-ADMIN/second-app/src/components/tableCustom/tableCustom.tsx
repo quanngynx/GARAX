@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC } from "react";
 import { Table } from "antd";
-import type { TableProps, TableColumnsType } from "antd";
-import { createStyles, CssUtil, FullToken } from 'antd-style';
+import type { TableProps } from "antd";
 // import { TableAction } from "./ColumnAction/tableAction";
 // import { TableData } from "./Data/TableData";
 import { TablePagination } from "./Pagination/tablePagination";
 import { LineFullWidth } from "../line";
+import { TableCustomProps } from "./interfaces";
 // import { DoubleScrollBar } from "./ScrollTopBottom/doubleScrollTable";
 // import { RefObject, useRef } from "react";
 // import { handleNavigateToSlug } from "@/utils/navigateToSlug";
@@ -33,36 +32,32 @@ interface DataType {
 
 // type StyleProps = { css: CssUtil; token: FullToken }
 
-const useStyle = createStyles(({ css, token }) => {
-  const { componentCls }: string = token;
-console.log("Token::", token);
-  return {
-    customTable: css`
-      ${antCls}-table {
-        ${antCls}-table-container {
-          ${antCls}-table-body,
-          ${antCls}-table-content {
-            scrollbar-width: thin;
-            scrollbar-color: #e2e8f0 transparent;
-            scrollbar-gutter: stable;
-            scrollbar-border: 1px solid #f6f7ed;
-          }
-        }
-      }
-    `,
-  };
-});
-
-interface TableCustomProps {
-    columns: TableColumnsType<any>;
-    data: any[];
-}
+// #region Custom css later
+// const useStyle = createStyles(({ css, token }) => {
+//   const { prefixCls }: string = token;
+//    console.log("Token::", token);
+//   return {
+//     customTable: css`
+//       ${antCls}-table {
+//         ${antCls}-table-container {
+//           ${antCls}-table-body,
+//           ${antCls}-table-content {
+//             scrollbar-width: thin;
+//             scrollbar-color: #e2e8f0 transparent;
+//             scrollbar-gutter: stable;
+//             scrollbar-border: 1px solid #f6f7ed;
+//           }
+//         }
+//       }
+//     `,
+//   };
+// });
 
 export const TableCustom: FC<TableCustomProps> = ({
     columns,
     data,
 }) => {
-    const { styles } = useStyle();
+    // const { styles } = useStyle();
     
     // PATH_DASHBOARD.admin.products.edit
 
@@ -179,7 +174,7 @@ export const TableCustom: FC<TableCustomProps> = ({
 
             <div className="w-full max-w-[1200px]">
                 <Table<DataType>
-                    className={styles.customTable}
+                    // className={styles.customTable}
                     columns={columns}
                     dataSource={data}
                     rowSelection={{ 

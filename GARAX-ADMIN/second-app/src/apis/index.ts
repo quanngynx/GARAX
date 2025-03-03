@@ -3,7 +3,7 @@ export * from "./constants/constants";
 
 import API from "@/utils/axios";
 
-import { BASE } from "./baseUrl";
+import { BASE } from "./constants/baseUrl";
 
 import {
     ROUTES_ACCOUNT,
@@ -23,8 +23,11 @@ import {
 } from './types';
 
 // region --------------------------AUTH--------------------------------------
-export const register = (body: TRegisterBody) => 
-  API.post(`${BASE(ver_API, ROUTES_AUTH)}/register`, body);
+export const register = (body: TRegisterBody, ) => 
+  API.post(
+    `${BASE(ver_API, ROUTES_AUTH)}/register`, 
+    body
+);
 
 export const login = (body: TLoginBody) => 
   API.post(`${BASE(ver_API, ROUTES_AUTH)}/login`, body);
@@ -42,10 +45,16 @@ export const resetPassword = (email: string, token: string, newPassword: string)
   API.post(`${BASE(ver_API, ROUTES_AUTH)}/reset-password`, { email, token, newPassword });
 
 // region --------------------------ACCOUNT-----------------------------------
-export const getAccountInfo = () => API.get(`${BASE(ver_API, ROUTES_ACCOUNT)}`);
+export const getAccountInfo = (signal?: AbortSignal) => API.get(
+    `${BASE(ver_API, ROUTES_ACCOUNT)}`,
+    { signal }
+);
 
 // region --------------------------ACCOUNTS-----------------------------------
-export const getAllAccount = () => API.get(`${BASE(ver_API, ROUTES_ACCOUNTS)}`);
+export const getAllAccount = (signal?: AbortSignal) => API.get(
+    `${BASE(ver_API, ROUTES_ACCOUNTS)}`,
+    { signal }
+);
 
 // region --------------------------ACCESS------------------------------------
 
@@ -69,7 +78,7 @@ export const getAllProducts = ({
         `${fields ? `&fields=${fields}` : ""}` +
         `${search ? `&search=${search}` : ""}` +
         `${brand ? `&brand=${brand}` : ""}` +
-        `${category ? `&category=${category}` : ""}`,
+        `${category ? `&category=${category}` : ""}`
     );
 
 export const createProduct = (newProduct : any) => 

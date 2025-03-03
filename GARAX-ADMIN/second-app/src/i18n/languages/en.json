@@ -77,5 +77,15 @@
       "p-left": "",
       "p-right": ""
     }
+  },
+  "productManagementPage": {
+    "titlePage": "Quản lý sản phẩm",
+    "btnAdd": "Thêm mới sản phẩm",
+    "btnExportExcel": "Xuất tệp excel",
+    "btnConfirm": "Áp dụng",
+    "btnResert": "Làm mới",
+    "titleStatusProduct": "Trạng thái sản phẩm",
+    "titleStatusProduct_production": "Đã xuất bản",
+    "titleStatusProduct_draft": "Bản nháp"
   }
 }

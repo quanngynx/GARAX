@@ -30,14 +30,11 @@ const items: MenuItem[] = [
             height: 90,
         },
         label: (
-            <header className="">
+            <header className="flex">
                 <div className="flex items-center">
                     <LogoBrandIcon wid="48px" hei="48px" />
                 </div>
-                <div 
-                className="flex items-center"
-                // style={}
-                >
+                <div className="flex items-center">
                     <NameBrandIcon />
                 </div>
             </header>
