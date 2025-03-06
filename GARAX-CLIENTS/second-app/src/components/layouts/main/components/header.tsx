@@ -27,7 +27,6 @@ function Header() {
   const [openOrderPayment, setOpenOrderPayment] = useState(false);
 
   useEffect(() => {
-    // Kiểm tra nếu hash là #info-cart-order, mở Drawer Thông Tin Đơn Hàng
     if (window.location.hash === "#info-cart-order") {
       setOpen(false);
       setOpenOrderInfo(true);
@@ -40,28 +39,25 @@ function Header() {
       setOpenOrderInfo(false);
       setOpenOrderPayment(false);
     }
-  }, [window.location.hash]);
+  }, []);
 
-  const getUserData = async () => {
-    try {
-      const response = await axios.get("/auth/user", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setFullname(response.data.fullname);
-    } catch (error) {
-      localStorage.clear();
-      setFullname(null);
-      console.error("Session expired or error fetching user data", error);
-    }
-  };
   useEffect(() => {
     if (token && isTokenExpired(token)) {
       localStorage.clear()
       setFullname(null);
     } else if (fullname === null) {
-      getUserData();
+      try {
+        const response = axios.get("/auth/user", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setFullname(response.data.fullname);
+      } catch (error) {
+        localStorage.clear();
+        setFullname(null);
+        console.error("Session expired or error fetching user data", error);
+      }
     }
   }, [token, fullname]);
 
@@ -103,7 +99,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-4">
+    <div className="bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3">
       <div className="w-[1351.47px] flex flex-col sm:flex-row justify-between items-center">
         <div
           className={cn(
@@ -128,10 +124,10 @@ function Header() {
             {hideMenu && <FlyoutMenus />}
           </div>
           {/* Phone Info */}
-            <div className="hidden sm:flex items-center space-x-2">
-          <img src={iconPhone} className="w-5 h-5" alt="Phone Icon" />
-          <span className="text-sm text-black">+84 876 787 946</span>
-        </div>
+          <div className="hidden sm:flex items-center space-x-2">
+            <img src={iconPhone} className="w-5 h-5" alt="Phone Icon" />
+            <span className="text-sm text-black">+84 876 787 946</span>
+          </div>
         </div>
 
         {/* Logo Section */}
@@ -179,25 +175,25 @@ function Header() {
             />
           </div>
           <div className="mt-4 md:mt-0 flex items-center">
-          {fullname ? (
-            <button
-              onClick={handleProfile}
-              className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base"
-            >
-              <i className="fas fa-user mr-2"></i>Hi, {fullname}
-            </button>
-          ) : (
-            <Link to="/auth/login">
-
-              <button className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base">
-                <IconLogin />
-                <div className="ml-1">Đăng nhập</div>
+            {fullname ? (
+              <button
+                onClick={handleProfile}
+                className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base"
+              >
+                <i className="fas fa-user mr-2"></i>Hi, {fullname}
               </button>
-            </Link>
-          )}
-        </div>
-  
-        {/* <div className="">
+            ) : (
+              <Link to="/auth/login">
+
+                <button className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base">
+                  <IconLogin />
+                  <div className="ml-1">Đăng nhập</div>
+                </button>
+              </Link>
+            )}
+          </div>
+
+          {/* <div className="">
             <button
               className=""
               onClick={() => {
@@ -216,8 +212,8 @@ function Header() {
             <DrawersInfoForCart open={openOrderInfo} setOpen={setOpenOrderInfo} onProceed={handleProceedToOrderPayment}/>
             <DrawersPaymentForCart open={openOrderPayment} setOpen={setOpenOrderPayment} />
           </div> */}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

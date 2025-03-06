@@ -1,17 +1,20 @@
-import express from 'express'
-export const routerAuth = express.Router()
+import express from 'express';
+export const routerAuth = express.Router();
 
-import AuthController from '../../../controllers/auth.controller'
+import { AuthController } from '@/controllers';
 
-import AsyncHandler from '../../../middlewares/asyncHandler.middleware'
+import { asyncHandler } from '@/middlewares';
 
-import { authentication } from '../../../services/auth/utils'
+// import { authentication } from '@/services/auth/utils'
 
-routerAuth.post('/auth/register', AsyncHandler(AuthController.register))
-routerAuth.post('/auth/login', AsyncHandler(AuthController.login))
-routerAuth.post('/auth/verify/otp', AsyncHandler(AuthController.verifyOtp))
+const authController = AuthController.default;
+
+routerAuth.post('/auth/register', asyncHandler(authController.register));
+routerAuth.post('/auth/login', asyncHandler(authController.login));
+routerAuth.post('/auth/verify/otp', asyncHandler(authController.verifyOtp));
 
 // Authentication
-// routerAuth.use(authentication)
+// routerAuth.use(authentication);
 // Logout
-routerAuth.post('/auth/logout', AsyncHandler(AuthController.logout))
+
+routerAuth.post('/auth/logout', asyncHandler(authController.logout));

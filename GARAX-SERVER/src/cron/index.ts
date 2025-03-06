@@ -1,5 +1,5 @@
-const cron = require('node-cron');
-const { destroyOtp } = require('./task/destroyOtp');
+import cron from 'node-cron';
+import { destroyOtp } from './task/destroyOtp';
 const timezone = 'Asia/Ho_Chi_Minh';
 
 cron.schedule('* * * * *', destroyOtp, {

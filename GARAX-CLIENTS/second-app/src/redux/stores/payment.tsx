@@ -1,11 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface InfoPaymentProps {
+  fullName: string;
+  codeOrder: string;
+  email: string;
+  phoneNumber: string;
+  address: string
+  totalAmount: string;
+  quantity: number;
+  typePayment: string;
+}
+
+interface PaymentState {
+  items: InfoPaymentProps[];
+}
+
+const initialState: PaymentState = {
+  items: [],
+};
+
 const paymentSlice = createSlice({
   name: "infoPayment",
-  initialState: {
-    items: [],
-    // totalQuantity: 0,
-  },
+  initialState: initialState,
   reducers: {
     addToInfoPayment(state, action) {
       const {

@@ -1,49 +1,59 @@
-const StatusCode = {
-  OK: 200,
-  CREATED: 201
+'use strict';
+import { Response } from 'express';
+import { SuccessResponseProps } from "@/common/interfaces";
+import { ReasonPhrases, StatusCodes } from "@/common/utils";
+
+export interface OKProps {
+	message?: string;
+	status?: number;
+	reasonStatusCode?: string;
+	metadata?: object;
 }
 
-const ReasonStatusCode = {
-  CREATED: 'Created!',
-  OK: 'Success'
+export interface CreatedProps {
+	message?: string;
+	status?: number;
+	reasonStatusCode?: string;
+	metadata?: object;
+	option?: object;
 }
 
-class SuccessResponse {
+export class SuccessResponse {
+	message: string;
+	status: number;
+	metadata: object;
 
-  constructor({
-    message,
-    statusCode = StatusCode.OK,
-    reasonStatusCode = ReasonStatusCode.OK,
-    metadata = {}
-  }) {
-    this.message = !message ? reasonStatusCode : message,
-    this.status = statusCode
-    this.metadata = metadata
-  }
-  send(res, headers = {}){
-    return res.status( this.status ).json( this )
-  }
+	constructor({
+		message,
+		status = StatusCodes.default.OK,
+		reasonStatusCode = ReasonPhrases.default.OK,
+		metadata = {},
+	}: SuccessResponseProps) {
+		(this.message = message ?? reasonStatusCode), (this.status = status);
+		this.metadata = metadata;
+	}
+	send(res: Response, _headers: object = {}) {
+		return res.status(this.status).json(this);
+	}
 }
 
-class OK extends SuccessResponse {
-  constructor ({ message, metadata }){
-    super({ message, metadata })
-  }
+export class OK extends SuccessResponse {
+	constructor({ message, metadata }: OKProps) {
+		super({ message, metadata });
+	}
 }
 
-class CREATED extends SuccessResponse {
-  constructor ({
-    message,
-    statusCode = StatusCode.CREATED,
-    reasonStatusCode = ReasonStatusCode.CREATED,
-    metadata,
-    option = {}
-  }){
-    super({ message, statusCode, reasonStatusCode, metadata })
-    this.option = option
-  }
-}
+export class CREATED extends SuccessResponse {
+	option?: object;
 
-module.exports = {
-  OK, CREATED, SuccessResponse
+	constructor({
+		message,
+		status = StatusCodes.default.CREATED,
+		reasonStatusCode = ReasonPhrases.default.CREATED,
+		metadata,
+		option = {},
+	}: CreatedProps) {
+		super({ message, status, reasonStatusCode, metadata });
+		this.option = option;
+	}
 }

@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { UserOutlined } from '@ant-design/icons';
+import { Input, Typography } from 'antd';
 
 import {
   Dialog,
@@ -9,13 +11,19 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 
-import {
-  TextField,
-} from "@mui/material";
-
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-function drawersForCart({ open, setOpen, onProceed }) {
+interface DrawersForCartProps {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  onProceed: () => void ;
+}
+
+function drawersForCart({ 
+  open, 
+  setOpen, 
+  onProceed 
+}: DrawersForCartProps) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [searchParams] = useSearchParams();
 
@@ -109,70 +117,55 @@ function drawersForCart({ open, setOpen, onProceed }) {
                   </DialogTitle>
                 </div>
                 <div className="relative mt-6 flex-1 px-4 sm:px-6 overflow-y-auto">
-                  {/* Your content */}
                   <div className="flex flex-row justify-between items-center">
-                    <TextField
-                      fullWidth
-                      label="Họ tên"
-                      color="success"
-                      type="name"
-                      value={inforOrder.fullName}
-                      onChange={(event) =>
-                        setInforOrder({
-                          ...inforOrder,
-                          fullName: event.target.value,
-                        })
-                      }
-                      margin="normal"
-                      required
-                      sx={{
-                        width: "49%",
-                        input: { color: "#333", fontWeight: "bold" },
-                        "& label.Mui-focused": { color: "#1976d2" },
-                        "& .MuiOutlinedInput-root": {
-                          "& fieldset": { borderColor: "#1976d2" },
-                          "&:hover fieldset": { borderColor: "#115293" },
-                          "&.Mui-focused fieldset": { borderColor: "#1976d2" },
-                        },
-                      }}
-                    />
+                    <div>
+                      <Typography.Title level={5}>Họ tên</Typography.Title>
+                      <Input 
+                        size="large" 
+                        type="name"
+                        placeholder="large size" 
+                        prefix={<UserOutlined />} 
+                        value={inforOrder.fullName}
+                        onChange={(event) =>
+                          setInforOrder({
+                            ...inforOrder,
+                            fullName: event.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </div>
 
-                    <TextField
-                      fullWidth
-                      label="Số điện thoại"
-                      color="success"
-                      type="phone"
-                      value={inforOrder.phoneNumber}
-                      onChange={(event) =>
-                        setInforOrder({
-                          ...inforOrder,
-                          phoneNumber: event.target.value,
-                        })
-                      }
-                      margin="normal"
-                      required
-                      sx={{
-                        width: "49%",
-                        input: { color: "#333", fontWeight: "bold" },
-                        "& label.Mui-focused": { color: "#1976d2" },
-                        "& .MuiOutlinedInput-root": {
-                          "& fieldset": { borderColor: "#1976d2" },
-                          "&:hover fieldset": { borderColor: "#115293" },
-                          "&.Mui-focused fieldset": { borderColor: "#1976d2" },
-                        },
-                      }}
-                    />
+                    <div>
+                      <Typography.Title level={5}>Số điện thoại</Typography.Title>
+                      <Input 
+                        size="large" 
+                        type="phone"
+                        placeholder="large size" 
+                        prefix={<UserOutlined />} 
+                        value={inforOrder.phoneNumber}
+                        onChange={(event) =>
+                          setInforOrder({
+                            ...inforOrder,
+                            phoneNumber: event.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </div>
                   </div>
 
                   <DialogTitle className="text-2xl font-semibold text-gray-900">
                     Địa chỉ
                   </DialogTitle>
 
-                  <TextField
-                      fullWidth
-                      label="Nhập địa chỉ email"
-                      color="success"
-                      type="email"
+                  <div>
+                    <Typography.Title level={5}>Nhập địa chỉ email</Typography.Title>
+                    <Input 
+                      size="large" 
+                      type="phone"
+                      placeholder="large size" 
+                      prefix={<UserOutlined />} 
                       value={inforOrder.email}
                       onChange={(event) =>
                         setInforOrder({
@@ -180,25 +173,17 @@ function drawersForCart({ open, setOpen, onProceed }) {
                           email: event.target.value,
                         })
                       }
-                      margin="normal"
                       required
-                      sx={{
-                        // width: "49%",
-                        input: { color: "#333", fontWeight: "bold" },
-                        "& label.Mui-focused": { color: "#1976d2" },
-                        "& .MuiOutlinedInput-root": {
-                          "& fieldset": { borderColor: "#1976d2" },
-                          "&:hover fieldset": { borderColor: "#115293" },
-                          "&.Mui-focused fieldset": { borderColor: "#1976d2" },
-                        },
-                      }}
                     />
+                  </div>
 
-                  <TextField
-                      fullWidth
-                      label="Nhập địa chỉ"
-                      color="success"
-                      type="address"
+                  <div>
+                    <Typography.Title level={5}>Nhập địa chỉ</Typography.Title>
+                    <Input 
+                      size="large" 
+                      type="phone"
+                      placeholder="large size" 
+                      prefix={<UserOutlined />} 
                       value={inforOrder.address}
                       onChange={(event) =>
                         setInforOrder({
@@ -206,20 +191,9 @@ function drawersForCart({ open, setOpen, onProceed }) {
                           address: event.target.value,
                         })
                       }
-                      margin="normal"
                       required
-                      sx={{
-                        // width: "49%",
-                        input: { color: "#333", fontWeight: "bold" },
-                        "& label.Mui-focused": { color: "#1976d2" },
-                        "& .MuiOutlinedInput-root": {
-                          "& fieldset": { borderColor: "#1976d2" },
-                          "&:hover fieldset": { borderColor: "#115293" },
-                          "&.Mui-focused fieldset": { borderColor: "#1976d2" },
-                        },
-                      }}
                     />
-                  {/* ============ */}
+                  </div>
                 </div>
 
                 <div className="flex flex-row justify-between items-center pt-6 px-4 pb-4 sm:px-6 border-t-[1px] border-slate-200">

@@ -2,36 +2,28 @@
 
 require('dotenv').config();
 
-const crypto = require('node:crypto');
-const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer');
-const otpGenerator = require('otp-generator')
+import crypto from 'node:crypto';
+import bcrypt from 'bcrypt';
+import nodemailer from 'nodemailer';
+import otpGenerator from 'otp-generator';
 
 // depenc...
-const { Account } = require('../models');
-const { OtpCode } = require('../models')
+import { Account } from '../models';
+import { OtpCode } from '../models';
 
-const {
-  BadRequestError,
-  ForbidenError,
-  AuthFailureError,
-} = require('../middlewares/error.response');
+import { BadRequestError, ForbidenError, AuthFailureError } from '../middlewares/error.response';
 
-const AccountService = require('./account.service')
+import AccountService from './account.service';
 // const PartnerService = require('./partner.service')
-const KeyTokenService = require('./keyToken.service');
-const OtpService = require('./otp.service')
+import KeyTokenService from './keyToken.service';
+import OtpService from './otp.service';
 
-const { transporter } = require('../provider/nodemailer')
-const { getInfoData } = require('../utils/');
-const {
-  createTokenPair,
-  getAccessToken,
-  getUserProfile,
-  sendOtpByNodemailer,
-} = require('./auth/utils');
+import { transporter } from '../provider/nodemailer';
+import { getInfoData } from '../utils/';
+import { createTokenPair, getAccessToken, getUserProfile, sendOtpByNodemailer } from './auth/utils';
 
-const { ROLES } = require('../constants');
+import { ROLES } from '../constants';
+import { KeyStoreRequest } from '@/common/requests/auth';
 
 class AuthJWTService {
   static register = async ({ name, email, password, roles = "admin" }) => {
@@ -166,7 +158,7 @@ class AuthJWTService {
     };
   };
 
-  static logout = async (keyStore) => {
+  static logout = async (keyStore: KeyStoreRequest) => {
     const delKey = await KeyTokenService.removeKeyById(keyStore.id);
     console.log({ delKey });
     return delKey;
@@ -204,4 +196,4 @@ class AuthJWTService {
   }
 }
 
-module.exports = AuthJWTService;
+export default AuthJWTService;

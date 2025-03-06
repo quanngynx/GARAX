@@ -1,31 +1,47 @@
 'use strict'
 
-import { connections } from "mongoose";
 import { cpus } from 'os';
 import { memoryUsage as _memoryUsage } from 'process';
+import { sequelize } from '@/db/init.mysql.level1';
+import QueryTypes from 'sequelize/lib/query-types';
+
 const _SECONDS = 5000
 
-const countConnect = () => {
-    const numConnection = connections.length
-    console.log(`Numbers of connection::${numConnection}`)
+const getActiveConnections = async (): Promise<number> => {
+  try {
+    const result = await sequelize.query<{ Value: string }>(
+      'SHOW STATUS WHERE `Variable_name` = "Threads_connected"',
+      { type: QueryTypes.SELECT }
+    );
+
+    return result.length > 0 ? parseInt(result[0].Value, 10) : 0;
+  } catch (error) {
+    console.error('Error fetching active connections:', error);
+    return 0;
+  }
+};
+
+const countConnect = async () => {
+  const numConnection = await getActiveConnections();
+  console.log(`Numbers of connection::${numConnection}`);
 }
 
 //Check overload in 5 sec
 const checkOverLoad = () => {
-  setInterval( () => {
-      const numConnection = connections.length
-      const numCores = cpus().length
-      const memoryUsage = _memoryUsage().rss
-      //Example maximum number of connections based on number of  cores
-      const maxConnections = numCores * 5
+  setInterval( async () => {
+      const numConnection: number = await getActiveConnections();
+      const numCores = cpus().length;
+      const memoryUsage = _memoryUsage().rss;
 
-      console.log(`mEMORY USAGE::${memoryUsage / 1024 / 1024}MB`)
+      const maxConnections = numCores * 5;
+
+      console.log(`mEMORY USAGE::${memoryUsage / 1024 / 1024}MB`);
 
       if(numConnection > maxConnections) {
-          console.log(`Connection overload is detected!`)
+          console.log(`Connection overload is detected!`);
       }
-  }, _SECONDS) // monitor every 5 sec
-}
+  }, _SECONDS);
+};
 
 export default {
   countConnect, checkOverLoad

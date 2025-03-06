@@ -2,11 +2,9 @@
 
 require("dotenv").config()
 import express, { Request, Response, NextFunction } from 'express';
-import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
-import cors from "cors";
 import { default as helmet } from 'helmet';
 
 // const { sequelize } = require('./models/index'); // Import sequelize từ models
@@ -16,7 +14,7 @@ import { default as helmet } from 'helmet';
 // import authRoutes from './routes/access';
 import { router } from './routes';
 import { ErrorStatus } from './common/interfaces';
-import { BASE_URL_ADMIN, BASE_URL_CLIENT } from './common/constants/common';
+import { corsMiddleware } from './middlewares';
 
 // #region IMPORT DB
 require('./db/init.mysql.level1');
@@ -31,30 +29,30 @@ declare module 'express-serve-static-core' {
 const app = express();
 
 //#region Init middlewares
-app.use(cors({
-  origin: [
-    `${BASE_URL_CLIENT}`,
-    `${BASE_URL_ADMIN}`,
+// app.use(cors({
+//   origin: [
+//     `${BASE_URL_CLIENT}`,
+//     `${BASE_URL_ADMIN}`,
 
-    // NGUYEN
-    // "https://pointer.io.vn",
-    // "https://wallet.pointer.io.vn",
-    // "https://presspay-wallet.vercel.app",
-    // "https://presspay.vercel.app",
+//     // NGUYEN
+//     // "https://pointer.io.vn",
+//     // "https://wallet.pointer.io.vn",
+//     // "https://presspay-wallet.vercel.app",
+//     // "https://presspay.vercel.app",
 
-    // "https://presspay-api.azurewebsites.net",
-    // "https://api-presspay.azurewebsites.net",
-    // "https://api-wallet.pointer.io.vn"
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  credentials: true, // Cho phép credentials (cookies, headers...)
-}))
+//     // "https://presspay-api.azurewebsites.net",
+//     // "https://api-presspay.azurewebsites.net",
+//     // "https://api-wallet.pointer.io.vn"
+//   ],
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+//   credentials: true, // Cho phép credentials (cookies, headers...)
+// }))
+app.use(corsMiddleware)
 
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(compression())
 app.use(express.json())
-app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.urlencoded({
     extended: true

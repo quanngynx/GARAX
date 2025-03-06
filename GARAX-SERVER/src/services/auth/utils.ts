@@ -1,14 +1,27 @@
 'use strict';
-import JWT from 'jsonwebtoken';
+import JWT, { JwtPayload } from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import { NextFunction, Request, Response } from 'express';
 
 import KeyTokenService from '../../services/keyToken.service';
 
-import asyncHandler from '../../middlewares/asyncHandler.middleware';
+import { asyncHandler } from '../../middlewares';
 import { AuthFailureError, NotFoundError } from '../../middlewares/error.response';
 
 import { HEADER } from '@/common/constants';
+import { KeyStore } from '@/common/interfaces';
+
+interface SendOtpByNodemailerProps {
+  title: string;
+  otp: string;
+  toEmail: string;
+}
+
+interface AuthenticationProps extends Request {
+  keyStore: KeyStore;
+  user: any;
+  refreshToken: string | string[];
+}
 
 const createTokenPair = async (
   payLoad: string | Buffer | object,
@@ -37,7 +50,7 @@ const createTokenPair = async (
   } catch (error) {}
 };
 
-const authentication = asyncHandler(async(req: Request, _res: Response, next: NextFunction) => {
+const authentication = asyncHandler(async(req: AuthenticationProps, _res: Response, next: NextFunction) => {
   /**
    * @author Quan
    * 1 - Check userId missing??
@@ -51,16 +64,16 @@ const authentication = asyncHandler(async(req: Request, _res: Response, next: Ne
   const userId = req.headers[HEADER.CLIENT_ID];
   if (!userId) throw new AuthFailureError('Invalid Request! - 53');
 
-  const keyStore = await KeyTokenService.findByUserId(userId);
+  const keyStore: KeyStore = await KeyTokenService.findByUserId(userId);
   if (!keyStore) throw new NotFoundError('Not found keyStore! - 57');
 
   if (req.headers[HEADER.REFRESHTOKEN]) {
     try {
       const refreshToken = req.headers[HEADER.REFRESHTOKEN];
-      const decodeUser = JWT.verify(refreshToken, keyStore.privateKey);
+      const getRefreshToken = Array.isArray(refreshToken) ? refreshToken[0] : refreshToken;
+      const decodeUser = JWT.verify(getRefreshToken, keyStore.privateKey) as JwtPayload;
 
-      if (userId !== decodeUser.userId)
-        throw new AuthFailureError('Invalid userId! - 65');
+      if (userId !== decodeUser.userId) throw new AuthFailureError('Invalid userId!');
 
       req.keyStore = keyStore;
       req.user = decodeUser;
@@ -75,7 +88,7 @@ const authentication = asyncHandler(async(req: Request, _res: Response, next: Ne
   if (!accessToken) throw new AuthFailureError('Invalid Request! - 78');
 
   try {
-    const decodeUser = JWT.verify(accessToken, keyStore.publicKey);
+    const decodeUser = JWT.verify(accessToken, keyStore.publicKey) as JwtPayload;
 
     if (userId !== decodeUser.userId)
       throw new AuthFailureError('Invalid userId! - 83');
@@ -89,11 +102,11 @@ const authentication = asyncHandler(async(req: Request, _res: Response, next: Ne
   }
 });
 
-const verifyJWT = async (token: any, keySecret: any) => {
-  return await JWT.verify(token, keySecret);
+const verifyJWT = async (token: string, keySecret: string) => {
+  return JWT.verify(token, keySecret);
 };
 
-const sendOtpByNodemailer = async ({ title, otp, toEmail }) => {
+const sendOtpByNodemailer = async ({ title, otp, toEmail }: SendOtpByNodemailerProps) => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -119,7 +132,7 @@ const sendOtpByNodemailer = async ({ title, otp, toEmail }) => {
   }
 }
 
-module.exports = {
+export {
   createTokenPair,
   authentication,
   verifyJWT,

@@ -23,7 +23,7 @@ interface IRecommend {
 function Recommend({ handleClick } : IRecommend) {
   return (
     <div className="mt-6 flex flex-col md:flex-row md:justify-between">
-      <div className="flex h-[48px]">
+      <div className="flex h-[44px]">
         <Button onClickHandler={handleClick} value="" title="Tất cả sản phẩm" />
         <Button onClickHandler={handleClick} value="Toyota" title="Toyota" />
         <Button onClickHandler={handleClick} value="BMW" title="BMW" />

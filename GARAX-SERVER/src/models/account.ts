@@ -1,11 +1,11 @@
 'use strict';
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 import { GENDER_VALUES } from '@/common/constants';
-import { Account } from '@/common/interfaces';
+import { Account, Models } from '@/common/interfaces';
 
 export type AccountCreationAttributes = Optional<
-    Account,
-    'id' | 'userName'
+  Account,
+  'id' | 'userName'
 >;
 
 export class AccountModel
@@ -32,7 +32,7 @@ implements Account  {
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  static associate(models: any) {
+  static associate(models: Models) {
     // define association here
     this.hasMany(models.Address, {
       foreignKey: 'userId',
@@ -41,7 +41,7 @@ implements Account  {
   }
 }
 
-export default function (sequelize: Sequelize): typeof AccountModel {
+export default (sequelize: Sequelize): typeof AccountModel => {
   AccountModel.init(
     {
       id: {
@@ -59,8 +59,8 @@ export default function (sequelize: Sequelize): typeof AccountModel {
         type: DataTypes.STRING,
       },
       gender: {
-        type: DataTypes.ENUM(...GENDER_VALUES), // Chuyển enum thành array giá trị
-        defaultValue: GENDER_VALUES[0], // Giá trị mặc định hợp lệ
+        type: DataTypes.ENUM(...GENDER_VALUES),
+        defaultValue: GENDER_VALUES[0],
       },
       dob: {
         type: DataTypes.BIGINT,

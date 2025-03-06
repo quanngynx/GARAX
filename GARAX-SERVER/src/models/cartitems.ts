@@ -1,32 +1,60 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class CartItems extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+import { CartItems, Models } from "@/common/interfaces";
+import { DataTypes, Sequelize, Model, Optional } from "sequelize";
+
+export type CartItemsCreationAttributes = Optional<
+  CartItems,
+  'id'
+>;
+
+export class CartItemsModel
+extends Model<CartItemsCreationAttributes>
+implements CartItems {
+  id!: string;
+  qty!: string;
+  cartId!: string;
+  productVariantId!: string;
+  created_at!: Date;
+  updated_at!: Date;
+  /**
+   * Helper method for defining associations.
+   * This method is not a part of Sequelize lifecycle.
+   * The `models/index` file will call this method automatically.
+   */
+  static associate(_models: Models) {
+    // define association here
   }
-  CartItems.init({
+}
+
+export default (sequelize: Sequelize): typeof CartItemsModel => {
+  CartItemsModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    qty: DataTypes.INTEGER,
-    cartId: DataTypes.STRING,
-    productVariantId: DataTypes.STRING
+    qty: {
+      type: DataTypes.INTEGER
+    },
+    cartId: {
+      type: DataTypes.STRING
+    },
+    productVariantId: {
+      type: DataTypes.STRING
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   }, {
     sequelize,
     modelName: 'CartItems',
     tableName: 'cart_items',
     timestamps: true
   });
-  return CartItems;
+  return CartItemsModel;
 };

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
-import { Sequelize } from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(path.join(__dirname, '../config/config.json'))[env];
@@ -16,34 +16,34 @@ if (config.use_env_variable) {
     config
   );
 }
-const Account = require('./account')(sequelize, Sequelize.DataTypes);
-const ApiKey = require('./apikey')(sequelize, Sequelize.DataTypes);
-const KeyToken = require('./keytoken')(sequelize, Sequelize.DataTypes);
-const OtpCode = require('./otpcode')(sequelize, Sequelize.DataTypes);
-const ItemPermission = require('./itempermission')(sequelize, Sequelize.DataTypes);
-const Permission = require('./permission')(sequelize, Sequelize.DataTypes);
+const Account = require('./account')(sequelize, DataTypes);
+const ApiKey = require('./apikey')(sequelize, DataTypes);
+const KeyToken = require('./keytoken')(sequelize, DataTypes);
+const OtpCode = require('./otpcode')(sequelize, DataTypes);
+const ItemPermission = require('./itempermission')(sequelize, DataTypes);
+const Permission = require('./permission')(sequelize, DataTypes);
 
-const Product = require('./product')(sequelize, Sequelize.DataTypes);
+const Product = require('./product')(sequelize, DataTypes);
 
-const Address = require('./address')(sequelize, Sequelize.DataTypes);
-// const ProductCategory = require('./productCategory')(sequelize, Sequelize.DataTypes);
-// const ProductDetail = require('./productDetail')(sequelize, Sequelize.DataTypes);
-// const ProductFeedback = require('./productFeedback')(sequelize, Sequelize.DataTypes);
-// const ProductImage = require('./productImage')(sequelize, Sequelize.DataTypes);
-// const ProductMedia = require('./productMedia')(sequelize, Sequelize.DataTypes);
-// const Brand = require('./brand')(sequelize, Sequelize.DataTypes);
+const Address = require('./address')(sequelize, DataTypes);
+// const ProductCategory = require('./productCategory')(sequelize, DataTypes);
+// const ProductDetail = require('./productDetail')(sequelize, DataTypes);
+// const ProductFeedback = require('./productFeedback')(sequelize, DataTypes);
+// const ProductImage = require('./productImage')(sequelize, DataTypes);
+// const ProductMedia = require('./productMedia')(sequelize, DataTypes);
+// const Brand = require('./brand')(sequelize, DataTypes);
 
-// const Cart = require('./cartProduct')(sequelize, Sequelize.DataTypes);
-// const CartItemsProduct = require('./cartItemsProduct')(sequelize, Sequelize.DataTypes);
+// const Cart = require('./cartProduct')(sequelize, DataTypes);
+// const CartItemsProduct = require('./cartItemsProduct')(sequelize, DataTypes);
 
-// const Service = require('./service')(sequelize, Sequelize.DataTypes);
-// const ServiceCategory = require('./serviceCategory')(sequelize, Sequelize.DataTypes);
-// const ServiceDetail = require('./serviceDetail')(sequelize, Sequelize.DataTypes);
-// const ServiceMedia = require('./serviceMedia')(sequelize, Sequelize.DataTypes);
+// const Service = require('./service')(sequelize, DataTypes);
+// const ServiceCategory = require('./serviceCategory')(sequelize, DataTypes);
+// const ServiceDetail = require('./serviceDetail')(sequelize, DataTypes);
+// const ServiceMedia = require('./serviceMedia')(sequelize, DataTypes);
 
-// const Order = require('./order')(sequelize, Sequelize.DataTypes);
-// const OrderProduct = require('./orderProduct')(sequelize, Sequelize.DataTypes);
-// const Payment = require('./payment')(sequelize, Sequelize.DataTypes);
+// const Order = require('./order')(sequelize, DataTypes);
+// const OrderProduct = require('./orderProduct')(sequelize, DataTypes);
+// const Payment = require('./payment')(sequelize, DataTypes);
 
 const db = {
   Account,

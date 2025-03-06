@@ -35,4 +35,4 @@ class CartController {
   }
 }
 
-module.exports = new CartController()
+export default new CartController()

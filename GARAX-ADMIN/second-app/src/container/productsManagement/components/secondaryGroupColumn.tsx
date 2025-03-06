@@ -65,7 +65,7 @@ function SecondaryGroupColumn() {
         <div className="w-[40%] border-[0.5px] border-solid border-slate-300 rounded-2xl px-[16px] py-[24px]">
             <div className="">
                 <div className="flex flex-col">
-                    <label className="mb-2 text-gray-700">Hình ảnh</label>
+                    <label className="text-gray-700">Hình ảnh</label>
 
                     <div className={styles.container}>
                         <div className={styles.dropzone} {...getRootProps()}>

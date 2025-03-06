@@ -3,7 +3,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from 'react-redux';
 
+import { store } from './redux/stores';
 // import reportPerformance from "./utils/reportPerformance.ts";
 
 import App from "./App";
@@ -22,7 +24,9 @@ createRoot(rootElement).render(
     <HelmetProvider>
       <BrowserRouter>
       <QueryClientProvider client={client}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </QueryClientProvider>
       </BrowserRouter>
     </HelmetProvider>

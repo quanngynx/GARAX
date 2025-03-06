@@ -1,17 +1,28 @@
-require('dotenv').config();
-
 import { Sequelize } from 'sequelize';
+import {
+  DB_HOST_VALUE_DEV,
+  DB_NAME_VALUE_DEV,
+  DB_PASSWORD_VALUE_DEV,
+  DB_USER_VALUE_DEV
+} from '@/common/venv';
 
 export const sequelize = new Sequelize(
-  process.env.DATABASE_DEV,
-  process.env.USER_DEV,
-  process.env.PASSWORD_DB_DEV,
+  DB_NAME_VALUE_DEV,
+  DB_USER_VALUE_DEV,
+  DB_PASSWORD_VALUE_DEV,
   {
-  host: process.env.HOST_DEV,
-  dialect: 'mysql',
-  dialectModule: require('mysql2'), // Chỉ định mysql2 làm module driver cho Sequelize
-  logging:false
-});
+    host: DB_HOST_VALUE_DEV,
+    dialect: 'mysql',
+    dialectModule: require('mysql2'),
+    logging:false,
+    pool: {
+      max: 5,
+      min: 1,
+      acquire: 30000,
+      idle: 10000
+    }
+  }
+);
 
 const connect = async () => {
   try {

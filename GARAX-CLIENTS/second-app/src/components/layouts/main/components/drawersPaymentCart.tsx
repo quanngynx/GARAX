@@ -6,7 +6,6 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-// import FormLabel from "@mui/material/FormLabel";
 
 import {
   Dialog,
@@ -20,12 +19,12 @@ import {
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-function drawersForCart({ open, setOpen } : drawersPaymentInterfaces) {
+function drawersForCart({ open, setOpen }: drawersPaymentInterfaces) {
   // const [open, setOpen] = useState(true);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [searchParams] = useSearchParams();
 
-  const GiaVe: number = parseFloat(searchParams.get("GiaVe")  ?? "1");
+  const GiaVe: number = parseFloat(searchParams.get("GiaVe") ?? "1");
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [count, setCount] = useState(1);
   // const [totalPrice, setTotalPrice] = useState(GiaVe);
@@ -182,8 +181,8 @@ function drawersForCart({ open, setOpen } : drawersPaymentInterfaces) {
                           control={<Radio />}
                           label="Thanh toán khi giao hàng (COD)"
                           sx={{
-                            color: "#000", 
-                            "& .MuiFormControlLabel-label": { color: "#000" }, 
+                            color: "#000",
+                            "& .MuiFormControlLabel-label": { color: "#000" },
                           }}
                         />
                         <FormControlLabel
@@ -191,8 +190,8 @@ function drawersForCart({ open, setOpen } : drawersPaymentInterfaces) {
                           control={<Radio />}
                           label="Presspay Pointer"
                           sx={{
-                            color: "#000", 
-                            "& .MuiFormControlLabel-label": { color: "#000" }, 
+                            color: "#000",
+                            "& .MuiFormControlLabel-label": { color: "#000" },
                           }}
                         />
                         <FormControlLabel

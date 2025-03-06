@@ -14,6 +14,10 @@ export default [
     plugins: {
       prettier: eslintPluginPrettier
     },
+    extends: [
+      'plugin:@typescript-eslint/recommended',
+      'plugin:prettier/recommended',
+    ],
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',

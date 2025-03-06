@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 const router = express.Router();
 import authController from '../../controllers/access.controller';
 import authenticateToken from '../../middlewares/auth';
-import authorizeRole from '../../middlewares/authorize';
+import authorizeRole from '../../middlewares/authorize.middleware';
 import refreshToken from "../../middlewares/refreshToken";
 
 //đăng ký router register

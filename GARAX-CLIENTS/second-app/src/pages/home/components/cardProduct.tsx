@@ -6,7 +6,7 @@ import FuelTypeTinyIcon from "@/assets/home/icons/fuel-type-tiny.svg?react";
 import TransmissionTypeTinyIcon from "@/assets/home/icons/transmission-car-tiny.svg?react";
 import ScheduleTinyIcon from "@/assets/home/icons/schedule-tiny.svg?react";
 
-import LineFull from "@/components/line/line";
+import { Line } from "@/components/line/line";
 
 import { Link } from "react-router-dom";
 
@@ -56,7 +56,7 @@ function products({ card, index }) {
         </div>
 
         <div className="my-4 w-full">
-          <LineFull />
+          <Line />
         </div>
 
         <div className="inline-flex justify-between w-full">

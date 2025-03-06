@@ -1,4 +1,5 @@
 require('dotenv').config();
+import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
@@ -8,9 +9,16 @@ import crypto from 'crypto';
 import { SuccessResponse } from '../middlewares/success.response';
 
 import AccessService from '../services/access.service';
+import { KeyStoreRequest } from '@/common/requests/auth';
+
+export interface HandleRefreshTokenProps extends Request {
+  refreshToken: string;
+  user: any
+  keyStore: KeyStoreRequest
+}
 
 class AccessController {
-  handleRefreshToken = async (req, res, next) => {
+  handleRefreshToken = async (req: HandleRefreshTokenProps, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get token success!',
       metadata: await AccessService.handleRefreshToken({
@@ -22,7 +30,7 @@ class AccessController {
   };
 }
 
-module.exports = new AccessController()
+export default new AccessController()
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -35,7 +43,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const register = async (req, res) => {
+const register = async (req: Request, res: Response, _next: NextFunction) => {
   try {
     const { email, password, fullname, phone } = req.body;
     console.log('Request body:', req.body);
@@ -92,7 +100,7 @@ const register = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
-const getCustomerDetails = async (req, res) => {
+const getCustomerDetails = async (req: Request, res: Response, _next: NextFunction) => {
   try {
     const email = req.query.email;
     let customers;
@@ -181,7 +189,7 @@ const getCustomerDetails = async (req, res) => {
 };
 
 //login ở đây
-const login = async (req, res) => {
+const login = async (req: Request, res: Response, _next: NextFunction) => {
   try {
     const { email, password } = req.body;
 
@@ -233,7 +241,7 @@ const login = async (req, res) => {
   }
 };
 
-const verify = async (req, res) => {
+const verify = async (req: Request, res: Response, _next: NextFunction) => {
   try {
     const { email, otp } = req.body;
     const user = await Account.findOne({ where: { email: req.body.email } });
@@ -260,9 +268,3 @@ const verify = async (req, res) => {
   }
 };
 
-module.exports = {
-  register,
-  login,
-  verify,
-  getCustomerDetails,
-};

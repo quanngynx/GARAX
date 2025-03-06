@@ -3,6 +3,7 @@
 import { CreateKeyTokenRequest } from "@/common/requests";
 
 import { KeyToken } from '../models';
+import { KeyStore } from "@/common/interfaces";
 
 class KeyTokenService {
   static createKeyToken = async ({
@@ -30,22 +31,24 @@ class KeyTokenService {
       return error
     }
   }
-  static findByUserId = async ( userId ) => {
+
+  static findByUserId = async (_userId: string | string[]): Promise<KeyStore> => {
     // return await keyTokenModel.findOne({ user: new Types.ObjectId(userId) })
+    return { privateKey: '' }
   }
-  static removeKeyById = async ( id ) => {
+  static removeKeyById = async (_id: string) => {
     // return await keyTokenModel.deleteOne( id )
   }
 
-  static findByRefreshTokenUsed = async ( refreshToken ) => {
+  static findByRefreshTokenUsed = async ( _refreshToken: string) => {
     // return await keyTokenModel.findOne( { refreshTokensUsed: refreshToken } ).lean()
   }
 
-  static findByRefreshToken = async ( refreshToken ) => {
+  static findByRefreshToken = async ( _refreshToken: string) => {
     // return await keyTokenModel.findOne( { refreshToken } )
   }
 
-  static deleteKeyById = async ( userId ) => {
+  static deleteKeyById = async ( _userId: string) => {
     // return await keyTokenModel.deleteOne( { user: new Types.ObjectId(userId) } )
   }
 }

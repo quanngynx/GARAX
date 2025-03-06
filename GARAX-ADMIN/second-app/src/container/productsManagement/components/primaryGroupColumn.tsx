@@ -81,17 +81,17 @@ function PrimaryGroupColumn() {
               <div className="grid grid-cols-2 gap-6">
                 {ListInput.map((label, index) => (
                   <div key={index} className="flex flex-col">
-                    <label className="mb-2 text-gray-700">{label.label}</label>
+                    <label className="mb-1 text-gray-700">{label.label}</label>
                     <input
                       placeholder={label.placeHolder}
                       type="text"
-                      className="p-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 ))}
               </div>
               <div className="field-wrapper flex flex-col mt-5">
-                <label className="field-label mb-[16px]" htmlFor="description">
+                <label className="field-label mb-[8px] text-gray-700" htmlFor="description">
                     Description
                 </label>
                 <textarea

@@ -1,7 +1,7 @@
 import HeadFooter from "./headFooter";
 import BodyFooter from "./bodyFooter";
 import EndFooter from "./endFooter";
-import Line from "@/components/line/line";
+import { Line } from "@/components/line/line";
 function footer() {
   return (
     <div className="bg-white w-full flex justify-center">

@@ -18,13 +18,13 @@ const dev = {
 }
 const production = {
   app: {
-    port: process.env.PORT_PROD || 3306, 
+    port: process.env.PORT_PROD || 3306,
   },
   db: {
     host: process.env.DB_HOST_PROD || 'localhost',
     user: process.env.DB_USER_PROD || 'root',
-    password: process.env.DB_PASSWORD_PROD || '', 
-    db: process.env.DB_NAME_PROD || 'garrax_prod', 
+    password: process.env.DB_PASSWORD_PROD || '',
+    db: process.env.DB_NAME_PROD || 'garrax_prod',
     dialect: 'mysql',
     pool: {
       max: 5,
@@ -35,5 +35,5 @@ const production = {
   },
 };
 const config = { dev, production }
-const env = process.env.NODE_ENV || 'dev'
-module.exports = config[env]
+const env = (process.env.NODE_ENV || 'dev') as keyof typeof config;
+export default config[env];

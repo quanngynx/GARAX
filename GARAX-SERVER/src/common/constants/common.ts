@@ -30,3 +30,6 @@ export const GENDER_VALUES = ["male", "female", "other"] as const;
 
 export type ADDRESS = 'home' | 'office';
 export const ADDRESS_VALUES = ['home', 'office'] as const;
+
+export type IMAGE = 'small' | 'medium' | 'large';
+export const IMAGE_VALUES = ['small', 'medium', 'large'] as const;

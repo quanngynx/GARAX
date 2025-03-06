@@ -1,0 +1,10 @@
+export  * as AccessController from './access.controller';
+export * as AuthController from './auth.controller';
+export * as CartController from './cart.controller';
+export * as NewsController from './news.controller';
+// export { default as } from './order.controller';
+// export { default as } from './payment.controller';
+// export { default as } from './permission.controller';
+// export { default as } from './postproduct.controller';
+// export { default as } from './product.controller';
+// export { default as } from './productCategory.controller';

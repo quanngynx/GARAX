@@ -4,14 +4,7 @@ import RateLimit from 'express-rate-limit';
  * @example
  * app.use('/user/', apiLimiter);
  */
-const apiLimiter = new RateLimit({
-  windowMs: 15*60*1000, // 15 minutes
+export const apiLimiter = RateLimit({
+  windowMs: 15*60*1000,
   max: 100,
 });
-
-export default {
-  apiLimiter
-}
-
-
-

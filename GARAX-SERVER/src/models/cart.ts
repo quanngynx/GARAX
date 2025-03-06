@@ -1,31 +1,56 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Cart extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
+import { Cart, Models } from '@/common/interfaces';
+
+export type AccountCreationAttributes = Optional<
+  Cart,
+  'id'
+>;
+
+export class CartModel
+extends Model<AccountCreationAttributes>
+implements Cart  {
+  id!: string;
+  sessionId!: string;
+  userId!: string;
+  created_at!: Date;
+  updated_at!: Date;
+  /**
+   * Helper method for defining associations.
+   * This method is not a part of Sequelize lifecycle.
+   * The `models/index` file will call this method automatically.
+   */
+  static associate(_models: Models) {
+    // define association here
   }
-  Cart.init({
+}
+
+export default (sequelize: Sequelize): typeof CartModel => {
+  CartModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    sessionId: DataTypes.STRING,
-    userId: DataTypes.STRING
+    sessionId: {
+      type: DataTypes.STRING
+    },
+    userId: {
+      type: DataTypes.STRING
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   }, {
     sequelize,
     modelName: 'Cart',
     tableName: 'carts',
     timestamps: true
   });
-  return Cart;
+  return CartModel;
 };

@@ -1,9 +1,25 @@
 'use strict';
-import { DataTypes, Model, Sequelize } from 'sequelize';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { ADDRESS_VALUES } from '@/common/constants';
-import { Models } from '@/common/interfaces';
+import { Address, Models } from '@/common/interfaces';
 
-export class AddressModel extends Model {
+export type AddressCreationAttributes = Optional<
+  Address,
+  'id'
+>;
+
+export class AddressModel
+extends Model<AddressCreationAttributes>
+implements Address {
+  id!: string;
+  type!: typeof ADDRESS_VALUES[number];
+  streetRoad!: string;
+  wardOrCommune!: string;
+  district!: string;
+  city!: string;
+  userId!: string;
+  public readonly created_at!: Date;
+  public readonly updated_at!: Date;
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -43,7 +59,15 @@ export default (sequelize: Sequelize) => {
     },
     userId: {
       type: DataTypes.STRING,
-    }
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   }, {
     sequelize,
     modelName: 'Address',

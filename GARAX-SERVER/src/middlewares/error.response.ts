@@ -1,7 +1,6 @@
 'use strict'
-
-const { StatusCodes, ReasonPhrases } = require('../utils/httpStatusCode')
-const { logger0 } = require('../utils/winston')
+import { ErrorResponseProps } from '@/common/interfaces'
+import { ReasonPhrases, StatusCodes } from '@/common/utils';
 
 const StatusCode = {
   FORBIDEN: 403,
@@ -13,86 +12,56 @@ const ReasonStatusCode = {
   CONFLICT: 'Conflict error'
 }
 
-class ErrorResponse extends Error {
+export class ErrorResponse extends Error {
+	status: number | undefined;
 
-  constructor(message, status) {
-    super(message)
-    this.status = status
-    logger0.error(`${this.status} - ${this.message}`)
-  }
+	constructor({ message, status }: ErrorResponseProps) {
+		super(message);
+		this.status = status;
+	}
 }
 
-// 403
-class ConflictRequestError extends ErrorResponse {
-
-  constructor(
-    message = ReasonStatusCode.CONFLICT,
-    statusCode = StatusCode.FORBIDEN
-  ) {
-    super(message, statusCode)
-  }
+export class ConflictRequestError extends ErrorResponse {
+	constructor(
+		message = ReasonStatusCode.CONFLICT,
+		status = StatusCode.FORBIDEN,
+	) {
+		super({ message, status });
+	}
 }
 
-// 403
-class BadRequestError extends ErrorResponse {
-
-  constructor(
-    message = ReasonStatusCode.CONFLICT,
-    statusCode = StatusCode.FORBIDEN
-  ) {
-    super(message, statusCode)
-  }
+export class BadRequestError extends ErrorResponse {
+	constructor(
+		message = ReasonStatusCode.CONFLICT,
+		status = StatusCode.FORBIDEN,
+	) {
+		super({ message, status });
+	}
 }
 
-// 401
-class AuthFailureError extends ErrorResponse {
-
-  constructor(
-    message = ReasonPhrases.UNAUTHORIZED,
-    statusCode = StatusCodes.UNAUTHORIZED
-  ) {
-    super( message, statusCode )
-  }
+export class AuthFailureError extends ErrorResponse {
+	constructor(
+		message = ReasonPhrases.default.UNAUTHORIZED,
+		status = StatusCodes.default.UNAUTHORIZED,
+	) {
+		super({ message, status });
+	}
 }
 
-// 404
-class NotFoundError extends ErrorResponse {
-
-  constructor(
-    message = ReasonPhrases.NOT_FOUND,
-    statusCode = StatusCodes.NOT_FOUND
-  ) {
-    super( message, statusCode )
-  }
+export class NotFoundError extends ErrorResponse {
+	constructor(
+		message = ReasonPhrases.default.NOT_FOUND,
+		status = StatusCodes.default.NOT_FOUND,
+	) {
+		super({ message, status });
+	}
 }
 
-// 403
-class ForbidenError extends ErrorResponse {
-
-  constructor(
-    message = ReasonPhrases.FORBIDDEN,
-    statusCode = StatusCodes.FORBIDDEN
-  ) {
-    super( message, statusCode )
-  }
-}
-
-// 421
-class MisdirectedRequest extends ErrorResponse {
-
-  constructor(
-    message = ReasonPhrases.MISDIRECTED_REQUEST,
-    statusCode = StatusCodes.MISDIRECTED_REQUEST
-  ) {
-    super( message, statusCode )
-  }
-}
-
-module.exports = {
-  ConflictRequestError,
-  BadRequestError,
-  AuthFailureError,
-  NotFoundError,
-  ForbidenError,
-  MisdirectedRequest
+export class ForbidenError extends ErrorResponse {
+	constructor(
+		message = ReasonPhrases.default.FORBIDDEN,
+		status = StatusCodes.default.FORBIDDEN,
+	) {
+		super({ message, status });
+	}
 }

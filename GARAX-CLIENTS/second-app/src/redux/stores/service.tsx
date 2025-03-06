@@ -1,36 +1,52 @@
-// import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-// const serviceSlice = createSlice({
-//   name: "infoService",
-//   initialState: {
-//     items: [],
-//     // totalQuantity: 0,
-//   },
-//   reducers: {
-//     addToService(state, action) {
-//       const {
-//         fullName,
-//         codeOrder,
-//         email,
-//         phoneNumber,
-//         address,
-//         totalAmount,
-//         quantity,
-//         typePayment,
-//       } = action.payload;
-//       state.items.push({
-//         fullName,
-//         codeOrder,
-//         email,
-//         phoneNumber,
-//         address,
-//         totalAmount,
-//         quantity,
-//         typePayment,
-//       });
-//     },
-//   },
-// });
+interface InfoServiceProps {
+  fullName: string;
+  codeOrder: string;
+  email: string;
+  phoneNumber: string;
+  address: string
+  totalAmount: string;
+  quantity: number;
+  typePayment: string;
+}
 
-// export const { addToService } = serviceSlice.actions;
-// export default serviceSlice.reducer;
+interface ServiceState {
+  items: InfoServiceProps[];
+}
+
+const initialState: ServiceState = {
+  items: [],
+};
+
+const serviceSlice = createSlice({
+  name: "infoService",
+  initialState: initialState,
+  reducers: {
+    addToService(state, action) {
+      const {
+        fullName,
+        codeOrder,
+        email,
+        phoneNumber,
+        address,
+        totalAmount,
+        quantity,
+        typePayment,
+      } = action.payload;
+      state.items.push({
+        fullName,
+        codeOrder,
+        email,
+        phoneNumber,
+        address,
+        totalAmount,
+        quantity,
+        typePayment,
+      });
+    },
+  },
+});
+
+export const { addToService } = serviceSlice.actions;
+export default serviceSlice.reducer;

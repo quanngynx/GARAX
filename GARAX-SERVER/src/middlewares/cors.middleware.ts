@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 /**
  * CORS middleware
@@ -6,7 +7,7 @@
  * @param {*} res - Express response object
  * @param {*} next - Express next function
  */
-const corsMiddleware = (req, res, next) => {
+export const corsMiddleware: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
   const allowedOrigins = [
     'http://localhost:3050',
     'http://localhost:3052',
@@ -14,20 +15,19 @@ const corsMiddleware = (req, res, next) => {
   ];
   const origin = req.headers.origin;
 
-  if (allowedOrigins.includes(origin)) {
+  if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
 
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, uid');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(204); // 204: NO CONTENT
+    res.sendStatus(204); // 204: NO CONTENT
+    return;
   }
 
   next();
 };
-
-export default corsMiddleware;
