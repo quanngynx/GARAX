@@ -16,6 +16,8 @@ implements CartItems {
   productVariantId!: string;
   created_at!: Date;
   updated_at!: Date;
+
+  public static associations: {};
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -26,7 +28,7 @@ implements CartItems {
   }
 }
 
-export default (sequelize: Sequelize): typeof CartItemsModel => {
+export const cartItemsModel = (sequelize: Sequelize): typeof CartItemsModel => {
   CartItemsModel.init({
     id: {
       type: DataTypes.INTEGER,

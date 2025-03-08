@@ -3,13 +3,13 @@ import { IMAGE } from '@/common/constants';
 import { Image, Models } from '@/common/interfaces';
 import { DataTypes, Model, Optional } from 'sequelize';
 
-export type AccountCreationAttributes = Optional<
+export type ImageCreationAttributes = Optional<
   Image,
   'id'
 >;
 
 export class ImageModel
-extends Model<AccountCreationAttributes>
+extends Model<ImageCreationAttributes>
 implements Image {
   id!: string;
   image!: string;

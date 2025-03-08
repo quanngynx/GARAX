@@ -1,29 +1,51 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+import { Models, ServiceCategory } from '@/common/interfaces';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
-const { default: slugify } = require("slugify");
+import { default as slugify } from "slugify";
 
-module.exports = (sequelize, DataTypes) => {
-  class ServiceCategory extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+export type ServiceCategoryCreationAttributes = Optional<
+  ServiceCategory,
+  'id'
+>;
+
+export class ServiceCategoryModel
+extends Model<ServiceCategory, ServiceCategoryCreationAttributes>
+implements ServiceCategory {
+  id!: string;
+  title!: string;
+  alias!: string;
+  created_at!: Date;
+  updated_at!: Date;
+
+  public static associations: {};
+  /**
+   * Helper method for defining associations.
+   * This method is not a part of Sequelize lifecycle.
+   * The `models/index` file will call this method automatically.
+   */
+  static associate(_models: Models) {
+    // define association here
   }
-  ServiceCategory.init({
+}
+
+export const serviceCategoryModel = (sequelize: Sequelize) => {
+  ServiceCategoryModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     title: DataTypes.STRING,
-    alias: DataTypes.STRING
+    alias: DataTypes.STRING,
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   }, {
     sequelize,
     modelName: 'ServiceCategory',
@@ -34,5 +56,5 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
-  return ServiceCategory;
+  return ServiceCategoryModel;
 };

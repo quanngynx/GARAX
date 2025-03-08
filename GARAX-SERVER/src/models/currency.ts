@@ -15,6 +15,8 @@ implements Currency {
   desc!: string;
   created_at!: Date;
   updated_at!: Date;
+
+  public static associations: {};
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.

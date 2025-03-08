@@ -1,7 +1,8 @@
-'use strict';
-import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
+ 'use strict';
+import { Sequelize, DataTypes, Model, Optional, Association } from 'sequelize';
 import { GENDER_VALUES } from '@/common/constants';
 import { Account, Models } from '@/common/interfaces';
+import { AddressModel } from './address';
 
 export type AccountCreationAttributes = Optional<
   Account,
@@ -9,7 +10,7 @@ export type AccountCreationAttributes = Optional<
 >;
 
 export class AccountModel
-extends Model<AccountCreationAttributes>
+extends Model<Account, AccountCreationAttributes>
 implements Account  {
   public id!: string;
   public userName!: string;
@@ -27,6 +28,10 @@ implements Account  {
   public roleId!: string;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
+
+  public static associations: {
+    address: Association<AccountModel, AddressModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -41,7 +46,7 @@ implements Account  {
   }
 }
 
-export default (sequelize: Sequelize): typeof AccountModel => {
+export const accountModel = (sequelize: Sequelize) => {
   AccountModel.init(
     {
       id: {

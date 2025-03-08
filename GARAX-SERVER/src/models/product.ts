@@ -1,22 +1,52 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+import { PRODUCT_TAG, PRODUCT_STATUS } from '@/common/constants';
+import { Models, Product } from '@/common/interfaces';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
-const { default: slugify } = require("slugify");
+import { default as slugify } from "slugify";
 
-module.exports = (sequelize, DataTypes) => {
-  class Product extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+export type ProductCreationAttributes = Optional<
+  Product,
+  'id'
+>;
+
+export class ProductModel
+extends Model<Product, ProductCreationAttributes>
+implements Product {
+  public id!: string;
+  public name!: string;
+  public slug!: string;
+  public desc!: JSON;
+  public views!: number;
+  public tags!: PRODUCT_TAG;
+  public manufacturingDate!: BigInt;
+  public minPrice!: number;
+  public maxPrice!: number;
+  public categoryId!: string;
+  public subCategoryId!: string;
+  public sub2CategoryId!: string;
+  public sub3CategoryId!: string;
+  public videoId!: string;
+  public brandId!: string;
+  public status!: PRODUCT_STATUS;
+  public createBy!: string;
+  public updateBy!: string;
+  public readonly created_at!: Date;
+  public readonly updated_at!: Date;
+
+  public static associations: {};
+  /**
+   * Helper method for defining associations.
+   * This method is not a part of Sequelize lifecycle.
+   * The `models/index` file will call this method automatically.
+   */
+  static associate(_models: Models) {
+    // define association here
   }
-  Product.init({
+}
+
+export const productModel = (sequelize: Sequelize) => {
+  ProductModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -44,7 +74,15 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'publish'
     },
     createBy: DataTypes.STRING,
-    updateBy: DataTypes.STRING
+    updateBy: DataTypes.STRING,
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },{
     sequelize,
     modelName: 'Product',
@@ -56,7 +94,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
-  return Product;
+  return ProductModel;
 };
 
 

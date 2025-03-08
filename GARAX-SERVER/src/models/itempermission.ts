@@ -1,43 +1,71 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class ItemPermission extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      // N ItemPermission -> 1 Permission
-      this.belongsTo(models.Permission, {
-        foreignKey: 'permissionId',
-        as: 'permission',
-      });
-      // 1 ItemPermission -> N ApiKey
-      this.hasMany(models.ApiKey, {
-        foreignKey: 'itemPermissionId',
-        as: 'apiKeys',
-      });
-    }
+import { ItemPermission, Models } from "@/common/interfaces";
+import { Sequelize, Model, DataTypes, Association, Optional } from "sequelize";
+import { PermissionModel } from "./permission";
+import { ApiKeyModel } from "./apikey";
+
+export type ItemPermissionCreationAttributes = Optional<
+ItemPermission,
+  'id'
+>;
+
+export class ItemPermissionModel
+extends Model<ItemPermission, ItemPermissionCreationAttributes>
+implements ItemPermission {
+  id!: string;
+  itemKeyAccept!: string;
+  itemValueAccept!: string;
+  isActive!: boolean;
+  permissionId!: string;
+
+  public static associations: {
+    permission: Association<PermissionModel, ItemPermissionModel>;
+    apiKey: Association<ApiKeyModel, ItemPermissionModel>;
+  };
+  /**
+   * Helper method for defining associations.
+   * This method is not a part of Sequelize lifecycle.
+   * The `models/index` file will call this method automatically.
+   */
+  static associate(models: Models) {
+    // define association here
+    // N ItemPermissionModel -> 1 Permission
+    this.belongsTo(models.Permission, {
+      foreignKey: 'permissionId',
+      as: 'permission',
+    });
+    // 1 ItemPermissionModel -> N ApiKey
+    this.hasMany(models.ApiKey, {
+      foreignKey: 'itemPermissionId',
+      as: 'apiKeys',
+    });
   }
-  ItemPermission.init({
+}
+
+export const itemPermissionModel = (sequelize: Sequelize) => {
+  ItemPermissionModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    itemKeyAccept: DataTypes.STRING,
-    itemValueAccept: DataTypes.STRING,
-    isActive: DataTypes.BOOLEAN,
-    permissionId: DataTypes.STRING,
+    itemKeyAccept: {
+      type: DataTypes.STRING
+    },
+    itemValueAccept: {
+      type: DataTypes.STRING
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN
+    },
+    permissionId: {
+      type: DataTypes.STRING
+    },
   }, {
     sequelize,
     modelName: 'ItemPermission',
     tableName: 'item_permissions',
     timestamps: true
   });
-  return ItemPermission;
+  return ItemPermissionModel;
 };

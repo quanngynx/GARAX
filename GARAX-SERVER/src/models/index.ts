@@ -1,7 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
-import { Sequelize, DataTypes } from 'sequelize';
+import { Sequelize } from 'sequelize';
+import { accountModel } from './account';
+import { apiKeyModel } from './apikey';
+import { keyTokenModel } from './keytoken';
+import { otpCodeModel } from './otpcode';
+import { itemPermissionModel } from './itempermission';
+import { permissionModel } from './permission';
+import { productModel } from './product';
+import { addressModel } from './address';
+
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(path.join(__dirname, '../config/config.json'))[env];
@@ -16,34 +25,35 @@ if (config.use_env_variable) {
     config
   );
 }
-const Account = require('./account')(sequelize, DataTypes);
-const ApiKey = require('./apikey')(sequelize, DataTypes);
-const KeyToken = require('./keytoken')(sequelize, DataTypes);
-const OtpCode = require('./otpcode')(sequelize, DataTypes);
-const ItemPermission = require('./itempermission')(sequelize, DataTypes);
-const Permission = require('./permission')(sequelize, DataTypes);
 
-const Product = require('./product')(sequelize, DataTypes);
+const Account = accountModel(sequelize);
+const ApiKey = apiKeyModel(sequelize);
+const KeyToken = keyTokenModel(sequelize);
+const OtpCode = otpCodeModel(sequelize);
+const ItemPermission = itemPermissionModel(sequelize);
+const Permission = permissionModel(sequelize);
 
-const Address = require('./address')(sequelize, DataTypes);
-// const ProductCategory = require('./productCategory')(sequelize, DataTypes);
-// const ProductDetail = require('./productDetail')(sequelize, DataTypes);
-// const ProductFeedback = require('./productFeedback')(sequelize, DataTypes);
-// const ProductImage = require('./productImage')(sequelize, DataTypes);
-// const ProductMedia = require('./productMedia')(sequelize, DataTypes);
-// const Brand = require('./brand')(sequelize, DataTypes);
+const Product = productModel(sequelize);
 
-// const Cart = require('./cartProduct')(sequelize, DataTypes);
-// const CartItemsProduct = require('./cartItemsProduct')(sequelize, DataTypes);
+const Address = addressModel(sequelize);
+// const ProductCategory = require('./productCategory')(sequelize);
+// const ProductDetail = require('./productDetail')(sequelize);
+// const ProductFeedback = require('./productFeedback')(sequelize);
+// const ProductImage = require('./productImage')(sequelize);
+// const ProductMedia = require('./productMedia')(sequelize);
+// const Brand = require('./brand')(sequelize);
 
-// const Service = require('./service')(sequelize, DataTypes);
-// const ServiceCategory = require('./serviceCategory')(sequelize, DataTypes);
-// const ServiceDetail = require('./serviceDetail')(sequelize, DataTypes);
-// const ServiceMedia = require('./serviceMedia')(sequelize, DataTypes);
+// const Cart = require('./cartProduct')(sequelize);
+// const CartItemsProduct = require('./cartItemsProduct')(sequelize);
 
-// const Order = require('./order')(sequelize, DataTypes);
-// const OrderProduct = require('./orderProduct')(sequelize, DataTypes);
-// const Payment = require('./payment')(sequelize, DataTypes);
+// const Service = require('./service')(sequelize);
+// const ServiceCategory = require('./serviceCategory')(sequelize);
+// const ServiceDetail = require('./serviceDetail')(sequelize);
+// const ServiceMedia = require('./serviceMedia')(sequelize);
+
+// const Order = require('./order')(sequelize);
+// const OrderProduct = require('./orderProduct')(sequelize);
+// const Payment = require('./payment')(sequelize);
 
 const db = {
   Account,
@@ -88,3 +98,25 @@ module.exports = db;
 
 export * from './account';
 export * from './address';
+export * from './apikey';
+export * from './brand';
+export * from './cart';
+export * from './cartitems';
+export * from './categoryproduct';
+export * from './currency';
+export * from './image';
+export * from './itempermission';
+export * from './keytoken';
+export * from './news';
+export * from './newscategory';
+export * from './order';
+export * from './otpcode';
+export * from './payment';
+export * from './permission';
+export * from './product';
+export * from './productvariantvalues';
+export * from './service';
+export * from './servicecategory';
+export * from './specificationdetailproduct';
+export * from './specificationproduct';
+export * from './video';

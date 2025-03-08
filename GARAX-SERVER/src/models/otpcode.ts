@@ -1,27 +1,47 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class OtpCode extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+import { Models, OtpCode } from '@/common/interfaces';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
+
+export type OtpCodeCreationAttributes = Optional<
+  OtpCode,
+  'id'
+>;
+
+export class OtpCodeModel
+extends Model<OtpCode, OtpCodeCreationAttributes>
+implements OtpCode {
+  id!: string;
+  otp!: string;
+  email!: string;
+  expiresAt!: Date;
+
+  public static associations: {};
+  /**
+   * Helper method for defining associations.
+   * This method is not a part of Sequelize lifecycle.
+   * The `models/index` file will call this method automatically.
+   */
+  static associate(_models: Models) {
+    // define association here
   }
-  OtpCode.init({
+}
+
+export const otpCodeModel = (sequelize: Sequelize) => {
+  OtpCodeModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    otp: DataTypes.STRING,
-    email: DataTypes.STRING,
-    expiresAt: DataTypes.DATE
+    otp: {
+      type: DataTypes.STRING
+    },
+    email: {
+      type: DataTypes.STRING
+    },
+    expiresAt: {
+      type: DataTypes.DATE
+    }
   }, {
     sequelize,
     modelName: 'OtpCode',
@@ -36,5 +56,5 @@ module.exports = (sequelize, DataTypes) => {
     //   },
     // },
   });
-  return OtpCode;
+  return OtpCodeModel;
 };

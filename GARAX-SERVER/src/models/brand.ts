@@ -1,8 +1,6 @@
 'use strict';
-
 import { DataTypes, Optional, Model, Sequelize } from "sequelize";
 import { Brand, Models } from "@/common/interfaces";
-
 
 export type BrandCreationAttributes = Optional<
   Brand,
@@ -17,6 +15,8 @@ implements Brand {
   name!: string;
   created_at!: Date;
   updated_at!: Date;
+
+  public static associations: {};
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -27,7 +27,7 @@ implements Brand {
   }
 }
 
-export default (sequelize: Sequelize): typeof BrandModel => {
+export const brandModel = (sequelize: Sequelize): typeof BrandModel => {
   BrandModel.init({
     id: {
       type: DataTypes.INTEGER,

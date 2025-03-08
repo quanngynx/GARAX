@@ -1,6 +1,8 @@
 'use strict';
 import { ApiKey, Models } from '@/common/interfaces';
-import { Model, DataTypes, Sequelize, Optional } from 'sequelize';
+import { Model, DataTypes, Sequelize, Optional, Association } from 'sequelize';
+import { ItemPermissionModel } from './itempermission';
+import { PermissionModel } from './permission';
 
 export type ApiKeyCreationAttributes = Optional<
   ApiKey,
@@ -15,6 +17,11 @@ implements ApiKey {
   isActive!: boolean;
   itemPermissionId!: string;
   permissionId!: string;
+
+  public static associations: {
+    itemPermission: Association<ItemPermissionModel, ApiKeyModel>;
+    permission: Association<PermissionModel, ApiKeyModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -35,7 +42,7 @@ implements ApiKey {
   }
 }
 
-export default (sequelize: Sequelize) => {
+export const apiKeyModel = (sequelize: Sequelize) => {
   ApiKeyModel.init({
     id: {
       type: DataTypes.INTEGER,

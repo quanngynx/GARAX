@@ -33,3 +33,16 @@ export const ADDRESS_VALUES = ['home', 'office'] as const;
 
 export type IMAGE = 'small' | 'medium' | 'large';
 export const IMAGE_VALUES = ['small', 'medium', 'large'] as const;
+
+export type PAYMENT_METHOD = 'small' | 'medium' | 'large';
+export const PAYMENT_METHOD_VALUES = ['small', 'medium', 'large'] as const;
+
+export type PAYMENT_STATUS = 'small' | 'medium' | 'large';
+export const PAYMENT_STATUS_VALUES = ['small', 'medium', 'large'] as const;
+
+export type PRODUCT_STATUS = 'publish' | 'draft' | 'all';
+export const PRODUCT_STATUS_VALUES = ['publish', 'draft', 'all'] as const;
+
+export type PRODUCT_TAG = 'test' | 'abc' | 'all';
+export const PRODUCT_TAG_VALUES = ['test', 'abc', 'all'] as const;
+
