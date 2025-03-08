@@ -1,5 +1,5 @@
 import { convert } from 'html-to-text';
-import { REGEX } from '../constants.js';
+import { REGEX } from '../constants';
 
 class StringUtils {
   /**
@@ -65,41 +65,41 @@ class StringUtils {
     return /^[0-9a-fA-F]{24}$/.test(str);
   }
 
-  static isEmailAddress(str) {
-    return REGEX.EMAIL.test(str);
+  static isEmailAddress(str: string) {
+    return REGEX.FIELDS.EMAIL.test(str);
   }
 
-  static isPhoneNumber(str) {
-    return REGEX.PHONE.test(str);
+  static isPhoneNumber(str: any) {
+    return REGEX.FIELDS.PHONE.test(str);
   }
 
-  static isEmpty(str) {
+  static isEmpty(str: string | any[] | null | undefined) {
     return !str || str === '' || str === null || str === undefined || str.length === 0;
   }
 
-  static isBlank(str) {
+  static isBlank(str: string) {
     return (!str || /^\s*$/.test(str));
   }
 
-  static isBlankOrEmpty(str) {
+  static isBlankOrEmpty(str: any) {
     return this.isEmpty(str) || this.isBlank(str);
   }
 
-  static isLetter(str) {
+  static isLetter(str: string) {
     if (typeof str !== 'string') {
       return false;
     }
     return str.toLowerCase() !== str.toUpperCase();
   }
 
-  static isDigit(str) {
+  static isDigit(str: string) {
     if (typeof str !== 'string') {
       return false;
     }
     return str.match(/^\d+$/) !== null;
   }
 
-  static htmlToText(str) {
+  static htmlToText(str: string) {
     str = this.replaceAll(str, '&nbsp;', ' ')
       .replace(/<img .*?>/g, '');
     return convert(str, {
@@ -109,7 +109,7 @@ class StringUtils {
     });
   }
 
-  static keepLetterAndDigitOnly(str) {
+  static keepLetterAndDigitOnly(str: string | any[]) {
     ['\n', '\t', '\r', '\r\n'].forEach(item => {
       str = StringUtils.replaceAll(str, item, ' ');
     });

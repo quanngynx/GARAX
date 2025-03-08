@@ -1,6 +1,5 @@
-'use strict'
-
-import pick from './.internal/pick'
+// import pick from './.internal/pick';
+import _ from 'lodash';
 
 // _.pick
 /**
@@ -11,10 +10,12 @@ import pick from './.internal/pick'
        return _.pick( object, fields)
    }
  */
-const getInfoData = ({ fields = [], object = {} }) => {
-    return pick( object, fields )
+// export const getInfoData = ({ fields = [], object = {} }) => {
+//     return pick( object, fields )
+// }
+
+
+export const getInfoData = ({ fields = [], object = {} }) => {
+  return _.pick( object, fields)
 }
 
-module.exports = {
-  getInfoData,
-}
