@@ -40,7 +40,7 @@ implements Order {
   }
 }
 
-export const order = (sequelize: Sequelize) => {
+export const orderModel = (sequelize: Sequelize) => {
   OrderModel.init({
     id: {
       type: DataTypes.INTEGER,
@@ -57,10 +57,10 @@ export const order = (sequelize: Sequelize) => {
       type: DataTypes.BOOLEAN
     },
     paymentMethod: {
-      type: DataTypes.ENUM
+      type: DataTypes.ENUM(...PAYMENT_METHOD_VALUES)
     },
     paymentStatus: {
-      type: DataTypes.ENUM
+      type: DataTypes.ENUM(...PAYMENT_STATUS_VALUES)
     },
     subTotalFromProd: {
       type: DataTypes.FLOAT

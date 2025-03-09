@@ -27,8 +27,7 @@ implements Currency {
   }
 }
 
-export default (sequelize: Sequelize) => {
-
+export const currencyModel = (sequelize: Sequelize) => {
   CurrencyModel.init({
     id: {
       type: DataTypes.INTEGER,

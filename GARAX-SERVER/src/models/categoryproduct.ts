@@ -10,17 +10,17 @@ CategoryProduct,
 class CategoryProductModel
 extends Model<CategoryProductCreationAttributes>
 implements CategoryProduct {
-  id!: string;
-  name!: string;
-  slug!: string;
-  desc!: string;
-  countProduct!: number;
-  isParentCategory!: boolean;
-  isActive!: boolean;
-  imageId!: string;
-  parentId!: string;
-  created_at!: Date;
-  updated_at!: Date;
+  public id!: string;
+  public name!: string;
+  public slug!: string;
+  public desc!: string;
+  public countProduct!: number;
+  public isParentCategory!: boolean;
+  public isActive!: boolean;
+  public imageId!: string;
+  public parentId!: string;
+  public created_at!: Date;
+  public updated_at!: Date;
 
   public static associations: {};
   /**
@@ -33,7 +33,7 @@ implements CategoryProduct {
   }
 }
 
-export default (sequelize: Sequelize): typeof CategoryProductModel => {
+export const categoryProductModel = (sequelize: Sequelize) => {
   CategoryProductModel.init({
     id: {
       type: DataTypes.INTEGER,

@@ -1,17 +1,23 @@
 'use strict'
 
-const { Cart } = require('../models')
-const { CartItemsProduct } = require('../models')
+import { AddToCartRequest, CreateUserCartRequest } from "@/common/requests/cart"
+
+import { db } from '../models'
 
 class CartService {
-  static async createUserCart({ userId }) {
+  static async createUserCart({
+    userId
+  } : CreateUserCartRequest) {
     const cart = { idUser: userId, cartState: 'pending' }
 
-    return await Cart.create( cart )
+    return await db.Cart.create( cart )
   }
 
-  static async addToCart({ userId, productItems }) {
-    const isExistCart = await Cart.findOne({
+  static async addToCart({
+    userId,
+    productItems
+  } : AddToCartRequest) {
+    const isExistCart = await db.Cart.findOne({
       where: {
         idUser: userId,
         cartState: 'pending'
@@ -21,21 +27,21 @@ class CartService {
     if(!isExistCart) return await CartService.createUserCart({ userId })
 
     console.log("isExistCart::", isExistCart)
-    const existingProduct = await CartItemsProduct.findOne({
+    const existingProduct = await db.CartItemsProduct.findOne({
       where: { idCartProduct: isExistCart.idCartProduct, productId: productItems.idProduct }
     });
 
-    // if (existingProduct) {
-    //   existingProduct.quantity += product.quantity || 1;
-    //   await existingProduct.save();
-    // } else {
-    //   // Thêm mới sản phẩm
-    //   await CartProduct.create({
-    //     cartId: cart.id,
-    //     productId: product.productId,
-    //     quantity: product.quantity || 1
-    //   });
-    // }
+    if (existingProduct) {
+      existingProduct.quantity += product.quantity || 1;
+      await existingProduct.save();
+    } else {
+      // Thêm mới sản phẩm
+      await db.CartProduct.create({
+        cartId: cart.id,
+        productId: product.productId,
+        quantity: product.quantity || 1
+      });
+    }
 
   }
 

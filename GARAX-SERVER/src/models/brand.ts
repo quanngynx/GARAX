@@ -37,7 +37,6 @@ export const brandModel = (sequelize: Sequelize): typeof BrandModel => {
     idBrand: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true
     },
     name: {

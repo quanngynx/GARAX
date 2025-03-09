@@ -1,7 +1,7 @@
 'use strict';
-import { IMAGE } from '@/common/constants';
+import { IMAGE_VALUES } from '@/common/constants';
 import { Image, Models } from '@/common/interfaces';
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type ImageCreationAttributes = Optional<
   Image,
@@ -16,7 +16,7 @@ implements Image {
   coverImage!: string;
   alt!: string;
   original!: string;
-  typeSize!: IMAGE;
+  typeSize!: typeof IMAGE_VALUES[number];
   typeImage!: string;
   productId!: string;
   created_at!: Date;
@@ -31,7 +31,7 @@ implements Image {
   }
 }
 
-export default (sequelize: any) => {
+export const imageModel = (sequelize: Sequelize) => {
   ImageModel.init({
     id: {
       type: DataTypes.INTEGER,
@@ -51,7 +51,7 @@ export default (sequelize: any) => {
       type: DataTypes.STRING
     },
     typeSize: {
-      type: DataTypes.ENUM
+      type: DataTypes.ENUM(...IMAGE_VALUES)
     },
     typeImage: {
       type: DataTypes.STRING

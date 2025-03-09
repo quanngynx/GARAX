@@ -1,9 +1,11 @@
 import express from 'express';
 export const routerV1 = express.Router();
 
-routerV1.use('',require('./access'))
-routerV1.use('',require('./auth'))
-routerV1.use('',require('./account'))
+import { routerAccess } from './access';
+
+routerV1.use('', routerAccess)
+// routerV1.use('',require('./auth'))
+// routerV1.use('',require('./account'))
 // routerV1.use('',require('./cart'))
 // routerV1.use('',require('./order'))
 // routerV1.use('',require('./checkout'))

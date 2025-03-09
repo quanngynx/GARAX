@@ -1,21 +1,12 @@
-// import pick from './.internal/pick';
 import _ from 'lodash';
 
-// _.pick
-/**
- * @example
- * const _ = require('lodash')
+type GetInfoDataParams<T> = {
+  fields?: Array<keyof T>;
+  object?: T;
+};
 
-   const getInfoData = ({ fields = [], object = {} }) => {
-       return _.pick( object, fields)
-   }
- */
-// export const getInfoData = ({ fields = [], object = {} }) => {
-//     return pick( object, fields )
-// }
-
-
-export const getInfoData = ({ fields = [], object = {} }) => {
-  return _.pick( object, fields)
-}
+export const getInfoData: <T>({ fields, object }: GetInfoDataParams<T>) =>
+  Partial<T> = <T>({ fields = [], object = {} as T }: GetInfoDataParams<T>) => {
+  return _.pick(object, fields);
+};
 

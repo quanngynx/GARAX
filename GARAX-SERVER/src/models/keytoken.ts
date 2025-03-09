@@ -4,15 +4,15 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type KeyTokenCreationAttributes = Optional<
   KeyToken,
-  'id'
+  'id' | 'refreshToken'
 >;
 
 export class KeyTokenModel
 extends Model<KeyToken, KeyTokenCreationAttributes>
 implements KeyToken {
   id!: string;
-  privateKey!: Text;
-  publicKey!: Text;
+  privateKey!: string;
+  publicKey!: string;
   refreshToken!: string;
   refreshTokenUsed!: JSON;
   userId!: string;

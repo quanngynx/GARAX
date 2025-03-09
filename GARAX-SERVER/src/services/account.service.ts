@@ -1,18 +1,16 @@
 "use strict";
+import { FindByEmail } from "@/common/requests/account";
+import { db } from '../models';
 
-const { Account } = require('../models');
-
-class AccountService {
+export class AccountService {
   static findByEmail = async ({
     email,
     select = ['email', 'password', 'name', 'phone', 'status', 'roles']
-  }) => {
-    return await Account.findOne({
+  } : FindByEmail) => {
+    return await db.Account.findOne({
       where: { email },
       attributes: select,
       raw: true, // Tương đương với .lean() trong Mongoose
     });
   };
 }
-
-module.exports = AccountService

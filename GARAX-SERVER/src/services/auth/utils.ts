@@ -25,7 +25,7 @@ interface AuthenticationProps extends Request {
 
 const createTokenPair = async (
   payLoad: string | Buffer | object,
-  publicKey: string,
+  publicKey: string | Buffer<ArrayBufferLike>,
   privateKey: string
 ) => {
   try {

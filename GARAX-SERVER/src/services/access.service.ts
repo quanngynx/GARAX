@@ -1,9 +1,7 @@
 "use strict";
 
-class AccessService {
+export class AccessService {
   static async handleRefreshToken() {
 
   }
 }
-
-module.exports = AccessService

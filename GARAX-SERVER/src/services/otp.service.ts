@@ -1,16 +1,18 @@
 "use strict";
 
-const bcrypt = require('bcrypt');
-const otpGenerator = require('otp-generator')
+import bcrypt from 'bcrypt';
+import otpGenerator from 'otp-generator';
 
-const { OtpCode } = require('../models')
+import { db } from '../models';
 
-const {
-  sendOtpByNodemailer,
-} = require('./auth/utils');
+import { sendOtpByNodemailer } from './auth/utils';
+import { InsertOtpRequest, ValidateOtpRequest } from '@/common/requests/otp';
 
-class otpService {
-  static async validateOtp({ otp, hashOtp}) {
+export class OtpService {
+  static async validateOtp({
+    otp,
+    hashOtp
+  } : ValidateOtpRequest) {
     try {
       const isValid = await bcrypt.compare(otp, hashOtp)
       return isValid
@@ -18,20 +20,23 @@ class otpService {
       console.error(error)
     }
   }
-  static async insertOtp({ otp, email }) {
+  static async insertOtp({
+    otp,
+    email
+  } : InsertOtpRequest) {
     try {
       const salt = await bcrypt.genSalt(10)
       const hashOtp = await bcrypt.hash(otp, salt)
-      const isCreateOtp = await OtpCode.create({
+      const isCreateOtp = await db.OtpCode.create({
+        otp: hashOtp,
         email,
-        otp: hashOtp
       })
       return isCreateOtp ? true : false
     } catch (error) {
       console.error(error)
     }
   }
-  static async genOtpAndSendByNodemailer(email) {
+  static async genOtpAndSendByNodemailer(email: string) {
     const otp = otpGenerator.generate(6, {
       digits: true,
       lowerCaseAlphabets: false,
@@ -46,5 +51,3 @@ class otpService {
     })
   }
 }
-
-module.exports = otpService

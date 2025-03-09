@@ -4,7 +4,7 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type OtpCodeCreationAttributes = Optional<
   OtpCode,
-  'id'
+  'id' | 'expiresAt'
 >;
 
 export class OtpCodeModel

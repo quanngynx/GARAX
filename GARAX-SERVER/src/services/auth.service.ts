@@ -1,34 +1,43 @@
 "use strict";
-
 require('dotenv').config();
-
 import crypto from 'node:crypto';
 import bcrypt from 'bcrypt';
-import nodemailer from 'nodemailer';
-import otpGenerator from 'otp-generator';
+// import nodemailer from 'nodemailer';
+// import otpGenerator from 'otp-generator';
 
 // depenc...
-import { Account } from '../models';
-import { OtpCode } from '../models';
+import { db } from '../models';
+// import { OtpCode } from '../models';
 
-import { BadRequestError, ForbidenError, AuthFailureError } from '../middlewares/error.response';
+import { BadRequestError, AuthFailureError } from '../middlewares/error.response';
 
-import AccountService from './account.service';
+import { AccountService } from './account.service';
 // const PartnerService = require('./partner.service')
-import KeyTokenService from './keyToken.service';
-import OtpService from './otp.service';
+import { KeyTokenService } from './keyToken.service';
+import { OtpService } from './otp.service';
 
-import { transporter } from '../provider/nodemailer';
-import { getInfoData } from '../utils/';
-import { createTokenPair, getAccessToken, getUserProfile, sendOtpByNodemailer } from './auth/utils';
+// import { transporter } from '../provider/nodemailer';
+import { getInfoData } from '@/common/utils';
+import {
+  createTokenPair,
+  // getAccessToken,
+  // getUserProfile,
+  // sendOtpByNodemailer
+} from './auth/utils';
 
-import { ROLES } from '../constants';
-import { KeyStoreRequest } from '@/common/requests/auth';
+import { GENDER_VALUES } from '@/common/constants';
+import { KeyStoreRequest, LoginRequest, RegisterRequest, VerifyOtpRequest } from '@/common/requests/auth';
+import { error } from 'node:console';
 
 class AuthJWTService {
-  static register = async ({ name, email, password, roles = "admin" }) => {
+  static register = async ({
+    userName,
+    email,
+    password,
+    roleId = "admin"
+  }: RegisterRequest) => {
     try {
-      const modelUser = await Account.findOne({ where: { email: email } });
+      const modelUser = await db.Account.findOne({ where: { email: email } });
 
       if (modelUser) {
         throw new BadRequestError('Error: Account already registered!');
@@ -52,26 +61,39 @@ class AuthJWTService {
       // region Detach func into verify otp
       const passwordHash = await bcrypt.hash(password, 10);
 
-      const newUser = await Account.create({
-        userName: name,
+      const newUser = await db.Account.create({
+        userName: userName,
+        firstName: '',
+        lastName: '',
+        gender: GENDER_VALUES[0],
+        dob: 12,
         email: email,
+        phone: '',
+        avatar: '',
         password: passwordHash,
-        roles: ROLES.ADMIN,
+        emptyPassword: false,
+        googleId: '',
+        pointerId: '',
+        roleId: roleId,
+        created_at: undefined,
+        updated_at: undefined
       });
 
       if (newUser) {
         // console.log(newUser);
-
-        // deleteMany OTP in model
-        await OtpCode.destroy({ email: email })
+        await db.OtpCode.destroy({
+          where: {
+            email: email
+          }
+        });
 
         const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
           modulusLength: 2048,
           publicKeyEncoding: { type: 'pkcs1', format: 'pem' },
           privateKeyEncoding: { type: 'pkcs1', format: 'pem' },
         });
-
         console.log("generateKeyPairSync success!::", { privateKey, publicKey });
+
         const publicKeyString = await KeyTokenService.createKeyToken({
           userId: newUser.id,
           publicKey,
@@ -84,11 +106,14 @@ class AuthJWTService {
           };
         }
         console.log(`publicKeyString::`, publicKeyString);
+
         const publicKeyObject = crypto.createPublicKey(publicKeyString);
         console.log(`publicKeyObject::`, publicKeyObject);
+        const publicKeyToString = publicKeyObject.export({ type: 'spki', format: 'pem' });
+
         const tokens = await createTokenPair(
           { userId: newUser.id, email },
-          publicKeyObject,
+          publicKeyToString,
           privateKey
         );
         console.log(`created tokens success!::`, tokens);
@@ -96,7 +121,7 @@ class AuthJWTService {
           code: 201,
           metadata: {
             user: getInfoData({
-              fields: ['id', 'name', 'email'],
+              fields: ['id', 'userName', 'email'],
               object: newUser,
             }),
             tokens,
@@ -116,8 +141,12 @@ class AuthJWTService {
     }
   };
 
-  static login = async ({ email, password, refreshToken = null }) => {
-    const foundUser = await AccountService.findByEmail({ email });
+  static login = async ({
+    email,
+    password,
+    refreshToken = ''
+  }: LoginRequest) => {
+    const foundUser = await AccountService.findByEmail({ email, select: [] });
     if (!foundUser) throw new BadRequestError('User not registered!');
 
     const match = bcrypt.compare(password, foundUser.password);
@@ -135,7 +164,7 @@ class AuthJWTService {
       },
     });
 
-    const { id: userId, roles } = foundUser;
+    const { id: userId, roleId } = foundUser;
     const tokens = await createTokenPair(
       { userId: userId, email },
       publicKey,
@@ -143,7 +172,7 @@ class AuthJWTService {
     );
 
     await KeyTokenService.createKeyToken({
-      refreshToken: tokens.refreshToken,
+      refreshToken: tokens!.refreshToken,
       userId: userId,
       privateKey,
       publicKey,
@@ -151,7 +180,7 @@ class AuthJWTService {
 
     return {
       user: getInfoData({
-        fields: ['_id', 'name', 'email', 'roles'],
+        fields: ['id', 'userName', 'email', 'roleId'],
         object: foundUser,
       }),
       tokens,
@@ -164,9 +193,12 @@ class AuthJWTService {
     return delKey;
   };
 
-  static verifyOtp = async ({ email, otp }) => {
+  static verifyOtp = async ({
+    email,
+    otp
+  } : VerifyOtpRequest) => {
     try {
-      const otpHolder = await OtpCode.findAll({
+      const otpHolder = await db.OtpCode.findAll({
         where: {
           email: email
         }
@@ -175,7 +207,7 @@ class AuthJWTService {
 
       const isValid = await OtpService.validateOtp({
         otp: otp,
-        hashOtp: lastOtp
+        hashOtp: lastOtp.otp
       })
 
       return {
