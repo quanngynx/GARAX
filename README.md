@@ -68,6 +68,23 @@ Tell people where they can go to for help. It can be any combination of an issue
 
 If you have ideas for releases in the future, it is a good idea to list them in the README.
 
+Tích hợp các công cụ marketing
+Email marketing: Tích hợp với các công cụ email marketing để gửi thông tin khuyến mãi, sản phẩm mới đến khách hàng.
+Retargeting ads: Sử dụng công cụ retargeting để quảng cáo lại cho những khách hàng đã từng truy cập website.
+Khuyến mãi và giảm giá: Tạo các chương trình khuyến mãi, giảm giá, và mã giảm giá tự động.
+
+Hệ thống đánh giá và phản hồi
+Đánh giá sản phẩm: Cho phép khách hàng đánh giá và để lại nhận xét về sản phẩm.
+Phản hồi khách hàng: Tích hợp hệ thống phản hồi để thu thập ý kiến từ khách hàng và cải thiện dịch vụ.
+
+Tích hợp AI trong quản lý kho hàng
+Dự báo nhu cầu: Sử dụng AI để dự đoán nhu cầu sản phẩm và quản lý kho hàng hiệu quả.
+Tự động đặt hàng: Tự động đặt hàng từ nhà cung cấp khi sản phẩm sắp hết hàng.
+
+Hỗ trợ khách hàng
+FAQ: Trang hỏi đáp chi tiết để giải đáp các thắc mắc thường gặp.
+Hỗ trợ trực tuyến: Tích hợp hệ thống hỗ trợ trực tuyến qua chat, email, hoặc điện thoại.
+
 ## Contributing
 
 State if you are open to contributions and what your requirements are for accepting them.

@@ -6,16 +6,12 @@ import morgan from 'morgan';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { default as helmet } from 'helmet';
-
 // const { sequelize } = require('./models/index'); // Import sequelize từ models
 // sequelize.sync({alter: true});
-
-// #region IMPORT ROUTES
 // import authRoutes from './routes/access';
 import { router } from './routes';
 import { ErrorStatus } from './common/interfaces';
 import { corsMiddleware } from './middlewares';
-
 // #region IMPORT DB
 require('./db/init.mysql.level1');
 
@@ -25,30 +21,8 @@ declare module 'express-serve-static-core' {
       success: (code: number, message: string, result: any) => Response;
   }
 }
-
 const app = express();
-
-//#region Init middlewares
-// app.use(cors({
-//   origin: [
-//     `${BASE_URL_CLIENT}`,
-//     `${BASE_URL_ADMIN}`,
-
-//     // NGUYEN
-//     // "https://pointer.io.vn",
-//     // "https://wallet.pointer.io.vn",
-//     // "https://presspay-wallet.vercel.app",
-//     // "https://presspay.vercel.app",
-
-//     // "https://presspay-api.azurewebsites.net",
-//     // "https://api-presspay.azurewebsites.net",
-//     // "https://api-wallet.pointer.io.vn"
-//   ],
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-//   credentials: true, // Cho phép credentials (cookies, headers...)
-// }))
 app.use(corsMiddleware)
-
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(compression())
@@ -57,19 +31,17 @@ app.use(cookieParser());
 app.use(express.urlencoded({
     extended: true
 }))
-
 // checkOverLoad()
 
 //#region Init routes
 app.use('', router)
-// app.use('/auth', authRoutes)
 
-//hanlding errors
-app.use((next: NextFunction) => {
-  const error = new Error('Not Found')
-  error.cause = 404
-  next(error)
-})
+//#region hanlding errors
+// app.use((next: NextFunction) => {
+//   const error = new Error('Not Found')
+//   error.cause = 404
+//   next(error)
+// })
 
 app.use((
   err: ErrorStatus,
@@ -86,11 +58,19 @@ app.use((
   });
 })
 
-app.get('', (res: Response) => {
+app.get('/', (
+  _req: Request,
+  res: Response,
+  _next: NextFunction
+) => {
   res.send('Hello World!')
 })
 
-app.get('/ping', (_req: Request, res: Response) => {
+app.get('/ping', (
+  _req: Request,
+  res: Response,
+  _next: NextFunction
+) => {
   res.send('pong 🏓')
 })
 
