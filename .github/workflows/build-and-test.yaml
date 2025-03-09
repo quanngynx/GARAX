@@ -25,17 +25,26 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: GARAX-SERVER/yarn.lock 
       
-      - name: Join GARAX-SERVER
-        run: cd GARAX-SERVER
+    #   - name: Join GARAX-SERVER
+    #     run: cd GARAX-SERVER
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: |
+          cd GARAX-SERVER
+          yarn --frozen-lockfile
 
       - name: Build
-        run: yarn build
+        run: |
+          cd GARAX-SERVER
+          yarn build
 
       - name: Lint
-        run: yarn lint
+        run: |
+          cd GARAX-SERVER
+          yarn lint
+
 
       - name: Run Tests
-        run: yarn test
+        run: |
+          cd GARAX-SERVER
+          yarn test
