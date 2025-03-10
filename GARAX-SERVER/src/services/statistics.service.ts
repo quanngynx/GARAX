@@ -1,10 +1,8 @@
 "use strict";
 
 
-const { BadRequestError } = require('../middlewares/error.response')
+// import { BadRequestError } from '@/middlewares';
 
-class StatisticsService {
+export class StatisticsService {
 
 }
-
-module.exports = StatisticsService

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { OK, CREATED, SuccessResponse } from '../middlewares/success.response';
-import AuthJWTService from '../services/auth.service';
+import { CREATED, SuccessResponse } from '../middlewares/success.response';
+import { AuthJWTService } from '../services/auth.service';
 import { KeyStoreRequest } from '@/common/requests/auth';
 
 interface LogoutProps extends Request{

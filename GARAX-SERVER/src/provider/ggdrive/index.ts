@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const {google} = require('googleapis');
-const fs = require('fs');
-const path = require('path');
+import { google } from 'googleapis';
+import fs from 'fs';
+import path from 'path';
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -19,7 +19,7 @@ const drive = google.drive({
 })
 
 var that = module.exports = {
-    setFilePublic: async(fileId) =>{
+    setFilePublic: async(fileId: string) =>{
         try {
             await drive.permissions.create({
                 fileId,
@@ -39,7 +39,7 @@ var that = module.exports = {
             console.error(error);
         }
     },
-    uploadFile: async ({shared}) => {
+    uploadFile: async () => {
         try {
             const createFile = await drive.files.create({
                 requestBody: {
@@ -51,17 +51,17 @@ var that = module.exports = {
                     body: fs.createReadStream(path.join(__dirname, '/../cr7.jpg'))
                 }
             })
-            const fileId = createFile.data.id;
+            const fileId = createFile.data.id || '';
             console.log(createFile.data)
             const getUrl = await that.setFilePublic(fileId);
 
-            console.log(getUrl.data);
+            console.log(getUrl?.data);
 
         } catch (error) {
             console.error(error);
         }
     },
-    deleteFile: async (fileId) => {
+    deleteFile: async (fileId: string) => {
         try {
             console.log('Delete File:::', fileId);
             const deleteFile = await drive.files.delete({

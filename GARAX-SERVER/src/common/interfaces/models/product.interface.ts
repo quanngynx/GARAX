@@ -4,12 +4,16 @@ export interface Product {
   id: string;
   name: string;
   slug: string;
+  totalStock: number;
   desc: JSON;
   views: number;
   tags: PRODUCT_TAG;
   manufacturingDate: BigInt;
   minPrice: number;
   maxPrice: number;
+  rate: number;
+  totalRate: number;
+  totalSold: number;
   categoryId: string;
   subCategoryId: string;
   sub2CategoryId: string;

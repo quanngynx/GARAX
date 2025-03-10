@@ -29,7 +29,7 @@ import { GENDER_VALUES } from '@/common/constants';
 import { KeyStoreRequest, LoginRequest, RegisterRequest, VerifyOtpRequest } from '@/common/requests/auth';
 import { error } from 'node:console';
 
-class AuthJWTService {
+export class AuthJWTService {
   static register = async ({
     userName,
     email,
@@ -144,7 +144,7 @@ class AuthJWTService {
   static login = async ({
     email,
     password,
-    refreshToken = ''
+    // refreshToken = ''
   }: LoginRequest) => {
     const foundUser = await AccountService.findByEmail({ email, select: [] });
     if (!foundUser) throw new BadRequestError('User not registered!');
@@ -164,7 +164,10 @@ class AuthJWTService {
       },
     });
 
-    const { id: userId, roleId } = foundUser;
+    const {
+      id: userId,
+      // roleId
+    } = foundUser;
     const tokens = await createTokenPair(
       { userId: userId, email },
       publicKey,
@@ -227,5 +230,3 @@ class AuthJWTService {
     }
   }
 }
-
-export default AuthJWTService;

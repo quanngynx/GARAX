@@ -1,2 +1,2 @@
-import Redis from 'ioredis';
-const redis = new Redis();
+// import Redis from 'ioredis';
+// const redis = new Redis();

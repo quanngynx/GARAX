@@ -1,7 +1,8 @@
-const Joi = require('joi');
-const { validatorHandler } = require('../middlewares/validation.middleware');
+import Joi from 'joi';
+import { NextFunction, Request, Response } from 'express';
+import { validatorHandler } from '../middlewares/validation.middleware';
 
-const register = (req, res, next) => {
+const register = (req: Request, res: Response, next: NextFunction) => {
   const schema = Joi.object().keys({
     firstname: Joi.string().trim().alphanum().min(3).max(50).required(),
     lastname: Joi.string().trim().alphanum().min(3).max(50).required(),
@@ -11,10 +12,10 @@ const register = (req, res, next) => {
       .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
       .required(),
   });
-  validatorHandler(req, res, next, schema);
+  validatorHandler({req, res, next, schema});
 };
 
-const login = (req, res, next) => {
+const login = (req: Request, res: Response, next: NextFunction) => {
   const schema = Joi.object().keys({
     email: Joi.string().trim().email().required(),
     password: Joi.string()
@@ -22,7 +23,7 @@ const login = (req, res, next) => {
       .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
       .required(),
   });
-  validatorHandler(req, res, next, schema);
+  validatorHandler({req, res, next, schema});
 };
 
 module.exports = {

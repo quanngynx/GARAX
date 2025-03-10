@@ -1,9 +1,7 @@
 "use strict";
 
-class PerrmissionService {
-  static async createAccessForAdmin() {
+export class PerrmissionService {
+  static async createAccessForAdmin({}) {
 
   }
 }
-
-module.exports = PerrmissionService

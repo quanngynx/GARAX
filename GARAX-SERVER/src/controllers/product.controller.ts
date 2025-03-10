@@ -1,93 +1,94 @@
+import { NextFunction, Request, Response } from 'express';
 
-import { SuccessResponse, CREATED } from '../middlewares/success.response'
-import ProductService from "../services/product.service"
+import { SuccessResponse } from '@/middlewares';
+import { ProductService } from "@/services";
+import { getProductById } from '@/common/repositories';
 
 class ProductController {
-  getAllProducts = async (req, res, next) => {
+  getAllProducts = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Lấy tất cả hàng hóa thành công!',
       metadata: await ProductService.getAllProducts()
     }).send(res)
   }
 
-  getAllProductsWithoutOptions = async (req, res, next) => {
+  getAllProductsWithoutOptions = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Lấy tất cả hàng hóa thành công!',
       metadata: await ProductService.getAllProductsWithoutOptions()
     }).send(res)
   }
 
-  getProductById = async (req, res, next) => {
+  getProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
       message: 'Lấy hàng hóa bằng id thành công!',
-      metadata: await ProductService.getProductById(req.params)
+      metadata: await getProductById({ id })
     }).send(res)
   }
 
-  addNewProduct = async (req, res, next) => {
+  addNewProduct = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Thêm mới hàng hóa thành công!',
       metadata: await ProductService.addNewProduct(req.body)
     }).send(res)
   }
 
-
-
-  updateProductById = async (req, res, next) => {
+  updateProductById = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: `Cập nhật hàng hóa ${req.params._id} thành công!`,
-      metadata: await ProductService.updateProductById(req.params, req.body)
+      message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
+      metadata: await ProductService.updateProductById(req.params.id, req.body)
     }).send(res)
   }
 
-  updatePartProductById = async (req, res, next) => {
+  updatePartProductById = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: `Cập nhật hàng hóa ${req.params._id} thành công!`,
-      metadata: await ProductService.updatePartProductById(req.params, req.body)
+      message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
+      metadata: await ProductService.updatePartProductById(req.params.id, req.body)
     }).send(res)
   }
 
-  removeProductById = async (req, res, next) => {
+  removeProductById = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: `Remove product ${req.params._id} success!`,
-      metadata: await ProductService.removeProductById(req.params)
+      message: `Remove product ${req.params.id} success!`,
+      metadata: await ProductService.removeProductById(req.params.id)
     }).send(res)
   }
 
-  removeAllProduct = async (req, res, next) => {
+  removeAllProduct = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Remove all product success!',
       metadata: await ProductService.removeAllProduct()
     }).send(res)
   }
 
-  deleteProductById = async (req, res, next) => {
+  deleteProductById = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: `Delete product ${req.params._id} success!`,
-      metadata: await ProductService.deleteProductById(req.params)
+      message: `Delete product ${req.params.id} success!`,
+      metadata: await ProductService.deleteProductById(req.params.id)
     }).send(res)
   }
 
-  deleteAllProduct = async (req, res, next) => {
+  deleteAllProduct = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Delete all product success!',
       metadata: await ProductService.deleteAllProduct()
     }).send(res)
   }
 
-  findAllProductPub = async (req, res, next) => {
+  findAllProductPub = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Find all public product success!',
-      metadata: await ProductService.findAllProductPub(req.params, req.query)
+      metadata: await ProductService.findAllProductPublishByQuery()
     }).send(res)
   }
 
-  findAllProduct = async (req, res, next) => {
+  findAllProduct = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: `Find all product with query::${req.query.nameProd} success!`,
-      metadata: await ProductService.findAllProduct(req.query)
+      metadata: await ProductService.findAllProductByQuery()
     }).send(res)
   }
 }
 
-module.exports = new ProductController()
+export default new ProductController()

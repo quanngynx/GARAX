@@ -4,7 +4,7 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type CategoryProductCreationAttributes = Optional<
 CategoryProduct,
-  'id'
+  'id' | 'created_at' | 'updated_at'
 >;
 
 class CategoryProductModel

@@ -1,23 +1,30 @@
 "use strict";
+// import slugify from 'slugify';
+import { db } from '@/models';
+import { BadRequestError, InternalServerError } from '@/middlewares';
+import { AddNewCategoryRequest } from '@/common/requests/productCategory';
 
-const slugify = require('slugify');
+export class ProductCategoryService {
+  static async addNewCategory({
+    name,
+    desc = ''
+  } : AddNewCategoryRequest) {
+    console.log('name::', name);
 
-const { ProductCategory } = require('../models');
-
-const { BadRequestError } = require('../middlewares/error.response');
-
-class ProductCategoryService {
-  static async addNewCategory({ title, description = null }) {
-    console.log('title::', title)
-
-    // const isExist = await ProductCategory.findOne({ where: { title: title } });
+    // const isExist = await db.ProductCategory.findOne({ where: { title: title } });
     // console.log('isExist::', isExist)
     // if (isExist) throw new BadRequestError('Product category is exist!!!');
 
     try {
-      const newProductCate = await ProductCategory.create({
-        title: title,
-        description: description
+      const newProductCate = await db.CategoryProduct.create({
+        name: name,
+        desc: desc,
+        slug: '',
+        countProduct: 0,
+        isParentCategory: false,
+        isActive: false,
+        imageId: '',
+        parentId: '',
       });
 
       console.log('newProductCate:', newProductCate);
@@ -25,52 +32,56 @@ class ProductCategoryService {
 
       return newProductCate;
     } catch (error) {
-      console.error('Error in addNewCategory:', error.message);
-    throw error; // Propagate error to upper layer
+      console.error('Error in addNewCategory:', error);
+      throw new InternalServerError(`${error}`);
     }
   }
 
-  static async getAllCategory() {
+  static async getAllCategory({}) {
 
-    const allProductCate = await ProductCategory.findAll();
+    const allProductCate = await db.CategoryProduct.findAll();
 
     console.log('AllProductCate:', allProductCate);
 
     return allProductCate;
   }
 
-  static async updateTitleCategory({ title }) {
-    const isExist = ProductCategory.findOne({ where: { title: title } });
+  static async updateTitleCategory(name: string) {
+    const isExist = db.CategoryProduct.findOne({ where: { name: name } });
 
     if (!isExist) throw new BadRequestError('Product category is not exist!!!');
 
-    const alias = slugify(title, {
-      lower: true,
-      strict: true,
-      locale: 'vi',
-    });
+    // const alias = slugify(name, {
+    //   lower: true,
+    //   strict: true,
+    //   locale: 'vi',
+    // });
 
-    const newProductCate = await ProductCategory.update({
-      title: title,
-      alias: alias,
-    });
+    const newProductCate = await db.CategoryProduct.update({
+      name: name,
+    },
+    {
+      where: {
+
+      }
+    }
+  );
 
     console.log('newProductCate:', newProductCate);
 
     return newProductCate;
   }
 
-  static async deleteTitleCategoryByTitle({ title }) {
-    const isExist = ProductCategory.findOne({ where: { title: title } });
+  static async deleteTitleCategoryByTitle(name: string) {
+    const isExist = db.CategoryProduct.findOne({ where: { name: name } });
 
     if (!isExist) throw new BadRequestError('Product category is not exist!!!');
 
-    return await ProductCategory.destroy({ where: { title: title } });
+    return await db.CategoryProduct.destroy({ where: { name: name } });
   }
 
-  static async deleteAllTitleCategory({ confirm }) {
-    return confirm ? await ProductCategory.destroy({ truncate: true }) : null;
+  static async deleteAllTitleCategory({ confirm }: { confirm: boolean }) {
+    return confirm ? await db.CategoryProduct.destroy({ truncate: true }) : null;
   }
 }
 
-module.exports = ProductCategoryService;

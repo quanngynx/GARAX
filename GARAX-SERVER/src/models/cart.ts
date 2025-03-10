@@ -4,7 +4,7 @@ import { Cart, Models } from '@/common/interfaces';
 
 export type CartCreationAttributes = Optional<
   Cart,
-  'id'
+  'id' | 'created_at' | 'updated_at'
 >;
 
 export class CartModel

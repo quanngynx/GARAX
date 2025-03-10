@@ -1,29 +1,57 @@
 "use strict";
 
-const { Product } = require('../models')
+import { AddNewProductRequest, GetAllBestSellerProducts } from "@/common/requests/product";
+import { db } from "@/models";
+import { BadRequestError, NotFoundError } from '../middlewares/error.response';
+import { getProductById } from "@/common/repositories";
 
-const { BadRequestError, NotFoundError } = require('../middlewares/error.response');
-// const { all } = require('../routes/v1/products');
-class ProductService {
+export class ProductService {
   static async addNewProduct({
-    nameProduct,
-    quantity,
-    thumble,
-    originalPrice,
-    idCartItemsProduct = null,
-    idBrand = null,
-    status = 'publish'
-  }) {
+    name,
+    totalStock,
+    desc,
+    views,
+    tags,
+    manufacturingDate,
+    minPrice,
+    maxPrice,
+    rate,
+    totalRate,
+    totalSold,
+    categoryId,
+    subCategoryId,
+    sub2CategoryId,
+    sub3CategoryId,
+    videoId,
+    brandId,
+    status,
+    createBy,
+    updateBy,
+  } : AddNewProductRequest) {
 
-    console.log({nameProduct, quantity, thumble})
-    const newProduct = await Product.create({
-      nameProduct: nameProduct,
-      quantity: quantity,
-      thumble: thumble,
-      originalPrice: originalPrice,
-      idCartItemsProduct: idCartItemsProduct,
-      idBrand: idBrand,
-      status: status
+    console.log({});
+    const calTotalStock = totalStock;
+    const newProduct = await db.Product.create({
+      name: name,
+      totalStock: calTotalStock,
+      desc: desc,
+      views: views,
+      tags: tags,
+      manufacturingDate: manufacturingDate,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+      rate: rate,
+      totalRate: totalRate,
+      totalSold: totalSold,
+      categoryId: categoryId,
+      subCategoryId: subCategoryId,
+      sub2CategoryId: sub2CategoryId,
+      sub3CategoryId: sub3CategoryId,
+      videoId: videoId,
+      brandId: brandId,
+      status: status,
+      createBy: createBy,
+      updateBy: updateBy,
     });
 
     if(!newProduct) throw new BadRequestError('error::create new Product')
@@ -31,7 +59,10 @@ class ProductService {
     return newProduct
   }
 
-  static async addVariantProduct(productId, data) {
+  static async addVariantProduct(
+    productId: string,
+    _data: any
+  ) {
     const getProductFromId = await getProductById({ id: productId })
 
     if(!getProductFromId) {
@@ -40,40 +71,31 @@ class ProductService {
 
     // Create variant from id
 
-
   }
 
-  static async getProductById({ id }) {
-    const proId = await Product.findByPk(id)
-
-    if(!proId) throw new NotFoundError('error::get Product by _id')
-
-    console.log("_id pro::", proId)
-    console.log(proId instanceof Product);
-    return proId
-  }
-
-  static async getAllProducts(options = {}) {
-    const {
-      fields,
-      limit = 10,
-      page = 1,
-      filters = {},
-      sortBy = 'createdAt',
-      sortType = -1,
-      getCategoryFilter = false,
-      getBrandFilter = false,
-      isShowHidden = false,
-      populateCategory = true,
-      populateBrand = true,
-      fullTextSearch = false
-    } = options;
+  static async getAllProducts(
+    _options = {}
+  ) {
+    // const {
+    //   fields,
+    //   limit = 10,
+    //   page = 1,
+    //   filters = {},
+    //   sortBy = 'createdAt',
+    //   sortType = -1,
+    //   getCategoryFilter = false,
+    //   getBrandFilter = false,
+    //   isShowHidden = false,
+    //   populateCategory = true,
+    //   populateBrand = true,
+    //   fullTextSearch = false
+    // } = options;
 
     /**
      * @description Sort
      */
-    const sortOtp = {};
-    sortOtp[sortBy] = sortType;
+    // const sortOtp = undefined;
+    // sortOtp[sortBy] = sortType;
     /**
      * @description Default status
      */
@@ -81,25 +103,25 @@ class ProductService {
     /**
      * @description Query category and brand
      */
-    const populateOpts = [];
+    // const populateOpts: never[] = [];
 
-    const countAll = await Product.count();
+    // const countAll = await db.Product.count();
 
-    const total = await Product.count({
-      where: filters
-    });
+    // const total = await db.Product.count({
+    //   where: filters
+    // });
 
-    const allProducts = await Product.findAll({
-      where: filters,
-      attributes: fields,
-      include: populateOpts,
-      offset: (page - 1) * limit,
-      order: sortOtp,
-      limit: limit,
-      raw: true,
-  });
+  //   const allProducts = await db.Product.findAll({
+  //     where: filters,
+  //     attributes: fields,
+  //     include: populateOpts,
+  //     offset: (page - 1) * limit,
+  //     // order: sortOtp,
+  //     limit: limit,
+  //     raw: true,
+  // });
 
-    const allPro = await Product.findAll({});
+    const allPro = await db.Product.findAll({});
 
     if(!allPro) throw new NotFoundError('error::find all Product')
 
@@ -107,51 +129,53 @@ class ProductService {
   }
 
   static async getAllProductsWithoutOptions() {
-    const allPro = await Product.findAll({});
+    const allPro = await db.Product.findAll({});
 
     if(!allPro) throw new NotFoundError('error::find all Product')
 
     return allPro
   }
 
-  static async getAllBestSellerProducts(options = {}) {
-    const {
-      fields,
-      limit = 10,
-      page = 1,
-      filters = {},
-      sortBy = 'createdAt',
-      sortType = -1,
-      getCategoryFilter = false,
-      getBrandFilter = false,
-      populateCategory = true,
-      populateBrand = true,
-      fullTextSearch = false
-    } = options;
+  static async getAllBestSellerProducts(
+    _options: GetAllBestSellerProducts = {}
+  ) {
+    // const {
+    //   fields,
+    //   limit = 10,
+    //   page = 1,
+    //   filters = {},
+    //   sortBy = 'createdAt',
+    //   sortType = -1,
+    //   getCategoryFilter = false,
+    //   getBrandFilter = false,
+    //   populateCategory = true,
+    //   populateBrand = true,
+    //   fullTextSearch = false
+    // } = options;
 
     return {
       result: 'See you later'
     }
   }
 
-  static async updateProductById({ _id }) {
-
+  static async updateProductById(id: string, {}) {
+    return id
   }
 
-  static async updatePartProductById({ _id }, {}) {
-
+  static async updatePartProductById(id: string, {}) {
+    return id
   }
 
-  static async removeProductById() {
-
+  static async removeProductById(id: string) {
+    return id
   }
 
   static async removeAllProduct() {
 
   }
 
-  static async deleteProductById() {
-
+  static async deleteProductById(id: string) {
+    return id
   }
 
   static async deleteAllProduct() {
@@ -170,5 +194,3 @@ class ProductService {
 
   }
 }
-
-module.exports = ProductService

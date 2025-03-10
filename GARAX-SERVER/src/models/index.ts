@@ -1,5 +1,5 @@
-import path from 'path';
-import process from 'process';
+// import path from 'path';
+// import process from 'process';
 import { Sequelize } from 'sequelize';
 import { accountModel } from './account';
 import { apiKeyModel } from './apikey';
@@ -26,19 +26,8 @@ import { specificationDetailProductModel } from './specificationdetailproduct';
 import { specificationProductModel } from './specificationproduct';
 import { videoModel } from './video';
 import configMySQL from '../config/config.mysql';
-const env = process.env.NODE_ENV || 'dev';
-const config = require('../config/config.mysql')[env];
-// let sequelize;
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(process.env[config.use_env_variable] || '', config);
-// } else {
-//   sequelize = new Sequelize(
-//     config.database,
-//     config.username,
-//     config.password,
-//     config
-//   );
-// }
+// const env = process.env.NODE_ENV || 'dev';
+// const config = require('../config/config.mysql')[env];
 const sequelize = configMySQL.url !== ''
   ? new Sequelize(
     configMySQL.url,
@@ -94,9 +83,7 @@ const ServiceCategory = serviceCategoryModel(sequelize);
 const SpecificationDetailProduct = specificationDetailProductModel(sequelize);
 const SpecificationProduct = specificationProductModel(sequelize);
 const Video = videoModel(sequelize);
-// const ProductFeedback = require('./productFeedback')(sequelize);
-// const ProductImage = require('./productImage')(sequelize);
-// const ProductMedia = require('./productMedia')(sequelize);
+
 // const Brand = require('./brand')(sequelize);
 // const Cart = require('./cartProduct')(sequelize);
 // const CartItemsProduct = require('./cartItemsProduct')(sequelize);

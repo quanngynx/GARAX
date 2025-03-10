@@ -65,3 +65,12 @@ export class ForbidenError extends ErrorResponse {
 		super({ message, status });
 	}
 }
+
+export class InternalServerError extends ErrorResponse {
+	constructor(
+		message = ReasonPhrases.default.INTERNAL_SERVER_ERROR,
+		status = StatusCodes.default.INTERNAL_SERVER_ERROR,
+	) {
+		super({ message, status });
+	}
+}

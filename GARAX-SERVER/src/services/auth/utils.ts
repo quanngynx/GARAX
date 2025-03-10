@@ -1,13 +1,9 @@
 'use strict';
+import { NextFunction, Request, Response } from 'express';
 import JWT, { JwtPayload } from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
-import { NextFunction, Request, Response } from 'express';
-
-import KeyTokenService from '../../services/keyToken.service';
-
-import { asyncHandler } from '../../middlewares';
-import { AuthFailureError, NotFoundError } from '../../middlewares/error.response';
-
+import { KeyTokenService } from '@/services';
+import { AuthFailureError, NotFoundError, asyncHandler } from '@/middlewares';
 import { HEADER } from '@/common/constants';
 import { KeyStore } from '@/common/interfaces';
 
@@ -64,7 +60,7 @@ const authentication = asyncHandler(async(req: AuthenticationProps, _res: Respon
   const userId = req.headers[HEADER.CLIENT_ID];
   if (!userId) throw new AuthFailureError('Invalid Request! - 53');
 
-  const keyStore: KeyStore = await KeyTokenService.findByUserId(userId);
+  const keyStore = await KeyTokenService.findByUserId(userId);
   if (!keyStore) throw new NotFoundError('Not found keyStore! - 57');
 
   if (req.headers[HEADER.REFRESHTOKEN]) {

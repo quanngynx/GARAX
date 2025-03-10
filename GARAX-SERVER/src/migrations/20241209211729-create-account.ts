@@ -1,12 +1,13 @@
 'use strict';
 
+import { QueryInterface } from "sequelize";
+
 const { REGEX, COMMON } = require('../constants');
 const gender = COMMON.USERS.GENDER
 const defaultAvatar = COMMON.USERS.AVATAR.DEFAULT_VALUE
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('accounts', {
+export async function up(queryInterface: QueryInterface, Sequelize: any) {
+  await queryInterface.createTable('accounts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -79,9 +80,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('accounts');
-  }
-};
+  });
+}
+export async function down(queryInterface: QueryInterface, _Sequelize: any) {
+  await queryInterface.dropTable('accounts');
+}

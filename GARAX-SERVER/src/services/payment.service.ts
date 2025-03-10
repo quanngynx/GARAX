@@ -1,24 +1,24 @@
 "use strict";
-
 require('dotenv').config()
+import PayOS from '@payos/node';
+// import { Pointer } from 'pointer-wallet';
+// const pointer = new Pointer(process.env.POINTER_SECRET_KEY);
 
-const PayOS = require('@payos/node');
-const { Pointer } = require('pointer-wallet');
-
-const pointer = new Pointer(process.env.POINTER_SECRET_KEY);
 // MODEL
-const { OrderProduct } = require('../models/index');
+// import { db } from '@/models';
 
 // RESPONSE
-const { NotFoundError } = require('../middlewares/error.response');
+import { NotFoundError } from '../middlewares/error.response';
+import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
+import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
 
 const payos = new PayOS(
-  process.env.PAYOS_CLIENT_ID,
-  process.env.PAYOS_API_KEY,
-  process.env.PAYOS_CHECKSUM_KEY
+  String(process.env.PAYOS_CLIENT_ID),
+  String(process.env.PAYOS_API_KEY),
+  String(process.env.PAYOS_CHECKSUM_KEY)
 );
 
-const myDomain = process.env.MY_DOMAIN
+// const myDomain = process.env.MY_DOMAIN || '';
 // or
 
 // const payos = new PayOS(
@@ -28,7 +28,7 @@ const myDomain = process.env.MY_DOMAIN
 //   "YOUR_PARTNER_CODE"
 // );
 
-class PaymentService {
+export class PaymentService {
   static async createPaymentLinkPayOS({
     orderCode,
     amount,
@@ -36,23 +36,18 @@ class PaymentService {
     items = [],
     cancelUrl,
     returnUrl,
-  }) {
+  } : CreatePaymentLinkPayOSRequest) {
     // push item to items
 
     // ==================
-    const requestData = {
-      orderCode: Number(String(Date.now()).slice(-6)),
-      amount: 1000,
-      description: 'Thanh toan don hang',
-      items: [
-        {
-          name: "Mì tôm hảo hảo ly",
-          quantity: 1,
-          price: 1000,
-        }
-      ],
-      cancelUrl: myDomain,
-      returnUrl: myDomain,
+    const requestData: CheckoutRequestType = {
+      // orderCode: Number(String(Date.now()).slice(-6)),
+      orderCode: orderCode,
+      amount: amount,
+      description: description,
+      items: items,
+      cancelUrl: cancelUrl,
+      returnUrl: returnUrl,
     };
 
     try {
@@ -64,13 +59,16 @@ class PaymentService {
     }
   }
 
-  static async getPaymentLinkInformationPayOS({ id }) {
+  static async getPaymentLinkInformationPayOS({ id } : { id: string }) {
     const paymentLinkInfo = await payos.getPaymentLinkInformation(id);
     console.log('paymentLinkInfo::', paymentLinkInfo);
     return paymentLinkInfo;
   }
 
-  static async cancelPaymentLinkPayOS({ orderCode, cancellationReason }) {
+  static async cancelPaymentLinkPayOS({
+    orderCode,
+    cancellationReason
+  }: CancelPaymentLinkPayOSRequest) {
     if (!orderCode) throw new NotFoundError(`NOT FOUND orderCode!`);
 
     try {
@@ -90,7 +88,7 @@ class PaymentService {
     }
   }
 
-  static async confirmWebhook({ urlWebhook }) {
+  static async confirmWebhook({ urlWebhook } : { urlWebhook: string}) {
     const confirmWebhookUrl = await payos.confirmWebhook(urlWebhook);
     console.log('confirmWebhookUrl::', confirmWebhookUrl);
 
@@ -119,77 +117,77 @@ class PaymentService {
    * virtualAccountNumber?: string | null;
    * }
    */
-  static async verifyPaymentWebhookData(webhookBody) {
+  static async verifyPaymentWebhookData(webhookBody: WebhookType) {
     // const webhookBody = req.body;
     const paymentData = payos.verifyPaymentWebhookData(webhookBody);
     console.log('paymentData::', paymentData);
     return paymentData
   }
 
-  static async createPaymentLinkPressPay({
-    amount,
-    currency,
-    message,
-    userID,
-    orderID,
-    returnUrl,
-    name,
-    image,
-    description,
-    quantity,
-    price,
-  }) {
-    // get userId
-    // get bookingId
+  // static async createPaymentLinkPressPay({
+  //   amount,
+  //   currency,
+  //   message,
+  //   userID,
+  //   orderID,
+  //   returnUrl,
+  //   name,
+  //   image,
+  //   description,
+  //   quantity,
+  //   price,
+  // }) {
+  //   // get userId
+  //   // get bookingId
 
-    /// ===================================================
-    console.log('Nhan thong tin payment::', {
-      amount,
-      currency,
-      message,
-      userID,
-      orderID,
-      returnUrl,
-      name,
-      image,
-      description,
-      quantity,
-      price,
-    });
-    try {
-      const { url } = await pointer.createPayment({
-        amount: amount,
-        currency: currency,
-        message: message,
-        userID: userID,
-        orderID: orderID,
-        returnUrl: returnUrl,
-        orders: [
-          {
-            name: name,
-            image: image,
-            description: description,
-            quantity: quantity,
-            price: price,
-          },
-        ],
-      });
-      console.log(url);
-      return url;
-    } catch (error) {
-      console.error("error return url::", error)
-    }
-  }
+  //   /// ===================================================
+  //   console.log('Nhan thong tin payment::', {
+  //     amount,
+  //     currency,
+  //     message,
+  //     userID,
+  //     orderID,
+  //     returnUrl,
+  //     name,
+  //     image,
+  //     description,
+  //     quantity,
+  //     price,
+  //   });
+  //   try {
+  //     const { url } = await pointer.createPayment({
+  //       amount: amount,
+  //       currency: currency,
+  //       message: message,
+  //       userID: userID,
+  //       orderID: orderID,
+  //       returnUrl: returnUrl,
+  //       orders: [
+  //         {
+  //           name: name,
+  //           image: image,
+  //           description: description,
+  //           quantity: quantity,
+  //           price: price,
+  //         },
+  //       ],
+  //     });
+  //     console.log(url);
+  //     return url;
+  //   } catch (error) {
+  //     console.error("error return url::", error)
+  //   }
+  // }
 
   /**
     * @param transactionID: _id
     * @returns { "url":"https://pointer.io.vn/payment-gateway?token={token}", "status":200 }
     */
-  static async cancelPaymentPointerWallet({ _id }) {
-    const data = await pointer.cancelOrder(_id);
-    console.log(data);
-    return data
-  }
+  // static async cancelPaymentPointerWallet(id: string) {
+  //   const data = await pointer.cancelOrder(id);
+  //   console.log(data);
+  //   return data
+  // }
 
   static async deleteProductById() {}
 
@@ -199,5 +197,3 @@ class PaymentService {
 
   static async findAllProduct() {}
 }
-
-module.exports = PaymentService;

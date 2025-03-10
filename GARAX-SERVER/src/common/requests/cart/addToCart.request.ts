@@ -4,5 +4,6 @@ export interface AddToCartRequest
 extends Pick<Cart,
 | 'userId'
 > {
+  sessionId: string;
   productItems: any;
 }

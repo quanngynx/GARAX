@@ -7,7 +7,7 @@ import { default as slugify } from "slugify";
 
 export type ProductCreationAttributes = Optional<
   Product,
-  'id'
+  'id' | 'created_at' | 'updated_at' | 'slug'
 >;
 
 export class ProductModel
@@ -16,12 +16,16 @@ implements Product {
   public id!: string;
   public name!: string;
   public slug!: string;
+  public totalStock!: number;
   public desc!: JSON;
   public views!: number;
   public tags!: PRODUCT_TAG;
   public manufacturingDate!: BigInt;
   public minPrice!: number;
   public maxPrice!: number;
+  public rate!: number;
+  public totalRate!: number;
+  public totalSold!: number;
   public categoryId!: string;
   public subCategoryId!: string;
   public sub2CategoryId!: string;
@@ -52,29 +56,71 @@ export const productModel = (sequelize: Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    name: DataTypes.STRING,
-    slug: DataTypes.STRING,
-    desc: DataTypes.JSON,
-    views: DataTypes.INTEGER,
+    name: {
+      type: DataTypes.STRING,
+    },
+    slug: {
+      type: DataTypes.STRING,
+    },
+    totalStock: {
+      type: DataTypes.INTEGER,
+    },
+    desc: {
+      type: DataTypes.JSON,
+    },
+    views: {
+      type: DataTypes.INTEGER,
+    },
     tags: {
       type: DataTypes.ENUM('test'),
       defaultValue: 'test'
     },
-    manufacturingDate: DataTypes.BIGINT,
-    minPrice: DataTypes.INTEGER,
-    maxPrice: DataTypes.INTEGER,
-    categoryId: DataTypes.STRING,
-    subCategoryId: DataTypes.STRING,
-    sub2CategoryId: DataTypes.STRING,
-    sub3CategoryId: DataTypes.STRING,
-    videoId: DataTypes.STRING,
-    brandId: DataTypes.STRING,
+    manufacturingDate: {
+      type: DataTypes.BIGINT,
+    },
+    minPrice: {
+      type: DataTypes.INTEGER,
+    },
+    maxPrice: {
+      type: DataTypes.INTEGER,
+    },
+    rate: {
+      type: DataTypes.FLOAT,
+    },
+    totalRate: {
+      type: DataTypes.INTEGER
+    },
+    totalSold: {
+      type: DataTypes.INTEGER
+    },
+    categoryId: {
+      type: DataTypes.STRING,
+    },
+    subCategoryId: {
+      type: DataTypes.STRING,
+    },
+    sub2CategoryId: {
+      type: DataTypes.STRING,
+    },
+    sub3CategoryId: {
+      type: DataTypes.STRING,
+    },
+    videoId: {
+      type: DataTypes.STRING,
+    },
+    brandId: {
+      type: DataTypes.STRING,
+    },
     status: {
       type: DataTypes.ENUM('publish', 'draft'),
       defaultValue: 'publish'
     },
-    createBy: DataTypes.STRING,
-    updateBy: DataTypes.STRING,
+    createBy: {
+      type: DataTypes.STRING,
+    },
+    updateBy: {
+      type: DataTypes.STRING,
+    },
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,

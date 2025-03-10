@@ -1,27 +1,27 @@
 "use strict";
 
-class OrdersService {
+export class OrdersService {
   /**
    * @LOQ-burh
    * @desc Order management by user
    */
-  static async getInforOrderByUser() {
+  static async getInforOrderByUser({}) {
 
   }
 
-  static async getListOrderByUser() {
+  static async getListOrderByUser({}) {
 
   }
 
-  static async updateOrderByUser() {
+  static async updateOrderByUser({}) {
 
   }
 
-  static async createOrderByUser() {
+  static async createOrderByUser({}) {
 
   }
 
-  static async cancelOrderByUser() {
+  static async cancelOrderByUser({}) {
 
   }
 
@@ -30,21 +30,19 @@ class OrdersService {
    * @desc Order management by admin/staff
    */
 
-  static async getAllOrders() {
+  static async getAllOrders({}) {
 
   }
 
-  static async createOrderByAdminOrStaff() {
+  static async createOrderByAdminOrStaff({}) {
 
   }
 
-  static async updateOrderByAdminOrStaff() {
+  static async updateOrderByAdminOrStaff({}) {
 
   }
 
-  static async cancelOrderByAdminOrStaff() {
+  static async cancelOrderByAdminOrStaff({}) {
 
   }
 }
-
-module.exports = OrdersService

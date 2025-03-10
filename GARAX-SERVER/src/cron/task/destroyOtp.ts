@@ -1,10 +1,10 @@
 import sequelize from 'sequelize';
-import { OtpCode } from '../../models';
+import { db } from '@/models';
 
 export const destroyOtp = async () => {
   try {
     const now = new Date();
-    return await OtpCode.destroy({
+    return await db.OtpCode.destroy({
         where: { expiresAt: { [sequelize.Op.lt]: now } },
       }
     )

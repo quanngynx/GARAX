@@ -2,7 +2,13 @@
 
 import winston from 'winston';
 
-const { combine, timestamp, json, align, printf } = winston.format;
+const {
+  combine,
+  timestamp,
+  // json,
+  align,
+  printf
+} = winston.format;
 // luu vao mot file de de quan lys : combined.log
 
 const logger = winston.createLogger({

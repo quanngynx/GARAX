@@ -1,11 +1,12 @@
 'use strict';
 
+import { QueryInterface } from "sequelize";
+
 const { COMMON } = require('../constants')
 
 const typeofAddress = COMMON.ADDRESS
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  async up(queryInterface, Sequelize) {
+export async function up(queryInterface: QueryInterface, Sequelize: any) {
     await queryInterface.createTable('addresses', {
       id: {
         allowNull: false,
@@ -51,8 +52,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-  },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('addresses');
-  }
-};
+}
+export async function down(queryInterface: QueryInterface, _Sequelize: any) {
+  await queryInterface.dropTable('addresses');
+}
