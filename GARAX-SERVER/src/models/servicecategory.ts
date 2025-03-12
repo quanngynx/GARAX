@@ -36,8 +36,12 @@ export const serviceCategoryModel = (sequelize: Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    title: DataTypes.STRING,
-    alias: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING
+    },
+    alias: {
+      type: DataTypes.STRING
+    },
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
@@ -49,6 +53,7 @@ export const serviceCategoryModel = (sequelize: Sequelize) => {
   }, {
     sequelize,
     modelName: 'ServiceCategory',
+    tableName: 'service_category',
     timestamps: true,
     hooks: {
       beforeValidate: (serviceCategory) => {

@@ -1,18 +1,12 @@
 'use strict';
-
-import { QueryInterface } from "sequelize";
-
-const { REGEX, COMMON } = require('../constants');
-const gender = COMMON.USERS.GENDER
-const defaultAvatar = COMMON.USERS.AVATAR.DEFAULT_VALUE
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
+export async function up(queryInterface, Sequelize) {
   await queryInterface.createTable('accounts', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       userName: {
         type: Sequelize.STRING,
@@ -21,7 +15,7 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
         validate: {
           notEmpty: true,
           len: [5, 20],
-          is: REGEX.FIELDS.USERNAME
+          is: /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
         }
       },
       firstName: {
@@ -33,8 +27,8 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
         defaultValue: ''
       },
       gender: {
-        type: Sequelize.ENUM(gender.MALE, gender.FEMALE, gender.OTHER),
-        defaultValue: gender.MALE
+        type: Sequelize.ENUM('male', 'female', 'other'),
+        defaultValue: 'male'
       },
       dob: {
         type: Sequelize.BIGINT
@@ -49,12 +43,12 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       phone: {
         type: Sequelize.STRING,
         validate: {
-          is: REGEX.FIELDS.PHONE
+          is: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
         }
       },
       avatar: {
         type: Sequelize.STRING,
-        defaultValue: defaultAvatar
+        defaultValue: 'https://drive.google.com/thumbnail?id=1bE9KJ_Mtw5hgCXGSbp4QUKkF7H5-bSMM&sz=w250'
       },
       password: {
         type: Sequelize.STRING
@@ -64,13 +58,16 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
         defaultValue: false
       },
       googleId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: ''
       },
       pointerId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: ''
       },
       roleId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: ''
       },
       createdAt: {
         allowNull: false,
@@ -82,6 +79,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       }
   });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
+export async function down(queryInterface, Sequelize) {
   await queryInterface.dropTable('accounts');
 }

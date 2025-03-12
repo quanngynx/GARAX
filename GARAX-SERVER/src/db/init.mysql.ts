@@ -1,25 +1,37 @@
-// const express = require('express');
-// const mysql = require('mysql2');
-// require('dotenv').config();
-// const app = express();
-// const nodemailer = require('nodemailer');
-// // const configdb = require('../config/config.mysql')
+import { Sequelize } from 'sequelize';
+import {
+  DB_HOST_VALUE_DEV,
+  DB_NAME_VALUE_DEV,
+  DB_PASSWORD_VALUE_DEV,
+  DB_USER_VALUE_DEV
+} from '@/common/venv';
 
-// const db = mysql.createConnection({
-//   host: process.env.HOST_DEV,
-//   user: process.env.USER_DEV,
-//   password: process.env.PASSWORD_DB_DEV,
-//   database: process.env.DATABASE_DEV
-// });
+const sequelize = new Sequelize(
+  DB_NAME_VALUE_DEV,
+  DB_USER_VALUE_DEV,
+  DB_PASSWORD_VALUE_DEV,
+  {
+    host: DB_HOST_VALUE_DEV,
+    dialect: 'mysql',
+    dialectModule: require('mysql2'),
+    logging:false,
+    pool: {
+      max: 5,
+      min: 1,
+      acquire: 30000,
+      idle: 10000
+    }
+  }
+);
 
+export default sequelize;
 
-// db.connect((err) => {
-//   if (err) {
-//       console.error('Error connecting to the database:', err);
-//       return;
-//   }
-//   console.log('Connected to MySQL database');
-// });
-
-// module.exports = db;
-
+const connect = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+};
+connect();

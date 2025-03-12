@@ -1,33 +1,25 @@
 'use strict';
 
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
-    await queryInterface.createTable('NewsCategories', {
+export async function up(queryInterface, Sequelize) {
+    await queryInterface.createTable('specification_detail_products', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idNewsCategory: {
-        type: Sequelize.INTEGER
-      },
-      title: {
+      groupName: {
         type: Sequelize.STRING
       },
-      alias: {
+      groupKey: {
         type: Sequelize.STRING
       },
-      description: {
+      groupValue: {
         type: Sequelize.STRING
       },
-      isActive: {
+      isOriginalProduct: {
         type: Sequelize.BOOLEAN
-      },
-      createDate: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -38,7 +30,7 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
         type: Sequelize.DATE
       }
     });
-  }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
-    await queryInterface.dropTable('NewsCategories');
-  }
+}
+export async function down(queryInterface, Sequelize) {
+  await queryInterface.dropTable('specification_detail_products');
+}

@@ -13,10 +13,10 @@ export class ServiceModel
 extends Model<Service, ServiceCreationAttributes>
 implements Service {
   public id!: string;
-  public serviceCategoryId!: string;
-  public serviceImageId!: string;
   public title!: string;
   public alias!: string;
+  public serviceCategoryId!: string;
+  public serviceImageId!: string;
   public description!: string;
   public isActive!: string;
   public readonly created_at!: Date;
@@ -40,12 +40,21 @@ export const serviceModel = (sequelize: Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    serviceCategoryId: DataTypes.INTEGER,
-    serviceImageId: DataTypes.INTEGER,
-    // serviceDetailId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    alias: DataTypes.STRING,
-    description: DataTypes.STRING,
+    serviceCategoryId: {
+      type: DataTypes.INTEGER
+    },
+    serviceImageId: {
+      type: DataTypes.INTEGER
+    },
+    title: {
+      type: DataTypes.STRING
+    },
+    alias: {
+      type: DataTypes.STRING
+    },
+    description: {
+      type: DataTypes.STRING
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
@@ -61,6 +70,7 @@ export const serviceModel = (sequelize: Sequelize) => {
   }, {
     sequelize,
     modelName: 'Service',
+    tableName: 'services',
     timestamps: true,
     hooks: {
       beforeValidate: (service) => {

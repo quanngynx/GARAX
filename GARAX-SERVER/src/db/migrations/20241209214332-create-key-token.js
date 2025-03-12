@@ -1,9 +1,6 @@
 'use strict';
-
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
+export async function up(queryInterface, Sequelize) {
     await queryInterface.createTable('key_tokens', {
       id: {
         allowNull: false,
@@ -36,6 +33,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       }
     });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
+export async function down(queryInterface, Sequelize) {
   await queryInterface.dropTable('key_tokens');
 }

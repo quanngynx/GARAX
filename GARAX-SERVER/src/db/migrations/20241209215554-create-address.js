@@ -1,12 +1,6 @@
 'use strict';
-
-import { QueryInterface } from "sequelize";
-
-const { COMMON } = require('../constants')
-
-const typeofAddress = COMMON.ADDRESS
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
+export async function up(queryInterface, Sequelize) {
     await queryInterface.createTable('addresses', {
       id: {
         allowNull: false,
@@ -15,8 +9,8 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
         type: Sequelize.INTEGER
       },
       type: {
-        type: Sequelize.ENUM(typeofAddress.HOME, typeofAddress.OFFICE),
-        defaultValue: typeofAddress.HOME
+        type: Sequelize.ENUM('home', 'office'),
+        defaultValue: 'home'
       },
       streetRoad: {
         type: Sequelize.STRING,
@@ -53,6 +47,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       }
     });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
+export async function down(queryInterface, Sequelize) {
   await queryInterface.dropTable('addresses');
 }

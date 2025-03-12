@@ -43,17 +43,39 @@ export const productVariantValuesModel = (sequelize: Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    price: DataTypes.INTEGER,
-    oldPrice: DataTypes.INTEGER,
-    stock: DataTypes.INTEGER,
-    sold: DataTypes.INTEGER,
-    sku: DataTypes.STRING,
-    manufacturingDate: DataTypes.BIGINT,
-    productId: DataTypes.STRING,
-    addOverSpecsId: DataTypes.STRING,
-    addOverDetailSpecsId: DataTypes.STRING,
-    createBy: DataTypes.STRING,
-    updateBy: DataTypes.STRING,
+    price: {
+      type: DataTypes.INTEGER,
+    },
+    oldPrice: {
+      type: DataTypes.INTEGER,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+    },
+    sold: {
+      type: DataTypes.INTEGER,
+    },
+    sku: {
+      type: DataTypes.STRING,
+    },
+    manufacturingDate: {
+      type: DataTypes.BIGINT,
+    },
+    productId: {
+      type: DataTypes.STRING,
+    },
+    addOverSpecsId: {
+      type: DataTypes.STRING,
+    },
+    addOverDetailSpecsId: {
+      type: DataTypes.STRING,
+    },
+    createBy: {
+      type: DataTypes.STRING,
+    },
+    updateBy: {
+      type: DataTypes.STRING,
+    },
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,

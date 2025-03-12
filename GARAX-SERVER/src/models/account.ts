@@ -1,9 +1,10 @@
  'use strict';
 import { Sequelize, DataTypes, Model, Optional, Association } from 'sequelize';
-import { GENDER_VALUES } from '@/common/constants';
+import { GENDER_VALUES, REGEX, USERS } from '@/common/constants';
 import { Account, Models } from '@/common/interfaces';
 import { AddressModel } from './address';
 
+const defaultAvatar = USERS.AVATAR.DEFAULT_VALUE;
 export type AccountCreationAttributes = Optional<
   Account,
   'id' | 'userName'
@@ -51,17 +52,27 @@ export const accountModel = (sequelize: Sequelize) => {
     {
       id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
       userName: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          notEmpty: true,
+          len: [5, 20],
+          is: REGEX.FIELDS.USERNAME
+        }
       },
       firstName: {
         type: DataTypes.STRING,
+        defaultValue: ''
       },
       lastName: {
         type: DataTypes.STRING,
+        defaultValue: ''
       },
       gender: {
         type: DataTypes.ENUM(...GENDER_VALUES),
@@ -74,27 +85,38 @@ export const accountModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+          isEmail: true
+        }
       },
       phone: {
         type: DataTypes.STRING,
+        validate: {
+          is: REGEX.FIELDS.PHONE
+        }
       },
       avatar: {
         type: DataTypes.STRING,
+        defaultValue: defaultAvatar
       },
       password: {
         type: DataTypes.STRING,
       },
       emptyPassword: {
         type: DataTypes.BOOLEAN,
+        defaultValue: false
       },
       googleId: {
         type: DataTypes.STRING,
+        defaultValue: ''
       },
       pointerId: {
         type: DataTypes.STRING,
+        defaultValue: ''
       },
       roleId: {
         type: DataTypes.STRING,
+        defaultValue: ''
       },
       created_at: {
         type: DataTypes.DATE,

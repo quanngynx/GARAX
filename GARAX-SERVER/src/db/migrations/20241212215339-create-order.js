@@ -1,9 +1,7 @@
 'use strict';
 
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
+export async function up(queryInterface, Sequelize) {
     await queryInterface.createTable('orders', {
       id: {
         allowNull: false,
@@ -21,10 +19,10 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
         type: Sequelize.BOOLEAN
       },
       paymentMethod: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM('')
       },
       paymentStatus: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM('')
       },
       subTotalFromProd: {
         type: Sequelize.FLOAT
@@ -63,6 +61,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       }
     });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
+export async function down(queryInterface, Sequelize) {
   await queryInterface.dropTable('orders');
 }

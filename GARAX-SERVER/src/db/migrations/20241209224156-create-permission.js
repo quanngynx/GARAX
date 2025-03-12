@@ -1,27 +1,22 @@
 'use strict';
 
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
-    await queryInterface.createTable('payments', {
+export async function up(queryInterface, Sequelize) {
+    await queryInterface.createTable('permissions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      amount: {
+      keyAccept: {
         type: Sequelize.STRING
       },
-      desc: {
+      valueAccept: {
         type: Sequelize.STRING
       },
-      orderId: {
-        type: Sequelize.STRING
-      },
-      currencyId: {
-        type: Sequelize.STRING
+      isActive: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +28,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       }
     });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
-  await queryInterface.dropTable('payments');
+export async function down(queryInterface, Sequelize) {
+  await queryInterface.dropTable('permissions');
 }

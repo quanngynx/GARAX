@@ -10,14 +10,14 @@ export type KeyTokenCreationAttributes = Optional<
 export class KeyTokenModel
 extends Model<KeyToken, KeyTokenCreationAttributes>
 implements KeyToken {
-  id!: string;
-  privateKey!: string;
-  publicKey!: string;
-  refreshToken!: string;
-  refreshTokenUsed!: JSON;
-  userId!: string;
-  created_at!: Date;
-  updated_at!: Date;
+  public id!: string;
+  public privateKey!: string;
+  public publicKey!: string;
+  public refreshToken!: string;
+  public refreshTokenUsed!: JSON;
+  public userId!: string;
+  public readonly created_at!: Date;
+  public readonly updated_at!: Date;
 
   public static associations: {};
   /**

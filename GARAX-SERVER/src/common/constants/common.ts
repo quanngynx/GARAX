@@ -2,11 +2,11 @@ export const BASE_URL_CLIENT = process.env.VITE_URL_CLIENT || '';
 export const BASE_URL_ADMIN = process.env.NEXT_URL_ADMIN || '';
 
 export const USERS = {
-  // GENDER: {
-  //   MALE: 'male',
-  //   FEMALE: 'female',
-  //   OTHER: 'other',
-  // },
+  GENDER: {
+    MALE: 'male',
+    FEMALE: 'female',
+    OTHER: 'other',
+  },
   AVATAR: {
     DEFAULT_VALUE: 'https://drive.google.com/thumbnail?id=1bE9KJ_Mtw5hgCXGSbp4QUKkF7H5-bSMM&sz=w250'
   },

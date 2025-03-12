@@ -54,6 +54,7 @@ export const apiKeyModel = (sequelize: Sequelize) => {
     },
     isActive: {
       type: DataTypes.BOOLEAN,
+      defaultValue: true
     },
     itemPermissionId: {
       type: DataTypes.STRING,

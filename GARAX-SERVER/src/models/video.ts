@@ -36,9 +36,15 @@ export const videoModel = (sequelize: Sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    directoryPath: DataTypes.STRING,
-    alt: DataTypes.STRING,
-    original: DataTypes.STRING,
+    directoryPath: {
+      type: DataTypes.STRING
+    },
+    alt: {
+      type: DataTypes.STRING
+    },
+    original: {
+      type: DataTypes.STRING
+    },
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,

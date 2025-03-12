@@ -1,27 +1,22 @@
 'use strict';
 
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
-  await queryInterface.createTable('specification_products', {
+export async function up(queryInterface, Sequelize) {
+  await queryInterface.createTable('videos', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    name: {
+    directoryPath: {
       type: Sequelize.STRING
     },
-    key: {
+    alt: {
       type: Sequelize.STRING
     },
-    value: {
+    original: {
       type: Sequelize.STRING
-    },
-    isOriginalProduct: {
-      type: Sequelize.BOOLEAN
     },
     createdAt: {
       allowNull: false,
@@ -33,6 +28,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
     }
   });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
-  await queryInterface.dropTable('specification_products');
+export async function down(queryInterface, Sequelize) {
+  await queryInterface.dropTable('videos');
 }

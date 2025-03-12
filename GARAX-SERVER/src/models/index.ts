@@ -1,6 +1,8 @@
-// import path from 'path';
-// import process from 'process';
-import { Sequelize } from 'sequelize';
+import sequelize, { DataTypes, Sequelize } from 'sequelize';
+import fs from 'fs';
+import path from 'path';
+import connection from '@/db/init.mysql';
+
 import { accountModel } from './account';
 import { apiKeyModel } from './apikey';
 import { keyTokenModel } from './keytoken';
@@ -25,69 +27,35 @@ import { serviceCategoryModel } from './servicecategory';
 import { specificationDetailProductModel } from './specificationdetailproduct';
 import { specificationProductModel } from './specificationproduct';
 import { videoModel } from './video';
-import configMySQL from '../config/config.mysql';
-// const env = process.env.NODE_ENV || 'dev';
-// const config = require('../config/config.mysql')[env];
-const sequelize = configMySQL.url !== ''
-  ? new Sequelize(
-    configMySQL.url,
-    {
-      dialect: 'mysql',
-      pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-      },
-      port: configMySQL.development.port
-    },
-  )
-  : new Sequelize(
-    configMySQL.development.db,
-    configMySQL.development.user,
-    configMySQL.development.password,
-    {
-      dialect: 'mysql',
-      pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-      },
-      port: configMySQL.development.port
-    },
-  )
 
-const Account = accountModel(sequelize);
-const Address = addressModel(sequelize);
-const ApiKey = apiKeyModel(sequelize);
-const Brand = brandModel(sequelize);
-const Cart = cartModel(sequelize);
-const CartItems = cartItemsModel(sequelize);
-const CategoryProduct = categoryProductModel(sequelize);
-const Currency = currencyModel(sequelize);
-const Image = imageModel(sequelize);
+const basename = path.basename(__filename);
 
-const ItemPermission = itemPermissionModel(sequelize);
-const KeyToken = keyTokenModel(sequelize);
-const News = newsModel(sequelize);
-const NewsCategory = newsCategory(sequelize);
-const Order = orderModel(sequelize);
-const OtpCode = otpCodeModel(sequelize);
-const Payment = paymentModel(sequelize);
-const Permission = permissionModel(sequelize);
-const Product = productModel(sequelize);
-const ProductVariantValues = productVariantValuesModel(sequelize);
-const Service = serviceModel(sequelize);
-const ServiceCategory = serviceCategoryModel(sequelize);
-const SpecificationDetailProduct = specificationDetailProductModel(sequelize);
-const SpecificationProduct = specificationProductModel(sequelize);
-const Video = videoModel(sequelize);
+const Account = accountModel(connection);
+const Address = addressModel(connection);
+const ApiKey = apiKeyModel(connection);
+const Brand = brandModel(connection);
+const Cart = cartModel(connection);
+const CartItems = cartItemsModel(connection);
+const CategoryProduct = categoryProductModel(connection);
+const Currency = currencyModel(connection);
+const Image = imageModel(connection);
+const ItemPermission = itemPermissionModel(connection);
+const KeyToken = keyTokenModel(connection);
+const News = newsModel(connection);
+const NewsCategory = newsCategory(connection);
+const Order = orderModel(connection);
+const OtpCode = otpCodeModel(connection);
+const Payment = paymentModel(connection);
+const Permission = permissionModel(connection);
+const Product = productModel(connection);
+const ProductVariantValues = productVariantValuesModel(connection);
+const Service = serviceModel(connection);
+const ServiceCategory = serviceCategoryModel(connection);
+const SpecificationDetailProduct = specificationDetailProductModel(connection);
+const SpecificationProduct = specificationProductModel(connection);
+const Video = videoModel(connection);
 
-// const Brand = require('./brand')(sequelize);
-// const Cart = require('./cartProduct')(sequelize);
-// const CartItemsProduct = require('./cartItemsProduct')(sequelize);
-const db = {
+const db: any = {
   Account,
   Address,
   ApiKey,
@@ -116,9 +84,20 @@ const db = {
   Sequelize
 };
 
-Object.values(db).forEach((model: any) => {
-  if (model.associate) {
-    model.associate(db);
+fs.readdirSync(__dirname)
+  .filter(file => {
+    return (
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+    );
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, DataTypes);
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
   }
 });
 
@@ -126,6 +105,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 export { db };
+
 export * from './account';
 export * from './address';
 export * from './apikey';

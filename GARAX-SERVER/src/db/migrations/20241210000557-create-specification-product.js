@@ -1,21 +1,24 @@
 'use strict';
-
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
-  await queryInterface.createTable('ServiceCategories', {
-    idServiceCategory: {
+export async function up(queryInterface, Sequelize) {
+  await queryInterface.createTable('specification_products', {
+    id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    title: {
+    name: {
       type: Sequelize.STRING
     },
-    alias: {
+    key: {
       type: Sequelize.STRING
+    },
+    value: {
+      type: Sequelize.STRING
+    },
+    isOriginalProduct: {
+      type: Sequelize.BOOLEAN
     },
     createdAt: {
       allowNull: false,
@@ -27,6 +30,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
     }
   });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
-  await queryInterface.dropTable('ServiceCategories');
+export async function down(queryInterface, Sequelize) {
+  await queryInterface.dropTable('specification_products');
 }

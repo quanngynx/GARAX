@@ -2,14 +2,14 @@
 
 import { cpus } from 'os';
 import { memoryUsage as _memoryUsage } from 'process';
-import { sequelize } from '@/db/init.mysql.level1';
+import connection from '@/db/init.mysql';
 import QueryTypes from 'sequelize/lib/query-types';
 
 const _SECONDS = 5000
 
 const getActiveConnections = async (): Promise<number> => {
   try {
-    const result = await sequelize.query<{ Value: string }>(
+    const result = await connection.query<{ Value: string }>(
       'SHOW STATUS WHERE `Variable_name` = "Threads_connected"',
       { type: QueryTypes.SELECT }
     );

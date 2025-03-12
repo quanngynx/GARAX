@@ -1,27 +1,25 @@
 'use strict';
 
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
-    await queryInterface.createTable('specification_detail_products', {
+export async function up(queryInterface, Sequelize) {
+    await queryInterface.createTable('payments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      groupName: {
+      amount: {
         type: Sequelize.STRING
       },
-      groupKey: {
+      desc: {
         type: Sequelize.STRING
       },
-      groupValue: {
+      orderId: {
         type: Sequelize.STRING
       },
-      isOriginalProduct: {
-        type: Sequelize.BOOLEAN
+      currencyId: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +31,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       }
     });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
-  await queryInterface.dropTable('specification_detail_products');
+export async function down(queryInterface, Sequelize) {
+  await queryInterface.dropTable('payments');
 }

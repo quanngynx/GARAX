@@ -77,6 +77,7 @@ export const newsModel = (sequelize: Sequelize) => {
   }, {
     sequelize,
     modelName: 'News',
+    tableName: 'news',
     timestamps: true,
     hooks: {
       beforeValidate: (news) => {

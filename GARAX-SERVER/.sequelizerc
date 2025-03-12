@@ -2,9 +2,10 @@
 const path = require('path');
 
 module.exports = {
-  config: path.resolve('config', 'database.json'),
+  env: process.env.NODE_ENV || 'dev',
+  config: path.resolve('src/config', 'config.mysql.js'),
   'models-path': path.resolve('src', 'models'),
   'seeders-path': path.resolve('src/db', 'seeders'),
-  'migrations-path': path.resolve('src', 'migrations'),
+  'migrations-path': path.resolve('src/db', 'migrations'),
 };
 

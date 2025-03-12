@@ -1,23 +1,26 @@
 'use strict';
 
-import { QueryInterface } from "sequelize";
-
 /** @type {import('sequelize-cli').Migration} */
-export async function up(queryInterface: QueryInterface, Sequelize: any) {
-    await queryInterface.createTable('cart_items', {
+export async function up(queryInterface, Sequelize) {
+    await queryInterface.createTable('api_keys', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      qty: {
-        type: Sequelize.INTEGER
+      key: {
+        type: Sequelize.STRING,
+        unique: true
       },
-      cartId: {
+      isActive: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+      },
+      itemPermissionId: {
         type: Sequelize.STRING
       },
-      productVariantId: {
+      permissionId: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -30,6 +33,6 @@ export async function up(queryInterface: QueryInterface, Sequelize: any) {
       }
     });
 }
-export async function down(queryInterface: QueryInterface, _Sequelize: any) {
-  await queryInterface.dropTable('cart_items');
+export async function down(queryInterface, _Sequelize) {
+  await queryInterface.dropTable('api_keys');
 }
