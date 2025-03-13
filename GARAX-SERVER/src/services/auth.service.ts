@@ -7,15 +7,11 @@ import bcrypt from 'bcrypt';
 
 // depenc...
 import { db } from '../models';
-// import { OtpCode } from '../models';
-
 import { BadRequestError, AuthFailureError } from '../middlewares/error.response';
-
 import { AccountService } from './account.service';
 // const PartnerService = require('./partner.service')
 import { KeyTokenService } from './keyToken.service';
 import { OtpService } from './otp.service';
-
 // import { transporter } from '../provider/nodemailer';
 import { getInfoData } from '@/common/utils';
 import {
@@ -144,7 +140,17 @@ export class AuthJWTService {
     password,
     // refreshToken = ''
   }: LoginRequest) => {
-    const foundUser = await AccountService.findByEmail({ email, select: [] });
+    const selectedColumns: string | string[] = [
+      'email',
+      'password',
+      'userName',
+      'phone',
+      'roleId'
+    ];
+    const foundUser = await AccountService.findByEmail({
+      email,
+      select: selectedColumns.length ? selectedColumns : ['id'],
+    });
     if (!foundUser) throw new BadRequestError('User not registered!');
 
     const match = bcrypt.compare(password, foundUser.password);

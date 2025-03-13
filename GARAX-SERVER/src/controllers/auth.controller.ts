@@ -28,7 +28,7 @@ class AuthController {
 
   login = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      metadata: await AuthJWTService.login( req.body )
+      metadata: await AuthJWTService.login(req.body)
     }).send(res)
   }
 
