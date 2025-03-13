@@ -184,7 +184,7 @@ export class AuthJWTService {
 
     await KeyTokenService.createKeyToken({
       refreshToken: tokens!.refreshToken,
-      userId: userId,
+      userId: isUserId,
       privateKey,
       publicKey,
     });
