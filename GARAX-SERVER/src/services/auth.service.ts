@@ -172,8 +172,12 @@ export class AuthJWTService {
       id: userId,
       // roleId
     } = foundUser;
+    const isUserId = (userId !== undefined) ? userId : '';
     const tokens = await createTokenPair(
-      { userId: userId, email },
+      {
+        userId: isUserId,
+        email
+      },
       publicKey,
       privateKey
     );
