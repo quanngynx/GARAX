@@ -6,21 +6,20 @@ import { AccountModel } from './account';
 
 export type AddressCreationAttributes = Optional<
   Address,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class AddressModel
-extends Model<Address, AddressCreationAttributes>
-implements Address {
-  public id!: string;
-  public type!: typeof ADDRESS_VALUES[number];
-  public streetRoad!: string;
-  public wardOrCommune!: string;
-  public district!: string;
-  public city!: string;
-  public userId!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<Address, AddressCreationAttributes> {
+  // public id!: string;
+  // public type!: typeof ADDRESS_VALUES[number];
+  // public streetRoad!: string;
+  // public wardOrCommune!: string;
+  // public district!: string;
+  // public city!: string;
+  // public userId!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {
     address: Association<AddressModel, AccountModel>;
@@ -65,11 +64,11 @@ export const addressModel = (sequelize: Sequelize) => {
     userId: {
       type: DataTypes.STRING,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

@@ -10,13 +10,12 @@ ItemPermission,
 >;
 
 export class ItemPermissionModel
-extends Model<ItemPermission, ItemPermissionCreationAttributes>
-implements ItemPermission {
-  id!: string;
-  itemKeyAccept!: string;
-  itemValueAccept!: string;
-  isActive!: boolean;
-  permissionId!: string;
+extends Model<ItemPermission, ItemPermissionCreationAttributes> {
+  // id!: string;
+  // itemKeyAccept!: string;
+  // itemValueAccept!: string;
+  // isActive!: boolean;
+  // permissionId!: string;
 
   public static associations: {
     permission: Association<PermissionModel, ItemPermissionModel>;

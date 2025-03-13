@@ -6,14 +6,23 @@ import morgan from 'morgan';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { default as helmet } from 'helmet';
-// const { sequelize } = require('./models/index'); // Import sequelize từ models
 // sequelize.sync({alter: true});
 // import authRoutes from './routes/access';
 import { router } from './routes';
 import { ErrorStatus } from './common/interfaces';
 import { corsMiddleware } from './middlewares';
 // #region IMPORT DB
-require('./db/init.mysql.level1');
+import connection from '@/db/init.mysql';
+
+const connect = async () => {
+  try {
+    await connection.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+};
+connect();
 
 declare module 'express-serve-static-core' {
   interface Response {

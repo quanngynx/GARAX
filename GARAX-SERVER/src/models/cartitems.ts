@@ -4,18 +4,17 @@ import { DataTypes, Sequelize, Model, Optional } from "sequelize";
 
 export type CartItemsCreationAttributes = Optional<
   CartItems,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class CartItemsModel
-extends Model<CartItemsCreationAttributes>
-implements CartItems {
-  id!: string;
-  qty!: string;
-  cartId!: string;
-  productVariantId!: string;
-  created_at!: Date;
-  updated_at!: Date;
+extends Model<CartItemsCreationAttributes> {
+  // id!: string;
+  // qty!: string;
+  // cartId!: string;
+  // productVariantId!: string;
+  // createdAt!: Date;
+  // updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -44,11 +43,11 @@ export const cartItemsModel = (sequelize: Sequelize): typeof CartItemsModel => {
     productVariantId: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

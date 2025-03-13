@@ -3,6 +3,6 @@ export interface Permission {
   keyAccept: string;
   valueAccept: string;
   isActive: boolean;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

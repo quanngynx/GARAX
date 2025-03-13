@@ -8,13 +8,12 @@ export type SpecificationDetailProductCreationAttributes = Optional<
 >;
 
 export class SpecificationDetailProductModel
-extends Model<SpecificationDetailProduct, SpecificationDetailProductCreationAttributes>
-implements SpecificationDetailProduct {
-  id!: string;
-  groupName!: string;
-  groupKey!: string;
-  groupValue!: string;
-  isOriginalProduct!: boolean;
+extends Model<SpecificationDetailProduct, SpecificationDetailProductCreationAttributes> {
+  // id!: string;
+  // groupName!: string;
+  // groupKey!: string;
+  // groupValue!: string;
+  // isOriginalProduct!: boolean;
 
   public static associations: {};
   /**

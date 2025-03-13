@@ -5,18 +5,17 @@ import { Video } from '../common/interfaces/models/video.interface';
 
 export type VideoCreationAttributes = Optional<
   Video,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class VideoModel
-extends Model<Video, VideoCreationAttributes>
-implements Video {
-  public id!: string;
-  public directoryPath!: string;
-  public alt!: string;
-  public original!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<Video, VideoCreationAttributes> {
+  // public id!: string;
+  // public directoryPath!: string;
+  // public alt!: string;
+  // public original!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -45,11 +44,11 @@ export const videoModel = (sequelize: Sequelize) => {
     original: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

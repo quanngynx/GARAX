@@ -6,6 +6,6 @@ export interface Service {
   alias: string;
   description: string;
   isActive: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

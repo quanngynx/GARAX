@@ -1,7 +1,9 @@
-import sequelize, { DataTypes, Sequelize } from 'sequelize';
+import { DataTypes, Sequelize } from 'sequelize';
 import fs from 'fs';
 import path from 'path';
-import connection from '@/db/init.mysql';
+// import connection from '@/db/init.mysql';
+// import connectionConfig from '../config/database.js';
+import connectionConfig from '@/config/database.js';
 
 import { accountModel } from './account';
 import { apiKeyModel } from './apikey';
@@ -27,35 +29,60 @@ import { serviceCategoryModel } from './servicecategory';
 import { specificationDetailProductModel } from './specificationdetailproduct';
 import { specificationProductModel } from './specificationproduct';
 import { videoModel } from './video';
+import { Models } from '@/common/interfaces';
 
+// const env = process.env.NODE_ENV || 'development';
+// const dbConfig = connectionConfig[env];
 const basename = path.basename(__filename);
 
-const Account = accountModel(connection);
-const Address = addressModel(connection);
-const ApiKey = apiKeyModel(connection);
-const Brand = brandModel(connection);
-const Cart = cartModel(connection);
-const CartItems = cartItemsModel(connection);
-const CategoryProduct = categoryProductModel(connection);
-const Currency = currencyModel(connection);
-const Image = imageModel(connection);
-const ItemPermission = itemPermissionModel(connection);
-const KeyToken = keyTokenModel(connection);
-const News = newsModel(connection);
-const NewsCategory = newsCategory(connection);
-const Order = orderModel(connection);
-const OtpCode = otpCodeModel(connection);
-const Payment = paymentModel(connection);
-const Permission = permissionModel(connection);
-const Product = productModel(connection);
-const ProductVariantValues = productVariantValuesModel(connection);
-const Service = serviceModel(connection);
-const ServiceCategory = serviceCategoryModel(connection);
-const SpecificationDetailProduct = specificationDetailProductModel(connection);
-const SpecificationProduct = specificationProductModel(connection);
-const Video = videoModel(connection);
+let sequelize: any;
+if (connectionConfig.database && connectionConfig.username) {
+  sequelize = new Sequelize(
+    connectionConfig.database,
+    connectionConfig.username,
+    connectionConfig.password,
+    {
+      host: process.env.DB_HOST,
+      dialect: 'mysql',
+      dialectOptions: {
+          bigNumberStrings: true,
+      },
+      pool: {
+          max: 50,
+          min: 0,
+          acquire: 30000,
+          idle: 10000,
+      },
+    }
+  );
+}
 
-const db: any = {
+const Account = accountModel(sequelize);
+const Address = addressModel(sequelize);
+const ApiKey = apiKeyModel(sequelize);
+const Brand = brandModel(sequelize);
+const Cart = cartModel(sequelize);
+const CartItems = cartItemsModel(sequelize);
+const CategoryProduct = categoryProductModel(sequelize);
+const Currency = currencyModel(sequelize);
+const Image = imageModel(sequelize);
+const ItemPermission = itemPermissionModel(sequelize);
+const KeyToken = keyTokenModel(sequelize);
+const News = newsModel(sequelize);
+const NewsCategory = newsCategory(sequelize);
+const Order = orderModel(sequelize);
+const OtpCode = otpCodeModel(sequelize);
+const Payment = paymentModel(sequelize);
+const Permission = permissionModel(sequelize);
+const Product = productModel(sequelize);
+const ProductVariantValues = productVariantValuesModel(sequelize);
+const Service = serviceModel(sequelize);
+const ServiceCategory = serviceCategoryModel(sequelize);
+const SpecificationDetailProduct = specificationDetailProductModel(sequelize);
+const SpecificationProduct = specificationProductModel(sequelize);
+const Video = videoModel(sequelize);
+
+const db: Models | any = {
   Account,
   Address,
   ApiKey,
@@ -90,8 +117,11 @@ fs.readdirSync(__dirname)
       file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
     );
   })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, DataTypes);
+  .forEach(async file => {
+    const modelPath = path.join(__dirname, file);
+    const modelModule = await import(modelPath);
+    // const model = require(path.join(__dirname, file))(sequelize, DataTypes);
+    const model = modelModule.default(sequelize, DataTypes);
     db[model.name] = model;
   });
 

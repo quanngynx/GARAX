@@ -1,11 +1,13 @@
 
+require('@babel/register')
 const path = require('path');
 
 module.exports = {
   env: process.env.NODE_ENV || 'dev',
-  config: path.resolve('src/config', 'config.mysql.js'),
+  // config: path.resolve('src/config', 'config.mysql.js'),
+  config: path.resolve('src/config', 'database.js'),
   'models-path': path.resolve('src', 'models'),
   'seeders-path': path.resolve('src/db', 'seeders'),
   'migrations-path': path.resolve('src/db', 'migrations'),
 };
-
+// "type": "module",

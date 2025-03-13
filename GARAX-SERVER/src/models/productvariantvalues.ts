@@ -4,26 +4,25 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type ProductVariantValuesCreationAttributes = Optional<
   ProductVariantValues,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class ProductVariantValuesModel
-extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes>
-implements ProductVariantValues {
-  public id!: string;
-  public price!: number;
-  public oldPrice!: number;
-  public stock!: number;
-  public sold!: number;
-  public sku!: string;
-  public manufacturingDate!: BigInt;
-  public productId!: string;
-  public addOverSpecsId!: string;
-  public addOverDetailSpecsId!: string;
-  public createBy!: Date;
-  public updateBy!: Date;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
+  // public id!: string;
+  // public price!: number;
+  // public oldPrice!: number;
+  // public stock!: number;
+  // public sold!: number;
+  // public sku!: string;
+  // public manufacturingDate!: BigInt;
+  // public productId!: string;
+  // public addOverSpecsId!: string;
+  // public addOverDetailSpecsId!: string;
+  // public createBy!: Date;
+  // public updateBy!: Date;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -76,11 +75,11 @@ export const productVariantValuesModel = (sequelize: Sequelize) => {
     updateBy: {
       type: DataTypes.STRING,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

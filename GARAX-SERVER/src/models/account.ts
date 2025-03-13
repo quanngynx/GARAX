@@ -7,28 +7,27 @@ import { AddressModel } from './address';
 const defaultAvatar = USERS.AVATAR.DEFAULT_VALUE;
 export type AccountCreationAttributes = Optional<
   Account,
-  'id' | 'userName'
+  'id' | 'userName' | 'createdAt' | 'updatedAt'
 >;
 
 export class AccountModel
-extends Model<Account, AccountCreationAttributes>
-implements Account  {
-  public id!: string;
-  public userName!: string;
-  public firstName!: string;
-  public lastName!: string;
-  public gender!: typeof GENDER_VALUES[number];
-  public dob!: number;
-  public email!: string;
-  public phone!: string;
-  public avatar!: string;
-  public password!: string;
-  public emptyPassword!: boolean;
-  public googleId!: string;
-  public pointerId!: string;
-  public roleId!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<Account, AccountCreationAttributes> {
+  // public id!: string;
+  // public userName!: string;
+  // public firstName!: string;
+  // public lastName!: string;
+  // public gender!: typeof GENDER_VALUES[number];
+  // public dob!: number;
+  // public email!: string;
+  // public phone!: string;
+  // public avatar!: string;
+  // public password!: string;
+  // public emptyPassword!: boolean;
+  // public googleId!: string;
+  // public pointerId!: string;
+  // public roleId!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {
     address: Association<AccountModel, AddressModel>;
@@ -48,6 +47,7 @@ implements Account  {
 }
 
 export const accountModel = (sequelize: Sequelize) => {
+// export default (sequelize: Sequelize) => {
   AccountModel.init(
     {
       id: {
@@ -118,11 +118,11 @@ export const accountModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         defaultValue: ''
       },
-      created_at: {
+      createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
-      updated_at: {
+      updatedAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },

@@ -5,29 +5,28 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type OrderCreationAttributes = Optional<
   Order,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class OrderModel
-extends Model<Order, OrderCreationAttributes>
-implements Order {
-  id!: string;
-  fullname!: string;
-  phone!: string;
-  isReceiveAtStore!: boolean;
-  paymentMethod!: typeof PAYMENT_METHOD_VALUES[number];
-  paymentStatus!: typeof PAYMENT_STATUS_VALUES[number];
-  subTotalFromProd!: number;
-  shippingFee!: number;
-  discount!: number;
-  total!: number;
-  userId!: string;
-  addressId!: string;
-  cartId!: string;
-  createBy!: string;
-  updateBy!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<Order, OrderCreationAttributes> {
+  // id!: string;
+  // fullname!: string;
+  // phone!: string;
+  // isReceiveAtStore!: boolean;
+  // paymentMethod!: typeof PAYMENT_METHOD_VALUES[number];
+  // paymentStatus!: typeof PAYMENT_STATUS_VALUES[number];
+  // subTotalFromProd!: number;
+  // shippingFee!: number;
+  // discount!: number;
+  // total!: number;
+  // userId!: string;
+  // addressId!: string;
+  // cartId!: string;
+  // createBy!: string;
+  // updateBy!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -89,11 +88,11 @@ export const orderModel = (sequelize: Sequelize) => {
     updateBy: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

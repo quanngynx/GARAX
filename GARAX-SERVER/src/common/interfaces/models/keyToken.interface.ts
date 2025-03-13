@@ -5,6 +5,6 @@ export interface KeyToken {
   refreshToken: string;
   refreshTokenUsed: JSON;
   userId: string;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

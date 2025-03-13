@@ -6,21 +6,20 @@ import { default as slugify } from "slugify";
 
 export type ServiceCreationAttributes = Optional<
   Service,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class ServiceModel
-extends Model<Service, ServiceCreationAttributes>
-implements Service {
-  public id!: string;
+extends Model<Service, ServiceCreationAttributes> {
+  // public id!: string;
   public title!: string;
   public alias!: string;
-  public serviceCategoryId!: string;
-  public serviceImageId!: string;
-  public description!: string;
-  public isActive!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+  // public serviceCategoryId!: string;
+  // public serviceImageId!: string;
+  // public description!: string;
+  // public isActive!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -59,11 +58,11 @@ export const serviceModel = (sequelize: Sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

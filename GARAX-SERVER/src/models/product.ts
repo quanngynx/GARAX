@@ -1,5 +1,5 @@
 'use strict';
-import { PRODUCT_TAG, PRODUCT_STATUS } from '@/common/constants';
+// import { PRODUCT_TAG, PRODUCT_STATUS } from '@/common/constants';
 import { Models, Product } from '@/common/interfaces';
 import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
@@ -7,36 +7,35 @@ import { default as slugify } from "slugify";
 
 export type ProductCreationAttributes = Optional<
   Product,
-  'id' | 'created_at' | 'updated_at' | 'slug'
+  'id' | 'createdAt' | 'updatedAt' | 'slug'
 >;
 
 export class ProductModel
-extends Model<Product, ProductCreationAttributes>
-implements Product {
-  public id!: string;
+extends Model<Product, ProductCreationAttributes> {
+  // public id!: string;
   public name!: string;
   public slug!: string;
-  public totalStock!: number;
-  public desc!: JSON;
-  public views!: number;
-  public tags!: PRODUCT_TAG;
-  public manufacturingDate!: BigInt;
-  public minPrice!: number;
-  public maxPrice!: number;
-  public rate!: number;
-  public totalRate!: number;
-  public totalSold!: number;
-  public categoryId!: string;
-  public subCategoryId!: string;
-  public sub2CategoryId!: string;
-  public sub3CategoryId!: string;
-  public videoId!: string;
-  public brandId!: string;
-  public status!: PRODUCT_STATUS;
-  public createBy!: string;
-  public updateBy!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+  // public totalStock!: number;
+  // public desc!: JSON;
+  // public views!: number;
+  // public tags!: PRODUCT_TAG;
+  // public manufacturingDate!: BigInt;
+  // public minPrice!: number;
+  // public maxPrice!: number;
+  // public rate!: number;
+  // public totalRate!: number;
+  // public totalSold!: number;
+  // public categoryId!: string;
+  // public subCategoryId!: string;
+  // public sub2CategoryId!: string;
+  // public sub3CategoryId!: string;
+  // public videoId!: string;
+  // public brandId!: string;
+  // public status!: PRODUCT_STATUS;
+  // public createBy!: string;
+  // public updateBy!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -121,11 +120,11 @@ export const productModel = (sequelize: Sequelize) => {
     updateBy: {
       type: DataTypes.STRING,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

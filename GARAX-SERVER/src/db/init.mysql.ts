@@ -6,6 +6,11 @@ import {
   DB_USER_VALUE_DEV
 } from '@/common/venv';
 
+// const host = process.env.HOST_DEV;
+// const username = process.env.USER_DEV;
+// const password = process.env.PASSWORD_DB_DEV;
+// const database = process.env.DATABASE_DEV;
+// console.log(`${DB_HOST_VALUE_DEV} ${DB_NAME_VALUE_DEV} ${DB_PASSWORD_VALUE_DEV} ${DB_USER_VALUE_DEV}`)
 const sequelize = new Sequelize(
   DB_NAME_VALUE_DEV,
   DB_USER_VALUE_DEV,
@@ -26,12 +31,4 @@ const sequelize = new Sequelize(
 
 export default sequelize;
 
-const connect = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-};
-connect();
+

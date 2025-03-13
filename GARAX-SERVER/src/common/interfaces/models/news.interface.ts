@@ -8,6 +8,6 @@ export interface News {
   category: string;
   isActive: boolean;
   createDate: Date;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

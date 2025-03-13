@@ -10,14 +10,13 @@ NewsCategory,
 >;
 
 export class NewsCategoryModel
-extends Model<NewsCategory, NewsCategoryCreationAttributes>
-implements NewsCategory {
-  id!: string;
-  title!: string;
-  alias!: string;
-  description!: string;
-  isActive!: string;
-  createDate!: Date;
+extends Model<NewsCategory, NewsCategoryCreationAttributes> {
+  // id!: string;
+  public title!: string;
+  public alias!: string;
+  // description!: string;
+  // isActive!: string;
+  // createDate!: Date;
 
   /**
    * Helper method for defining associations.

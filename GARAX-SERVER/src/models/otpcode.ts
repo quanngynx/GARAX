@@ -8,12 +8,11 @@ export type OtpCodeCreationAttributes = Optional<
 >;
 
 export class OtpCodeModel
-extends Model<OtpCode, OtpCodeCreationAttributes>
-implements OtpCode {
-  public id!: string;
-  public otp!: string;
-  public email!: string;
-  public expiresAt!: Date;
+extends Model<OtpCode, OtpCodeCreationAttributes> {
+  // public id!: string;
+  // public otp!: string;
+  // public email!: string;
+  // public expiresAt!: Date;
 
   public static associations: {};
   /**

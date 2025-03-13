@@ -4,19 +4,18 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type PaymentCreationAttributes = Optional<
   Payment,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class PaymentModel
-extends Model<PaymentCreationAttributes>
-implements Payment {
-  public id!: string;
-  public amount!: number;
-  public desc!: string;
-  public orderId!: string;
-  public currencyId!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<PaymentCreationAttributes> {
+  // public id!: string;
+  // public amount!: number;
+  // public desc!: string;
+  // public orderId!: string;
+  // public currencyId!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -48,11 +47,11 @@ export const paymentModel = (sequelize: Sequelize) => {
     currencyId: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

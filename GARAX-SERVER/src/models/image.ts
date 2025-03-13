@@ -5,22 +5,21 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type ImageCreationAttributes = Optional<
   Image,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class ImageModel
-extends Model<ImageCreationAttributes>
-implements Image {
-  id!: string;
-  image!: string;
-  coverImage!: string;
-  alt!: string;
-  original!: string;
-  typeSize!: typeof IMAGE_VALUES[number];
-  typeImage!: string;
-  productId!: string;
-  created_at!: Date;
-  updated_at!: Date;
+extends Model<ImageCreationAttributes> {
+  // id!: string;
+  // image!: string;
+  // coverImage!: string;
+  // alt!: string;
+  // original!: string;
+  // typeSize!: typeof IMAGE_VALUES[number];
+  // typeImage!: string;
+  // productId!: string;
+  // createdAt!: Date;
+  // updatedAt!: Date;
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -59,11 +58,11 @@ export const imageModel = (sequelize: Sequelize) => {
     productId: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

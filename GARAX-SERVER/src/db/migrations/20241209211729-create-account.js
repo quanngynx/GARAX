@@ -43,7 +43,11 @@ export async function up(queryInterface, Sequelize) {
       phone: {
         type: Sequelize.STRING,
         validate: {
-          is: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+          notEmpty: { msg: "Phone number cannot be empty" },
+          is: {
+            args: [/^\+?[0-9]{1,3}?[-. ]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/],
+            msg: "Invalid phone number format. Expected format: +XXX (XXX) XXX-XXXX"
+          }
         }
       },
       avatar: {

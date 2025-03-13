@@ -4,17 +4,16 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type CurrencyCreationAttributes = Optional<
   Currency,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class CurrencyModel
-extends Model<CurrencyCreationAttributes>
-implements Currency {
-  id!: string;
-  currency!: string;
-  desc!: string;
-  created_at!: Date;
-  updated_at!: Date;
+extends Model<CurrencyCreationAttributes> {
+  // id!: string;
+  // currency!: string;
+  // desc!: string;
+  // createdAt!: Date;
+  // updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -40,11 +39,11 @@ export const currencyModel = (sequelize: Sequelize) => {
     desc: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

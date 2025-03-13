@@ -4,20 +4,19 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type KeyTokenCreationAttributes = Optional<
   KeyToken,
-  'id' | 'refreshToken'
+  'id' | 'refreshToken' | 'createdAt' | 'updatedAt'
 >;
 
 export class KeyTokenModel
-extends Model<KeyToken, KeyTokenCreationAttributes>
-implements KeyToken {
-  public id!: string;
-  public privateKey!: string;
-  public publicKey!: string;
-  public refreshToken!: string;
-  public refreshTokenUsed!: JSON;
-  public userId!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<KeyToken, KeyTokenCreationAttributes> {
+  // public id!: string;
+  // public privateKey!: string;
+  // public publicKey!: string;
+  // public refreshToken!: string;
+  // public refreshTokenUsed!: JSON;
+  // public userId!: string;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -52,11 +51,11 @@ export const keyTokenModel = (sequelize: Sequelize) => {
     userId: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

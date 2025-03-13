@@ -4,19 +4,18 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type SpecificationProductCreationAttributes = Optional<
   SpecificationProduct,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class SpecificationProductModel
-extends Model<SpecificationProduct, SpecificationProductCreationAttributes>
-implements SpecificationProduct {
-  public id!: string;
-  public name!: string;
-  public key!: string;
-  public value!: string;
-  public isOriginalProduct!: boolean;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<SpecificationProduct, SpecificationProductCreationAttributes> {
+  // public id!: string;
+  // public name!: string;
+  // public key!: string;
+  // public value!: string;
+  // public isOriginalProduct!: boolean;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -48,11 +47,11 @@ export const specificationProductModel = (sequelize: Sequelize) => {
     isOriginalProduct: {
       type: DataTypes.BOOLEAN
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

@@ -3,6 +3,6 @@ export interface CartItems {
   qty: string;
   cartId: string;
   productVariantId: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

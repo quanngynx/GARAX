@@ -4,6 +4,6 @@ export interface SpecificationProduct {
   key: string;
   value: string;
   isOriginalProduct: boolean;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

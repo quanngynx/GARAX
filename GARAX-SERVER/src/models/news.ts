@@ -6,23 +6,22 @@ import { default as slugify } from "slugify";
 
 export type NewsCreationAttributes = Optional<
   News,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class NewsModel
-extends Model<News, NewsCreationAttributes>
-implements News {
-  id!: string;
-  title!: string;
-  alias!: string;
-  description!: string;
-  detail!: string;
-  image!: string;
-  category!: string;
-  isActive!: boolean;
-  createDate!: Date;
-  created_at!: Date;
-  updated_at!: Date;
+extends Model<News, NewsCreationAttributes> {
+  // id!: string;
+  public title!: string;
+  public alias!: string;
+  // description!: string;
+  // detail!: string;
+  // image!: string;
+  // category!: string;
+  // isActive!: boolean;
+  // createDate!: Date;
+  // createdAt!: Date;
+  // updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -66,11 +65,11 @@ export const newsModel = (sequelize: Sequelize) => {
     createDate: {
       type: DataTypes.DATE
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
@@ -80,7 +79,7 @@ export const newsModel = (sequelize: Sequelize) => {
     tableName: 'news',
     timestamps: true,
     hooks: {
-      beforeValidate: (news) => {
+      beforeValidate: (news: NewsModel) => {
         news.alias = slugify(news.title, { lower: true, trim: true });
       },
     },

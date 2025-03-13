@@ -10,13 +10,12 @@ export type ApiKeyCreationAttributes = Optional<
 >;
 
 export class ApiKeyModel
-extends Model<ApiKeyCreationAttributes>
-implements ApiKey {
-  id!: string;
-  key!: string;
-  isActive!: boolean;
-  itemPermissionId!: string;
-  permissionId!: string;
+extends Model<ApiKeyCreationAttributes> {
+  // id!: string;
+  // key!: string;
+  // isActive!: boolean;
+  // itemPermissionId!: string;
+  // permissionId!: string;
 
   public static associations: {
     itemPermission: Association<ItemPermissionModel, ApiKeyModel>;

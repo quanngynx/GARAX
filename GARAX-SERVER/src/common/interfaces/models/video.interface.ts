@@ -3,6 +3,6 @@ export interface Video {
   directoryPath: string;
   alt: string;
   original: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -18,7 +18,7 @@ export class KeyTokenService {
   | PublicKeyInput
   >> => {
     try {
-      console.log("createKeyToken::", { userId, publicKey, privateKey, refreshToken })
+      // console.log("createKeyToken::", { userId, publicKey, privateKey, refreshToken })
       const filter = { userId: userId },
             update = { publicKey, privateKey, refreshTokenUsed: JSON }
 
@@ -34,7 +34,7 @@ export class KeyTokenService {
           created_at: undefined,
           updated_at: undefined
         });
-        console.log("tokens::", tokens)
+        // console.log("tokens::", tokens)
       }
       return tokens ? tokens.publicKey : '';
     } catch (error) {

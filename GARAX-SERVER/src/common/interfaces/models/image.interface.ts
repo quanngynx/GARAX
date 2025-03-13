@@ -9,6 +9,6 @@ export interface Image {
   typeSize: IMAGE;
   typeImage: string;
   productId: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

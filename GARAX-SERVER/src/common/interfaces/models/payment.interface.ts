@@ -4,6 +4,6 @@ export interface Payment {
   desc: string;
   orderId: string;
   currencyId: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

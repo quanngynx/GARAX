@@ -68,15 +68,13 @@ export class AuthJWTService {
         gender: GENDER_VALUES[0],
         dob: 12,
         email: email,
-        phone: '',
+        phone: '1234567890',
         avatar: '',
         password: passwordHash,
         emptyPassword: false,
         googleId: '',
         pointerId: '',
         roleId: roleId,
-        created_at: undefined,
-        updated_at: undefined
       });
 
       if (newUser) {
@@ -92,7 +90,7 @@ export class AuthJWTService {
           publicKeyEncoding: { type: 'pkcs1', format: 'pem' },
           privateKeyEncoding: { type: 'pkcs1', format: 'pem' },
         });
-        console.log("generateKeyPairSync success!::", { privateKey, publicKey });
+        // console.log("generateKeyPairSync success!::", { privateKey, publicKey });
 
         const publicKeyString = await KeyTokenService.createKeyToken({
           userId: newUser.id,
@@ -134,7 +132,7 @@ export class AuthJWTService {
       };
     } catch (error) {
       return {
-        code: 'xxx',
+        code: '500',
         message: error,
         status: "Khong xac dinh",
       };

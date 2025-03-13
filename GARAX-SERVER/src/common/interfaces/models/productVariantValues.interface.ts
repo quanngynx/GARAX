@@ -11,6 +11,6 @@ export interface ProductVariantValues {
   addOverDetailSpecsId: string;
   createBy: Date;
   updateBy: Date;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -7,20 +7,19 @@ CategoryProduct,
   'id' | 'created_at' | 'updated_at'
 >;
 
-class CategoryProductModel
-extends Model<CategoryProductCreationAttributes>
-implements CategoryProduct {
-  public id!: string;
-  public name!: string;
-  public slug!: string;
-  public desc!: string;
-  public countProduct!: number;
-  public isParentCategory!: boolean;
-  public isActive!: boolean;
-  public imageId!: string;
-  public parentId!: string;
-  public created_at!: Date;
-  public updated_at!: Date;
+export class CategoryProductModel
+extends Model<CategoryProductCreationAttributes> {
+  // public id!: string;
+  // public name!: string;
+  // public slug!: string;
+  // public desc!: string;
+  // public countProduct!: number;
+  // public isParentCategory!: boolean;
+  // public isActive!: boolean;
+  // public imageId!: string;
+  // public parentId!: string;
+  // public created_at!: Date;
+  // public updated_at!: Date;
 
   public static associations: {};
   /**

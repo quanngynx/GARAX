@@ -5,18 +5,17 @@ import { ItemPermissionModel } from './itempermission';
 
 export type PermissionCreationAttributes = Optional<
   Permission,
-  'id'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class PermissionModel
-extends Model<Permission, PermissionCreationAttributes>
-implements Permission {
-  public id!: string;
-  public keyAccept!: string;
-  public valueAccept!: string;
-  public isActive!: boolean;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+extends Model<Permission, PermissionCreationAttributes> {
+  // public id!: string;
+  // public keyAccept!: string;
+  // public valueAccept!: string;
+  // public isActive!: boolean;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static associations: {
     itemPermission: Association<PermissionModel, ItemPermissionModel>;
@@ -52,11 +51,11 @@ export const permissionModel = (sequelize: Sequelize) => {
     isActive: {
       type: DataTypes.BOOLEAN
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

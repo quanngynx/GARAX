@@ -8,13 +8,12 @@ export type BrandCreationAttributes = Optional<
 >;
 
 export class BrandModel
-extends Model<BrandCreationAttributes>
-implements Brand {
-  id!: string;
-  idBrand!: string;
-  name!: string;
-  created_at!: Date;
-  updated_at!: Date;
+extends Model<BrandCreationAttributes> {
+  // id!: string;
+  // idBrand!: string;
+  // name!: string;
+  // createdAt!: Date;
+  // updatedAt!: Date;
 
   public static associations: {};
   /**
@@ -42,11 +41,11 @@ export const brandModel = (sequelize: Sequelize): typeof BrandModel => {
     name: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

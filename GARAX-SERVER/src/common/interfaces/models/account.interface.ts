@@ -15,6 +15,6 @@ export interface Account {
   googleId: string;
   pointerId: string;
   roleId: string;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

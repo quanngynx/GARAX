@@ -70,6 +70,7 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@babel/register": "^7.25.9",
     "@eslint/js": "^9.20.0",
     "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
