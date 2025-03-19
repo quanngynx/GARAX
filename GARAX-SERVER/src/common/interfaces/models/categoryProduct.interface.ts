@@ -11,4 +11,5 @@ extends Audit {
   isActive: boolean;
   imageId: string;
   parentId: string;
+  categoryId: string;
 }

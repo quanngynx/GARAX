@@ -35,6 +35,15 @@ export async function up(queryInterface, Sequelize) {
       parentId: {
         type: Sequelize.STRING
       },
+      categoryId: {
+        type: Sequelize.STRING
+      },
+      createdBy: {
+        type: Sequelize.STRING
+      },
+      updatedBy: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

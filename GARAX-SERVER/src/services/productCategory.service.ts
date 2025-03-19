@@ -41,8 +41,7 @@ export class ProductCategoryService {
     }
   }
 
-  static async getAllCategory({}) {
-
+  static async getAllCategory() {
     const allProductCate = await db.CategoryProduct.findAll();
 
     console.log('AllProductCate:', allProductCate);

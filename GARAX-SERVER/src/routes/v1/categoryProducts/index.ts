@@ -5,7 +5,7 @@ import { ProductCategoryController } from '@/controllers';
 export const routerCategoryProduct = express.Router();
 
 const productCategoryController = ProductCategoryController.default;
-routerCategoryProduct.get('/category-product', asyncHandler(productCategoryController.getAllCategory));
+routerCategoryProduct.get('/category-product/all', asyncHandler(productCategoryController.getAllCategory));
 // routerCategoryProduct.get('/products/:id', asyncHandler(productCategoryController.getProductById));
 
 routerCategoryProduct.post('/category-product', asyncHandler(productCategoryController.addNewCategory));

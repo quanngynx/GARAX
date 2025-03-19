@@ -12,10 +12,10 @@ class ProductCategoryController {
     }).send(res)
   }
 
-  getAllCategory = async (req: Request, res: Response, _next: NextFunction) => {
+  getAllCategory = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get all product category success!',
-      metadata: await ProductCategoryService.getAllCategory(req.body)
+      metadata: await ProductCategoryService.getAllCategory()
     }).send(res)
   }
 

@@ -4,7 +4,7 @@ import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type CategoryProductCreationAttributes = Optional<
 CategoryProduct,
-  'id' | 'createdAt' | 'updatedAt' | 'createBy' | 'updateBy'
+  'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy' | 'categoryId'
 >;
 
 export class CategoryProductModel
@@ -73,11 +73,16 @@ export const categoryProductModel = (sequelize: Sequelize) => {
     parentId: {
       type: DataTypes.STRING
     },
-    createBy: {
-      type: DataTypes.STRING,
+    categoryId: {
+      type: DataTypes.STRING
     },
-    updateBy: {
+    createdBy: {
       type: DataTypes.STRING,
+      defaultValue: ''
+    },
+    updatedBy: {
+      type: DataTypes.STRING,
+      defaultValue: ''
     },
     createdAt: {
       type: DataTypes.DATE,
