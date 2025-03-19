@@ -1,50 +1,78 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import {
-  TextField,
-  Button,
-  Typography,
-  Container,
-  Paper,
-  Checkbox,
-  FormControlLabel,
-  Box,
-  Link,
-  Divider,
-} from '@mui/material';
-import API_ROUTES from '@/api';
-import backgroundImage from '@/assets/auth/images/background1.png';
+import { Button, Flex, Form, FormProps, Input, notification } from 'antd';
+
+import backgroundImage from '../../../public/gfcu2jnjinvtyfffq4yl.webp';
+import { AppDispatch } from '@/redux/stores';
+import { useAppDispatch } from '@/redux/hooks';
+import { setAccessToken } from '@/redux/slices';
+import { authApi } from '@/api/authUrl';
+import { AccountLoginRequest } from '@/api/requests';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch: AppDispatch = useAppDispatch();
   const navigate = useNavigate();
+  // const { state } = useLocation();
 
-  const handleLogin = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    
-      try {
-        const response = await axios.post(API_ROUTES.LOGIN, { email, password });
-        const { token, role, fullname } = response.data;
-        localStorage.setItem('token', token);
-        localStorage.setItem('role', role);
-        localStorage.setItem('fullname', fullname);
-        if (role === 'user') {
-          navigate('/home');
-        } else {
-          window.location.replace('http://localhost:5175/statics');
-        }
-      } catch (error) {
-        console.log(error);
-        setErrorMessage('Invalid credentials. Please try again.');
-      }
+  const [loggingIn, setLoggingIn] = useState(false);
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const [isError, setIsError] = useState(false);
+
+  // const isAuthenticated = useAppSelector(selectIsAuthenticated);
+
+  const handleLogin: FormProps<AccountLoginRequest>['onFinish'] = async (data: AccountLoginRequest) => {
+    try {
+      setIsError(false);
+      setLoggingIn(true);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const response: any = await authApi.login(
+        data,
+      );
+
+      // if(!isError) {
+      //   openNotification(false, 'Đăng nhập thành công');
+      // } else {
+      //   openNotification(true, 'Đăng nhập thất bại');
+      // }
+
+      console.log('t::', response);
+      if (!response) return;
+
+      dispatch(setAccessToken(response.metadata.tokens.accessToken));
+      navigate('/');
+    } catch (error) {
+      // console.error('ERROR LOGIN:', error);
+      openNotification(true, `Đăng nhập thất bại:: ${error} \n ${isError}`)
+      setIsError(true);
+    } finally {
+      setLoggingIn(false);
+    }
+  }
+
+  // if (isAuthenticated) {
+  //   return <Navigate to={state?.pathname ?? ''} />;
+  // }
+
+  const onFinishFailed: FormProps<AccountLoginRequest>['onFinishFailed'] = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+    openNotification(true, 'Đăng nhập thất bại');
+  };
+
+  const openNotification = (pauseOnHover: boolean, message: string) => () => {
+    api.open({
+      message: message,
+      // description: '',
+      showProgress: true,
+      pauseOnHover,
+    });
   };
 
   return (
-    <Box
-      sx={{
+    <Flex
+      style={{
         position: 'relative',
         display: 'flex',
         justifyContent: 'center',
@@ -56,119 +84,112 @@ function Login() {
         backgroundPosition: 'center',
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backdropFilter: 'blur(5px)',
-          backgroundColor: 'rgba(0, 0, 0, 0.2)',
-          zIndex: 1,
-        }}
-      />
-      <Container
-        maxWidth="sm"
-        sx={{
-          position: 'relative',
-          zIndex: 2,
+      {contextHolder}
+      <Flex
+        align="start"
+        vertical
+        style={{
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          backgroundColor: 'rgba(255, 255, 255, 0.25)',
+          boxShadow: '0 8px 32px 0 rgba(27, 0, 37, 0.89)',
+          borderRadius: '10px',
+          padding: '32px 24px 12px 24px'
         }}
       >
-        <Paper
-          elevation={10}
-          sx={{
-            p: 4,
-            borderRadius: 3,
-            backgroundColor: 'rgba(255, 255, 255, 5)',
-            backdropFilter: 'blur(10px)',
-            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-          }}
+        <Form
+          name="basic"
+          layout='vertical'
+          labelCol={{ span: 48 }}
+          style={{ maxWidth: 800 }}
+          initialValues={{ remember: true }}
+          onFinish={handleLogin}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Typography variant="h4" component="h1" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
-            Welcome Back
-          </Typography>
-          <Typography variant="body1" align="center" color="textSecondary" mb={2}>
-            Log in to continue to your account
-          </Typography>
-          <Divider sx={{ mb: 3 }} />
-          <form onSubmit={handleLogin}>
-            <TextField
-              fullWidth
-              label="Email address"
-              color='success'
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              margin="normal"
-              required
-              sx={{
-                input: { color: '#333', fontWeight: 'bold' },
-                '& label.Mui-focused': { color: '#1976d2' },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#1976d2' },
-                  '&:hover fieldset': { borderColor: '#115293' },
-                  '&.Mui-focused fieldset': { borderColor: '#1976d2' },
-                },
+          <Form.Item<AccountLoginRequest>
+            style={{
+              width: 580
+            }}
+            required tooltip="Đây là trường bắt buộc"
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: 'Please input your email!' }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item<AccountLoginRequest>
+            style={{
+              width: 580
+            }}
+            required tooltip="Đây là trường bắt buộc"
+            label="Mật khẩu"
+            name="password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          {/* <Form.Item<FieldType>
+            name="remember"
+            valuePropName="checked"
+            label={null}
+          >
+            <Checkbox>Nhớ thông tin sau khi đăng nhập</Checkbox>
+          </Form.Item> */}
+
+          <Form.Item
+            style={{}}
+            label="Bằng cách tiếp tục, you agree to the Terms of use and Privacy Policy."
+          >
+            <Button
+              style={{
+                width: '100%',
+                borderRadius: 60,
+                backgroundColor: '#050B20',
+                padding: '20px 0px'
               }}
-            />
-            <TextField
-              fullWidth
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              margin="normal"
-              required
-              sx={{
-                input: { color: '#333', fontWeight: 'bold' },
-                '& label.Mui-focused': { color: '#1976d2' },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#1976d2' },
-                  '&:hover fieldset': { borderColor: '#115293' },
-                  '&.Mui-focused fieldset': { borderColor: '#1976d2' },
-                },
-              }}
-            />
-            {errorMessage && (
-              <Typography color="error" sx={{ mt: 1, fontWeight: 'bold' }}>
-                {errorMessage}
-              </Typography>
-            )}
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              label="Remember me"
-              sx={{ mt: 2, fontWeight: 'bold' }}
-            />
-            <Box mt={3}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="info"
-                fullWidth
-                sx={{ py: 1.5, fontSize: '1rem', fontWeight: 'bold' }}
-              >
-                Log In
-              </Button>
-            </Box>
-          </form>
-          <Typography variant="body2" align="center" mt={2} sx={{ fontWeight: 'bold' }}>
-            By continuing, you agree to the Terms of use and Privacy Policy.
-          </Typography>
-          <Typography align="center" mt={2} sx={{ fontWeight: 'bold' }}>
-            <Link href="#" color="primary" underline="hover">
-              Forgot your password?
-            </Link>
-          </Typography>
-          <Typography align="center" mt={2} sx={{ fontWeight: 'bold' }}>
-            Don’t have an account?{' '}
-            <Link href="/auth/register" color="primary" underline="hover">
-              Sign up
-            </Link>
-          </Typography>
-        </Paper>
-      </Container>
-    </Box>
+              type="primary"
+              htmlType="submit"
+              loading={loggingIn}
+            >
+              Đăng nhập
+            </Button>
+          </Form.Item>
+
+          <Form.Item
+            style={{}}
+          >
+            <div className='w-full flex justify-center underline font-semibold'>
+              Quên mật khẩu?
+            </div>
+          </Form.Item>
+
+          <Form.Item>
+            <div className='w-full flex justify-center gap-1'>
+              <div>
+                Không có tài khoản?
+              </div>
+
+              <div className='underline font-semibold'>
+                Đăng kí tại đây
+              </div>
+            </div>
+          </Form.Item>
+
+          <Form.Item>
+            <div className='w-full flex justify-center gap-1'>
+              <div></div>
+              <div className='underline font-semibold'>
+                Hoặc tiếp tục với...
+              </div>
+              <div></div>
+            </div>
+          </Form.Item>
+        </Form>
+      </Flex>
+    </Flex>
   );
 }
 

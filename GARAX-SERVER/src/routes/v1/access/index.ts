@@ -9,5 +9,5 @@ export const routerAccess = express.Router()
 // Authentication
 // router.use(authentication)
 // handle refreshToken
-routerAccess.post('/auth/hanlderRefreshToken', asyncHandler(accessController.handleRefreshToken))
+routerAccess.post('/access/hanlde-refreshToken', asyncHandler(accessController.handleRefreshToken))
 

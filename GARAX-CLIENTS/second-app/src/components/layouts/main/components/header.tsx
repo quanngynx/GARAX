@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import { useSelector } from "react-redux";
@@ -18,7 +18,6 @@ import MenuIcon from "@/assets/layout/iconMenu.svg?react";
 import iconBrand from "@/assets/layout/GRAX.svg";
 import iconPhone from "@/assets/layout/noun-display-big-notch-4064633.svg";
 import CartTiny from "@/assets/layout/cart-tity.svg?react";
-// import UserTiny from "@/assets/icons/user-tiny.svg?react";
 function Header() {
   const [fullname, setFullname] = useState(localStorage.getItem("fullname"));
   const [token] = useState(localStorage.getItem("token"));
@@ -47,7 +46,7 @@ function Header() {
       setFullname(null);
     } else if (fullname === null) {
       try {
-        const response = axios.get("/auth/user", {
+        const response: Promise<AxiosResponse<unknown, unknown>> = axios.get("/auth/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -62,6 +61,7 @@ function Header() {
   }, [token, fullname]);
 
   const [hideMenu, setHideMenu] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hideProfile, setHideProfile] = useState(false);
 
   const handleMenu = () => {
@@ -156,7 +156,7 @@ function Header() {
                 <div className="p-1">
                   <CartTiny />
                 </div>
-                <div className="text-black">Giỏ hàng</div>
+                <div className="text-black"></div>
               </div>
             </button>
             <DrawersForCart
