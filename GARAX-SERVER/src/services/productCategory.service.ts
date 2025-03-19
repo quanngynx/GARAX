@@ -7,7 +7,11 @@ import { AddNewCategoryRequest } from '@/common/requests/productCategory';
 export class ProductCategoryService {
   static async addNewCategory({
     name,
-    desc = ''
+    desc = '',
+    isParentCategory,
+    isActive,
+    imageId,
+    parentId
   } : AddNewCategoryRequest) {
     console.log('name::', name);
 
@@ -21,10 +25,10 @@ export class ProductCategoryService {
         desc: desc,
         slug: '',
         countProduct: 0,
-        isParentCategory: false,
-        isActive: false,
-        imageId: '',
-        parentId: '',
+        isParentCategory: isParentCategory || false,
+        isActive: isActive || true,
+        imageId: imageId || '',
+        parentId: parentId || '',
       });
 
       console.log('newProductCate:', newProductCate);

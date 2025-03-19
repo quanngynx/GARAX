@@ -5,7 +5,7 @@ import { ProductCategoryService } from "../services/productCategory.service"
 
 class ProductCategoryController {
   addNewCategory = async (req: Request, res: Response, _next: NextFunction) => {
-    console.log("body::", req.body)
+    // console.log("body::", req.body)
     new SuccessResponse({
       message: 'Add new product category success!',
       metadata: await ProductCategoryService.addNewCategory(req.body)

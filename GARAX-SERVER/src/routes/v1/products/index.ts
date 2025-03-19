@@ -2,7 +2,8 @@ import express from 'express'
 import { asyncHandler } from '@/middlewares';
 import { ProductController } from '@/controllers'
 
-const routerProduct = express.Router();
+export const routerProduct = express.Router();
+
 const productController = ProductController.default;
 
 /**

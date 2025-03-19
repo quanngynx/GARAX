@@ -3,6 +3,7 @@ import { PAYMENT_METHOD_VALUES, PAYMENT_STATUS_VALUES } from '@/common/constants
 import { Models, Order } from '@/common/interfaces';
 import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { AccountModel } from './account';
+import { CartModel } from './cart';
 
 export type OrderCreationAttributes = Optional<
   Order,
@@ -28,6 +29,8 @@ extends Model<Order, OrderCreationAttributes> {
   // updateBy!: string;
   // public readonly createdAt!: Date;
   // public readonly updatedAt!: Date;
+
+  public cart?: CartModel;
 
   public static associations: {
     order: Association<OrderModel, AccountModel>;

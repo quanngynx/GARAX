@@ -1,6 +1,6 @@
 "use strict";
 
-import { AddManyNewProductRequest, AddNewProductRequest, GetAllBestSellerProducts } from "@/common/requests/product";
+import { AddManyNewProductRequest, AddNewProductRequest, DeleteProductByIdRequest, GetAllBestSellerProducts } from "@/common/requests/product";
 import { db } from "@/models";
 import { BadRequestError, NotFoundError } from '../middlewares/error.response';
 import { getProductById } from "@/common/repositories";
@@ -177,7 +177,7 @@ export class ProductService {
 
     await transaction.commit();
 
-    // if(!newProduct) throw new BadRequestError('error::create new product')
+    if(!newProduct) throw new BadRequestError('error::create new product');
 
     return {
       data: {
@@ -308,13 +308,54 @@ export class ProductService {
 
   }
 
-  static async deleteProductById({ id } : { id: string }) {
-    const isProductExistInOrder = await db.Order.findOne({
+  static async deleteProductById({
+    productId,
+    orderId
+  } : DeleteProductByIdRequest) {
+    /**
+     * 1. Init transaction | product -> attribute -> variantKeys -> variantValues -> productVariantValues
+     */
+    const transaction = await db.sequelize.transaction();
+
+    /**
+     * 2. productVariantValues
+     */
+
+    /**
+     * 3. variantValues
+     */
+
+    /**
+     * 4. variantKeys
+     */
+
+    /**
+     * 5. productAttributeValues
+     */
+
+    /**
+     * 5. attributeValues
+     */
+
+    const isProductExistInOrder = await db.CartItems.findOne({
       where: {
-        // pro
-      }
-    })
-    return id
+        productVariantId: productId
+      },
+      include: [{
+        model: db.Cart,
+        required: true,
+        include: [
+          {
+            model: db.Order,
+            required: true, // Chỉ lấy nếu có Order
+            where: { id: orderId },
+          },
+        ],
+      }]
+    });
+
+
+    // return id
   }
 
   static async deleteAllProduct() {

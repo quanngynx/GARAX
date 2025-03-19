@@ -2,7 +2,7 @@ import express from 'express'
 import { asyncHandler } from '@/middlewares';
 import { OrdersController } from '@/controllers';
 
-const routerOrder = express.Router()
+export const routerOrder = express.Router()
 const ordersController = OrdersController.default;
 routerOrder.get('/orders', asyncHandler(ordersController.getListOrderByUser))
 routerOrder.get('/orders/:id', asyncHandler(ordersController.getInforOrderByUser))

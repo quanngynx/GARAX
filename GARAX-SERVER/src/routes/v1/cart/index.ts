@@ -2,7 +2,7 @@ import express from 'express';
 import { CartController } from '@/controllers';
 import { asyncHandler } from '@/middlewares';
 
-const routerCart = express.Router();
+export const routerCart = express.Router();
 const cartController = CartController.default;
 
 routerCart.post('', asyncHandler(cartController.addToCart))

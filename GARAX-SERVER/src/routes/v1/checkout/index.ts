@@ -1,5 +1,5 @@
 import express from 'express'
-const router = express.Router()
+export const routerCheckout = express.Router();
 // import { asyncHandler } from '@/middlewares'
 // import { ProductController } from '@/controllers'
 
@@ -16,5 +16,3 @@ const router = express.Router()
 
 // router.get('/products/pub', asyncHandler(ProductController.findAllProductPub))
 // router.get('/products', asyncHandler(ProductController.findAllProduct))
-
-module.exports = router
