@@ -1,6 +1,7 @@
 'use strict';
 import { CartItems, Models } from "@/common/interfaces";
-import { DataTypes, Sequelize, Model, Optional } from "sequelize";
+import { DataTypes, Sequelize, Model, Optional, Association } from "sequelize";
+import { ProductVariantValuesModel } from "./productvariantvalues";
 
 export type CartItemsCreationAttributes = Optional<
   CartItems,
@@ -16,14 +17,19 @@ extends Model<CartItemsCreationAttributes> {
   // createdAt!: Date;
   // updatedAt!: Date;
 
-  public static associations: {};
+  public static associations: {
+    productVariantValues: Association<ProductVariantValuesModel, CartItemsModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  static associate(_models: Models) {
-    // define association here
+  static associate(models: Models) {
+    this.hasOne(models.ProductVariantValues, {
+      foreignKey: 'productVariantId',
+      as: 'product_variant_values'
+    });
   }
 }
 

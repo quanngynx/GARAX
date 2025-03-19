@@ -3,6 +3,10 @@ import { Sequelize, DataTypes, Model, Optional, Association } from 'sequelize';
 import { GENDER_VALUES, REGEX, USERS } from '@/common/constants';
 import { Account, Models } from '@/common/interfaces';
 import { AddressModel } from './address';
+import { OrderModel } from './order';
+import { KeyTokenModel } from './keytoken';
+import { CartModel } from './cart';
+import { ApiKeyModel } from './apikey';
 
 const defaultAvatar = USERS.AVATAR.DEFAULT_VALUE;
 export type AccountCreationAttributes = Optional<
@@ -28,9 +32,15 @@ extends Model<Account, AccountCreationAttributes> {
   // public roleId!: string;
   // public readonly createdAt!: Date;
   // public readonly updatedAt!: Date;
+  public address?: AddressModel;
+  public order?: OrderModel;
 
   public static associations: {
-    address: Association<AccountModel, AddressModel>;
+    address: Association<AccountModel, AddressModel>; // 1-n
+    apiKey: Association<AccountModel, ApiKeyModel>; // 1-1
+    order: Association<AccountModel, OrderModel>; // 1-n
+    keyToken: Association<AccountModel, KeyTokenModel>; // 1-1
+    cart: Association<AccountModel, CartModel>; // 1-1
   };
   /**
    * Helper method for defining associations.
@@ -38,10 +48,29 @@ extends Model<Account, AccountCreationAttributes> {
    * The `models/index` file will call this method automatically.
    */
   static associate(models: Models) {
-    // define association here
     this.hasMany(models.Address, {
       foreignKey: 'userId',
       as: 'addresses',
+    });
+
+    this.hasOne(models.ApiKey, {
+      foreignKey: 'roleId',
+      as: 'api_keys'
+    });
+
+    this.hasMany(models.Order, {
+      foreignKey: 'userId',
+      as: 'orders',
+    });
+
+    this.hasOne(models.KeyToken, {
+      foreignKey: 'userId',
+      as: 'key_tokens'
+    });
+
+    this.hasOne(models.Cart, {
+      foreignKey: 'userId',
+      as: 'carts'
     });
   }
 }
@@ -118,6 +147,9 @@ export const accountModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         defaultValue: ''
       },
+      // keyTokenId: {
+      //   type: DataTypes.STRING,
+      // },
       createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,

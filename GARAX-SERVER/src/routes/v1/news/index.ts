@@ -1,7 +1,7 @@
-const express = require('express')
-const router = express.Router()
-const AsyncHandler = require('../../../middlewares/asyncHandler.middleware')
-const ProductController = require('../../../controllers/product.controller')
+// const express = require('express')
+// const router = express.Router()
+// const AsyncHandler = require('../../../middlewares/asyncHandler.middleware')
+// const ProductController = require('../../../controllers/product.controller')
 
 // router.get('/products', AsyncHandler(ProductController.getAllProducts))
 // router.get('/products/:id', AsyncHandler(ProductController.getProductById))
@@ -17,4 +17,4 @@ const ProductController = require('../../../controllers/product.controller')
 // router.get('/products/pub', AsyncHandler(ProductController.findAllProductPub))
 // router.get('/products', AsyncHandler(ProductController.findAllProduct))
 
-module.exports = router
+// module.exports = router

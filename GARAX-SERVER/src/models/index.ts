@@ -30,6 +30,10 @@ import { specificationDetailProductModel } from './specificationdetailproduct';
 import { specificationProductModel } from './specificationproduct';
 import { videoModel } from './video';
 import { Models } from '@/common/interfaces';
+import { attributeValuesModel } from './attributevalues';
+import { productattributeValuesModel } from './productattributevalues';
+import { variantKeysModel } from './variantkeys';
+import { variantValuesModel } from './variantvalues';
 
 // const env = process.env.NODE_ENV || 'development';
 // const dbConfig = connectionConfig[env];
@@ -75,14 +79,18 @@ const OtpCode = otpCodeModel(sequelize);
 const Payment = paymentModel(sequelize);
 const Permission = permissionModel(sequelize);
 const Product = productModel(sequelize);
+const VariantKeys = variantKeysModel(sequelize);
+const VariantValues = variantValuesModel(sequelize);
 const ProductVariantValues = productVariantValuesModel(sequelize);
+const AttributeValues = attributeValuesModel(sequelize);
+const ProductAttributeValues = productattributeValuesModel(sequelize);
 const Service = serviceModel(sequelize);
 const ServiceCategory = serviceCategoryModel(sequelize);
 const SpecificationDetailProduct = specificationDetailProductModel(sequelize);
 const SpecificationProduct = specificationProductModel(sequelize);
 const Video = videoModel(sequelize);
 
-const db: Models | any = {
+const db: Models = {
   Account,
   Address,
   ApiKey,
@@ -102,6 +110,10 @@ const db: Models | any = {
   Permission,
   Product,
   ProductVariantValues,
+  VariantKeys,
+  VariantValues,
+  AttributeValues,
+  ProductAttributeValues,
   Service,
   ServiceCategory,
   SpecificationDetailProduct,
@@ -120,7 +132,6 @@ fs.readdirSync(__dirname)
   .forEach(async file => {
     const modelPath = path.join(__dirname, file);
     const modelModule = await import(modelPath);
-    // const model = require(path.join(__dirname, file))(sequelize, DataTypes);
     const model = modelModule.default(sequelize, DataTypes);
     db[model.name] = model;
   });
@@ -154,7 +165,12 @@ export * from './otpcode';
 export * from './payment';
 export * from './permission';
 export * from './product';
+export * from './variantkeys';
+export * from './variantvalues';
+export * from './product';
 export * from './productvariantvalues';
+export * from './productattributevalues';
+export * from './attributevalues';
 export * from './service';
 export * from './servicecategory';
 export * from './specificationdetailproduct';

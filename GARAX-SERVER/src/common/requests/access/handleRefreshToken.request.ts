@@ -1,8 +1,11 @@
+import { Account } from "@/common/interfaces";
 import { KeyTokenModel } from "@/models";
 
-interface UserPayload {
+interface UserPayload
+extends Pick<Account,
+ | 'email'
+>{
   userId: string;
-  email: string;
 }
 
 export interface HandleRefreshTokenRequest {

@@ -1,7 +1,8 @@
 'use strict';
 import { IMAGE_VALUES } from '@/common/constants';
 import { Image, Models } from '@/common/interfaces';
-import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { ProductModel } from './product';
 
 export type ImageCreationAttributes = Optional<
   Image,
@@ -20,13 +21,20 @@ extends Model<ImageCreationAttributes> {
   // productId!: string;
   // createdAt!: Date;
   // updatedAt!: Date;
+
+  public static associations: {
+    image: Association<ProductModel, ImageModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  static associate(_models: Models) {
-    // define association here
+  static associate(models: Models) {
+    this.belongsTo(models.Product, {
+      foreignKey: 'productId',
+      as: 'products',
+    });
   }
 }
 
@@ -57,6 +65,12 @@ export const imageModel = (sequelize: Sequelize) => {
     },
     productId: {
       type: DataTypes.STRING
+    },
+    createBy: {
+      type: DataTypes.STRING,
+    },
+    updateBy: {
+      type: DataTypes.STRING,
     },
     createdAt: {
       type: DataTypes.DATE,

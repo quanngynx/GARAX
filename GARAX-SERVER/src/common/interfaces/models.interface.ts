@@ -1,4 +1,5 @@
-import { VideoModel, AccountModel, AddressModel, ApiKeyModel, BrandModel, CartItemsModel, CartModel, CategoryProductModel, CurrencyModel, ImageModel, ItemPermissionModel, KeyTokenModel, NewsCategoryModel, NewsModel, OrderModel, OtpCodeModel, PaymentModel, PermissionModel, ProductModel, ProductVariantValuesModel, ServiceCategoryModel, ServiceModel, SpecificationDetailProductModel, SpecificationProductModel } from "@/models";
+import { VariantValuesModel, VariantKeysModel, VideoModel, AccountModel, AddressModel, ApiKeyModel, BrandModel, CartItemsModel, CartModel, CategoryProductModel, CurrencyModel, ImageModel, ItemPermissionModel, KeyTokenModel, NewsCategoryModel, NewsModel, OrderModel, OtpCodeModel, PaymentModel, PermissionModel, ProductModel, ProductVariantValuesModel, ServiceCategoryModel, ServiceModel, SpecificationDetailProductModel, SpecificationProductModel, AttributeValuesModel, ProductAttributeValuesModel } from "@/models";
+import { Sequelize } from "sequelize";
 
 export interface Models {
   Account: typeof AccountModel;
@@ -20,9 +21,15 @@ export interface Models {
   Permission: typeof PermissionModel;
   Product: typeof ProductModel;
   ProductVariantValues: typeof ProductVariantValuesModel;
+  VariantKeys: typeof VariantKeysModel;
+  VariantValues: typeof VariantValuesModel;
+  AttributeValues: typeof AttributeValuesModel;
+  ProductAttributeValues: typeof ProductAttributeValuesModel;
   Service: typeof ServiceModel;
   ServiceCategory: typeof ServiceCategoryModel;
   SpecificationDetailProduct: typeof SpecificationDetailProductModel;
   SpecificationProduct: typeof SpecificationProductModel;
   Video: typeof VideoModel;
+  sequelize: Sequelize;
+  Sequelize: typeof Sequelize;
 }

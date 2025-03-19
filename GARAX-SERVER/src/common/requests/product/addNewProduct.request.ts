@@ -1,4 +1,27 @@
-import { Product } from "@/common/interfaces";
+import { Product, ProductVariantValues, VariantKeys, VariantValues } from "@/common/interfaces";
+
+interface AttributeItems
+extends Pick<VariantValues,
+| 'value'
+>, Pick<VariantKeys,
+| 'key'
+> {}
+
+interface VariantItems
+extends Pick<VariantKeys,
+| 'key'
+> {
+  values: string[];
+}
+
+interface VariantValueItems
+extends Pick<ProductVariantValues,
+| 'price'
+| 'oldPrice'
+| 'stock'
+> {
+  variantCombination: string[];
+}
 
 export interface AddNewProductRequest
 extends Pick<Product,
@@ -22,4 +45,8 @@ extends Pick<Product,
 | 'status'
 | 'createBy'
 | 'updateBy'
-> {}
+> {
+  attributes: AttributeItems[];
+  variants: VariantItems[];
+  variantValues: VariantValueItems[];
+}

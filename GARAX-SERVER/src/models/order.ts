@@ -1,7 +1,8 @@
 'use strict';
 import { PAYMENT_METHOD_VALUES, PAYMENT_STATUS_VALUES } from '@/common/constants';
 import { Models, Order } from '@/common/interfaces';
-import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { AccountModel } from './account';
 
 export type OrderCreationAttributes = Optional<
   Order,
@@ -10,7 +11,7 @@ export type OrderCreationAttributes = Optional<
 
 export class OrderModel
 extends Model<Order, OrderCreationAttributes> {
-  // id!: string;
+  id!: string;
   // fullname!: string;
   // phone!: string;
   // isReceiveAtStore!: boolean;
@@ -22,20 +23,26 @@ extends Model<Order, OrderCreationAttributes> {
   // total!: number;
   // userId!: string;
   // addressId!: string;
-  // cartId!: string;
+  cartId!: string;
   // createBy!: string;
   // updateBy!: string;
   // public readonly createdAt!: Date;
   // public readonly updatedAt!: Date;
 
-  public static associations: {};
+  public static associations: {
+    order: Association<OrderModel, AccountModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  static associate(_models: Models) {
+  static associate(models: Models) {
     // define association here
+    this.belongsTo(models.Account, {
+      foreignKey: 'userId',
+      as: 'account',
+    });
   }
 }
 

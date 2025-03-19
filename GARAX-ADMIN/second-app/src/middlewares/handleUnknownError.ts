@@ -1,4 +1,4 @@
-import { toast } from '../toast';
+import { toast } from '@/components/toasts';
 
 export function handleUnknownError(): void {
   toast({

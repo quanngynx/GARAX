@@ -8,7 +8,7 @@ export class KeyTokenService {
     userId,
     publicKey,
     privateKey,
-    refreshToken
+    // refreshToken
   }: CreateKeyTokenRequest): Promise<
   Promise<
   string

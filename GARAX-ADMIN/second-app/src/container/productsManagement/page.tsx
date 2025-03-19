@@ -11,13 +11,9 @@ export default function ProductsManagementPage() {
     return (
         <div className="flex flex-col min-h-[64vh]">
             <PageHeaderCustom namePage="Quản lý sản phẩm" />
-
             <MainFeat />
-
             <StatusProductsFilter />
-
             <CategoryProductsFilter />
-
             <TableProducts />
         </div>
     );

@@ -1,6 +1,8 @@
 import { PRODUCT_STATUS, PRODUCT_TAG } from "@/common/constants";
+import { Audit } from '../audit.interface';
 
-export interface Product {
+export interface Product
+extends Audit{
   id: string;
   name: string;
   slug: string;
@@ -21,8 +23,4 @@ export interface Product {
   videoId: string;
   brandId: string;
   status: PRODUCT_STATUS;
-  createBy: string;
-  updateBy: string;
-  createdAt: Date;
-  updatedAt: Date;
 }

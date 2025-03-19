@@ -1,5 +1,5 @@
 import { IDataTableType } from "@/container/productsManagement/interfaces";
-import { TableColumnsType, Tag } from "antd";
+import { TableColumnsType, Tag, Image } from "antd";
 import { TableAction } from "@/components/tableCustom/ColumnAction/tableAction";
 import { handleNavigateToSlug } from "@/utils/navigateToSlug";
 import { PATH_DASHBOARD } from "@/routes/paths";
@@ -22,7 +22,13 @@ export const columns: TableColumnsType<IDataTableType> = [
         title: "Hình ảnh",
         dataIndex: "name",
         key: "name",
-        render: (text: string) => <a>{text}</a>,
+        render: (text: string) => (
+            <Image
+                width={200}
+                src={text}
+                alt="product"
+            />
+        ),
         width: 200,
     },
     {

@@ -6,6 +6,7 @@ import type { TableProps } from "antd";
 import { TablePagination } from "./Pagination/tablePagination";
 import { LineFullWidth } from "../line";
 import { TableCustomProps } from "./interfaces";
+import { expandedRowRender } from "./expandableColumn";
 // import { DoubleScrollBar } from "./ScrollTopBottom/doubleScrollTable";
 // import { RefObject, useRef } from "react";
 // import { handleNavigateToSlug } from "@/utils/navigateToSlug";
@@ -14,7 +15,7 @@ import { TableCustomProps } from "./interfaces";
 // type ColumnsType<T extends object> = TableColumnsType<T>["columns"];
 type FixedType = 'left' | 'right' | undefined
 
-interface DataType {
+export interface DataType {
     key: React.Key;
     name: string;
     age: number;
@@ -177,6 +178,7 @@ export const TableCustom: FC<TableCustomProps> = ({
                     // className={styles.customTable}
                     columns={columns}
                     dataSource={data}
+                    expandable={{ expandedRowRender, defaultExpandedRowKeys: ['0'] }}
                     rowSelection={{ 
                         type: "checkbox", 
                         ...rowSelection,

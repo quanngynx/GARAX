@@ -22,7 +22,7 @@ class ProductController {
   getProductById = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
     new SuccessResponse({
-      message: 'Lấy hàng hóa bằng id thành công!',
+      message: `Lấy hàng hóa ${id} thành công!`,
       metadata: await getProductById({ id })
     }).send(res)
   }
@@ -31,6 +31,13 @@ class ProductController {
     new SuccessResponse({
       message: 'Thêm mới hàng hóa thành công!',
       metadata: await ProductService.addNewProduct(req.body)
+    }).send(res)
+  }
+
+  addManyNewProduct = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Thêm mới nhiều hàng hóa thành công!',
+      metadata: await ProductService.addManyNewProduct(req.body)
     }).send(res)
   }
 

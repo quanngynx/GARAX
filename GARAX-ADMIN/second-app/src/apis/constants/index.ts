@@ -6,3 +6,4 @@ export * from './order'
 export * from './booking'
 export * from './transaction'
 export * from './user'
+export * from './common';

@@ -1,7 +1,7 @@
-import { toast } from '../toast';
+import { toast } from '@/components/toasts';
 import type { AxiosError } from 'axios';
-import { ListItem, UnorderedList } from '@chakra-ui/react';
-import { ErrorResponse } from '../apis/common/responses/error.response';
+import { List } from 'antd';
+import { ErrorResponse } from '@/apis/responses';
 
 /**
  * Handle bad requests error
@@ -14,13 +14,13 @@ export function handleBadRequestError({
     toast({
       title: response?.data.title,
       description: (
-        <UnorderedList>
+        <List>
           {Object.keys(response.data.errors).map((key: string) =>
             response.data.errors[key].map((err: string, index: number) => (
-              <ListItem key={`Error_${key}_${index}`}>{err}</ListItem>
+              <List.Item key={`Error_${key}_${index}`}>{err}</List.Item>
             )),
           )}
-        </UnorderedList>
+        </List>
       ),
       status: 'warning',
       isClosable: true,

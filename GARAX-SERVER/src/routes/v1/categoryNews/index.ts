@@ -1,7 +1,7 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
-const AsyncHandler = require('../../../middlewares/asyncHandler.middleware')
-const ProductController = require('../../../controllers/product.controller')
+// import AsyncHandler from '../../../middlewares/asyncHandler.middleware'
+// import ProductController from '../../../controllers/product.controller'
 
 // router.get('/products', AsyncHandler(ProductController.getAllProducts))
 // router.get('/products/:id', AsyncHandler(ProductController.getProductById))

@@ -1,4 +1,7 @@
-export interface ProductVariantValues {
+import { Audit } from "../audit.interface";
+
+export interface ProductVariantValues
+extends Audit{
   id: string;
   price: number;
   oldPrice: number
@@ -9,8 +12,4 @@ export interface ProductVariantValues {
   productId: string;
   addOverSpecsId: string;
   addOverDetailSpecsId: string;
-  createBy: Date;
-  updateBy: Date;
-  createdAt: Date;
-  updatedAt: Date;
 }

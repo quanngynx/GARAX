@@ -1,10 +1,10 @@
 'use strict';
 import { CategoryProduct, Models } from '@/common/interfaces';
-import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type CategoryProductCreationAttributes = Optional<
 CategoryProduct,
-  'id' | 'created_at' | 'updated_at'
+  'id' | 'createdAt' | 'updatedAt' | 'createBy' | 'updateBy'
 >;
 
 export class CategoryProductModel
@@ -18,17 +18,27 @@ extends Model<CategoryProductCreationAttributes> {
   // public isActive!: boolean;
   // public imageId!: string;
   // public parentId!: string;
-  // public created_at!: Date;
-  // public updated_at!: Date;
+  // public createdAt!: Date;
+  // public updatedAt!: Date;
 
-  public static associations: {};
+  public static associations: {
+    categoryProduct: Association<CategoryProductModel, CategoryProductModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  static associate(_models: Models) {
-    // define association here
+  static associate(models: Models) {
+    this.hasMany(models.CategoryProduct, {
+      foreignKey: 'parentId',
+      as: 'category_products',
+    });
+
+    this.belongsTo(models.CategoryProduct, {
+      foreignKey: 'parentId',
+      as: 'category_product',
+    });
   }
 }
 
@@ -63,11 +73,17 @@ export const categoryProductModel = (sequelize: Sequelize) => {
     parentId: {
       type: DataTypes.STRING
     },
-    created_at: {
+    createBy: {
+      type: DataTypes.STRING,
+    },
+    updateBy: {
+      type: DataTypes.STRING,
+    },
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },

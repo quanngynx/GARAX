@@ -1,6 +1,8 @@
 import { IMAGE } from "../../constants";
+import { Audit } from '../audit.interface';
 
-export interface Image {
+export interface Image
+extends Audit{
   id: string;
   image: string;
   coverImage: string;
@@ -9,6 +11,4 @@ export interface Image {
   typeSize: IMAGE;
   typeImage: string;
   productId: string;
-  createdAt: Date;
-  updatedAt: Date;
 }

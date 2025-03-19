@@ -9,11 +9,11 @@ export type KeyTokenCreationAttributes = Optional<
 
 export class KeyTokenModel
 extends Model<KeyToken, KeyTokenCreationAttributes> {
-  // public id!: string;
-  // public privateKey!: string;
-  // public publicKey!: string;
-  // public refreshToken!: string;
-  // public refreshTokenUsed!: JSON;
+  public id!: string;
+  public privateKey!: string;
+  public publicKey!: string;
+  public refreshToken!: string;
+  public refreshTokenUsed!: JSON;
   // public userId!: string;
   // public readonly createdAt!: Date;
   // public readonly updatedAt!: Date;
@@ -49,7 +49,8 @@ export const keyTokenModel = (sequelize: Sequelize) => {
       type: DataTypes.JSON
     },
     userId: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: ''
     },
     createdAt: {
       type: DataTypes.DATE,

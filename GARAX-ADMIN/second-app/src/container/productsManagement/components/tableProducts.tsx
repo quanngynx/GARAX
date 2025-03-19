@@ -1,7 +1,6 @@
 "use client";
 
 import { TableCustom } from "@/components/tableCustom";
-
 import { columns, data } from "./Data/TableData";
 
 function TableProducts() {
@@ -10,7 +9,7 @@ function TableProducts() {
         columns={columns}
         data={data}
         />
-     );
+    );
 }
 
 export default TableProducts;

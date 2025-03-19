@@ -1,4 +1,7 @@
-export interface CategoryProduct {
+import { Audit } from "../audit.interface";
+
+export interface CategoryProduct
+extends Audit {
   id: string;
   name: string;
   slug: string;
@@ -8,6 +11,4 @@ export interface CategoryProduct {
   isActive: boolean;
   imageId: string;
   parentId: string;
-  created_at: Date;
-  updated_at: Date;
 }

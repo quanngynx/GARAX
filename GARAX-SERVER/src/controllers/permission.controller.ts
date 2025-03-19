@@ -12,5 +12,12 @@ class PermissionController {
       metadata: await PerrmissionService.createAccessForAdmin(req.body)
     }).send(res)
   }
+
+  createAccessForUser = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Get all product success!',
+      metadata: await PerrmissionService.createAccessForUser(req.body)
+    }).send(res)
+  }
 }
 export default new PermissionController()

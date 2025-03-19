@@ -6,7 +6,6 @@ import { StatusCodes } from '@/constants';
 import { handleBadRequestError } from './handleBadRequest';
 import { handleUnauthorizedError } from './handleUnauthorizedError';
 import { handleUnknownError } from './handleUnknownError';
-
 import { ErrorResponse } from '@/interfaces/error.response';
 
 /**

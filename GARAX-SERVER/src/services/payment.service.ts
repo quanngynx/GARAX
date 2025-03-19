@@ -38,14 +38,14 @@ export class PaymentService {
     returnUrl,
   } : CreatePaymentLinkPayOSRequest) {
     // push item to items
-
+    const pushItems = items;
     // ==================
     const requestData: CheckoutRequestType = {
       // orderCode: Number(String(Date.now()).slice(-6)),
       orderCode: orderCode,
       amount: amount,
       description: description,
-      items: items,
+      items: pushItems,
       cancelUrl: cancelUrl,
       returnUrl: returnUrl,
     };
@@ -88,7 +88,7 @@ export class PaymentService {
     }
   }
 
-  static async confirmWebhook({ urlWebhook } : { urlWebhook: string}) {
+  static async confirmWebhook({ urlWebhook } : { urlWebhook: string }) {
     const confirmWebhookUrl = await payos.confirmWebhook(urlWebhook);
     console.log('confirmWebhookUrl::', confirmWebhookUrl);
 

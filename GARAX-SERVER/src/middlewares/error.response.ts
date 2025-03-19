@@ -32,8 +32,8 @@ export class ConflictRequestError extends ErrorResponse {
 
 export class BadRequestError extends ErrorResponse {
 	constructor(
-		message = ReasonStatusCode.CONFLICT,
-		status = StatusCode.FORBIDEN,
+		message = ReasonPhrases.default.BAD_REQUEST,
+		status = StatusCodes.default.BAD_REQUEST,
 	) {
 		super({ message, status });
 	}

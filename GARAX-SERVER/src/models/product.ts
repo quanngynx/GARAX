@@ -1,18 +1,31 @@
 'use strict';
 // import { PRODUCT_TAG, PRODUCT_STATUS } from '@/common/constants';
 import { Models, Product } from '@/common/interfaces';
-import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 import { default as slugify } from "slugify";
+import { ProductVariantValuesModel } from './productvariantvalues';
+import { CategoryProductModel } from './categoryproduct';
+import { ImageModel } from './image';
+import { VideoModel } from './video';
+import { ProductAttributeValuesModel } from './productattributevalues';
 
 export type ProductCreationAttributes = Optional<
   Product,
-  'id' | 'createdAt' | 'updatedAt' | 'slug'
+  'id'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'createBy'
+  | 'updateBy'
+  | 'slug'
+  | 'subCategoryId'
+  | 'sub2CategoryId'
+  | 'sub3CategoryId'
 >;
 
 export class ProductModel
 extends Model<Product, ProductCreationAttributes> {
-  // public id!: string;
+  public id!: string;
   public name!: string;
   public slug!: string;
   // public totalStock!: number;
@@ -37,14 +50,43 @@ extends Model<Product, ProductCreationAttributes> {
   // public readonly createdAt!: Date;
   // public readonly updatedAt!: Date;
 
-  public static associations: {};
+  public static associations: {
+    productVariantValues: Association<ProductModel, ProductVariantValuesModel>;
+    categoryProduct: Association<ProductModel, CategoryProductModel>;
+    image: Association<ProductModel, ImageModel>;
+    video: Association<ProductModel, VideoModel>;
+    productAttributeValues: Association<ProductModel, ProductAttributeValuesModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  static associate(_models: Models) {
-    // define association here
+  static associate(models: Models) {
+    this.hasMany(models.ProductVariantValues, {
+      foreignKey: 'productId',
+      as: 'product_variant_values',
+    });
+
+    this.hasOne(models.CategoryProduct, {
+      foreignKey: 'categoryId',
+      as: 'category_products',
+    });
+
+    this.hasMany(models.Image, {
+      foreignKey: 'productId',
+      as: 'images',
+    });
+
+    this.hasOne(models.Video, {
+      foreignKey: 'videoId',
+      as: 'videos',
+    });
+
+    this.hasMany(models.ProductAttributeValues, {
+      foreignKey: 'productId',
+      as: 'product_attribute_values',
+    });
   }
 }
 
