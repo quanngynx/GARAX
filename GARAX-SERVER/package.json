@@ -27,7 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "@payos/node": "^1.0.10",
-    "axios": "^1.7.7",
+    "axios": "^1.8.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
