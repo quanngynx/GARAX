@@ -1,24 +1,25 @@
 "use strict";
+import { default as slugify } from "slugify";
 
 import { AddManyNewProductRequest, AddNewProductRequest, DeleteProductByIdRequest, GetAllBestSellerProducts } from "@/common/requests/product";
 import { db } from "@/models";
 import { BadRequestError, NotFoundError } from '../middlewares/error.response';
 import { getProductById } from "@/common/repositories";
+import { generateSKU } from "@/common/utils";
 
 export class ProductService {
   static async addNewProduct({
-    name, totalStock, desc,
+    name, desc,
     views, tags, manufacturingDate,
     minPrice, maxPrice, rate,
     totalRate, totalSold, categoryId,
     subCategoryId, sub2CategoryId, sub3CategoryId, // props option
     videoId, brandId, status,
-    createBy, updateBy = '',
+    createdBy, updatedBy = '',
     attributes = [],
     variants = [],
     variantValues = []
   } : AddNewProductRequest) {
-    // console.log({});
     /**
      * 1. Check categoryId & brandId?
      */
@@ -27,9 +28,9 @@ export class ProductService {
       throw new NotFoundError(`Category id:${categoryId} không tồn tại!`);
     }
 
-    const isBrand = await db.Brand.findByPk(categoryId);
+    const isBrand = await db.Brand.findByPk(brandId);
     if(!isBrand) {
-      throw new NotFoundError(`Brand id:${categoryId} không tồn tại!`);
+      throw new NotFoundError(`Brand id:${brandId} không tồn tại!`);
     }
 
     /**
@@ -53,12 +54,11 @@ export class ProductService {
      * 4. INSERT PRODUCT ->
      * I. name, categoryId, brandId, ..., manufacturingDate, tags, minPrice, maxPrice
      */
-    const calTotalStock = totalStock;
     const calAvgRate = rate;
     const countRate = totalRate;
     const newProduct = await db.Product.create({
       name: name,
-      totalStock: calTotalStock,
+      slug: slugify(name, { lower: true, trim: true }),
       desc: desc,
       views: views,
       tags: tags,
@@ -75,8 +75,8 @@ export class ProductService {
       videoId: videoId,
       brandId: brandId,
       status: status,
-      createBy: createBy,
-      updateBy: updateBy,
+      createdBy: createdBy,
+      updatedBy: updatedBy,
     },  {
       transaction
     });
@@ -111,18 +111,18 @@ export class ProductService {
      * 6. Handle variants
      */
     for(const variant of variants) {
-      const[variantEntry] = await db.VariantKeys.findOrCreate({
-        where: {
-          key: variant.key
-        },
+      const [variantEntry] = await db.VariantKeys.findOrCreate({
+        where: { key: variant.key },
         transaction
       });
+
+      const variantKeyId = variantEntry.dataValues?.id || variantEntry.id;
 
       for(const value of variant.values) {
         await db.VariantValues.findOrCreate({
           where: {
             value,
-            variantKeyId: variantEntry.id
+            variantKeyId: variantKeyId
           },
           transaction
         })
@@ -132,10 +132,12 @@ export class ProductService {
     /**
      * 7. Handle variant_values
      */
+    // console.log('variantData.variantCombination:', variantValues)
     const createdVariantValues = [];
     for(const variantData of variantValues) {
       const variantValueIds = [];
 
+      // console.log('variantData.variantCombination:', variantData.variantCombination)
       for(const value of variantData.variantCombination) {
         const variantValue = await db.VariantValues.findOne({
           where: {
@@ -148,10 +150,12 @@ export class ProductService {
       }
 
       // Create SKU: 'id1-id2-id3-...'
-      const sku = variantValueIds
-      .map(id => Number(id))
-      .sort((a , b) => a - b )
-      .join('-');
+      const sku = generateSKU({
+        categoryId,
+        brandId,
+        name,
+        variants
+      });
 
       const createdVariant = await db.ProductVariantValues.create({
         productId: newProduct.id,

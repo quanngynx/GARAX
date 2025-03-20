@@ -17,8 +17,8 @@ export async function up(queryInterface, Sequelize) {
       desc: { type: Sequelize.JSON },
       views: { type: Sequelize.FLOAT },
       tags: {
-        type: Sequelize.ENUM('new', 'hot'),
-        defaultValue: 'new'
+        type: Sequelize.ENUM('test', 'abc', 'all'),
+        defaultValue: 'test'
       },
       manufacturingDate: { type: Sequelize.BIGINT },
       minPrice: {
@@ -33,6 +33,9 @@ export async function up(queryInterface, Sequelize) {
           min: 1000,
         },
       },
+      rate: { type: Sequelize.INTEGER },
+      totalRate: { type: Sequelize.INTEGER },
+      totalSold: { type: Sequelize.INTEGER },
       categoryId: { type: Sequelize.STRING },
       subCategoryId: { type: Sequelize.STRING },
       sub2CategoryId: { type: Sequelize.STRING },
@@ -40,11 +43,11 @@ export async function up(queryInterface, Sequelize) {
       videoId: { type: Sequelize.STRING },
       brandId: { type: Sequelize.STRING },
       status: {
-        type: Sequelize.ENUM('publish', 'unpublish'),
+        type: Sequelize.ENUM('all', 'publish', 'draft'),
         defaultValue: 'publish'
       },
-      createBy: { type: Sequelize.STRING },
-      updateBy: { type: Sequelize.STRING },
+      createdBy: { type: Sequelize.STRING },
+      updatedBy: { type: Sequelize.STRING },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

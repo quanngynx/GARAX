@@ -23,8 +23,8 @@ export function DetailProductPage() {
     },
   ];
   return (
-    <div className="w-full bg-white flex flex-col justify-center items-center pb-6 pt-6">
-      <div className="w-[1361.47px] bg-slate-100 rounded-2xl">
+    <div className="w-full bg-white flex flex-col justify-center items-center pb-6 pt-6 ">
+      <div className="w-[1361.47px] bg-slate-100 rounded-2xl mt-16">
         <div className="">
           <Product />
 

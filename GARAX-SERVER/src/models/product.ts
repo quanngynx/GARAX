@@ -3,20 +3,21 @@
 import { Models, Product } from '@/common/interfaces';
 import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
-import { default as slugify } from "slugify";
+// import { default as slugify } from "slugify";
 import { ProductVariantValuesModel } from './productvariantvalues';
 import { CategoryProductModel } from './categoryproduct';
 import { ImageModel } from './image';
 import { VideoModel } from './video';
 import { ProductAttributeValuesModel } from './productattributevalues';
+import { PRODUCT_STATUS, PRODUCT_TAG } from '@/common/constants';
 
 export type ProductCreationAttributes = Optional<
   Product,
   'id'
   | 'createdAt'
   | 'updatedAt'
-  | 'createBy'
-  | 'updateBy'
+  | 'createdBy'
+  | 'updatedBy'
   | 'slug'
   | 'subCategoryId'
   | 'sub2CategoryId'
@@ -28,27 +29,27 @@ extends Model<Product, ProductCreationAttributes> {
   public id!: string;
   public name!: string;
   public slug!: string;
-  // public totalStock!: number;
-  // public desc!: JSON;
-  // public views!: number;
-  // public tags!: PRODUCT_TAG;
-  // public manufacturingDate!: BigInt;
-  // public minPrice!: number;
-  // public maxPrice!: number;
-  // public rate!: number;
-  // public totalRate!: number;
-  // public totalSold!: number;
-  // public categoryId!: string;
-  // public subCategoryId!: string;
-  // public sub2CategoryId!: string;
-  // public sub3CategoryId!: string;
-  // public videoId!: string;
-  // public brandId!: string;
-  // public status!: PRODUCT_STATUS;
-  // public createBy!: string;
-  // public updateBy!: string;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
+  public totalStock!: number;
+  public desc!: JSON;
+  public views!: number;
+  public tags!: PRODUCT_TAG;
+  public manufacturingDate!: BigInt;
+  public minPrice!: number;
+  public maxPrice!: number;
+  public rate!: number;
+  public totalRate!: number;
+  public totalSold!: number;
+  public categoryId!: string;
+  public subCategoryId!: string;
+  public sub2CategoryId!: string;
+  public sub3CategoryId!: string;
+  public videoId!: string;
+  public brandId!: string;
+  public status!: PRODUCT_STATUS;
+  public createdBy!: string;
+  public updatedBy!: string;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 
   public static associations: {
     productVariantValues: Association<ProductModel, ProductVariantValuesModel>;
@@ -99,12 +100,11 @@ export const productModel = (sequelize: Sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: ''
     },
     slug: {
       type: DataTypes.STRING,
-    },
-    totalStock: {
-      type: DataTypes.INTEGER,
     },
     desc: {
       type: DataTypes.JSON,
@@ -156,10 +156,10 @@ export const productModel = (sequelize: Sequelize) => {
       type: DataTypes.ENUM('publish', 'draft'),
       defaultValue: 'publish'
     },
-    createBy: {
+    createdBy: {
       type: DataTypes.STRING,
     },
-    updateBy: {
+    updatedBy: {
       type: DataTypes.STRING,
     },
     createdAt: {
@@ -175,11 +175,11 @@ export const productModel = (sequelize: Sequelize) => {
     modelName: 'Product',
     tableName: 'products',
     timestamps: true,
-    hooks: {
-      beforeValidate: (product) => {
-        product.slug = slugify(product.name, { lower: true, trim: true });
-      },
-    },
+    // hooks: {
+    //   beforeValidate: (product) => {
+    //     product.slug = slugify(product.name, { lower: true, trim: true });
+    //   },
+    // },
   });
   return ProductModel;
 };

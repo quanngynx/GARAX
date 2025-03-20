@@ -1,20 +1,20 @@
 import { Product, ProductVariantValues, VariantKeys, VariantValues } from "@/common/interfaces";
 
-interface AttributeItems
+export interface AttributeItems
 extends Pick<VariantValues,
 | 'value'
 >, Pick<VariantKeys,
 | 'key'
 > {}
 
-interface VariantItems
+export interface VariantItems
 extends Pick<VariantKeys,
 | 'key'
 > {
   values: string[];
 }
 
-interface VariantValueItems
+export interface VariantValueItems
 extends Pick<ProductVariantValues,
 | 'price'
 | 'oldPrice'
@@ -26,7 +26,6 @@ extends Pick<ProductVariantValues,
 export interface AddNewProductRequest
 extends Pick<Product,
 | 'name'
-| 'totalStock'
 | 'desc'
 | 'views'
 | 'tags'
@@ -43,8 +42,8 @@ extends Pick<Product,
 | 'videoId'
 | 'brandId'
 | 'status'
-| 'createBy'
-| 'updateBy'
+| 'createdBy'
+| 'updatedBy'
 > {
   attributes: AttributeItems[];
   variants: VariantItems[];

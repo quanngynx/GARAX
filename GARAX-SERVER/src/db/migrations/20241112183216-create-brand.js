@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 export async function up(queryInterface, Sequelize) {
   await queryInterface.createTable('brands', {
-    idBrand: {
+    id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,

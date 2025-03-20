@@ -8,3 +8,4 @@ export * as PermissionController from './permission.controller';
 // export { default as } from './postproduct.controller';
 export * as ProductController from './product.controller';
 export * as ProductCategoryController from './productCategory.controller';
+export * as BrandController from './brand.controller';

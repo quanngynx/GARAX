@@ -5,7 +5,7 @@ import { ProductModel } from './product';
 
 export type ProductVariantValuesCreationAttributes = Optional<
   ProductVariantValues,
-  'id' | 'createdAt' | 'updatedAt' | 'createBy' | 'updateBy'
+  'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
 export class ProductVariantValuesModel
@@ -75,10 +75,10 @@ export const productVariantValuesModel = (sequelize: Sequelize) => {
     addOverDetailSpecsId: {
       type: DataTypes.STRING,
     },
-    createBy: {
+    createdBy: {
       type: DataTypes.STRING,
     },
-    updateBy: {
+    updatedBy: {
       type: DataTypes.STRING,
     },
     createdAt: {

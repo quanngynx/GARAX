@@ -5,7 +5,7 @@ import { ProductAttributeValuesModel } from './productattributevalues';
 
 export type AttributeValuesCreationAttributes = Optional<
   AttributeValues,
-  'id' | 'createdAt' | 'updatedAt' | 'createBy' | 'updateBy'
+  'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
 export class AttributeValuesModel
@@ -44,10 +44,10 @@ export const attributeValuesModel = (sequelize: Sequelize) => {
     name: {
       type: DataTypes.STRING,
     },
-    createBy: {
+    createdBy: {
       type: DataTypes.STRING,
     },
-    updateBy: {
+    updatedBy: {
       type: DataTypes.STRING,
     },
     createdAt: {

@@ -9,6 +9,7 @@ import { routerProduct } from './products';
 import { routerCart } from './cart';
 import { routerOrder } from './order';
 import { routerCheckout } from './checkout';
+import { routerBrand } from './brand';
 
 routerV1.use('', routerAccess);
 routerV1.use('', routerAuth);
@@ -18,5 +19,5 @@ routerV1.use('', routerOrder);
 routerV1.use('', routerCheckout);
 routerV1.use('', routerProduct);
 routerV1.use('', routerCategoryProduct);
-// routerV1.use('',require('./news'));
+routerV1.use('', routerBrand);
 // routerV1.use('',require('./categoryNews'));

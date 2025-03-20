@@ -4,7 +4,7 @@ import AVTdemo from "@/assets/home/images/team3-150x150.jpg.png";
 
 import LeftSidebar from "./components/leftSidebar";
 
-import Line from '@/components/line/line'
+import { Line } from '@/components/line/line'
 export function profileUser() {
   return (
     <div className="flex flex-col bg-white justify-start items-center py-8 ">

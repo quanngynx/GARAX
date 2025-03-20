@@ -20,6 +20,7 @@
     "@reduxjs/toolkit": "^2.3.0",
     "@tanstack/react-query": "^5.62.8",
     "antd": "^5.24.3",
+    "antd-style": "^3.7.1",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.17",

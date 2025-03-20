@@ -6,7 +6,6 @@ extends Audit{
   id: string;
   name: string;
   slug: string;
-  totalStock: number;
   desc: JSON;
   views: number;
   tags: PRODUCT_TAG;

@@ -4,7 +4,7 @@ import { Brand, Models } from "@/common/interfaces";
 
 export type BrandCreationAttributes = Optional<
   Brand,
-  'id' | 'name'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class BrandModel
@@ -32,11 +32,6 @@ export const brandModel = (sequelize: Sequelize): typeof BrandModel => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-    idBrand: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
     },
     name: {
       type: DataTypes.STRING

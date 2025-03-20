@@ -5,7 +5,7 @@ import { VariantValuesModel } from './variantvalues';
 
 export type VariantKeysCreationAttributes = Optional<
   VariantKeys,
-  'id' | 'createdAt' | 'updatedAt' | 'createBy' | 'updateBy'
+  'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
 export class VariantKeysModel
@@ -44,10 +44,10 @@ export const variantKeysModel = (sequelize: Sequelize) => {
     key: {
       type: DataTypes.STRING,
     },
-    createBy: {
+    createdBy: {
       type: DataTypes.STRING,
     },
-    updateBy: {
+    updatedBy: {
       type: DataTypes.STRING,
     },
     createdAt: {

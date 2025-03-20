@@ -36,10 +36,10 @@ export async function up(queryInterface, Sequelize) {
       addOverDetailSpecsId: {
         type: Sequelize.STRING
       },
-      createBy: {
+      createdBy: {
         type: Sequelize.STRING
       },
-      updateBy: {
+      updatedBy: {
         type: Sequelize.STRING
       },
       createdAt: {

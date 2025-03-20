@@ -6,8 +6,45 @@ import { Link } from "react-router-dom";
 import RelatestListProducts from "./relatestListProducts";
 
 import LeftArrow from '@/assets/ListProduct/icons/left--vector-tiny.svg?react'
+import { Button, ConfigProvider } from "antd";
+import { createStyles } from 'antd-style';
+import { AntDesignOutlined } from "@ant-design/icons";
 
-function product(props: unknown) {
+interface ProductProps {
+  selectIndex: number;
+  setSelectIndex: unknown;
+}
+
+const useStyle = createStyles(({ prefixCls, css }) => ({
+  linearGradientButton: css`
+    &.${prefixCls}-btn-primary:not([disabled]):not(.${prefixCls}-btn-dangerous) {
+      > span {
+        position: relative;
+      }
+
+      &::before {
+        content: '';
+        background: linear-gradient(135deg, #6253e1, #04befe);
+        position: absolute;
+        inset: -1px;
+        opacity: 1;
+        transition: all 0.3s;
+        border-radius: inherit;
+      }
+
+      &:hover::before {
+        opacity: 0;
+      }
+    }
+  `,
+}));
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function product({
+  selectIndex,
+  setSelectIndex
+} : ProductProps) {
+  // const [selectIndex, setSelectIndex] = useState<number | null>(null);
 
   // const { 
   //   image, 
@@ -22,7 +59,6 @@ function product(props: unknown) {
   //   cost 
   // } = props.data
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   // const carts = useSelector((store: RootState) => store.cart.items)
   // console.log("info cart::", carts)
 
@@ -33,6 +69,9 @@ function product(props: unknown) {
     //   // variable: props
     // }))
   }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { styles } = useStyle();
   return (
     <div className="p-6">
       <div className="text-black w-full mb-4">
@@ -93,12 +132,38 @@ function product(props: unknown) {
                 <div className="">1</div>
               </div>
 
-              <div className="bg-slate-800 rounded-2xl flex justify-center items-center mt-4">
+              <div className="flex justify-between items-center border-b-[1px] mb-4 pb-2">
+                <div className="w-[30%]">Thuộc tính:</div>
+                <div className="">
+                <Button color="default" variant="outlined">
+                  Outlined
+                </Button>
+                </div>
+              </div>
+
+              {/* <div className="bg-slate-800 rounded-2xl flex justify-center items-center mt-4">
                 <button className="text-white py-4 px-24"
                 onClick={handleAddToCart}>
                   Thêm vào giỏ hàng
                 </button>
-              </div>
+              </div> */}
+
+              <ConfigProvider
+                button={{
+                  className: styles.linearGradientButton,
+                }}
+              >
+                <Button 
+                onClick={handleAddToCart}
+                type="primary" 
+                size="large" 
+                icon={<AntDesignOutlined />} 
+                block
+                className="rounded-2xl py-6"
+                >
+                    Gradient Button
+                </Button>
+              </ConfigProvider>
             </div>
           </div>
         </div>
