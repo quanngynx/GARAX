@@ -15,11 +15,11 @@ extends Audit{
   rate: number;
   totalRate: number;
   totalSold: number;
-  categoryId: string;
-  subCategoryId: string;
-  sub2CategoryId: string;
-  sub3CategoryId: string;
-  videoId: string;
-  brandId: string;
+  categoryId: number;
+  subCategoryId: number;
+  sub2CategoryId: number;
+  sub3CategoryId: number;
+  videoId: number;
+  brandId: number;
   status: PRODUCT_STATUS;
 }

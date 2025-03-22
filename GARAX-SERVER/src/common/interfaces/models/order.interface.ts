@@ -11,9 +11,9 @@ export interface Order {
   shippingFee: number;
   discount: number;
   total: number;
-  userId: string;
-  addressId: string;
-  cartId: string;
+  userId: number;
+  addressId: number;
+  cartId: number;
   createBy: string;
   updateBy: string;
   createdAt: Date;

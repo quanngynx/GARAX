@@ -84,13 +84,13 @@ export const orderModel = (sequelize: Sequelize) => {
       type: DataTypes.FLOAT
     },
     userId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     addressId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     cartId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     createBy: {
       type: DataTypes.STRING

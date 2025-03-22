@@ -19,7 +19,7 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.BOOLEAN
       },
       permissionId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
     });
 }

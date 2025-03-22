@@ -6,7 +6,7 @@ import { ProductModel } from './product';
 
 export type ImageCreationAttributes = Optional<
   Image,
-  'id' | 'createdAt' | 'updatedAt'
+  'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
 export class ImageModel
@@ -64,12 +64,12 @@ export const imageModel = (sequelize: Sequelize) => {
       type: DataTypes.STRING
     },
     productId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
-    createBy: {
+    createdBy: {
       type: DataTypes.STRING,
     },
-    updateBy: {
+    updatedBy: {
       type: DataTypes.STRING,
     },
     createdAt: {

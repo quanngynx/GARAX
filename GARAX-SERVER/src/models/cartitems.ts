@@ -51,10 +51,10 @@ export const cartItemsModel = (sequelize: Sequelize): typeof CartItemsModel => {
       type: DataTypes.INTEGER
     },
     cartId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     productVariantId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     createdAt: {
       type: DataTypes.DATE,

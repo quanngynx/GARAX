@@ -13,10 +13,10 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.STRING,
       },
       productId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       attributeId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdBy: {
         type: Sequelize.STRING

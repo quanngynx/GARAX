@@ -135,22 +135,22 @@ export const productModel = (sequelize: Sequelize) => {
       type: DataTypes.INTEGER
     },
     categoryId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     subCategoryId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     sub2CategoryId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     sub3CategoryId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     videoId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     brandId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     status: {
       type: DataTypes.ENUM('publish', 'draft'),

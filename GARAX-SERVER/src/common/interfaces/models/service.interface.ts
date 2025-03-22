@@ -1,7 +1,7 @@
 export interface Service {
   id: string;
-  serviceCategoryId: string;
-  serviceImageId: string;
+  serviceCategoryId: number;
+  serviceImageId: number;
   title: string;
   alias: string;
   description: string;

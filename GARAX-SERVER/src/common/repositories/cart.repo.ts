@@ -8,7 +8,15 @@ export const createCart = async (userId: string) => {
     // quantity: product.quantity || 1
   });
 
-  return createCart;
+  const createCartItems = await db.CartItems.create({
+    cartId: createCart.id,
+    qty: 0,
+    productVariantId: ""
+  });
+  return {
+    newCart: createCart,
+    newCartItems: createCartItems
+  }
 }
 
 export const getAllCartItemsByIdCart = async (id: string) => {

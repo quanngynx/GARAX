@@ -21,7 +21,7 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.JSON
       },
       userId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

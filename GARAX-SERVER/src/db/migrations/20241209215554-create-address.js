@@ -33,9 +33,8 @@ export async function up(queryInterface, Sequelize) {
         defaultValue: ''
       },
       userId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: ''
       },
       createdAt: {
         allowNull: false,

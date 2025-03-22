@@ -42,10 +42,10 @@ export const paymentModel = (sequelize: Sequelize) => {
       type: DataTypes.STRING
     },
     orderId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     currencyId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     createdAt: {
       type: DataTypes.DATE,

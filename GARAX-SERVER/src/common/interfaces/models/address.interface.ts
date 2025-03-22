@@ -7,7 +7,7 @@ export interface Address {
   wardOrCommune: string;
   district: string;
   city: string;
-  userId: string;
+  userId: number;
   createdAt: Date;
   updatedAt: Date;
 }

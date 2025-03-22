@@ -52,10 +52,10 @@ export const productattributeValuesModel = (sequelize: Sequelize) => {
       type: DataTypes.STRING,
     },
     productId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     attributeId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     createdBy: {
       type: DataTypes.STRING,

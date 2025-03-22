@@ -58,7 +58,7 @@ export const itemPermissionModel = (sequelize: Sequelize) => {
       type: DataTypes.BOOLEAN
     },
     permissionId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
   }, {
     sequelize,

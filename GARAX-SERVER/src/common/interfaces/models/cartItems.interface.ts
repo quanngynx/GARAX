@@ -1,8 +1,8 @@
 export interface CartItems {
   id: string;
   qty: number;
-  cartId: string;
-  productVariantId: string;
+  cartId: number;
+  productVariantId: number;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -5,7 +5,7 @@ import { Video } from '../common/interfaces/models/video.interface';
 
 export type VideoCreationAttributes = Optional<
   Video,
-  'id' | 'createdAt' | 'updatedAt' | 'createBy' | 'updateBy'
+  'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
 export class VideoModel
@@ -44,10 +44,10 @@ export const videoModel = (sequelize: Sequelize) => {
     original: {
       type: DataTypes.STRING
     },
-    createBy: {
+    createdBy: {
       type: DataTypes.STRING,
     },
-    updateBy: {
+    updatedBy: {
       type: DataTypes.STRING,
     },
     createdAt: {

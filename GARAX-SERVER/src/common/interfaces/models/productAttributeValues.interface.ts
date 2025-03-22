@@ -4,6 +4,6 @@ export interface ProductAttributeValues
 extends Audit {
   id: string;
   value: string;
-  productId: string;
-  attributeId: string;
+  productId: number;
+  attributeId: number;
 }

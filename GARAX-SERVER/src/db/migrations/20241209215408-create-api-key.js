@@ -18,10 +18,10 @@ export async function up(queryInterface, Sequelize) {
         defaultValue: true
       },
       itemPermissionId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       permissionId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

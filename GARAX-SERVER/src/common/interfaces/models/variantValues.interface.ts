@@ -4,5 +4,5 @@ export interface VariantValues
 extends Audit {
   id: string;
   value: string;
-  variantKeyId: string;
+  variantKeyId: number;
 }

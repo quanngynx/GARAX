@@ -13,7 +13,7 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.STRING,
       },
       variantKeyId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdBy: {
         type: Sequelize.STRING

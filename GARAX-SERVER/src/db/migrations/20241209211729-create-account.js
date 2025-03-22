@@ -70,8 +70,7 @@ export async function up(queryInterface, Sequelize) {
         defaultValue: ''
       },
       roleId: {
-        type: Sequelize.STRING,
-        defaultValue: ''
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

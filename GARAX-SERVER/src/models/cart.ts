@@ -43,7 +43,7 @@ export const cartModel = (sequelize: Sequelize): typeof CartModel => {
       type: DataTypes.STRING
     },
     userId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     createdAt: {
       type: DataTypes.DATE,

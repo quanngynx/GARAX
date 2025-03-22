@@ -2,8 +2,8 @@ export interface Payment {
   id: string;
   amount: number;
   desc: string;
-  orderId: string;
-  currencyId: string;
+  orderId: number;
+  currencyId: number;
   createdAt: Date;
   updatedAt: Date;
 }

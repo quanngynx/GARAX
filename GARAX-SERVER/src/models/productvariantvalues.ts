@@ -67,14 +67,14 @@ export const productVariantValuesModel = (sequelize: Sequelize) => {
       type: DataTypes.BIGINT,
     },
     productId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     productVariantId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       defaultValue: ''
     },
     addOverDetailSpecsId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     createdBy: {
       type: DataTypes.STRING,

@@ -68,13 +68,13 @@ export const categoryProductModel = (sequelize: Sequelize) => {
       type: DataTypes.BOOLEAN
     },
     imageId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     parentId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     categoryId: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     createdBy: {
       type: DataTypes.STRING,

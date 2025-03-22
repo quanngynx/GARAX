@@ -9,7 +9,7 @@ extends Audit{
   sold: number;
   sku: string;
   manufacturingDate: BigInt;
-  productId: string;
-  productVariantId: string;
-  addOverDetailSpecsId: string;
+  productId: number;
+  productVariantId: number;
+  addOverDetailSpecsId: number;
 }

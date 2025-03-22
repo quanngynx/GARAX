@@ -16,10 +16,10 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.STRING
       },
       orderId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       currencyId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

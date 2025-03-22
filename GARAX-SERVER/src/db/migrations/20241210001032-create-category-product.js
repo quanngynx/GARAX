@@ -30,13 +30,13 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.BOOLEAN
       },
       imageId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       parentId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       categoryId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdBy: {
         type: Sequelize.STRING

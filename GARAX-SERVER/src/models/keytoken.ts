@@ -49,8 +49,7 @@ export const keyTokenModel = (sequelize: Sequelize) => {
       type: DataTypes.JSON
     },
     userId: {
-      type: DataTypes.STRING,
-      defaultValue: ''
+      type: DataTypes.INTEGER,
     },
     createdAt: {
       type: DataTypes.DATE,

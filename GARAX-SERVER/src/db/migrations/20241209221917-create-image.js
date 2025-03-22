@@ -28,7 +28,7 @@ export async function up(queryInterface, Sequelize) {
       type: Sequelize.STRING
     },
     productId: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     createdAt: {
       allowNull: false,

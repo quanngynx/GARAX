@@ -37,13 +37,13 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.FLOAT
       },
       userId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       addressId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       cartId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdBy: {
         type: Sequelize.STRING

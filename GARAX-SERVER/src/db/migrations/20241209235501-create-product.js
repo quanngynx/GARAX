@@ -36,12 +36,12 @@ export async function up(queryInterface, Sequelize) {
       rate: { type: Sequelize.INTEGER },
       totalRate: { type: Sequelize.INTEGER },
       totalSold: { type: Sequelize.INTEGER },
-      categoryId: { type: Sequelize.STRING },
-      subCategoryId: { type: Sequelize.STRING },
-      sub2CategoryId: { type: Sequelize.STRING },
-      sub3CategoryId: { type: Sequelize.STRING },
-      videoId: { type: Sequelize.STRING },
-      brandId: { type: Sequelize.STRING },
+      categoryId: { type: Sequelize.INTEGER },
+      subCategoryId: { type: Sequelize.INTEGER },
+      sub2CategoryId: { type: Sequelize.INTEGER },
+      sub3CategoryId: { type: Sequelize.INTEGER },
+      videoId: { type: Sequelize.INTEGER },
+      brandId: { type: Sequelize.INTEGER },
       status: {
         type: Sequelize.ENUM('all', 'publish', 'draft'),
         defaultValue: 'publish'

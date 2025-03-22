@@ -39,7 +39,7 @@ export const variantValuesModel = (sequelize: Sequelize) => {
       type: DataTypes.STRING,
     },
     variantKeyId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     createdBy: {
       type: DataTypes.STRING,

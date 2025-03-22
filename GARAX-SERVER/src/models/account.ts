@@ -143,8 +143,7 @@ export const accountModel = (sequelize: Sequelize) => {
         defaultValue: ''
       },
       roleId: {
-        type: DataTypes.STRING,
-        defaultValue: ''
+        type: DataTypes.INTEGER,
       },
       // keyTokenId: {
       //   type: DataTypes.STRING,

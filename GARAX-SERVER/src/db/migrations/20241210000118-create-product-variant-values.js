@@ -28,14 +28,14 @@ export async function up(queryInterface, Sequelize) {
         type: Sequelize.BIGINT
       },
       productId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       productVariantId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         defaultValue: ''
       },
       addOverDetailSpecsId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdBy: {
         type: Sequelize.STRING

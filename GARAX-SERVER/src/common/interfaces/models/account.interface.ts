@@ -14,7 +14,7 @@ export interface Account {
   emptyPassword: boolean;
   googleId: string;
   pointerId: string;
-  roleId: string;
+  roleId: number;
   // keyTokenId: string;
   createdAt: Date;
   updatedAt: Date;

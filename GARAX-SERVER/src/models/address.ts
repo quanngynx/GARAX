@@ -62,7 +62,7 @@ export const addressModel = (sequelize: Sequelize) => {
       type: DataTypes.STRING,
     },
     userId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     createdAt: {
       type: DataTypes.DATE,

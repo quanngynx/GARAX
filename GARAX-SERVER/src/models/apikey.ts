@@ -56,10 +56,10 @@ export const apiKeyModel = (sequelize: Sequelize) => {
       defaultValue: true
     },
     itemPermissionId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     permissionId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     }
   }, {
     sequelize,

@@ -9,7 +9,7 @@ extends Audit {
   countProduct: number;
   isParentCategory: boolean;
   isActive: boolean;
-  imageId: string;
-  parentId: string;
-  categoryId: string;
+  imageId: number;
+  parentId: number;
+  categoryId: number;
 }
