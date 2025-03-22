@@ -5,6 +5,7 @@ import { RootState } from '../stores';
 
 export interface AuthState {
   accessToken: string | null;
+  email: string | null;
   accountGeneralInfo: AccountInfo | null;
   isLoggedIn: boolean
   fetchingInfo: boolean;
@@ -12,6 +13,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   accessToken: null,
+  email: null,
   accountGeneralInfo: null,
   isLoggedIn: false,
   fetchingInfo: false,
@@ -21,6 +23,11 @@ const authSlice: Slice<
 AuthState,
 {
   setAccessToken: (
+    state: AuthState,
+    action: PayloadAction<string>,
+  ) => void;
+
+  setEmail: (
     state: AuthState,
     action: PayloadAction<string>,
   ) => void;
@@ -49,6 +56,15 @@ AuthState,
 
       localStorageService.set(
         'accessToken',
+        action.payload,
+      );
+    },
+
+    setEmail(state: AuthState, action: PayloadAction<string>) {
+      state.email = action.payload;
+
+      localStorageService.set(
+        'email',
         action.payload,
       );
     },
@@ -83,6 +99,7 @@ AuthState,
 
 export const {
   setAccessToken,
+  setEmail,
   setFetchingInfo,
   setAccountInfo,
   removeAuthState, 
@@ -97,6 +114,9 @@ export const selectIsAuthenticated = (state: RootState): boolean =>
 
 export const selectAccessToken = (state: RootState): string | null =>
   state.auth.accessToken;
+
+export const selectEmail = (state: RootState): string | null =>
+  state.auth.email;
 
 export const selectAccountGeneralInfo = (
   state: RootState,

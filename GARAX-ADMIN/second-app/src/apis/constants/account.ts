@@ -1,2 +1,5 @@
-export const ROUTES_ACCOUNT: string = 'account';
-export const ROUTES_ACCOUNTS: string = 'accounts';
+export const ROUTER_ACCOUNT: string = 'account';
+
+
+
+export const ROUTER_ACCOUNTS: string = 'accounts';

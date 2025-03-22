@@ -2,6 +2,7 @@
 import { CartItems, Models } from "@/common/interfaces";
 import { DataTypes, Sequelize, Model, Optional, Association } from "sequelize";
 import { ProductVariantValuesModel } from "./productvariantvalues";
+import { CartModel } from "./cart";
 
 export type CartItemsCreationAttributes = Optional<
   CartItems,
@@ -10,14 +11,15 @@ export type CartItemsCreationAttributes = Optional<
 
 export class CartItemsModel
 extends Model<CartItemsCreationAttributes> {
-  // id!: string;
-  // qty!: string;
+  id!: string;
+  qty!: number;
   // cartId!: string;
   // productVariantId!: string;
   // createdAt!: Date;
   // updatedAt!: Date;
 
   public static associations: {
+    cartItems: Association<CartItemsModel, CartModel>;
     productVariantValues: Association<ProductVariantValuesModel, CartItemsModel>;
   };
   /**
@@ -26,6 +28,11 @@ extends Model<CartItemsCreationAttributes> {
    * The `models/index` file will call this method automatically.
    */
   static associate(models: Models) {
+    this.belongsTo(models.Cart, {
+      foreignKey: 'cartId',
+      as: 'carts',
+    });
+
     this.hasOne(models.ProductVariantValues, {
       foreignKey: 'productVariantId',
       as: 'product_variant_values'

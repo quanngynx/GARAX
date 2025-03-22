@@ -76,7 +76,6 @@ extends Model<Account, AccountCreationAttributes> {
 }
 
 export const accountModel = (sequelize: Sequelize) => {
-// export default (sequelize: Sequelize) => {
   AccountModel.init(
     {
       id: {

@@ -1,6 +1,6 @@
 export interface CartItems {
   id: string;
-  qty: string;
+  qty: number;
   cartId: string;
   productVariantId: string;
   createdAt: Date;

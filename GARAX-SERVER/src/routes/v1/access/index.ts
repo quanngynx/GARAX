@@ -1,5 +1,4 @@
 import express from 'express';
-
 import { AccessController } from '@/controllers';
 import { asyncHandler } from '@/middlewares';
 // import { authentication } from '@/services/auth/utils';

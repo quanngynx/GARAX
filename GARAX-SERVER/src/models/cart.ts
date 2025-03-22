@@ -1,6 +1,7 @@
 'use strict';
-import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
+import { Sequelize, DataTypes, Model, Optional, Association } from 'sequelize';
 import { Cart, Models } from '@/common/interfaces';
+import { CartItemsModel } from './cartitems';
 
 export type CartCreationAttributes = Optional<
   Cart,
@@ -9,20 +10,25 @@ export type CartCreationAttributes = Optional<
 
 export class CartModel
 extends Model<CartCreationAttributes> {
-  // id!: string;
+  id!: string;
   // sessionId!: string;
   // userId!: string;
   // createdAt!: Date;
   // updatedAt!: Date;
 
-  public static associations: {};
+  public static associations: {
+    cartItems: Association<CartModel, CartItemsModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  static associate(_models: Models) {
-    // define association here
+  static associate(models: Models) {
+    this.hasMany(models.CartItems, {
+      foreignKey: 'cartId',
+      as: 'cart_items',
+    });
   }
 }
 

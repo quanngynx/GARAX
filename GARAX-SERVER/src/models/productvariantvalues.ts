@@ -69,8 +69,9 @@ export const productVariantValuesModel = (sequelize: Sequelize) => {
     productId: {
       type: DataTypes.STRING,
     },
-    addOverSpecsId: {
+    productVariantId: {
       type: DataTypes.STRING,
+      defaultValue: ''
     },
     addOverDetailSpecsId: {
       type: DataTypes.STRING,

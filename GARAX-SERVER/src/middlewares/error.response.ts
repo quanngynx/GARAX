@@ -2,16 +2,6 @@
 import { ErrorResponseProps } from '@/common/interfaces'
 import { ReasonPhrases, StatusCodes } from '@/common/utils';
 
-const StatusCode = {
-  FORBIDEN: 403,
-  CONFLICT: 409
-}
-
-const ReasonStatusCode = {
-  FORBIDEN: 'Bad request error',
-  CONFLICT: 'Conflict error'
-}
-
 export class ErrorResponse extends Error {
 	status: number | undefined;
 
@@ -23,8 +13,8 @@ export class ErrorResponse extends Error {
 
 export class ConflictRequestError extends ErrorResponse {
 	constructor(
-		message = ReasonStatusCode.CONFLICT,
-		status = StatusCode.FORBIDEN,
+		message = ReasonPhrases.default.CONFLICT,
+		status = StatusCodes.default.CONFLICT,
 	) {
 		super({ message, status });
 	}

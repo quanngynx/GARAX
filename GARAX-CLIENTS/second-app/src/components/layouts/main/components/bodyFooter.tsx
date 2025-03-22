@@ -9,123 +9,123 @@ import XIcon from "@/assets/layout/x-brand.svg?react";
 import LinkedlnIcon from "@/assets/layout/linkedin-brand.svg?react";
 
 
-const titleFooter = [
-  {
-    title: "Company",
-    childTitle: [
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-    ],
-  },
-  {
-    title: "Company",
-    childTitle: [
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-    ],
-  },
-  {
-    title: "QuickLinks",
-    childTitle: [
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-    ],
-  },
-  {
-    title: "Company",
-    childTitle: [
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-    ],
-  },
-  {
-    title: "Company",
-    childTitle: [
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-      {
-        child1: "About us",
-      },
-    ],
-  },
-];
+// const titleFooter = [
+//   {
+//     title: "Company",
+//     childTitle: [
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Company",
+//     childTitle: [
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//     ],
+//   },
+//   {
+//     title: "QuickLinks",
+//     childTitle: [
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Company",
+//     childTitle: [
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Company",
+//     childTitle: [
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//       {
+//         child1: "About us",
+//       },
+//     ],
+//   },
+// ];
 
 const cardDown = [
   {
@@ -196,7 +196,7 @@ function bodyFooter() {
       </div>
       {/* row 2 */}
       <div>
-        <h3 className="text-white font-semibold mb-4">Link nhanh</h3>
+        <h3 className="text-white font-semibold mb-4">Liên kết nhanh</h3>
         <ul className="text-white">
           <li className="py-1">
             <a href="#" className="hover:text-gray-500">

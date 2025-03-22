@@ -4,6 +4,12 @@ import { CartService } from "../services/cart.service";
 import { SuccessResponse } from '../middlewares/success.response';
 
 class CartController {
+  createUserCart = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Add new cart success!',
+      metadata: await CartService.createUserCart(req.body)
+    }).send(res)
+  }
 
   addToCart = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
@@ -23,6 +29,14 @@ class CartController {
     new SuccessResponse({
       message: 'Delete cart success!',
       metadata: await CartService.deleteCart(req.body)
+    }).send(res)
+  }
+
+  getCartById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
+    new SuccessResponse({
+      message: 'Delete cart success!',
+      metadata: await CartService.getCartById(id)
     }).send(res)
   }
 

@@ -1,9 +1,14 @@
 "use strict";
 import { default as slugify } from "slugify";
 
-import { AddManyNewProductRequest, AddNewProductRequest, DeleteProductByIdRequest, GetAllBestSellerProducts } from "@/common/requests/product";
+import {
+  AddManyNewProductRequest,
+  AddNewProductRequest,
+  GetAllBestSellerProducts
+} from "@/common/requests/product";
+
 import { db } from "@/models";
-import { BadRequestError, NotFoundError } from '../middlewares/error.response';
+import { BadRequestError, NotFoundError } from '@/middlewares';
 import { getProductById } from "@/common/repositories";
 import { generateSKU } from "@/common/utils";
 
@@ -165,7 +170,7 @@ export class ProductService {
         sold: 0,
         sku: sku,
         manufacturingDate: manufacturingDate,
-        addOverSpecsId: "",
+        productVariantId: "",
         addOverDetailSpecsId: ""
       }, {
         transaction
@@ -184,19 +189,19 @@ export class ProductService {
     if(!newProduct) throw new BadRequestError('error::create new product');
 
     return {
-      data: {
-        ...newProduct.get({ plain: true }),
-        attributes: createAttributes,
-        variants: variants.map(variant => ({
-          name: variant.key,
-          values: variant.values
-        })),
-        variantValues: createdVariantValues
-      },
+      ...newProduct.get({ plain: true }),
+      attributes: createAttributes,
+      variants: variants.map(variant => ({
+        name: variant.key,
+        values: variant.values
+      })),
+      variantValues: createdVariantValues
     }
   }
 
-  static async addManyNewProduct({} : AddManyNewProductRequest) {}
+  static async addManyNewProduct({} : AddManyNewProductRequest) {
+
+  }
 
   static async addVariantProduct(
     productId: string,
@@ -312,14 +317,11 @@ export class ProductService {
 
   }
 
-  static async deleteProductById({
-    productId,
-    orderId
-  } : DeleteProductByIdRequest) {
+  static async deleteProductById(id: string) {
     /**
      * 1. Init transaction | product -> attribute -> variantKeys -> variantValues -> productVariantValues
      */
-    const transaction = await db.sequelize.transaction();
+    // const transaction = await db.sequelize.transaction();
 
     /**
      * 2. productVariantValues
@@ -341,25 +343,25 @@ export class ProductService {
      * 5. attributeValues
      */
 
-    const isProductExistInOrder = await db.CartItems.findOne({
-      where: {
-        productVariantId: productId
-      },
-      include: [{
-        model: db.Cart,
-        required: true,
-        include: [
-          {
-            model: db.Order,
-            required: true, // Chỉ lấy nếu có Order
-            where: { id: orderId },
-          },
-        ],
-      }]
-    });
+    // const isProductExistInOrder = await db.CartItems.findOne({
+    //   where: {
+    //     productVariantId: id
+    //   },
+    //   include: [{
+    //     model: db.Cart,
+    //     required: true,
+    //     include: [
+    //       {
+    //         model: db.Order,
+    //         required: true, // Chỉ lấy nếu có Order
+    //         where: { id: orderId },
+    //       },
+    //     ],
+    //   }]
+    // });
 
 
-    // return id
+    return id
   }
 
   static async deleteAllProduct() {

@@ -1,5 +1,9 @@
-import { Router } from 'express'
-export const routerAccount = Router()
+import { Router } from 'express';
+import { asyncHandler } from '@/middlewares';
+import { AccountController } from '@/controllers';
 
-// router.use('/account', )
-// router.use('/account/:id', )
+export const routerAccount = Router();
+
+const accountController = AccountController.default;
+routerAccount.get('/account', asyncHandler(accountController.getInfoUserByEmail))
+// routerAccount.use('/account/:id', )

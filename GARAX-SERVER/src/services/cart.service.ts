@@ -1,52 +1,94 @@
 'use strict'
 
-import { AddToCartRequest, CreateUserCartRequest } from "@/common/requests/cart"
+import {
+  AddToCartRequest,
+  CreateUserCartRequest
+} from "@/common/requests/cart";
 
-import { db } from '../models'
+import { db } from '../models';
+import { NotFoundError } from "@/middlewares";
+import { createCart, getAllCartItemsByIdCart } from "@/common/repositories";
 
 export class CartService {
   static async createUserCart({
-    userId
+    userId,
   } : CreateUserCartRequest) {
+    const findCartExistByUser = await db.Cart.findAll({
+      where: {
+        userId: userId
+      }
+    });
 
-    return await db.Cart.create({
-      userId: userId,
-      sessionId: ""
-    })
+    if(!findCartExistByUser) {
+      createCart(userId)
+    };
+    return;
   }
+
+  // static async createUserCart({
+  //   userId,
+  // } : CreateUserCartRequest) {
+  //   const findCartExistByUser = await db.Cart.findAll({
+  //     where: {
+  //       userId: userId
+  //     }
+  //   });
+
+  //   if(findCartExistByUser) throw new BadRequestError(`Tồn tại giỏ hàng của người dùng ${userId}`);
+
+  //   return await db.Cart.create({
+  //     userId: userId,
+  //     sessionId: ''
+  //   })
+  // }
 
   static async addToCart({
     userId,
-    sessionId,
-    productItems
+    productVariantItems
   } : AddToCartRequest) {
-    const isExistCart = await db.Cart.findOne({
+    let isExistCart;
+
+    isExistCart = await db.Cart.findOne({
       where: {
         userId: userId,
-        // cartState: 'pending'
       }
     })
 
-    if(!isExistCart) return await CartService.createUserCart({ userId })
+    if(!isExistCart) {
+      isExistCart = await createCart(userId)
+    };
 
-    console.log("isExistCart::", isExistCart)
-    const existingProduct = await db.CartItems.findOne({
-      where: { id: isExistCart.id, productVariantId: productItems.idProduct }
-    });
-
-    if (existingProduct) {
-      existingProduct.qty += existingProduct.qty || 1;
-      await existingProduct.save();
-    } else {
-      // Thêm mới sản phẩm
-      await db.Cart.create({
-        userId: userId,
-        sessionId: sessionId
-        // productId: product.productId,
-        // quantity: product.quantity || 1
+    // console.log("isExistCart::", isExistCart)
+    if(isExistCart) {
+      const isExistProductVariant = await db.CartItems.findOne({
+        where: {
+          id: isExistCart.id,
+          productVariantId: productVariantItems.productVariantId
+        }
       });
+
+      if (isExistProductVariant) {
+        isExistProductVariant.qty += productVariantItems.qty || 1;
+        await isExistProductVariant.save();
+      } else {
+        await db.CartItems.create({
+          id: isExistCart.id,
+          productVariantId: productVariantItems.productVariantId,
+          cartId: isExistCart.id,
+          qty: productVariantItems.qty || 1,
+        });
+      }
     }
 
+    const getAllCartItems = getAllCartItemsByIdCart(isExistCart.id);
+    if(!getAllCartItems) {
+      throw new NotFoundError(`Không thể lấy sản phẩm trong giỏ hàng :${isExistCart.id}:`);
+    }
+
+    return {
+      isExistCart,
+      getAllCartItems
+    }
   }
 
   static async updateCart({}) {
@@ -57,43 +99,27 @@ export class CartService {
 
   }
 
+  static async getCartById(id: string) {
+    const findCartById = await db.Cart.findByPk(id);
+    if(!findCartById) {
+      throw new NotFoundError(`'Không tìm thấy cart :${id}:'`);
+    }
+
+    const findAllItemsCart = await db.CartItems.findAll({
+      where: {
+        cartId: id
+      }
+    });
+
+    if(!findAllItemsCart) { return findCartById; }
+
+    return {
+      findCartById,
+      cartItems: findAllItemsCart
+    };
+  }
+
   static async listToCart({}) {
-
-  }
-
-  static async getNewsById() {
-
-  }
-
-  static async getAllNews() {
-
-  }
-
-  static async updateNewsById() {
-
-  }
-
-  static async updatePartNewsById() {
-
-  }
-
-  static async removeNewsById() {
-
-  }
-
-  static async removeAllNews() {
-
-  }
-
-  static async deleteNewsById() {
-
-  }
-
-  static async deleteAllNews() {
-
-  }
-
-  static async findAllNewsPub() {
 
   }
 

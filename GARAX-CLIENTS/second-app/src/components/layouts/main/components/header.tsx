@@ -1,11 +1,9 @@
-import axios, { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 
 import { cn } from "@/utils/utils";
-import { isTokenExpired } from "@/pages/auth/checkToken";
 import Styles from "./sass/header.module.css";
 import FlyoutMenus from "./flyoutMenus";
 // import ModalProfile from "./modalProfile";
@@ -18,9 +16,13 @@ import MenuIcon from "@/assets/layout/iconMenu.svg?react";
 import iconBrand from "@/assets/layout/GRAX.svg";
 import iconPhone from "@/assets/layout/noun-display-big-notch-4064633.svg";
 import CartTiny from "@/assets/layout/cart-tity.svg?react";
+import { useScrollDirection } from "./hooks";
+import { accountAPI } from "@/api/accountUrl";
+
 function Header() {
-  const [fullname, setFullname] = useState(localStorage.getItem("fullname"));
-  const [token] = useState(localStorage.getItem("token"));
+  // const [fullname, setFullname] = useState(localStorage.getItem("fullname"));
+  const [getEmail, setEmail] = useState(localStorage.getItem("email"));
+  // const [token] = useState(localStorage.getItem("token"));
   const [open, setOpen] = useState(false);
   const [openOrderInfo, setOpenOrderInfo] = useState(false);
   const [openOrderPayment, setOpenOrderPayment] = useState(false);
@@ -40,25 +42,45 @@ function Header() {
     }
   }, []);
 
+  // useEffect(() => {
+  //   if (token && isTokenExpired(token)) {
+  //     localStorage.clear()
+  //     setFullname(null);
+  //   } else if (fullname === null) {
+  //     try {
+  //       const response: Promise<AxiosResponse<unknown, unknown>> = axios.get("/auth/user", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       setFullname(response.data.fullname);
+  //     } catch (error) {
+  //       localStorage.clear();
+  //       setFullname(null);
+  //       console.error("Session expired or error fetching user data", error);
+  //     }
+  //   }
+  // }, [token, fullname]);
+
+  // const email = useSelector((state: RootState) => state.accountGeneralInfo);
+  // console.log("email:::", email)
   useEffect(() => {
-    if (token && isTokenExpired(token)) {
-      localStorage.clear()
-      setFullname(null);
-    } else if (fullname === null) {
-      try {
-        const response: Promise<AxiosResponse<unknown, unknown>> = axios.get("/auth/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setFullname(response.data.fullname);
-      } catch (error) {
-        localStorage.clear();
-        setFullname(null);
-        console.error("Session expired or error fetching user data", error);
+    try {
+      if(!getEmail) { return }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const response: any = accountAPI.getInfoUserByEmail(getEmail);
+      if(response.metadata.userName === '') {
+        setEmail(response.metadata.email);
+      } else {
+        setEmail(response.metadata.userName);
       }
+      
+    } catch (error) {
+      localStorage.clear();
+      setEmail(null);
+      console.error("Session expired or error fetching user data", error);
     }
-  }, [token, fullname]);
+  }, [getEmail])
 
   const [hideMenu, setHideMenu] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -98,8 +120,15 @@ function Header() {
     window.location.hash = "#info-cart-order#payment-cart-order";
   };
 
+  const scrollDirection = useScrollDirection();
+
   return (
-    <div className="bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3">
+    <>
+    <div className={
+      cn(`bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3 ${ scrollDirection === "down" ? "-top-0" : "top-11"}`,
+        hideMenu ? 'h-[400px] items-start top-0 relative' : ''
+      )
+      }>
       <div className="w-[1351.47px] flex flex-col sm:flex-row justify-between items-center">
         <div
           className={cn(
@@ -120,8 +149,9 @@ function Header() {
               <MenuIcon />
               <span className="pl-2 text-sm text-black">Danh mục</span>
             </button>
-
-            {hideMenu && <FlyoutMenus />}
+            <div className="left-0">
+              {/* {hideMenu && <FlyoutMenus />} */}
+            </div>
           </div>
           {/* Phone Info */}
           <div className="hidden sm:flex items-center space-x-2">
@@ -175,12 +205,12 @@ function Header() {
             />
           </div>
           <div className="mt-4 md:mt-0 flex items-center">
-            {fullname ? (
+            {getEmail ? (
               <button
                 onClick={handleProfile}
                 className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base"
               >
-                <i className="fas fa-user mr-2"></i>Hi, {fullname}
+                <i className="fas fa-user mr-2"></i>Hi, {getEmail}
               </button>
             ) : (
               <Link to="/auth/login">
@@ -214,7 +244,19 @@ function Header() {
           </div> */}
         </div>
       </div>
+
+      {hideMenu ? (
+        (
+          <div className="absolute z-[100] w-full" style={{ top: '70px' }}>
+            <div className="w-full h-[0.5px] bg-slate-200"></div>
+            <FlyoutMenus />
+          </div>
+        )
+      ): (
+        <></>
+      )}
     </div>
+    </>
   );
 }
 

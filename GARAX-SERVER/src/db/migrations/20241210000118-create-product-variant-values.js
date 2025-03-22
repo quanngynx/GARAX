@@ -30,8 +30,9 @@ export async function up(queryInterface, Sequelize) {
       productId: {
         type: Sequelize.STRING
       },
-      addOverSpecsId: {
-        type: Sequelize.STRING
+      productVariantId: {
+        type: Sequelize.STRING,
+        defaultValue: ''
       },
       addOverDetailSpecsId: {
         type: Sequelize.STRING

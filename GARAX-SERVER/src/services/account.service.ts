@@ -20,4 +20,12 @@ export class AccountService {
       raw: true, // Tương đương với .lean() trong Mongoose
     });
   };
+
+  static async getInfoUserByEmail({ email } :  { email: string }) {
+    return await db.Account.findOne({
+      where: { email },
+      // attributes: select,
+      raw: true, // Tương đương với .lean() trong Mongoose
+    });
+  }
 }

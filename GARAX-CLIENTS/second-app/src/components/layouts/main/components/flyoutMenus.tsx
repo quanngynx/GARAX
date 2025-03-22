@@ -1,120 +1,81 @@
-import AnaylistIcon from "@/assets/home/icons/anyalist-icon-solid.svg?react";
-// import CursorEffectIcon from "@/assets/icons/cusor-effect-icon-solid.svg?react";
-// import SecurityIcon from "@/assets/icons/security-solid.svg?react";
-// import MultiAppIcon from "@/assets/icons/multi-app-solid.svg?react";
-// import LoadingTinyIcon from "@/assets/icons/loading-tiny-icon.svg?react";
-// import PlayTinyIcon from '@/assets/icons/play-icon.svg?react'
-// import CallingTinyIcon from '@/assets/icons/calling-tiny.svg?react'
-
-// import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
-import CleaningServicesOutlinedIcon from "@/assets/home/icons/noun-cleaning-1944288.svg?react";
-import StorageOutlinedIcon from "@/assets/home/icons/noun-storage-7387355.svg?react";
-import SupportAgentOutlinedIcon from "@/assets/home/icons/noun-support-agent-7186583.svg?react";
-import ScheduleSendOutlinedIcon from "@/assets/home/icons/noun-send-on-schedule-6956073.svg?react";
-import FeedbackOutlinedIcon from "@/assets/home/icons/noun-feedback-7388185.svg?react";
-import { Link } from "react-router-dom";
-
-const flyoutMenusData1 = [
-  {
-    icon: <AnaylistIcon />,
-    tit: "Phụ tùng",
-    desc: "1",
-  },
-  {
-    icon: <CleaningServicesOutlinedIcon />,
-    tit: "Dịch vụ",
-    desc: "2",
-  },
-  {
-    icon: <StorageOutlinedIcon />,
-    tit: "Khác",
-    desc: "3",
-  },
-];
-
-const flyoutMenusData2 = [
-  {
-    icon: <SupportAgentOutlinedIcon />,
-    tit: "Hỗ trợ trực tuyến",
-    desc: "",
-  },
-  {
-    icon: <ScheduleSendOutlinedIcon />,
-    tit: "Gửi yêu cầu sửa xe",
-    desc: "",
-  },
-  {
-    icon: <FeedbackOutlinedIcon />,
-    tit: "gửi phản hồi dịch vụ",
-    desc: "",
-  },
-];
-
 function flyoutMenus() {
-  const listCate1 = flyoutMenusData1.map((i) => (
-    <div
-      key={i}
-      className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
-    >
-      <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-        {i.icon}
-      </div>
-      <Link to={"/service"}>
-        <div className="">
-          <a href="#" className="font-semibold text-white hover:text-gray-900">
-            {i.tit}
-            <span className="absolute inset-0"></span>
-          </a>
-          <p className="mt-1 text-gray-600">{i.desc}</p>
-        </div>
-      </Link>
-    </div>
-  ));
-
-  const listCate2 = flyoutMenusData2.map((i) => (
-    <div
-      key={i}
-      className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
-    >
-      <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-        {i.icon}
-      </div>
-      <div>
-        <a href="#" className="font-semibold text-white hover:text-gray-900">
-          {i.tit}
-          <span className="absolute inset-0"></span>
-        </a>
-        <p className="mt-1 text-gray-600">{i.desc}</p>
-      </div>
-    </div>
-  ));
-
   return (
-    <div className="flex absolute translate-x-[-28px] left-8 sm:left-0 right-0 z-10 mt-5 w-[92vw]"
-    // style={{ display: isHidden ? 'none' : 'flex' }}
+    <div className="flex py-0 z-50"
     >
-      <div className="w-full max-w-full flex flex-col overflow-hidden rounded-3xl bg-black/90 text-sm/6 shadow-lg ring-1 opacity-90 ring-gray-900/5">
-        <div className="flex flex-row" >
-        <div className="p-4 w-1/2">{listCate1}</div>
-        <div className="p-4 w-1/2">{listCate2}</div>
+      <div className="w-full max-w-full flex flex-col overflow-hidden text-sm/6 ring-1 opacity-90 ring-gray-900/5">
+        <div className="grid grid-cols-2 md:sm:grid-cols-5 gap-8 px-10 py-8">
+          {/* row 1 */}
+          <div>
+            <h3 className="text-black font-semibold mb-4">Tất cả sản phẩm</h3>
+            <ul className="text-black">
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Sản phẩm mới
+                </a>
+              </li>
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Bán chạy nhất
+                </a>
+              </li>
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  FAQs
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* row 2 */}
+          <div>
+            <h3 className="text-black font-semibold mb-4">Cửa hàng và dịch vụ</h3>
+            <ul className="text-black">
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Đặt lịch sửa chữa & tư vấn
+                </a>
+              </li>
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                Trò chuyện trực tuyến
+                </a>
+              </li>
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Cho thuê xe
+                </a>
+              </li>
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Đối tác
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* row 3 */}
+          <div>
+            <h3 className="text-black font-semibold mb-4">Phương tiện truyền thông</h3>
+            <ul className="text-black">
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Tin tức
+                </a>
+              </li>
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Blog
+                </a>
+              </li>
+              <li className="py-1">
+                <a href="#" className="hover:text-gray-500">
+                  Chương trình phát hiện lỗ hổng
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-          {/* <a
-            href="#"
-            className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-white hover:text-gray-900 hover:bg-gray-100"
-          >
-            <PlayTinyIcon />
-            Watch demo
-          </a>
-          <a
-            href="#"
-            className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-white hover:text-gray-900 hover:bg-gray-100"
-          >
-            <CallingTinyIcon />
-            Contact sales
-          </a> */}
-          <div className="text-black p-3 text-center font-semibold hover:text-gray-900 hover:bg-gray-100">Coming soon</div>
+        <div className="grid grid-cols-2 divide-x divide-gray-900/5">
+          <div className="text-black p-3 text-center font-semibold hover:text-gray-900">Coming soon</div>
         </div>
       </div>
     </div>

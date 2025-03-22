@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { SuccessResponse } from '@/middlewares';
 import { ProductService } from "@/services";
-import { getProductById } from '@/common/repositories';
+import { getProductById, getProductVariantValueByIdProduct } from '@/common/repositories';
 
 class ProductController {
   getAllProducts = async (_req: Request, res: Response, _next: NextFunction) => {
@@ -24,6 +24,14 @@ class ProductController {
     new SuccessResponse({
       message: `Lấy hàng hóa ${id} thành công!`,
       metadata: await getProductById({ id })
+    }).send(res)
+  }
+
+  getProductVariantValueByIdProduct = async (req: Request, res: Response, _next: NextFunction) => {
+    const { productId } = req.params;
+    new SuccessResponse({
+      message: `Lấy biến thể hàng hóa bằng id sản phẩm :${productId}: thành công!`,
+      metadata: await getProductVariantValueByIdProduct({ productId })
     }).send(res)
   }
 
@@ -70,9 +78,10 @@ class ProductController {
   }
 
   deleteProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
-      message: `Delete product ${req.params.id} success!`,
-      metadata: await ProductService.deleteProductById(req.params.id)
+      message: `Delete product ${id} success!`,
+      metadata: await ProductService.deleteProductById(id)
     }).send(res)
   }
 

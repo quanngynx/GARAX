@@ -5,7 +5,7 @@ import { Button, Flex, Form, FormProps, Input, notification } from 'antd';
 import backgroundImage from '../../../public/gfcu2jnjinvtyfffq4yl.webp';
 import { AppDispatch } from '@/redux/stores';
 import { useAppDispatch } from '@/redux/hooks';
-import { setAccessToken } from '@/redux/slices';
+import { setAccessToken, setEmail } from '@/redux/slices';
 import { authApi } from '@/api/authUrl';
 import { AccountLoginRequest } from '@/api/requests';
 
@@ -42,6 +42,7 @@ function Login() {
       if (!response) return;
 
       dispatch(setAccessToken(response.metadata.tokens.accessToken));
+      dispatch(setEmail(response.metadata.user.email))
       navigate('/');
     } catch (error) {
       // console.error('ERROR LOGIN:', error);

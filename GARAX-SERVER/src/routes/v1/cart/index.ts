@@ -5,7 +5,9 @@ import { asyncHandler } from '@/middlewares';
 export const routerCart = express.Router();
 const cartController = CartController.default;
 
-routerCart.post('', asyncHandler(cartController.addToCart))
-routerCart.delete('', asyncHandler(cartController.deleteCart))
-routerCart.post('/update', asyncHandler(cartController.updateCart))
-routerCart.get('', asyncHandler(cartController.listToCart))
+// routerCart.post('/cart', asyncHandler(cartController.createUserCart));
+routerCart.post('/cart', asyncHandler(cartController.addToCart));
+routerCart.delete('/cart', asyncHandler(cartController.deleteCart));
+routerCart.put('/cart', asyncHandler(cartController.updateCart));
+routerCart.get('/cart/:id', asyncHandler(cartController.getCartById));
+routerCart.get('/cart', asyncHandler(cartController.listToCart));

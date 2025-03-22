@@ -18,6 +18,7 @@ const productController = ProductController.default;
 routerProduct.get('/products', asyncHandler(productController.getAllProducts))
 routerProduct.get('/products/without-options', asyncHandler(productController.getAllProductsWithoutOptions))
 routerProduct.get('/products/:id', asyncHandler(productController.getProductById))
+routerProduct.get('/product-variant-value/:productId', asyncHandler(productController.getProductVariantValueByIdProduct))
 
 routerProduct.post('/products', asyncHandler(productController.addNewProduct))
 routerProduct.post('/products/many', asyncHandler(productController.addManyNewProduct))
