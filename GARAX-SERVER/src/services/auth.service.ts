@@ -30,7 +30,7 @@ export class AuthJWTService {
     userName,
     email,
     password,
-    roleId = "admin"
+    roleId = 1
   }: RegisterRequest) => {
     try {
       const modelUser = await db.Account.findOne({ where: { email: email } });
@@ -172,7 +172,7 @@ export class AuthJWTService {
       id: userId,
       // roleId
     } = foundUser;
-    const isUserId = (userId !== undefined) ? userId : '';
+    const isUserId = (userId !== undefined) ? userId : 0;
     const tokens = await createTokenPair(
       {
         userId: isUserId,

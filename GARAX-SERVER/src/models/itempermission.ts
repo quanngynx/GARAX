@@ -11,7 +11,7 @@ ItemPermission,
 
 export class ItemPermissionModel
 extends Model<ItemPermission, ItemPermissionCreationAttributes> {
-  // id!: string;
+  // id!: number;
   // itemKeyAccept!: string;
   // itemValueAccept!: string;
   // isActive!: boolean;

@@ -11,7 +11,7 @@ export type ProductAttributeValuesCreationAttributes = Optional<
 
 export class ProductAttributeValuesModel
 extends Model<ProductAttributeValues, ProductAttributeValuesCreationAttributes> {
-  // public id!: string;
+  // public id!: number;
   // public value: number;
   // public variantKeyId: number;
   // public createBy!: Date;

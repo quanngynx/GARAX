@@ -11,7 +11,7 @@ export type NewsCreationAttributes = Optional<
 
 export class NewsModel
 extends Model<News, NewsCreationAttributes> {
-  // id!: string;
+  // id!: number;
   public title!: string;
   public alias!: string;
   // description!: string;

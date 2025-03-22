@@ -27,8 +27,8 @@ export class ProductCategoryService {
         countProduct: 0,
         isParentCategory: isParentCategory || false,
         isActive: isActive || true,
-        imageId: imageId || '',
-        parentId: parentId || '',
+        imageId: imageId,
+        parentId: parentId,
       });
 
       console.log('newProductCate:', newProductCate);

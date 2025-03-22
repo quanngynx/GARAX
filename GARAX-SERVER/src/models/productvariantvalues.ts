@@ -10,7 +10,7 @@ export type ProductVariantValuesCreationAttributes = Optional<
 
 export class ProductVariantValuesModel
 extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
-  public id!: string;
+  public id!: number;
   public price!: number;
   public oldPrice!: number;
   public stock!: number;
@@ -71,7 +71,6 @@ export const productVariantValuesModel = (sequelize: Sequelize) => {
     },
     productVariantId: {
       type: DataTypes.INTEGER,
-      defaultValue: ''
     },
     addOverDetailSpecsId: {
       type: DataTypes.INTEGER,

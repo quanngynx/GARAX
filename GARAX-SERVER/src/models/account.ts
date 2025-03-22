@@ -16,7 +16,7 @@ export type AccountCreationAttributes = Optional<
 
 export class AccountModel
 extends Model<Account, AccountCreationAttributes> {
-  public id!: string;
+  public id!: number;
   public userName!: string;
   // public firstName!: string;
   // public lastName!: string;

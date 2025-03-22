@@ -1,5 +1,5 @@
 export interface CreateKeyTokenRequest {
-  userId: string;
+  userId: number;
   privateKey: string;
   publicKey: string;
   refreshToken?: string;

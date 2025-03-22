@@ -10,7 +10,7 @@ export type PermissionCreationAttributes = Optional<
 
 export class PermissionModel
 extends Model<Permission, PermissionCreationAttributes> {
-  // public id!: string;
+  // public id!: number;
   // public keyAccept!: string;
   // public valueAccept!: string;
   // public isActive!: boolean;

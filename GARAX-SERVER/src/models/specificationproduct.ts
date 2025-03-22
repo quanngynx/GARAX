@@ -9,7 +9,7 @@ export type SpecificationProductCreationAttributes = Optional<
 
 export class SpecificationProductModel
 extends Model<SpecificationProduct, SpecificationProductCreationAttributes> {
-  // public id!: string;
+  // public id!: number;
   // public name!: string;
   // public key!: string;
   // public value!: string;

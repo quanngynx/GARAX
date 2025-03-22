@@ -10,7 +10,7 @@ export type VariantKeysCreationAttributes = Optional<
 
 export class VariantKeysModel
 extends Model<VariantKeys, VariantKeysCreationAttributes> {
-  public id!: string;
+  public id!: number;
   // public value: number;
   // public variantKeyId: number;
   // public createBy!: Date;

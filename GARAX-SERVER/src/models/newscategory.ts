@@ -11,7 +11,7 @@ NewsCategory,
 
 export class NewsCategoryModel
 extends Model<NewsCategory, NewsCategoryCreationAttributes> {
-  // id!: string;
+  // id!: number;
   public title!: string;
   public alias!: string;
   // description!: string;

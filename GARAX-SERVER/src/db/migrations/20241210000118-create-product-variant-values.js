@@ -32,7 +32,6 @@ export async function up(queryInterface, Sequelize) {
       },
       productVariantId: {
         type: Sequelize.INTEGER,
-        defaultValue: ''
       },
       addOverDetailSpecsId: {
         type: Sequelize.INTEGER

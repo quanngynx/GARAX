@@ -11,7 +11,7 @@ export type AddressCreationAttributes = Optional<
 
 export class AddressModel
 extends Model<Address, AddressCreationAttributes> {
-  // public id!: string;
+  // public id!: number;
   // public type!: typeof ADDRESS_VALUES[number];
   // public streetRoad!: string;
   // public wardOrCommune!: string;

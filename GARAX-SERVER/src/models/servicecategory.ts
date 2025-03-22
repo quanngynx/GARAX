@@ -11,7 +11,7 @@ export type ServiceCategoryCreationAttributes = Optional<
 
 export class ServiceCategoryModel
 extends Model<ServiceCategory, ServiceCategoryCreationAttributes> {
-  // id!: string;
+  // id!: number;
   public title!: string;
   public alias!: string;
   // createdAt!: Date;

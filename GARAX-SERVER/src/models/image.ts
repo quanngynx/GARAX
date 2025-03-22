@@ -11,7 +11,7 @@ export type ImageCreationAttributes = Optional<
 
 export class ImageModel
 extends Model<ImageCreationAttributes> {
-  // id!: string;
+  // id!: number;
   // image!: string;
   // coverImage!: string;
   // alt!: string;

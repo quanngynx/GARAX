@@ -9,7 +9,7 @@ export type SpecificationDetailProductCreationAttributes = Optional<
 
 export class SpecificationDetailProductModel
 extends Model<SpecificationDetailProduct, SpecificationDetailProductCreationAttributes> {
-  // id!: string;
+  // id!: number;
   // groupName!: string;
   // groupKey!: string;
   // groupValue!: string;

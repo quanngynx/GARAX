@@ -26,7 +26,7 @@ export type ProductCreationAttributes = Optional<
 
 export class ProductModel
 extends Model<Product, ProductCreationAttributes> {
-  public id!: string;
+  public id!: number;
   public name!: string;
   public slug!: string;
   public totalStock!: number;
@@ -39,12 +39,12 @@ extends Model<Product, ProductCreationAttributes> {
   public rate!: number;
   public totalRate!: number;
   public totalSold!: number;
-  public categoryId!: string;
-  public subCategoryId!: string;
-  public sub2CategoryId!: string;
-  public sub3CategoryId!: string;
-  public videoId!: string;
-  public brandId!: string;
+  public categoryId!: number;
+  public subCategoryId!: number;
+  public sub2CategoryId!: number;
+  public sub3CategoryId!: number;
+  public videoId!: number;
+  public brandId!: number;
   public status!: PRODUCT_STATUS;
   public createdBy!: string;
   public updatedBy!: string;

@@ -9,7 +9,7 @@ export type CurrencyCreationAttributes = Optional<
 
 export class CurrencyModel
 extends Model<CurrencyCreationAttributes> {
-  // id!: string;
+  // id!: number;
   // currency!: string;
   // desc!: string;
   // createdAt!: Date;

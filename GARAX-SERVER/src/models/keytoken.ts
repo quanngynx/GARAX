@@ -9,7 +9,7 @@ export type KeyTokenCreationAttributes = Optional<
 
 export class KeyTokenModel
 extends Model<KeyToken, KeyTokenCreationAttributes> {
-  public id!: string;
+  public id!: number;
   public privateKey!: string;
   public publicKey!: string;
   public refreshToken!: string;

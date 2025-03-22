@@ -2,8 +2,8 @@ import { VariantItems } from "../requests/product";
 import { getUniqueIdOptions } from "./uuid";
 
 interface GenerateSKUProps {
-  categoryId: string;
-  brandId: string;
+  categoryId: number;
+  brandId: number;
   name: string;
   variants: VariantItems[];
 }

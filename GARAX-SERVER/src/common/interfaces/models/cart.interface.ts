@@ -1,5 +1,5 @@
 export interface Cart {
-  id: string;
+  id: number;
   sessionId: string;
   userId: number;
   createdAt: Date;

@@ -11,7 +11,7 @@ export type ApiKeyCreationAttributes = Optional<
 
 export class ApiKeyModel
 extends Model<ApiKeyCreationAttributes> {
-  // id!: string;
+  // id!: number;
   // key!: string;
   // isActive!: boolean;
   // itemPermissionId!: string;

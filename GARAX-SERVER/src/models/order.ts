@@ -12,7 +12,7 @@ export type OrderCreationAttributes = Optional<
 
 export class OrderModel
 extends Model<Order, OrderCreationAttributes> {
-  id!: string;
+  id!: number;
   // fullname!: string;
   // phone!: string;
   // isReceiveAtStore!: boolean;

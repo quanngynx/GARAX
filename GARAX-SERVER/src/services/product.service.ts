@@ -170,8 +170,8 @@ export class ProductService {
         sold: 0,
         sku: sku,
         manufacturingDate: manufacturingDate,
-        productVariantId: "",
-        addOverDetailSpecsId: ""
+        productVariantId: 1,
+        addOverDetailSpecsId: 1
       }, {
         transaction
       });

@@ -11,8 +11,8 @@ export type CartItemsCreationAttributes = Optional<
 
 export class CartItemsModel
 extends Model<CartItemsCreationAttributes> {
-  id!: string;
-  qty!: number;
+  id!: number;
+  // qty!: number;
   // cartId!: string;
   // productVariantId!: string;
   // createdAt!: Date;

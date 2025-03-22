@@ -10,8 +10,8 @@ export type CartCreationAttributes = Optional<
 
 export class CartModel
 extends Model<CartCreationAttributes> {
-  id!: string;
-  // sessionId!: string;
+  id!: number;
+  // sessionId!: number;
   // userId!: string;
   // createdAt!: Date;
   // updatedAt!: Date;

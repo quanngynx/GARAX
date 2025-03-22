@@ -10,7 +10,7 @@ export type VideoCreationAttributes = Optional<
 
 export class VideoModel
 extends Model<Video, VideoCreationAttributes> {
-  // public id!: string;
+  // public id!: number;
   // public directoryPath!: string;
   // public alt!: string;
   // public original!: string;

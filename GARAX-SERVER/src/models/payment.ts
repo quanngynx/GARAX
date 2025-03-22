@@ -9,7 +9,7 @@ export type PaymentCreationAttributes = Optional<
 
 export class PaymentModel
 extends Model<PaymentCreationAttributes> {
-  // public id!: string;
+  // public id!: number;
   // public amount!: number;
   // public desc!: string;
   // public orderId!: string;

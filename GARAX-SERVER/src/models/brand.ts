@@ -9,7 +9,7 @@ export type BrandCreationAttributes = Optional<
 
 export class BrandModel
 extends Model<BrandCreationAttributes> {
-  // id!: string;
+  // id!: number;
   // idBrand!: string;
   // name!: string;
   // createdAt!: Date;

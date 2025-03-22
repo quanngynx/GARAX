@@ -10,7 +10,7 @@ export type AttributeValuesCreationAttributes = Optional<
 
 export class AttributeValuesModel
 extends Model<AttributeValues, AttributeValuesCreationAttributes> {
-  public id!: string;
+  public id!: number;
   public name!: string;
   // public variantKeyId: number;
   // public createBy!: Date;
