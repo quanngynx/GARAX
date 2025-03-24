@@ -18,7 +18,11 @@ const MultiCardCarousel = () => {
             className="flex justify-center ease-in-out animate-infinite-scroll group-hover:paused rounded-l-lg"
             > {/* ========= Child ==========*/}
               {cardProducts.slice(currentIndex, currentIndex + 4).map((card, index) => (
-                <CardProducts card={card} index={index} key={index} />
+                <CardProducts 
+                card={card} 
+                index={index} 
+                key={index} 
+                />
               ))}
             </div>
 

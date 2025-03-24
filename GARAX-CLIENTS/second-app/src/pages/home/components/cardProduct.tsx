@@ -9,9 +9,26 @@ import ScheduleTinyIcon from "@/assets/home/icons/schedule-tiny.svg?react";
 import { Line } from "@/components/line/line";
 
 import { Link } from "react-router-dom";
+import { ICardProducts } from "@/interfaces/__mock__";
 
+// interface ItemCards {
+//   title: string;
+//   image: string;
+//   description: string;
+//   range: number;
+//   cost: number;
+// }
 
-function products({ card, index }) {
+interface ProductsProps {
+  card: ICardProducts,
+  index: number;
+}
+
+function products({ 
+  card, 
+  index 
+}: ProductsProps) {
+
   const slug = slugify(card.title, { lower: true, strict: true })
   const productPath = `/product/${slug}`;
   return (

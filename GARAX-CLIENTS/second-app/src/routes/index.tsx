@@ -11,7 +11,7 @@ import OnlyCanvas from "@/components/layouts/onlyCanvas";
 import { HomePage } from "@/pages/home";
 import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
-import Verify from "@/pages/auth/verified"
+// import Verify from "@/pages/auth/verified"
 
 const ProductPage: LazyExoticComponent<() => JSX.Element> = lazy(
   async() => {
@@ -155,10 +155,10 @@ function Routes() {
               path: "register",
               element: <RegisterPage/>,
             },
-            {
-              path:"verify",
-              element: <Verify/>,
-            },
+            // {
+            //   path:"verify",
+            //   element: <Verify/>,
+            // },
             {
               path: "login",
               element: <LoginPage />,

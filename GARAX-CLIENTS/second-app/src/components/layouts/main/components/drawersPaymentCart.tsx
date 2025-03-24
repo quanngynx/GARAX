@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-
 import { drawersPaymentInterfaces } from './interfaces/index'
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -21,64 +18,62 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 function drawersForCart({ open, setOpen }: drawersPaymentInterfaces) {
   // const [open, setOpen] = useState(true);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
 
-  const GiaVe: number = parseFloat(searchParams.get("GiaVe") ?? "1");
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [count, setCount] = useState(1);
+  // const GiaVe: number = parseFloat(searchParams.get("GiaVe") ?? "1");
+  // const [count, setCount] = useState(1);
   // const [totalPrice, setTotalPrice] = useState(GiaVe);
   // const [phuongtien, setPhuongTien] = useState(null);
   // const [error, setError] = useState(null);
   // const [isLoading, setIsLoading] = useState(true);
 
-  const [inforOrder, setInforOrder] = useState({
-    fullName: "",
-    codeOrder: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    totalAmount: GiaVe || 1,
-    quantity: count,
-    typePayment: "",
-  });
+  // const [inforOrder, setInforOrder] = useState({
+  //   fullName: "",
+  //   codeOrder: "",
+  //   email: "",
+  //   phoneNumber: "",
+  //   address: "",
+  //   totalAmount: GiaVe || 1,
+  //   quantity: count,
+  //   typePayment: "",
+  // });
 
-  const increaseCount = () => {
-    setCount((prevCount) => {
-      const newCount = prevCount < 10 ? prevCount + 1 : 10;
-      setTotalPrice(GiaVe * newCount);
-      return newCount;
-    });
-    // setTotalPrice(GiaVe * count);
-    // console.log("Gia ve::", GiaVe)
-    // console.log("Tong ve::", count)
-    // console.log("Tong::", totalPrice)
-  };
+  // const increaseCount = () => {
+  //   setCount((prevCount) => {
+  //     const newCount = prevCount < 10 ? prevCount + 1 : 10;
+  //     setTotalPrice(GiaVe * newCount);
+  //     return newCount;
+  //   });
+  //   // setTotalPrice(GiaVe * count);
+  //   // console.log("Gia ve::", GiaVe)
+  //   // console.log("Tong ve::", count)
+  //   // console.log("Tong::", totalPrice)
+  // };
 
-  const decreaseCount = () => {
-    setCount((prevCount) => {
-      const newCount = prevCount > 1 ? prevCount - 1 : 1;
-      setTotalPrice(GiaVe * newCount);
-      return newCount;
-    });
-    // setTotalPrice(GiaVe * count);
-    // console.log("Gia ve::", GiaVe)
-    // console.log("Tong ve::", count)
-    // console.log("Tong::", totalPrice)
-  };
+  // const decreaseCount = () => {
+  //   setCount((prevCount) => {
+  //     const newCount = prevCount > 1 ? prevCount - 1 : 1;
+  //     setTotalPrice(GiaVe * newCount);
+  //     return newCount;
+  //   });
+  //   // setTotalPrice(GiaVe * count);
+  //   // console.log("Gia ve::", GiaVe)
+  //   // console.log("Tong ve::", count)
+  //   // console.log("Tong::", totalPrice)
+  // };
 
-  const handle_Change = (e) => {
-    const { name, value } = e.target;
-    // setInforOrder((prevInforOrder) => ({
-    //   ...prevInforOrder,
-    //   [name]: value,
-    // }));
+  // const handle_Change = (e) => {
+  //   const { name, value } = e.target;
+  //   // setInforOrder((prevInforOrder) => ({
+  //   //   ...prevInforOrder,
+  //   //   [name]: value,
+  //   // }));
 
-    setInforOrder({
-      ...inforOrder,
-      [name]: value,
-    });
-  };
+  //   setInforOrder({
+  //     ...inforOrder,
+  //     [name]: value,
+  //   });
+  // };
 
   return (
     <Dialog open={open} onClose={() => setOpen(true)} className="relative z-10">

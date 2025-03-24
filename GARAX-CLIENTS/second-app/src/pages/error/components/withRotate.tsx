@@ -1,6 +1,6 @@
-export function withRotate(Component) {
-    // eslint-disable-next-line react/display-name
-    return (props) => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export function withRotate(Component: any) {
+    return (props: any) => {
         return (
             <Component
                 {...props}

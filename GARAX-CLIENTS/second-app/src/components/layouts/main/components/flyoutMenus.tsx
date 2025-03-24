@@ -2,8 +2,10 @@ function flyoutMenus() {
   return (
     <div className="flex py-0 z-50"
     >
-      <div className="w-full max-w-full flex flex-col overflow-hidden text-sm/6 ring-1 opacity-90 ring-gray-900/5">
-        <div className="grid grid-cols-2 md:sm:grid-cols-5 gap-8 px-10 py-8">
+      <div 
+      className="w-full max-w-full flex flex-col overflow-hidden text-sm/6 ring-1 opacity-90 ring-gray-900/5"
+      >
+        <div className="w-[1222px] grid grid-cols-2 md:sm:grid-cols-5 gap-8 px-20 py-8">
           {/* row 1 */}
           <div>
             <h3 className="text-black font-semibold mb-4">Tất cả sản phẩm</h3>

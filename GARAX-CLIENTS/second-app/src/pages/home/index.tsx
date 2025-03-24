@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 // import { useCheckAuth } from "../auth/checkToken";
 
-import { ITabsConfig } from './interfaces'
+// import { ITabsConfig } from './interfaces'
 
 import imagecar from "@/assets/home/images/car-big.webp";
 import WhyChooseUs from "./components/Whychose";
@@ -10,26 +10,26 @@ import FormSearch from "./components/formSearch";
 import FormHelpDesk from "./components/formHelpDesk";
 import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
-import AccessibleTabs from "./components/accessibleTabs";
+// import AccessibleTabs from "./components/accessibleTabs";
 import BroswerByType from "./components/broswerByType";
 import BestCar from "./components/Bestcar";
 import ReviewFeedback from "./components/reviewFeedback";
 import {Line} from "@/components/line/line";
 
-const tabsConfig: ITabsConfig[] = [
-  {
-    label: "Spare Parts",
-    content: "Content Panel 1",
-  },
-  {
-    label: "Support Tools",
-    content: "Content Panel 2",
-  },
-  {
-    label: "Others",
-    content: "Content Panel 3",
-  },
-];
+// const tabsConfig: ITabsConfig[] = [
+//   {
+//     label: "Spare Parts",
+//     content: "Content Panel 1",
+//   },
+//   {
+//     label: "Support Tools",
+//     content: "Content Panel 2",
+//   },
+//   {
+//     label: "Others",
+//     content: "Content Panel 3",
+//   },
+// ];
 
 export function HomePage(): JSX.Element {
   const history = useNavigate();
@@ -95,7 +95,7 @@ export function HomePage(): JSX.Element {
           <div className="text-[#050b20] text-2xl md:text-[40px] font-bold font-['DM Sans'] leading-7 md:leading-10">
             Danh sách sản phẩm
           </div>
-          <AccessibleTabs tabsConfig={tabsConfig} />
+          {/* <AccessibleTabs tabsConfig={tabsConfig} /> */}
         </div>
 
         {/* Product Cards */}

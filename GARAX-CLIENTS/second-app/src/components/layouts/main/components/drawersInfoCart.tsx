@@ -1,5 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Dispatch, SetStateAction } from "react";
 import { UserOutlined } from '@ant-design/icons';
 import { Input, Typography } from 'antd';
 
@@ -24,64 +23,66 @@ function drawersForCart({
   setOpen, 
   onProceed 
 }: DrawersForCartProps) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
 
-  const GiaVe = parseFloat(searchParams.get("GiaVe")) || 1;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [count, setCount] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(GiaVe);
+  // const GiaVe = parseFloat(searchParams.get("GiaVe")) || 1;
+  // const [
+  //   // count, 
+  //   setCount
+  // ] = useState(1);
+
+  // const [totalPrice, setTotalPrice] = useState(GiaVe);
   // const [phuongtien, setPhuongTien] = useState(null);
   // const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  const [inforOrder, setInforOrder] = useState({
-    fullName: "",
-    codeOrder: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    totalAmount: GiaVe || 1,
-    quantity: count,
-    typePayment: "",
-  });
+  // const [inforOrder, setInforOrder] = useState({
+  //   fullName: "",
+  //   codeOrder: "",
+  //   email: "",
+  //   phoneNumber: "",
+  //   address: "",
+  //   totalAmount: GiaVe || 1,
+  //   quantity: count,
+  //   typePayment: "",
+  // });
 
-  const increaseCount = () => {
-    setCount((prevCount) => {
-      const newCount = prevCount < 10 ? prevCount + 1 : 10;
-      setTotalPrice(GiaVe * newCount);
-      return newCount;
-    });
-    // setTotalPrice(GiaVe * count);
-    // console.log("Gia ve::", GiaVe)
-    // console.log("Tong ve::", count)
-    // console.log("Tong::", totalPrice)
-  };
+  // const increaseCount = () => {
+  //   setCount((prevCount) => {
+  //     const newCount = prevCount < 10 ? prevCount + 1 : 10;
+  //     setTotalPrice(GiaVe * newCount);
+  //     return newCount;
+  //   });
+  //   setTotalPrice(GiaVe * count);
+  //   console.log("Gia ve::", GiaVe)
+  //   console.log("Tong ve::", count)
+  //   console.log("Tong::", totalPrice)
+  // };
 
-  const decreaseCount = () => {
-    setCount((prevCount) => {
-      const newCount = prevCount > 1 ? prevCount - 1 : 1;
-      setTotalPrice(GiaVe * newCount);
-      return newCount;
-    });
-    // setTotalPrice(GiaVe * count);
-    // console.log("Gia ve::", GiaVe)
-    // console.log("Tong ve::", count)
-    // console.log("Tong::", totalPrice)
-  };
+  // const decreaseCount = () => {
+  //   setCount((prevCount) => {
+  //     const newCount = prevCount > 1 ? prevCount - 1 : 1;
+  //     setTotalPrice(GiaVe * newCount);
+  //     return newCount;
+  //   });
+  //   // setTotalPrice(GiaVe * count);
+  //   // console.log("Gia ve::", GiaVe)
+  //   // console.log("Tong ve::", count)
+  //   // console.log("Tong::", totalPrice)
+  // };
 
-  const handle_Change = (e) => {
-    const { name, value } = e.target;
-    // setInforOrder((prevInforOrder) => ({
-    //   ...prevInforOrder,
-    //   [name]: value,
-    // }));
+  // const handle_Change = (e) => {
+  //   const { name, value } = e.target;
+  //   // setInforOrder((prevInforOrder) => ({
+  //   //   ...prevInforOrder,
+  //   //   [name]: value,
+  //   // }));
 
-    setInforOrder({
-      ...inforOrder,
-      [name]: value,
-    });
-  };
+  //   setInforOrder({
+  //     ...inforOrder,
+  //     [name]: value,
+  //   });
+  // };
 
   return (
     <Dialog open={open} onClose={() => setOpen(true)} className="relative z-10">
@@ -125,13 +126,13 @@ function drawersForCart({
                         type="name"
                         placeholder="large size" 
                         prefix={<UserOutlined />} 
-                        value={inforOrder.fullName}
-                        onChange={(event) =>
-                          setInforOrder({
-                            ...inforOrder,
-                            fullName: event.target.value,
-                          })
-                        }
+                        // value={inforOrder.fullName}
+                        // onChange={(event) =>
+                        //   setInforOrder({
+                        //     ...inforOrder,
+                        //     fullName: event.target.value,
+                        //   })
+                        // }
                         required
                       />
                     </div>
@@ -143,13 +144,13 @@ function drawersForCart({
                         type="phone"
                         placeholder="large size" 
                         prefix={<UserOutlined />} 
-                        value={inforOrder.phoneNumber}
-                        onChange={(event) =>
-                          setInforOrder({
-                            ...inforOrder,
-                            phoneNumber: event.target.value,
-                          })
-                        }
+                        // value={inforOrder.phoneNumber}
+                        // onChange={(event) =>
+                        //   setInforOrder({
+                        //     ...inforOrder,
+                        //     phoneNumber: event.target.value,
+                        //   })
+                        // }
                         required
                       />
                     </div>
@@ -166,13 +167,13 @@ function drawersForCart({
                       type="phone"
                       placeholder="large size" 
                       prefix={<UserOutlined />} 
-                      value={inforOrder.email}
-                      onChange={(event) =>
-                        setInforOrder({
-                          ...inforOrder,
-                          email: event.target.value,
-                        })
-                      }
+                      // value={inforOrder.email}
+                      // onChange={(event) =>
+                      //   setInforOrder({
+                      //     ...inforOrder,
+                      //     email: event.target.value,
+                      //   })
+                      // }
                       required
                     />
                   </div>
@@ -184,13 +185,13 @@ function drawersForCart({
                       type="phone"
                       placeholder="large size" 
                       prefix={<UserOutlined />} 
-                      value={inforOrder.address}
-                      onChange={(event) =>
-                        setInforOrder({
-                          ...inforOrder,
-                          address: event.target.value,
-                        })
-                      }
+                      // value={inforOrder.address}
+                      // onChange={(event) =>
+                      //   setInforOrder({
+                      //     ...inforOrder,
+                      //     address: event.target.value,
+                      //   })
+                      // }
                       required
                     />
                   </div>

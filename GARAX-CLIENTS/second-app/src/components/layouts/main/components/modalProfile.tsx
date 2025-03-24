@@ -6,9 +6,8 @@ import MultiAppIcon from "@/assets/icons/multi-app-solid.svg?react";
 import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
 
-
-
 function modalProfile() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigate = useNavigate();
 
   // const [func, setFunc] = useState("")
@@ -29,24 +28,28 @@ function modalProfile() {
 
   const flyoutMenusData1 = [
     {
+      id: 1,
       icon: <AnaylistIcon />,
       tit: "Thông báo",
       desc: "1",
       func: navigateToProfile(),
     },
     {
+      id: 2,
       icon: <MultiAppIcon />,
       tit: "Tài khoản",
       desc: "2",
       func: navigateToProfile(),
     },
     {
+      id: 3,
       icon: <SecurityIcon />,
       tit: "Trung tâm trợ giúp",
       desc: "3",
       func: navigateToProfile(),
     },
     {
+      id: 4,
       icon: <CursorEffectIcon />,
       tit: "Đăng xuất",
       desc: "4",
@@ -56,14 +59,14 @@ function modalProfile() {
 
   const listCate1 = flyoutMenusData1.map((item) => (
     <div
-      key={item}
+      key={item.id}
       className="group relative flex gap-x-6 rounded-lg px-4 py-1 hover:bg-gray-50"
     >
       <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
         {item.icon}
       </div>
       <button
-        onClick={item.func}
+        // onClick={item.func}
         className="font-semibold text-white hover:text-gray-900"
       >
         {item.tit}

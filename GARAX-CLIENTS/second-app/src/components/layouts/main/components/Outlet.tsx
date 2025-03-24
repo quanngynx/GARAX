@@ -1,13 +1,13 @@
-import Listing from './components/Listing'
-import Reason from './components/Reason'
-import News from './components/News'
+// import Listing from './components/Listing'
+// import Reason from './components/Reason'
+// import News from './components/News'
 
 function Outlet(){
     return(
         <>
-        <Listing/>
+        {/* <Listing/>
         <Reason/>
-        <News/>
+        <News/> */}
         </>
     );
 }

@@ -83,16 +83,18 @@ function Header() {
   }, [getEmail])
 
   const [hideMenu, setHideMenu] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [hideProfile, setHideProfile] = useState(false);
+  // const [
+  //   hideProfile, 
+  //   setHideProfile
+  // ] = useState(false);
 
   const handleMenu = () => {
     setHideMenu((prev) => !prev);
   };
 
-  const handleProfile = () => {
-    setHideProfile((prev) => !prev);
-  };
+  // const handleProfile = () => {
+  //   setHideProfile((prev) => !prev);
+  // };
 
   /**
    * @description Đang chờ xử lý
@@ -207,7 +209,7 @@ function Header() {
           <div className="mt-4 md:mt-0 flex items-center">
             {getEmail ? (
               <button
-                onClick={handleProfile}
+                // onClick={handleProfile}
                 className="border border-gray-300 text-black hover:border-black rounded-full px-4 py-2 flex items-center text-sm sm:text-base"
               >
                 <i className="fas fa-user mr-2"></i>Hi, {getEmail}

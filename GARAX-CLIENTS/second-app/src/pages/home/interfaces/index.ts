@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 
 export interface IReviewFeedback {
+    id: number;
     tit: string
     img: string
     icon: ReactNode
