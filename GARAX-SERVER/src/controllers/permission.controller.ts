@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config();
 import { NextFunction, Request, Response } from 'express';
 
@@ -10,14 +12,14 @@ class PermissionController {
     new SuccessResponse({
       message: 'Get all product success!',
       metadata: await PerrmissionService.createAccessForAdmin(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   createAccessForUser = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get all product success!',
       metadata: await PerrmissionService.createAccessForUser(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 }
-export default new PermissionController()
+export default new PermissionController();

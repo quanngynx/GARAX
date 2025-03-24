@@ -1,5 +1,5 @@
-import express from 'express'
-export const router = express.Router()
+import express from 'express';
+export const router = express.Router();
 // import database from '../db/init.mysql.level0'
 import { routerV1 } from './v1/index';
 
@@ -36,5 +36,4 @@ import { routerV1 } from './v1/index';
 //   });
 // });
 
-router.use('/v1', routerV1)
-
+router.use('/v1', routerV1);

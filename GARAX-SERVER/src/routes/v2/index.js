@@ -1,5 +1,5 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
 // router.use('/v2',require('./access/index'))
 // router.use('/v2',require('./account/index'))
@@ -7,4 +7,4 @@ const router = express.Router()
 // router.use('/v2',require('./checkout/index'))
 // router.use('/v2',require('./products/index'))
 
-module.exports = router
+module.exports = router;

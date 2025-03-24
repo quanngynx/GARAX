@@ -1,5 +1,5 @@
-export  * as AccessController from './access.controller';
-export  * as AccountController from './account.controller';
+export * as AccessController from './access.controller';
+export * as AccountController from './account.controller';
 export * as AuthController from './auth.controller';
 export * as CartController from './cart.controller';
 export * as NewsController from './news.controller';

@@ -7,26 +7,20 @@ const register = (req: Request, res: Response, next: NextFunction) => {
     firstname: Joi.string().trim().alphanum().min(3).max(50).required(),
     lastname: Joi.string().trim().alphanum().min(3).max(50).required(),
     email: Joi.string().trim().email().required(),
-    password: Joi.string()
-      .trim()
-      .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
-      .required(),
+    password: Joi.string().trim().pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')).required()
   });
-  validatorHandler({req, res, next, schema});
+  validatorHandler({ req, res, next, schema });
 };
 
 const login = (req: Request, res: Response, next: NextFunction) => {
   const schema = Joi.object().keys({
     email: Joi.string().trim().email().required(),
-    password: Joi.string()
-      .trim()
-      .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
-      .required(),
+    password: Joi.string().trim().pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')).required()
   });
-  validatorHandler({req, res, next, schema});
+  validatorHandler({ req, res, next, schema });
 };
 
 module.exports = {
   register,
-  login,
+  login
 };

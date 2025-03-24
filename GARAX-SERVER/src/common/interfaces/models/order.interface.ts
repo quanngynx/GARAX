@@ -1,9 +1,8 @@
-import { PAYMENT_METHOD, PAYMENT_STATUS } from "@/common/constants";
-import { PrimaryKey } from "../primaryKey.interface";
-import { Audit } from "../audit.interface";
+import { PAYMENT_METHOD, PAYMENT_STATUS } from '@/common/constants';
+import { PrimaryKey } from '../primaryKey.interface';
+import { Audit } from '../audit.interface';
 
-export interface Order
-extends Audit, PrimaryKey{
+export interface Order extends Audit, PrimaryKey {
   fullname: string;
   phone: string;
   isReceiveAtStore: boolean;

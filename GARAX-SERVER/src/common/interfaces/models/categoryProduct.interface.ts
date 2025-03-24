@@ -1,8 +1,7 @@
-import { Audit } from "../audit.interface";
-import { PrimaryKey } from "../primaryKey.interface";
+import { Audit } from '../audit.interface';
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface CategoryProduct
-extends Audit, PrimaryKey {
+export interface CategoryProduct extends Audit, PrimaryKey {
   name: string;
   slug: string;
   desc: string;

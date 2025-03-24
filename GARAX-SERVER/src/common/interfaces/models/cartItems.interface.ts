@@ -1,8 +1,7 @@
-import { PrimaryKey } from "../primaryKey.interface";
-import { ProductVariantValues } from "./productVariantValues.interface";
+import { PrimaryKey } from '../primaryKey.interface';
+import { ProductVariantValues } from './productVariantValues.interface';
 
-export interface CartItems
-extends PrimaryKey {
+export interface CartItems extends PrimaryKey {
   qty: number;
   cartId: number;
   productVariantId: number;

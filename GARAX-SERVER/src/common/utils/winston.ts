@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import winston from 'winston';
 
@@ -18,26 +18,24 @@ const logger = winston.createLogger({
       format: 'YY-MM-DD hh:mm:ss.SSS A'
     }),
     align(),
-    printf( info => `[${info.timestamp}] ${info.level} ${info.message}`)
+    printf((info) => `[${info.timestamp}] ${info.level} ${info.message}`)
   ),
   defaultMeta: {
-    service: 'user-service',
+    service: 'user-service'
   },
   transports: [
-     new winston.transports.Console(),
+    new winston.transports.Console(),
     //  new winston.transports.File({ filename: 'error.log', level: 'error' }),
-     new winston.transports.File({dirname: 'logs', filename: 'combined.log'})
+    new winston.transports.File({ dirname: 'logs', filename: 'combined.log' })
   ]
-})
+});
 
 // quan ly logging theo size
 const maxsizeTransport = new winston.transports.File({
   level: 'info',
-  format: winston.format.printf(info => String(info.message)),
-  filename: ('testMaxsize.log'), // file's path
-  maxsize: 5242880, // 5MB
-})
+  format: winston.format.printf((info) => String(info.message)),
+  filename: 'testMaxsize.log', // file's path
+  maxsize: 5242880 // 5MB
+});
 
-export {
-  logger, maxsizeTransport
-}
+export { logger, maxsizeTransport };

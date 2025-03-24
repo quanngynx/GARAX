@@ -1,7 +1,6 @@
-import { PrimaryKey } from "../primaryKey.interface";
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface OtpCode
-extends PrimaryKey {
+export interface OtpCode extends PrimaryKey {
   otp: string;
   email: string;
   expiresAt: Date;

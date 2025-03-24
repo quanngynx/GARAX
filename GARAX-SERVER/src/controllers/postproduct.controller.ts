@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 import { db } from '@/models';
 
@@ -7,10 +8,10 @@ export default {
     try {
       const products = await db.Product.findAll({
         where: {
-          status: 'publish',  // Chỉ lấy sản phẩm đã được xuất bản
+          status: 'publish' // Chỉ lấy sản phẩm đã được xuất bản
           // isActive: true      // Chỉ lấy sản phẩm đang hoạt động
         },
-        include: ['productCategory', 'productDetail', 'productMedia', 'productFeedback', 'brand'],  // Bao gồm các liên kết nếu cần
+        include: ['productCategory', 'productDetail', 'productMedia', 'productFeedback', 'brand'] // Bao gồm các liên kết nếu cần
       });
 
       if (!products) {
@@ -22,5 +23,5 @@ export default {
       console.error(error);
       return res.status(500).json({ message: 'Lỗi hệ thống, vui lòng thử lại.' });
     }
-  },
+  }
 };

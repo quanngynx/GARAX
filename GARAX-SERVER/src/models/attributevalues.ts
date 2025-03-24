@@ -8,8 +8,7 @@ export type AttributeValuesCreationAttributes = Optional<
   'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
-export class AttributeValuesModel
-extends Model<AttributeValues, AttributeValuesCreationAttributes> {
+export class AttributeValuesModel extends Model<AttributeValues, AttributeValuesCreationAttributes> {
   public id!: number;
   public name!: string;
   // public variantKeyId: number;
@@ -29,40 +28,43 @@ extends Model<AttributeValues, AttributeValuesCreationAttributes> {
   static associate(models: Models) {
     this.hasMany(models.ProductAttributeValues, {
       foreignKey: 'attributeId',
-      as: 'product_attribute_values',
+      as: 'product_attribute_values'
     });
   }
 }
 
 export const attributeValuesModel = (sequelize: Sequelize) => {
-  AttributeValuesModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  AttributeValuesModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      name: {
+        type: DataTypes.STRING
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      updatedBy: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    name: {
-      type: DataTypes.STRING,
-    },
-    createdBy: {
-      type: DataTypes.STRING,
-    },
-    updatedBy: {
-      type: DataTypes.STRING,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'AttributeValues',
-    tableName: 'attribute_values',
-    timestamps: true
-  });
+    {
+      sequelize,
+      modelName: 'AttributeValues',
+      tableName: 'attribute_values',
+      timestamps: true
+    }
+  );
   return AttributeValuesModel;
 };

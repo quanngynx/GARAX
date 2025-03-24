@@ -1,16 +1,12 @@
 'use strict';
-import { CartItems, Models } from "@/common/interfaces";
-import { DataTypes, Sequelize, Model, Optional, Association } from "sequelize";
-import { ProductVariantValuesModel } from "./productvariantvalues";
-import { CartModel } from "./cart";
+import { CartItems, Models } from '@/common/interfaces';
+import { DataTypes, Sequelize, Model, Optional, Association } from 'sequelize';
+import { ProductVariantValuesModel } from './productvariantvalues';
+import { CartModel } from './cart';
 
-export type CartItemsCreationAttributes = Optional<
-  CartItems,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CartItemsCreationAttributes = Optional<CartItems, 'id' | 'createdAt' | 'updatedAt'>;
 
-export class CartItemsModel
-extends Model<CartItemsCreationAttributes> {
+export class CartItemsModel extends Model<CartItemsCreationAttributes> {
   id!: number;
   // qty!: number;
   // cartId!: string;
@@ -30,7 +26,7 @@ extends Model<CartItemsCreationAttributes> {
    */
   static associate(models: Models) {
     this.belongsTo(models.Cart, {
-      foreignKey: 'cartId',
+      foreignKey: 'cartId'
       // as: 'carts',
     });
 
@@ -46,34 +42,37 @@ extends Model<CartItemsCreationAttributes> {
 }
 
 export const cartItemsModel = (sequelize: Sequelize): typeof CartItemsModel => {
-  CartItemsModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  CartItemsModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      qty: {
+        type: DataTypes.INTEGER
+      },
+      cartId: {
+        type: DataTypes.INTEGER
+      },
+      productVariantId: {
+        type: DataTypes.INTEGER
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    qty: {
-      type: DataTypes.INTEGER
-    },
-    cartId: {
-      type: DataTypes.INTEGER
-    },
-    productVariantId: {
-      type: DataTypes.INTEGER
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'CartItems',
-    tableName: 'cart_items',
-    timestamps: true
-  });
+    {
+      sequelize,
+      modelName: 'CartItems',
+      tableName: 'cart_items',
+      timestamps: true
+    }
+  );
   return CartItemsModel;
 };

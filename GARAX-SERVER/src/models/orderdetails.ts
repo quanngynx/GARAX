@@ -10,8 +10,7 @@ export type OrderDetailsCreationAttributes = Optional<
   'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
-export class OrderDetailsModel
-extends Model<OrderDetails, OrderDetailsCreationAttributes> {
+export class OrderDetailsModel extends Model<OrderDetails, OrderDetailsCreationAttributes> {
   id!: number;
   // fullname!: string;
   // phone!: string;
@@ -45,53 +44,56 @@ extends Model<OrderDetails, OrderDetailsCreationAttributes> {
     // define association here
     this.belongsTo(models.Account, {
       foreignKey: 'userId',
-      as: 'account',
+      as: 'account'
     });
 
     this.belongsTo(models.ProductVariantValues, {
-      foreignKey: "productVariantId",
-      as: "product_variant_values",
+      foreignKey: 'productVariantId',
+      as: 'product_variant_values'
     });
   }
 }
 
 export const orderDetailsModel = (sequelize: Sequelize) => {
-  OrderDetailsModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  OrderDetailsModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      price: {
+        type: DataTypes.INTEGER
+      },
+      qty: {
+        type: DataTypes.INTEGER
+      },
+      orderId: {
+        type: DataTypes.INTEGER
+      },
+      productVariantId: {
+        type: DataTypes.INTEGER
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      updatedBy: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    price: {
-      type: DataTypes.INTEGER
-    },
-    qty: {
-      type: DataTypes.INTEGER
-    },
-    orderId: {
-      type: DataTypes.INTEGER
-    },
-    productVariantId: {
-      type: DataTypes.INTEGER
-    },
-    createdBy: {
-      type: DataTypes.STRING
-    },
-    updatedBy: {
-      type: DataTypes.STRING
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'OrderDetails',
-    tableName: 'order_details'
-  });
+    {
+      sequelize,
+      modelName: 'OrderDetails',
+      tableName: 'order_details'
+    }
+  );
   return OrderDetailsModel;
 };

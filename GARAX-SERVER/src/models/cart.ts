@@ -3,13 +3,9 @@ import { Sequelize, DataTypes, Model, Optional, Association } from 'sequelize';
 import { Cart, Models } from '@/common/interfaces';
 import { CartItemsModel } from './cartitems';
 
-export type CartCreationAttributes = Optional<
-  Cart,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CartCreationAttributes = Optional<Cart, 'id' | 'createdAt' | 'updatedAt'>;
 
-export class CartModel
-extends Model<CartCreationAttributes> {
+export class CartModel extends Model<CartCreationAttributes> {
   id!: number;
   // sessionId!: number;
   // userId!: string;
@@ -28,37 +24,40 @@ extends Model<CartCreationAttributes> {
   static associate(models: Models) {
     this.hasMany(models.CartItems, {
       foreignKey: 'cartId',
-      as: 'cart_items',
+      as: 'cart_items'
     });
   }
 }
 
 export const cartModel = (sequelize: Sequelize): typeof CartModel => {
-  CartModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  CartModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      sessionId: {
+        type: DataTypes.STRING
+      },
+      userId: {
+        type: DataTypes.INTEGER
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    sessionId: {
-      type: DataTypes.STRING
-    },
-    userId: {
-      type: DataTypes.INTEGER
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'Cart',
-    tableName: 'carts',
-    timestamps: true
-  });
+    {
+      sequelize,
+      modelName: 'Cart',
+      tableName: 'carts',
+      timestamps: true
+    }
+  );
   return CartModel;
 };

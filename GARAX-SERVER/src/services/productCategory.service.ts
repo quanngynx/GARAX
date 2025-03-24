@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 // import slugify from 'slugify';
 import { db } from '@/models';
 import { BadRequestError, InternalServerError } from '@/middlewares';
@@ -12,7 +12,7 @@ export class ProductCategoryService {
     isActive,
     imageId,
     parentId
-  } : AddNewCategoryRequest) {
+  }: AddNewCategoryRequest) {
     console.log('name::', name);
 
     // const isExist = await db.ProductCategory.findOne({ where: { title: title } });
@@ -28,11 +28,11 @@ export class ProductCategoryService {
         isParentCategory: isParentCategory || false,
         isActive: isActive || true,
         imageId: imageId,
-        parentId: parentId,
+        parentId: parentId
       });
 
       console.log('newProductCate:', newProductCate);
-      if(!newProductCate) throw new BadRequestError('error::create new Product')
+      if (!newProductCate) throw new BadRequestError('error::create new Product');
 
       return newProductCate;
     } catch (error) {
@@ -60,15 +60,14 @@ export class ProductCategoryService {
     //   locale: 'vi',
     // });
 
-    const newProductCate = await db.CategoryProduct.update({
-      name: name,
-    },
-    {
-      where: {
-
+    const newProductCate = await db.CategoryProduct.update(
+      {
+        name: name
+      },
+      {
+        where: {}
       }
-    }
-  );
+    );
 
     console.log('newProductCate:', newProductCate);
 
@@ -87,4 +86,3 @@ export class ProductCategoryService {
     return confirm ? await db.CategoryProduct.destroy({ truncate: true }) : null;
   }
 }
-

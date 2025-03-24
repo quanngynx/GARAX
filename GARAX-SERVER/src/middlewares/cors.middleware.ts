@@ -9,11 +9,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
  * @param {*} next - Express next function
  */
 export const corsMiddleware: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
-  const allowedOrigins = [
-    'http://localhost:3050',
-    `http://localhost:${_PORT_CLIENT}`,
-
-  ];
+  const allowedOrigins = ['http://localhost:3050', `http://localhost:${_PORT_CLIENT}`];
   const origin = req.headers.origin;
 
   if (origin && allowedOrigins.includes(origin)) {

@@ -1,9 +1,3 @@
-import { Account } from "@/common/interfaces";
+import { Account } from '@/common/interfaces';
 
-export interface RegisterRequest
-extends Pick<Account,
-| 'userName'
-| 'email'
-| 'password'
-| 'roleId'
-> {}
+export type RegisterRequest = Pick<Account, 'userName' | 'email' | 'password' | 'roleId'>;

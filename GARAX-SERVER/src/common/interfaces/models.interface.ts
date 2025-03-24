@@ -1,6 +1,35 @@
-import { VariantValuesModel, VariantKeysModel, VideoModel, AccountModel, AddressModel, ApiKeyModel, BrandModel, CartItemsModel, CartModel, CategoryProductModel, CurrencyModel, ImageModel, ItemPermissionModel, KeyTokenModel, NewsCategoryModel, NewsModel, OrderModel, OtpCodeModel, PaymentModel, PermissionModel, ProductModel, ProductVariantValuesModel, ServiceCategoryModel, ServiceModel, SpecificationDetailProductModel, SpecificationProductModel, AttributeValuesModel, ProductAttributeValuesModel } from "@/models";
-import { OrderDetailsModel } from "@/models/orderdetails";
-import { Sequelize } from "sequelize";
+import {
+  VariantValuesModel,
+  VariantKeysModel,
+  VideoModel,
+  AccountModel,
+  AddressModel,
+  ApiKeyModel,
+  BrandModel,
+  CartItemsModel,
+  CartModel,
+  CategoryProductModel,
+  CurrencyModel,
+  ImageModel,
+  ItemPermissionModel,
+  KeyTokenModel,
+  NewsCategoryModel,
+  NewsModel,
+  OrderModel,
+  OtpCodeModel,
+  PaymentModel,
+  PermissionModel,
+  ProductModel,
+  ProductVariantValuesModel,
+  ServiceCategoryModel,
+  ServiceModel,
+  SpecificationDetailProductModel,
+  SpecificationProductModel,
+  AttributeValuesModel,
+  ProductAttributeValuesModel
+} from '@/models';
+import { OrderDetailsModel } from '@/models/orderdetails';
+import { Sequelize } from 'sequelize';
 
 export interface Models {
   Account: typeof AccountModel;

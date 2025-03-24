@@ -6,4 +6,3 @@ cron.schedule('* * * * *', destroyOtp, {
   scheduled: true,
   timezone: timezone
 });
-

@@ -1,4 +1,4 @@
-import { PrototypesExpress } from "@/common/interfaces";
+import { PrototypesExpress } from '@/common/interfaces';
 import { ObjectSchema, ValidationError } from 'joi';
 
 interface ValidatorHandler extends PrototypesExpress {
@@ -16,7 +16,7 @@ export const validatorHandler: ({ req, res, next, schema }: ValidatorHandler) =>
     if (error) {
       res.status(400).json({
         status: 'error',
-        message: error.details.map((detail) => detail.message).join(', '),
+        message: error.details.map((detail) => detail.message).join(', ')
       });
       return;
     }
@@ -26,9 +26,9 @@ export const validatorHandler: ({ req, res, next, schema }: ValidatorHandler) =>
       res.status(400).json({
         status: 'error',
         message: error.message.split(', ')
-      })
+      });
     } else {
-      res.status(500).json({ status: 'error', message: 'Internal Server Error' })
+      res.status(500).json({ status: 'error', message: 'Internal Server Error' });
     }
   }
-}
+};

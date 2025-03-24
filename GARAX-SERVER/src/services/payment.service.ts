@@ -1,5 +1,6 @@
-"use strict";
-require('dotenv').config()
+'use strict';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+require('dotenv').config();
 import PayOS from '@payos/node';
 // import { Pointer } from 'pointer-wallet';
 // const pointer = new Pointer(process.env.POINTER_SECRET_KEY);
@@ -9,14 +10,8 @@ import PayOS from '@payos/node';
 
 // RESPONSE
 import { NotFoundError } from '../middlewares/error.response';
-import {
-  CheckoutRequestType,
-  WebhookType
-} from '@payos/node/lib/type';
-import {
-  CancelPaymentLinkPayOSRequest,
-  CreatePaymentLinkPayOSRequest
-} from '@/common/requests/payment';
+import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
+import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
 
 const payos = new PayOS(
   String(process.env.PAYOS_CLIENT_ID),
@@ -41,8 +36,8 @@ export class PaymentService {
     description,
     items = [],
     cancelUrl,
-    returnUrl,
-  } : CreatePaymentLinkPayOSRequest) {
+    returnUrl
+  }: CreatePaymentLinkPayOSRequest) {
     // push item to items
     const pushItems = items;
     // ==================
@@ -53,7 +48,7 @@ export class PaymentService {
       description: description,
       items: pushItems,
       cancelUrl: cancelUrl,
-      returnUrl: returnUrl,
+      returnUrl: returnUrl
     };
 
     try {
@@ -65,36 +60,29 @@ export class PaymentService {
     }
   }
 
-  static async getPaymentLinkInformationPayOS({ id } : { id: string }) {
+  static async getPaymentLinkInformationPayOS({ id }: { id: string }) {
     const paymentLinkInfo = await payos.getPaymentLinkInformation(id);
     console.log('paymentLinkInfo::', paymentLinkInfo);
     return paymentLinkInfo;
   }
 
-  static async cancelPaymentLinkPayOS({
-    orderCode,
-    cancellationReason
-  }: CancelPaymentLinkPayOSRequest) {
+  static async cancelPaymentLinkPayOS({ orderCode, cancellationReason }: CancelPaymentLinkPayOSRequest) {
     if (!orderCode) throw new NotFoundError(`NOT FOUND orderCode!`);
 
     try {
       if (cancellationReason !== '') {
-        const cancelledPaymentLinkInfo = await payos.cancelPaymentLink(
-          orderCode,
-          cancellationReason
-        );
+        const cancelledPaymentLinkInfo = await payos.cancelPaymentLink(orderCode, cancellationReason);
         return cancelledPaymentLinkInfo;
       }
 
-      const cancelledPaymentLinkInfoWithoutReason =
-        await payos.cancelPaymentLink(orderCode);
+      const cancelledPaymentLinkInfoWithoutReason = await payos.cancelPaymentLink(orderCode);
       return cancelledPaymentLinkInfoWithoutReason;
     } catch (error) {
       console.error('cancelPaymentLinkPayOS::', error);
     }
   }
 
-  static async confirmWebhook({ urlWebhook } : { urlWebhook: string }) {
+  static async confirmWebhook({ urlWebhook }: { urlWebhook: string }) {
     const confirmWebhookUrl = await payos.confirmWebhook(urlWebhook);
     console.log('confirmWebhookUrl::', confirmWebhookUrl);
 
@@ -127,7 +115,7 @@ export class PaymentService {
     // const webhookBody = req.body;
     const paymentData = payos.verifyPaymentWebhookData(webhookBody);
     console.log('paymentData::', paymentData);
-    return paymentData
+    return paymentData;
   }
 
   // static async createPaymentLinkPressPay({
@@ -186,9 +174,9 @@ export class PaymentService {
   // }
 
   /**
-    * @param transactionID: _id
-    * @returns { "url":"https://pointer.io.vn/payment-gateway?token={token}", "status":200 }
-    */
+   * @param transactionID: _id
+   * @returns { "url":"https://pointer.io.vn/payment-gateway?token={token}", "status":200 }
+   */
   // static async cancelPaymentPointerWallet(id: string) {
   //   const data = await pointer.cancelOrder(id);
   //   console.log(data);

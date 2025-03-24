@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { convert } from 'html-to-text';
 import { REGEX } from '../constants';
 
@@ -9,7 +10,7 @@ class StringUtils {
    * @returns String[]
    */
   static splitsAndTrim(str: string, delimiter: string) {
-    return str.split(delimiter).map(item => item.trim());
+    return str.split(delimiter).map((item) => item.trim());
   }
 
   /**
@@ -50,7 +51,8 @@ class StringUtils {
    * @returns String without accents
    */
   static removeAccents(str: string) {
-    return str.normalize('NFD')
+    return str
+      .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/đ/g, 'd')
       .replace(/Đ/g, 'D');
@@ -78,7 +80,7 @@ class StringUtils {
   }
 
   static isBlank(str: string) {
-    return (!str || /^\s*$/.test(str));
+    return !str || /^\s*$/.test(str);
   }
 
   static isBlankOrEmpty(str: any) {
@@ -100,17 +102,14 @@ class StringUtils {
   }
 
   static htmlToText(str: string) {
-    str = this.replaceAll(str, '&nbsp;', ' ')
-      .replace(/<img .*?>/g, '');
+    str = this.replaceAll(str, '&nbsp;', ' ').replace(/<img .*?>/g, '');
     return convert(str, {
-      selectors: [
-        { selector: 'a', options: { ignoreHref: true } }
-      ]
+      selectors: [{ selector: 'a', options: { ignoreHref: true } }]
     });
   }
 
   static keepLetterAndDigitOnly(str: string | any[]) {
-    ['\n', '\t', '\r', '\r\n'].forEach(item => {
+    ['\n', '\t', '\r', '\r\n'].forEach((item) => {
       str = StringUtils.replaceAll(str, item, ' ');
     });
 

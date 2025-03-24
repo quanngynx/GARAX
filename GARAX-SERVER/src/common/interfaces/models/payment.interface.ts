@@ -1,7 +1,6 @@
-import { PrimaryKey } from "../primaryKey.interface";
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface Payment
-extends PrimaryKey {
+export interface Payment extends PrimaryKey {
   amount: number;
   desc: string;
   orderId: number;

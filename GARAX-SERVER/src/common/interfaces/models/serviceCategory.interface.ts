@@ -1,7 +1,6 @@
-import { PrimaryKey } from "../primaryKey.interface";
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface ServiceCategory
-extends PrimaryKey {
+export interface ServiceCategory extends PrimaryKey {
   title: string;
   alias: string;
   createdAt: Date;

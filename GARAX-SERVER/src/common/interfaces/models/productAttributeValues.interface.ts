@@ -1,8 +1,7 @@
-import { Audit } from "../audit.interface";
-import { PrimaryKey } from "../primaryKey.interface";
+import { Audit } from '../audit.interface';
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface ProductAttributeValues
-extends Audit, PrimaryKey {
+export interface ProductAttributeValues extends Audit, PrimaryKey {
   value: string;
   productId: number;
   attributeId: number;

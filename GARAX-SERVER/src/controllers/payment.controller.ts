@@ -1,43 +1,44 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 
 import { SuccessResponse } from '@/middlewares';
-import { PaymentService } from "@/services";
+import { PaymentService } from '@/services';
 
 class PaymentController {
   createPaymentLinkPayOS = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await PaymentService.createPaymentLinkPayOS(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   getPaymentLinkInformationPayOS = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get payment link for information PAYOS success!',
       metadata: await PaymentService.getPaymentLinkInformationPayOS(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   cancelPaymentLinkPayOS = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Cancel payment PayOS success!',
       metadata: await PaymentService.cancelPaymentLinkPayOS(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   confirmWebhook = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Confirm webhook success!',
       metadata: await PaymentService.confirmWebhook(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   verifyPaymentWebhookData = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Verify payment webhook data success!',
       metadata: await PaymentService.verifyPaymentWebhookData(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   // createPaymentLinkPressPay = async (req: Request, res: Response, _next: NextFunction) => {
   //   new SuccessResponse({
@@ -86,4 +87,4 @@ class PaymentController {
   //   }).send(res)
   // }
 }
-export default new PaymentController()
+export default new PaymentController();

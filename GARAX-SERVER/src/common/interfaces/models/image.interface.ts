@@ -1,9 +1,8 @@
-import { IMAGE } from "../../constants";
+import { IMAGE } from '../../constants';
 import { Audit } from '../audit.interface';
-import { PrimaryKey } from "../primaryKey.interface";
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface Image
-extends Audit, PrimaryKey{
+export interface Image extends Audit, PrimaryKey {
   image: string;
   coverImage: string;
   alt: string;

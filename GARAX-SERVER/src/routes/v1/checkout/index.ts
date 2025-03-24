@@ -1,4 +1,4 @@
-import express from 'express'
+import express from 'express';
 export const routerCheckout = express.Router();
 // import { asyncHandler } from '@/middlewares'
 // import { ProductController } from '@/controllers'

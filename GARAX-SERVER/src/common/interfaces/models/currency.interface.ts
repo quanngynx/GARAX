@@ -1,7 +1,6 @@
-import { PrimaryKey } from "../primaryKey.interface";
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface Currency
-extends PrimaryKey {
+export interface Currency extends PrimaryKey {
   currency: string;
   desc: string;
   createdAt: Date;

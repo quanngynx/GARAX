@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
-import { db } from "@/models";
+import { db } from '@/models';
 
 export const findByEmail = async ({
   email,
@@ -13,7 +14,7 @@ export const findByEmail = async ({
   }
 }: {
   email: string;
-  select?: any
+  select?: any;
 }) => {
   return await db.Account.findOne({
     where: {
@@ -21,5 +22,5 @@ export const findByEmail = async ({
     },
     attributes: select,
     raw: true
-  })
-}
+  });
+};

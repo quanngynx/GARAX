@@ -1,14 +1,7 @@
-import { Cart, CartItems } from "@/common/interfaces";
+import { Cart, CartItems } from '@/common/interfaces';
 
-interface ProductVariantItems
-extends Pick<CartItems,
-| 'productVariantId'
-| 'qty'
-> {}
+type ProductVariantItems = Pick<CartItems, 'productVariantId' | 'qty'>;
 
-export interface AddToCartRequest
-extends Pick<Cart,
-| 'userId'
-> {
+export interface AddToCartRequest extends Pick<Cart, 'userId'> {
   productVariantItems: ProductVariantItems;
 }

@@ -1,6 +1,5 @@
-import { CancelPaymentLinkRequestType } from "@payos/node/lib/type";
+import { CancelPaymentLinkRequestType } from '@payos/node/lib/type';
 
-export interface CancelPaymentLinkPayOSRequest
-extends CancelPaymentLinkRequestType {
+export interface CancelPaymentLinkPayOSRequest extends CancelPaymentLinkRequestType {
   orderCode: number;
 }

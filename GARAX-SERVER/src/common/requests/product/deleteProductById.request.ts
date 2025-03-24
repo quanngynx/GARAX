@@ -1,4 +1,4 @@
-export interface DeleteProductByIdRequest  {
+export interface DeleteProductByIdRequest {
   productId: string;
   orderId: string;
 }

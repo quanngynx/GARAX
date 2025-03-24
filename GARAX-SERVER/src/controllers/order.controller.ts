@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
-import { OrdersService } from "../services/order.service";
+import { OrdersService } from '../services/order.service';
 
 import { SuccessResponse } from '../middlewares/success.response';
 
@@ -12,32 +13,32 @@ class OrdersController {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.getInforOrderByUser(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
   getListOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.getListOrderByUser(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
   updateOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.updateOrderByUser(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
   createOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.createOrderByUser(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
   cancelOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.cancelOrderByUser(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   /**
    * @LOQ-burh
@@ -47,28 +48,28 @@ class OrdersController {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.getAllOrders(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
   createOrderByAdminOrStaff = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.createOrderByAdminOrStaff(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
   updateOrderByAdminOrStaff = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.updateOrderByAdminOrStaff(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
   cancelOrderByAdminOrStaff = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Create payment link success (PayOS)!',
       metadata: await OrdersService.cancelOrderByAdminOrStaff(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 }
-export default new OrdersController()
+export default new OrdersController();
 
 // module.exports = {
 //   // Lấy giỏ hàng của người dùng

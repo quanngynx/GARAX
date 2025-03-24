@@ -4,13 +4,9 @@ import { Model, DataTypes, Sequelize, Optional, Association } from 'sequelize';
 import { ItemPermissionModel } from './itempermission';
 import { PermissionModel } from './permission';
 
-export type ApiKeyCreationAttributes = Optional<
-  ApiKey,
-  'id'
->;
+export type ApiKeyCreationAttributes = Optional<ApiKey, 'id'>;
 
-export class ApiKeyModel
-extends Model<ApiKeyCreationAttributes> {
+export class ApiKeyModel extends Model<ApiKeyCreationAttributes> {
   // id!: number;
   // key!: string;
   // isActive!: boolean;
@@ -31,41 +27,44 @@ extends Model<ApiKeyCreationAttributes> {
     // N ApiKeyModel -> 1 ItemPermission
     this.belongsTo(models.ItemPermission, {
       foreignKey: 'itemPermissionId',
-      as: 'itemPermission',
+      as: 'itemPermission'
     });
     // N ApiKeyModel -> 1 Permission
     this.belongsTo(models.Permission, {
       foreignKey: 'permissionId',
-      as: 'permission',
+      as: 'permission'
     });
   }
 }
 
 export const apiKeyModel = (sequelize: Sequelize) => {
-  ApiKeyModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  ApiKeyModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      key: {
+        type: DataTypes.STRING
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+      },
+      itemPermissionId: {
+        type: DataTypes.INTEGER
+      },
+      permissionId: {
+        type: DataTypes.INTEGER
+      }
     },
-    key: {
-      type: DataTypes.STRING,
-    },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    },
-    itemPermissionId: {
-      type: DataTypes.INTEGER,
-    },
-    permissionId: {
-      type: DataTypes.INTEGER,
+    {
+      sequelize,
+      modelName: 'ApiKey',
+      tableName: 'api_keys',
+      timestamps: true
     }
-  }, {
-    sequelize,
-    modelName: 'ApiKey',
-    tableName: 'api_keys',
-    timestamps: true
-  });
+  );
   return ApiKeyModel;
 };

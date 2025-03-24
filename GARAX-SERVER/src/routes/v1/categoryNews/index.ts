@@ -1,5 +1,5 @@
-import express from 'express'
-const router = express.Router()
+import express from 'express';
+const router = express.Router();
 // import AsyncHandler from '../../../middlewares/asyncHandler.middleware'
 // import ProductController from '../../../controllers/product.controller'
 
@@ -17,4 +17,4 @@ const router = express.Router()
 // router.get('/products/pub', AsyncHandler(ProductController.findAllProductPub))
 // router.get('/products', AsyncHandler(ProductController.findAllProduct))
 
-module.exports = router
+module.exports = router;

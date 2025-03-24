@@ -5,7 +5,7 @@ export const USERS = {
   GENDER: {
     MALE: 'male',
     FEMALE: 'female',
-    OTHER: 'other',
+    OTHER: 'other'
   },
   AVATAR: {
     DEFAULT_VALUE: 'https://drive.google.com/thumbnail?id=1bE9KJ_Mtw5hgCXGSbp4QUKkF7H5-bSMM&sz=w250'
@@ -13,20 +13,20 @@ export const USERS = {
   ROLE: {
     ADMIN: 'admin',
     STAFF: 'staff',
-    CUSTOMER: 'customer',
+    CUSTOMER: 'customer'
   },
   STATUS: {
     ACTIVE: 'active',
-    INACTIVE: 'inactive',
-  },
+    INACTIVE: 'inactive'
+  }
 };
 // export const ADDRESS = {
 //   HOME: 'home',
 //   OFFICE: 'office'
 // };
 
-export type GENDER = "male" | "female" | "other";
-export const GENDER_VALUES = ["male", "female", "other"] as const;
+export type GENDER = 'male' | 'female' | 'other';
+export const GENDER_VALUES = ['male', 'female', 'other'] as const;
 
 export type ADDRESS = 'home' | 'office';
 export const ADDRESS_VALUES = ['home', 'office'] as const;
@@ -45,4 +45,3 @@ export const PRODUCT_STATUS_VALUES = ['publish', 'draft', 'all'] as const;
 
 export type PRODUCT_TAG = 'test' | 'abc' | 'all';
 export const PRODUCT_TAG_VALUES = ['test', 'abc', 'all'] as const;
-

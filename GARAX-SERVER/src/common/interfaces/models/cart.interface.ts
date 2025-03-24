@@ -1,8 +1,7 @@
-import { PrimaryKey } from "../primaryKey.interface";
-import { CartItems } from "./cartItems.interface";
+import { PrimaryKey } from '../primaryKey.interface';
+import { CartItems } from './cartItems.interface';
 
-export interface Cart
-extends PrimaryKey {
+export interface Cart extends PrimaryKey {
   sessionId: string;
   userId: number;
   createdAt: Date;

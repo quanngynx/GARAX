@@ -13,9 +13,11 @@ export const getUniqueId = (): string => uuidv7(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b
  *
  * @returns unique id version 7 - better version 4 -
  */
-export const getUniqueIdOptions = (length : number): string => {
+export const getUniqueIdOptions = (length: number): string => {
   seq = (seq + 1) & MAX_SEQ;
   return uuidv7({
-    seq: seq,
-  }).replace(/-/g, "").substring(0, length);
+    seq: seq
+  })
+    .replace(/-/g, '')
+    .substring(0, length);
 };

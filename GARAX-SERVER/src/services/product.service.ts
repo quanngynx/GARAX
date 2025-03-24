@@ -1,43 +1,50 @@
-"use strict";
-import { default as slugify } from "slugify";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-empty-pattern */
+'use strict';
+import { default as slugify } from 'slugify';
 
-import {
-  AddManyNewProductRequest,
-  AddNewProductRequest,
-  GetAllBestSellerProducts,
-} from "@/common/requests/product";
+import { AddManyNewProductRequest, AddNewProductRequest, GetAllBestSellerProducts } from '@/common/requests/product';
 
-import { db } from "@/models";
-import {
-  BadRequestError,
-  NotFoundError
-} from '@/middlewares';
-import { getProductById } from "@/common/repositories";
-import { generateSKU } from "@/common/utils";
+import { db } from '@/models';
+import { BadRequestError, NotFoundError } from '@/middlewares';
+import { getProductById } from '@/common/repositories';
+import { generateSKU } from '@/common/utils';
 
 export class ProductService {
   static async addNewProduct({
-    name, desc,
-    views, tags, manufacturingDate,
-    minPrice, maxPrice, rate,
-    totalRate, totalSold, categoryId,
-    subCategoryId, sub2CategoryId, sub3CategoryId, // props option
-    videoId, brandId, status,
-    createdBy, updatedBy = '',
+    name,
+    desc,
+    views,
+    tags,
+    manufacturingDate,
+    minPrice,
+    maxPrice,
+    rate,
+    totalRate,
+    totalSold,
+    categoryId,
+    subCategoryId,
+    sub2CategoryId,
+    sub3CategoryId, // props option
+    videoId,
+    brandId,
+    status,
+    createdBy,
+    updatedBy = '',
     attributes = [],
     variants = [],
     variantValues = []
-  } : AddNewProductRequest) {
+  }: AddNewProductRequest) {
     /**
      * 1. Check categoryId & brandId?
      */
     const isCategory = await db.CategoryProduct.findByPk(categoryId);
-    if(!isCategory) {
+    if (!isCategory) {
       throw new NotFoundError(`Category id:${categoryId} không tồn tại!`);
     }
 
     const isBrand = await db.Brand.findByPk(brandId);
-    if(!isBrand) {
+    if (!isBrand) {
       throw new NotFoundError(`Brand id:${brandId} không tồn tại!`);
     }
 
@@ -53,9 +60,9 @@ export class ProductService {
       where: {
         name: name
       }
-    })
-    if(isProduct) {
-      throw new BadRequestError(`Sản phẩm::${name} đã tồn tại!`)
+    });
+    if (isProduct) {
+      throw new BadRequestError(`Sản phẩm::${name} đã tồn tại!`);
     }
 
     /**
@@ -64,36 +71,39 @@ export class ProductService {
      */
     const calAvgRate = rate;
     const countRate = totalRate;
-    const newProduct = await db.Product.create({
-      name: name,
-      slug: slugify(name, { lower: true, trim: true }),
-      desc: desc,
-      views: views,
-      tags: tags,
-      manufacturingDate: manufacturingDate,
-      minPrice: minPrice,
-      maxPrice: maxPrice,
-      rate: calAvgRate,
-      totalRate: countRate,
-      totalSold: totalSold,
-      categoryId: categoryId,
-      subCategoryId: subCategoryId,
-      sub2CategoryId: sub2CategoryId,
-      sub3CategoryId: sub3CategoryId,
-      videoId: videoId,
-      brandId: brandId,
-      status: status,
-      createdBy: createdBy,
-      updatedBy: updatedBy,
-    },  {
-      transaction
-    });
+    const newProduct = await db.Product.create(
+      {
+        name: name,
+        slug: slugify(name, { lower: true, trim: true }),
+        desc: desc,
+        views: views,
+        tags: tags,
+        manufacturingDate: manufacturingDate,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        rate: calAvgRate,
+        totalRate: countRate,
+        totalSold: totalSold,
+        categoryId: categoryId,
+        subCategoryId: subCategoryId,
+        sub2CategoryId: sub2CategoryId,
+        sub3CategoryId: sub3CategoryId,
+        videoId: videoId,
+        brandId: brandId,
+        status: status,
+        createdBy: createdBy,
+        updatedBy: updatedBy
+      },
+      {
+        transaction
+      }
+    );
 
     /**
      * 5. Handle attribute
      */
     const createAttributes = [];
-    for(const attributeData of attributes) {
+    for (const attributeData of attributes) {
       const [attribute] = await db.AttributeValues.findOrCreate({
         where: {
           name: attributeData.key
@@ -101,24 +111,27 @@ export class ProductService {
         transaction
       });
 
-      await db.ProductAttributeValues.create({
-        productId: newProduct.id,
-        attributeId: attribute.id,
-        value: attributeData.value,
-      }, {
-        transaction
-      });
+      await db.ProductAttributeValues.create(
+        {
+          productId: newProduct.id,
+          attributeId: attribute.id,
+          value: attributeData.value
+        },
+        {
+          transaction
+        }
+      );
 
       createAttributes.push({
         name: attribute.name,
         value: attributeData.value
       });
-    };
+    }
 
     /**
      * 6. Handle variants
      */
-    for(const variant of variants) {
+    for (const variant of variants) {
       const [variantEntry] = await db.VariantKeys.findOrCreate({
         where: { key: variant.key },
         transaction
@@ -126,14 +139,14 @@ export class ProductService {
 
       const variantKeyId = variantEntry.dataValues?.id || variantEntry.id;
 
-      for(const value of variant.values) {
+      for (const value of variant.values) {
         await db.VariantValues.findOrCreate({
           where: {
             value,
             variantKeyId: variantKeyId
           },
           transaction
-        })
+        });
       }
     }
 
@@ -142,11 +155,11 @@ export class ProductService {
      */
     // console.log('variantData.variantCombination:', variantValues)
     const createdVariantValues = [];
-    for(const variantData of variantValues) {
+    for (const variantData of variantValues) {
       const variantValueIds = [];
 
       // console.log('variantData.variantCombination:', variantData.variantCombination)
-      for(const value of variantData.variantCombination) {
+      for (const value of variantData.variantCombination) {
         const variantValue = await db.VariantValues.findOne({
           where: {
             value
@@ -154,7 +167,9 @@ export class ProductService {
           transaction
         });
 
-        if(variantValue) { variantValueIds.push(variantValue.id) }
+        if (variantValue) {
+          variantValueIds.push(variantValue.id);
+        }
       }
 
       // Create SKU: 'id1-id2-id3-...'
@@ -165,19 +180,22 @@ export class ProductService {
         variants
       });
 
-      const createdVariant = await db.ProductVariantValues.create({
-        productId: newProduct.id,
-        price: variantData.price,
-        oldPrice: variantData.oldPrice,
-        stock: variantData.stock || 0,
-        sold: 0,
-        sku: sku,
-        manufacturingDate: manufacturingDate,
-        productVariantId: 1,
-        addOverDetailSpecsId: 1
-      }, {
-        transaction
-      });
+      const createdVariant = await db.ProductVariantValues.create(
+        {
+          productId: newProduct.id,
+          price: variantData.price,
+          oldPrice: variantData.oldPrice,
+          stock: variantData.stock || 0,
+          sold: 0,
+          sku: sku,
+          manufacturingDate: manufacturingDate,
+          productVariantId: 1,
+          addOverDetailSpecsId: 1
+        },
+        {
+          transaction
+        }
+      );
 
       createdVariantValues.push({
         sku: sku,
@@ -189,39 +207,33 @@ export class ProductService {
 
     await transaction.commit();
 
-    if(!newProduct) throw new BadRequestError('error::create new product');
+    if (!newProduct) throw new BadRequestError('error::create new product');
 
     return {
       ...newProduct.get({ plain: true }),
       attributes: createAttributes,
-      variants: variants.map(variant => ({
+      variants: variants.map((variant) => ({
         name: variant.key,
         values: variant.values
       })),
       variantValues: createdVariantValues
-    }
+    };
   }
 
-  static async addManyNewProduct({} : AddManyNewProductRequest) {
+  static async addManyNewProduct({}: AddManyNewProductRequest) {}
 
-  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static async addVariantProduct(productId: number, _data: any) {
+    const getProductFromId = await getProductById(productId);
 
-  static async addVariantProduct(
-    productId: number,
-    _data: any
-  ) {
-    const getProductFromId = await getProductById(productId)
-
-    if(!getProductFromId) {
-      throw new NotFoundError('Not found product from id!')
+    if (!getProductFromId) {
+      throw new NotFoundError('Not found product from id!');
     }
 
     // Create variant from id
   }
 
-  static async getAllProducts(
-    _options = {}
-  ) {
+  static async getAllProducts(_options = {}) {
     // const {
     //   fields,
     //   limit = 10,
@@ -257,34 +269,32 @@ export class ProductService {
     //   where: filters
     // });
 
-  //   const allProducts = await db.Product.findAll({
-  //     where: filters,
-  //     attributes: fields,
-  //     include: populateOpts,
-  //     offset: (page - 1) * limit,
-  //     // order: sortOtp,
-  //     limit: limit,
-  //     raw: true,
-  // });
+    //   const allProducts = await db.Product.findAll({
+    //     where: filters,
+    //     attributes: fields,
+    //     include: populateOpts,
+    //     offset: (page - 1) * limit,
+    //     // order: sortOtp,
+    //     limit: limit,
+    //     raw: true,
+    // });
 
     const allPro = await db.Product.findAll({});
 
-    if(!allPro) throw new NotFoundError('error::find all Product')
+    if (!allPro) throw new NotFoundError('error::find all Product');
 
-    return allPro
+    return allPro;
   }
 
   static async getAllProductsWithoutOptions() {
     const allPro = await db.Product.findAll({});
 
-    if(!allPro) throw new NotFoundError('error::find all Product')
+    if (!allPro) throw new NotFoundError('error::find all Product');
 
-    return allPro
+    return allPro;
   }
 
-  static async getAllBestSellerProducts(
-    _options: GetAllBestSellerProducts = {}
-  ) {
+  static async getAllBestSellerProducts(_options: GetAllBestSellerProducts = {}) {
     // const {
     //   fields,
     //   limit = 10,
@@ -301,13 +311,13 @@ export class ProductService {
 
     return {
       result: 'See you later'
-    }
+    };
   }
 
   static async getViewestProduct(limit: number) {
     const topViewedProducts = await db.Product.findAll({
       order: [['views', 'DESC']],
-      limit: limit,
+      limit: limit
     });
 
     return {
@@ -319,20 +329,18 @@ export class ProductService {
   }
 
   static async updateProductById(id: number, {}) {
-    return id
+    return id;
   }
 
   static async updatePartProductById(id: number, {}) {
-    return id
+    return id;
   }
 
   static async removeProductById(id: number) {
-    return id
+    return id;
   }
 
-  static async removeAllProduct() {
-
-  }
+  static async removeAllProduct() {}
 
   static async deleteProductById(id: number) {
     /**
@@ -377,23 +385,14 @@ export class ProductService {
     //   }]
     // });
 
-
-    return id
+    return id;
   }
 
-  static async deleteAllProduct() {
+  static async deleteAllProduct() {}
 
-  }
+  static async findAllProductPublishByQuery() {}
 
-  static async findAllProductPublishByQuery() {
+  static async findAllProductUnpublishByQuery() {}
 
-  }
-
-  static async findAllProductUnpublishByQuery() {
-
-  }
-
-  static async findAllProductByQuery() {
-
-  }
+  static async findAllProductByQuery() {}
 }

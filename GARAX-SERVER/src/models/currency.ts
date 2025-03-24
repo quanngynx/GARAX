@@ -1,21 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use strict';
 import { Currency, Models } from '@/common/interfaces';
 import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
-export type CurrencyCreationAttributes = Optional<
-  Currency,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CurrencyCreationAttributes = Optional<Currency, 'id' | 'createdAt' | 'updatedAt'>;
 
-export class CurrencyModel
-extends Model<CurrencyCreationAttributes> {
+export class CurrencyModel extends Model<CurrencyCreationAttributes> {
   // id!: number;
   // currency!: string;
   // desc!: string;
   // createdAt!: Date;
   // updatedAt!: Date;
 
-  public static associations: {};
+  // public static associations: {};
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -27,31 +24,34 @@ extends Model<CurrencyCreationAttributes> {
 }
 
 export const currencyModel = (sequelize: Sequelize) => {
-  CurrencyModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  CurrencyModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      currency: {
+        type: DataTypes.STRING
+      },
+      desc: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    currency: {
-      type: DataTypes.STRING
-    },
-    desc: {
-      type: DataTypes.STRING
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'Currency',
-    tableName: 'currencies',
-    timestamps: true
-  });
+    {
+      sequelize,
+      modelName: 'Currency',
+      tableName: 'currencies',
+      timestamps: true
+    }
+  );
   return CurrencyModel;
 };

@@ -1,8 +1,5 @@
-"use strict";
-
+'use strict';
 
 // import { BadRequestError } from '@/middlewares';
 
-export class StatisticsService {
-
-}
+export class StatisticsService {}

@@ -1,4 +1,4 @@
-import { AddNewProductRequest } from "./addNewProduct.request";
+import { AddNewProductRequest } from './addNewProduct.request';
 
 export interface AddManyNewProductRequest {
   manyProduct: AddNewProductRequest[];

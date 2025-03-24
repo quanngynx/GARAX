@@ -1,2 +1,1 @@
-export interface GetViewestProductRequest {
-}
+export type GetViewestProductRequest = object;

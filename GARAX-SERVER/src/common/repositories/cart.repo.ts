@@ -1,9 +1,9 @@
-import { db } from "@/models";
+import { db } from '@/models';
 
 export const createCart = async (userId: number) => {
   const createCart = await db.Cart.create({
     userId: userId,
-    sessionId: '',
+    sessionId: ''
     // productId: product.productId,
     // quantity: product.quantity || 1
   });
@@ -14,7 +14,7 @@ export const createCart = async (userId: number) => {
   //   productVariantId: 0
   // });
   return {
-    newCart: createCart,
+    newCart: createCart
     // newCartItems: createCartItems
-  }
-}
+  };
+};

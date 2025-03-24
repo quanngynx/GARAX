@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config();
 import { NextFunction, Request, Response } from 'express';
 // import bcrypt from 'bcryptjs';
@@ -13,28 +16,24 @@ import { KeyTokenModel } from '@/models';
 
 export interface HandleRefreshTokenProps extends Request {
   refreshToken: string;
-  user: any
-  keyStore: KeyTokenModel
+  user: any;
+  keyStore: KeyTokenModel;
 }
 
 class AccessController {
-  handleRefreshToken = async (
-    req: HandleRefreshTokenProps,
-    res: Response,
-    _next: NextFunction
-  ) => {
+  handleRefreshToken = async (req: HandleRefreshTokenProps, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get token success!',
       metadata: await AccessService.handleRefreshToken({
         keyStore: req.keyStore,
         user: req.user,
-        refreshToken: req.refreshToken,
-      }),
+        refreshToken: req.refreshToken
+      })
     }).send(res);
   };
 }
 
-export default new AccessController()
+export default new AccessController();
 
 // const transporter = nodemailer.createTransport({
 //   host: 'smtp.gmail.com',
@@ -271,4 +270,3 @@ export default new AccessController()
 //     return res.status(500).json({ error: 'Internal server error' });
 //   }
 // };
-

@@ -1,7 +1,6 @@
-import { PrimaryKey } from "../primaryKey.interface";
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface SpecificationDetailProduct
-extends PrimaryKey {
+export interface SpecificationDetailProduct extends PrimaryKey {
   groupName: string;
   groupKey: string;
   groupValue: string;

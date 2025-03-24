@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 import { RequestBody, RequestParams, RequestQuery, ResponseBody } from '@/common/interfaces';
 import { SuccessResponse } from '@/middlewares';
@@ -12,9 +13,9 @@ class AccountController {
     const { query } = req;
     new SuccessResponse({
       message: 'Get account success!',
-      metadata: await AccountService.getInfoUserByEmail(query),
+      metadata: await AccountService.getInfoUserByEmail(query)
     }).send(res);
   };
 }
 
-export default new AccountController()
+export default new AccountController();

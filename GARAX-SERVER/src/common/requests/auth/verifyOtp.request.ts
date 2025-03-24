@@ -1,7 +1,3 @@
-import { OtpCode } from "@/common/interfaces";
+import { OtpCode } from '@/common/interfaces';
 
-export interface VerifyOtpRequest
-extends Pick<OtpCode,
-| 'email'
-| 'otp'
->{}
+export type VerifyOtpRequest = Pick<OtpCode, 'email' | 'otp'>;

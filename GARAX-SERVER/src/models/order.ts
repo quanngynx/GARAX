@@ -5,13 +5,9 @@ import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { CartModel } from './cart';
 import { OrderDetailsModel } from './orderdetails';
 
-export type OrderCreationAttributes = Optional<
-  Order,
-  'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
->;
+export type OrderCreationAttributes = Optional<Order, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'>;
 
-export class OrderModel
-extends Model<Order, OrderCreationAttributes> {
+export class OrderModel extends Model<Order, OrderCreationAttributes> {
   id!: number;
   // fullname!: string;
   // phone!: string;
@@ -44,72 +40,75 @@ extends Model<Order, OrderCreationAttributes> {
     // define association here
     this.belongsTo(models.Account, {
       foreignKey: 'userId',
-      as: 'account',
+      as: 'account'
     });
   }
 }
 
 export const orderModel = (sequelize: Sequelize) => {
-  OrderModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  OrderModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      fullname: {
+        type: DataTypes.STRING
+      },
+      phone: {
+        type: DataTypes.STRING
+      },
+      isReceiveAtStore: {
+        type: DataTypes.BOOLEAN
+      },
+      paymentMethod: {
+        type: DataTypes.ENUM(...PAYMENT_METHOD_VALUES)
+      },
+      paymentStatus: {
+        type: DataTypes.ENUM(...PAYMENT_STATUS_VALUES)
+      },
+      subTotalFromProd: {
+        type: DataTypes.FLOAT
+      },
+      shippingFee: {
+        type: DataTypes.FLOAT
+      },
+      discount: {
+        type: DataTypes.FLOAT
+      },
+      total: {
+        type: DataTypes.FLOAT
+      },
+      userId: {
+        type: DataTypes.INTEGER
+      },
+      addressId: {
+        type: DataTypes.INTEGER
+      },
+      cartId: {
+        type: DataTypes.INTEGER
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      updatedBy: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    fullname: {
-      type: DataTypes.STRING
-    },
-    phone: {
-      type: DataTypes.STRING
-    },
-    isReceiveAtStore: {
-      type: DataTypes.BOOLEAN
-    },
-    paymentMethod: {
-      type: DataTypes.ENUM(...PAYMENT_METHOD_VALUES)
-    },
-    paymentStatus: {
-      type: DataTypes.ENUM(...PAYMENT_STATUS_VALUES)
-    },
-    subTotalFromProd: {
-      type: DataTypes.FLOAT
-    },
-    shippingFee: {
-      type: DataTypes.FLOAT
-    },
-    discount: {
-      type: DataTypes.FLOAT
-    },
-    total: {
-      type: DataTypes.FLOAT
-    },
-    userId: {
-      type: DataTypes.INTEGER
-    },
-    addressId: {
-      type: DataTypes.INTEGER
-    },
-    cartId: {
-      type: DataTypes.INTEGER
-    },
-    createdBy: {
-      type: DataTypes.STRING
-    },
-    updatedBy: {
-      type: DataTypes.STRING
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'Order',
-    tableName: 'orders'
-  });
+    {
+      sequelize,
+      modelName: 'Order',
+      tableName: 'orders'
+    }
+  );
   return OrderModel;
 };

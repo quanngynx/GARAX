@@ -1,6 +1,9 @@
-'use strict'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use strict';
 
-require("dotenv").config()
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+require('dotenv').config();
 import express, { Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import compression from 'compression';
@@ -26,24 +29,26 @@ connect();
 
 declare module 'express-serve-static-core' {
   interface Response {
-      error: (code: number, message: string) => Response;
-      success: (code: number, message: string, result: any) => Response;
+    error: (code: number, message: string) => Response;
+    success: (code: number, message: string, result: any) => Response;
   }
 }
 const app = express();
-app.use(corsMiddleware)
-app.use(morgan("dev"))
-app.use(helmet())
-app.use(compression())
-app.use(express.json())
+app.use(corsMiddleware);
+app.use(morgan('dev'));
+app.use(helmet());
+app.use(compression());
+app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({
+app.use(
+  express.urlencoded({
     extended: true
-}))
+  })
+);
 // checkOverLoad()
 
 //#region Init routes
-app.use('', router)
+app.use('', router);
 
 //#region hanlding errors
 // app.use((next: NextFunction) => {
@@ -52,35 +57,22 @@ app.use('', router)
 //   next(error)
 // })
 
-app.use((
-  err: ErrorStatus,
-  _req: Request,
-  res: Response,
-  _next: NextFunction
-) => {
+app.use((err: ErrorStatus, _req: Request, res: Response, _next: NextFunction) => {
   const statusCode = err.status || 500;
   res.status(statusCode).json({
     errors: err.name,
     status: statusCode,
     message: err.message || 'Internal Server Error',
-    stack: process.env.NODE_ENV === 'development' ? err.stack : '',
+    stack: process.env.NODE_ENV === 'development' ? err.stack : ''
   });
-})
+});
 
-app.get('/', (
-  _req: Request,
-  res: Response,
-  _next: NextFunction
-) => {
-  res.send('Hello World!')
-})
+app.get('/', (_req: Request, res: Response, _next: NextFunction) => {
+  res.send('Hello World!');
+});
 
-app.get('/ping', (
-  _req: Request,
-  res: Response,
-  _next: NextFunction
-) => {
-  res.send('pong 🏓')
-})
+app.get('/ping', (_req: Request, res: Response, _next: NextFunction) => {
+  res.send('pong 🏓');
+});
 
-export { app }
+export { app };

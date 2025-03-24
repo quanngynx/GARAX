@@ -1,36 +1,36 @@
 {
-  "compilerOptions": {
-    // "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2023",
-    // "target": "es5",
-    // "module": "commonjs",
-    "allowJs": true,
-    "useDefineForClassFields": true,
-    "module": "NodeNext",
-    "skipLibCheck": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "esModuleInterop": true,
+	"compilerOptions": {
+		// "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+		"target": "ES2023",
+		// "target": "es5",
+		// "module": "commonjs",
+		"allowJs": true,
+		"useDefineForClassFields": true,
+		"module": "NodeNext",
+		"skipLibCheck": true,
+		"outDir": "dist",
+		"rootDir": "src",
+		"esModuleInterop": true,
 
-    /* Bundler mode */
-    "moduleResolution": "NodeNext",
-    "isolatedModules": true,
+		/* Bundler mode */
+		"moduleResolution": "NodeNext",
+		"isolatedModules": true,
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedSideEffectImports": true,
 
-    /* Aliases with default import */
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"]
-      // "components/*": ["./components/*"]
-    },
-    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
-  },
-  "files": ["src/type.d.ts"],
-  "include": ["src/**/*"]
+		/* Aliases with default import */
+		"baseUrl": "./src",
+		"paths": {
+			"@/*": ["./*"]
+			// "components/*": ["./components/*"]
+		},
+		"forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+	},
+	"files": ["src/type.d.ts"],
+	"include": ["src/**/*"]
 }

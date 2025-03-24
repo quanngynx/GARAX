@@ -1,9 +1,5 @@
-import { Account } from "@/common/interfaces";
+import { Account } from '@/common/interfaces';
 
-export interface LoginRequest
-extends Pick<Account,
-| 'email'
-| 'password'
->{
+export interface LoginRequest extends Pick<Account, 'email' | 'password'> {
   refreshToken: string;
 }

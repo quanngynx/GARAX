@@ -1,11 +1,6 @@
-import { CategoryProduct } from "@/common/interfaces";
+import { CategoryProduct } from '@/common/interfaces';
 
-export interface AddNewCategoryRequest
-extends Pick<CategoryProduct,
-| 'name'
-| 'desc'
-| 'isParentCategory'
-| 'isActive'
-| 'imageId'
-| 'parentId'
-> {}
+export type AddNewCategoryRequest = Pick<
+  CategoryProduct,
+  'name' | 'desc' | 'isParentCategory' | 'isActive' | 'imageId' | 'parentId'
+>;

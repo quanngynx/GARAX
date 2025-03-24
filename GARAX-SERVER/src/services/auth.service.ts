@@ -1,4 +1,5 @@
-"use strict";
+'use strict';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config();
 import crypto from 'node:crypto';
 import bcrypt from 'bcrypt';
@@ -15,7 +16,7 @@ import { OtpService } from './otp.service';
 // import { transporter } from '../provider/nodemailer';
 import { getInfoData } from '@/common/utils';
 import {
-  createTokenPair,
+  createTokenPair
   // getAccessToken,
   // getUserProfile,
   // sendOtpByNodemailer
@@ -26,12 +27,7 @@ import { KeyStoreRequest, LoginRequest, RegisterRequest, VerifyOtpRequest } from
 import { error } from 'node:console';
 
 export class AuthJWTService {
-  static register = async ({
-    userName,
-    email,
-    password,
-    roleId = 1
-  }: RegisterRequest) => {
+  static register = async ({ userName, email, password, roleId = 1 }: RegisterRequest) => {
     try {
       const modelUser = await db.Account.findOne({ where: { email: email } });
 
@@ -70,7 +66,7 @@ export class AuthJWTService {
         emptyPassword: false,
         googleId: '',
         pointerId: '',
-        roleId: roleId,
+        roleId: roleId
       });
 
       if (newUser) {
@@ -84,72 +80,65 @@ export class AuthJWTService {
         const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
           modulusLength: 2048,
           publicKeyEncoding: { type: 'pkcs1', format: 'pem' },
-          privateKeyEncoding: { type: 'pkcs1', format: 'pem' },
+          privateKeyEncoding: { type: 'pkcs1', format: 'pem' }
         });
         // console.log("generateKeyPairSync success!::", { privateKey, publicKey });
 
         const publicKeyString = await KeyTokenService.createKeyToken({
           userId: newUser.id,
           publicKey,
-          privateKey,
+          privateKey
         });
         if (!publicKeyString) {
           return {
             code: 500,
-            message: 'publicKeyString error!:: ' + error,
+            message: 'publicKeyString error!:: ' + error
           };
         }
         // console.log(`publicKeyString::`, publicKeyString);
 
         const publicKeyObject = crypto.createPublicKey(publicKeyString);
         // console.log(`publicKeyObject::`, publicKeyObject);
-        const publicKeyToString = publicKeyObject.export({ type: 'spki', format: 'pem' });
+        const publicKeyToString = publicKeyObject.export({
+          type: 'spki',
+          format: 'pem'
+        });
 
-        const tokens = await createTokenPair(
-          { userId: newUser.id, email },
-          publicKeyToString,
-          privateKey
-        );
+        const tokens = await createTokenPair({ userId: newUser.id, email }, publicKeyToString, privateKey);
         // console.log(`created tokens success!::`, tokens);
         return {
           code: 201,
           metadata: {
             user: getInfoData({
               fields: ['id', 'userName', 'email'],
-              object: newUser,
+              object: newUser
             }),
-            tokens,
-          },
+            tokens
+          }
         };
       }
       return {
         code: 200,
-        metadata: null,
+        metadata: null
       };
     } catch (error) {
       return {
         code: '500',
         message: error,
-        status: "Khong xac dinh",
+        status: 'Khong xac dinh'
       };
     }
   };
 
   static login = async ({
     email,
-    password,
+    password
     // refreshToken = ''
   }: LoginRequest) => {
-    const selectedColumns: string | string[] = [
-      'email',
-      'password',
-      'userName',
-      'phone',
-      'roleId'
-    ];
+    const selectedColumns: string | string[] = ['email', 'password', 'userName', 'phone', 'roleId'];
     const foundUser = await AccountService.findByEmail({
       email,
-      select: selectedColumns.length ? selectedColumns : ['id'],
+      select: selectedColumns.length ? selectedColumns : ['id']
     });
     if (!foundUser) throw new BadRequestError('User not registered!');
 
@@ -160,19 +149,19 @@ export class AuthJWTService {
       modulusLength: 2048,
       publicKeyEncoding: {
         type: 'pkcs1',
-        format: 'pem',
+        format: 'pem'
       },
       privateKeyEncoding: {
         type: 'pkcs1',
-        format: 'pem',
-      },
+        format: 'pem'
+      }
     });
 
     const {
-      id: userId,
+      id: userId
       // roleId
     } = foundUser;
-    const isUserId = (userId !== undefined) ? userId : 0;
+    const isUserId = userId !== undefined ? userId : 0;
     const tokens = await createTokenPair(
       {
         userId: isUserId,
@@ -186,15 +175,15 @@ export class AuthJWTService {
       refreshToken: tokens!.refreshToken,
       userId: isUserId,
       privateKey,
-      publicKey,
+      publicKey
     });
 
     return {
       user: getInfoData({
         fields: ['id', 'userName', 'email', 'roleId'],
-        object: foundUser,
+        object: foundUser
       }),
-      tokens,
+      tokens
     };
   };
 
@@ -204,27 +193,24 @@ export class AuthJWTService {
     return delKey;
   };
 
-  static verifyOtp = async ({
-    email,
-    otp
-  } : VerifyOtpRequest) => {
+  static verifyOtp = async ({ email, otp }: VerifyOtpRequest) => {
     try {
       const otpHolder = await db.OtpCode.findAll({
         where: {
           email: email
         }
-      })
-      const lastOtp = otpHolder[otpHolder.length - 1]
+      });
+      const lastOtp = otpHolder[otpHolder.length - 1];
 
       const isValid = await OtpService.validateOtp({
         otp: otp,
         hashOtp: lastOtp.otp
-      })
+      });
 
       return {
         isValid,
         lastOtp
-      }
+      };
       // if(!isValid) throw new AuthFailureError('OTP is valid!')
 
       // if (isValid && email === lastOtp.email) {
@@ -232,10 +218,9 @@ export class AuthJWTService {
 
       //   // deleteMany OTP in model
       // }
-
     } catch (error) {
-      console.error(error)
+      console.error(error);
       throw new InternalServerError(`error::${error}`);
     }
-  }
+  };
 }

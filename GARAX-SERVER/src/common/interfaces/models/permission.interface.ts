@@ -1,7 +1,6 @@
-import { PrimaryKey } from "../primaryKey.interface";
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface Permission
-extends PrimaryKey {
+export interface Permission extends PrimaryKey {
   keyAccept: string;
   valueAccept: string;
   isActive: boolean;

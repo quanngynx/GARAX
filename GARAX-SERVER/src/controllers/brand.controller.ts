@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 
-import { SuccessResponse } from '../middlewares/success.response'
+import { SuccessResponse } from '../middlewares/success.response';
 import { BrandService } from '@/services';
 
 class BrandController {
@@ -9,15 +10,15 @@ class BrandController {
     new SuccessResponse({
       message: 'Add new product category success!',
       metadata: await BrandService.addNewBrand(req.body)
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   getAllBrand = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get all product Brand success!',
       metadata: await BrandService.getAllBrand()
-    }).send(res)
-  }
+    }).send(res);
+  };
 
   // updateTitleCategory = async (req: Request, res: Response, _next: NextFunction) => {
   //   const { name } = req.params;
@@ -43,4 +44,4 @@ class BrandController {
   // }
 }
 
-export default new BrandController()
+export default new BrandController();

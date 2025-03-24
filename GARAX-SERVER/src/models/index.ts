@@ -40,26 +40,22 @@ import { variantValuesModel } from './variantvalues';
 // const dbConfig = connectionConfig[env];
 const basename = path.basename(__filename);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let sequelize: any;
 if (connectionConfig.database && connectionConfig.username) {
-  sequelize = new Sequelize(
-    connectionConfig.database,
-    connectionConfig.username,
-    connectionConfig.password,
-    {
-      host: process.env.DB_HOST,
-      dialect: 'mysql',
-      dialectOptions: {
-          bigNumberStrings: true,
-      },
-      pool: {
-          max: 50,
-          min: 0,
-          acquire: 30000,
-          idle: 10000,
-      },
+  sequelize = new Sequelize(connectionConfig.database, connectionConfig.username, connectionConfig.password, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
+    dialectOptions: {
+      bigNumberStrings: true
+    },
+    pool: {
+      max: 50,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
     }
-  );
+  });
 }
 
 const Account = accountModel(sequelize);
@@ -76,7 +72,7 @@ const KeyToken = keyTokenModel(sequelize);
 const News = newsModel(sequelize);
 const NewsCategory = newsCategory(sequelize);
 const Order = orderModel(sequelize);
-const OrderDetails= orderDetailsModel(sequelize);
+const OrderDetails = orderDetailsModel(sequelize);
 const OtpCode = otpCodeModel(sequelize);
 const Payment = paymentModel(sequelize);
 const Permission = permissionModel(sequelize);
@@ -92,7 +88,8 @@ const SpecificationDetailProduct = specificationDetailProductModel(sequelize);
 const SpecificationProduct = specificationProductModel(sequelize);
 const Video = videoModel(sequelize);
 
-const db: Models | any= {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const db: Models | any = {
   Account,
   Address,
   ApiKey,
@@ -127,19 +124,17 @@ const db: Models | any= {
 };
 
 fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-    );
+  .filter((file) => {
+    return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js';
   })
-  .forEach(async file => {
+  .forEach(async (file) => {
     const modelPath = path.join(__dirname, file);
     const modelModule = await import(modelPath);
     const model = modelModule.default(sequelize, DataTypes);
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }

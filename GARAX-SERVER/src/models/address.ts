@@ -4,13 +4,9 @@ import { ADDRESS_VALUES } from '@/common/constants';
 import { Address, Models } from '@/common/interfaces';
 import { AccountModel } from './account';
 
-export type AddressCreationAttributes = Optional<
-  Address,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type AddressCreationAttributes = Optional<Address, 'id' | 'createdAt' | 'updatedAt'>;
 
-export class AddressModel
-extends Model<Address, AddressCreationAttributes> {
+export class AddressModel extends Model<Address, AddressCreationAttributes> {
   // public id!: number;
   // public type!: typeof ADDRESS_VALUES[number];
   // public streetRoad!: string;
@@ -33,50 +29,53 @@ extends Model<Address, AddressCreationAttributes> {
     // define association here
     this.belongsTo(models.Account, {
       foreignKey: 'userId',
-      as: 'account',
+      as: 'account'
     });
   }
 }
 
 export const addressModel = (sequelize: Sequelize) => {
-  AddressModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  AddressModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      type: {
+        type: DataTypes.ENUM(...ADDRESS_VALUES),
+        defaultValue: ADDRESS_VALUES[1]
+      },
+      streetRoad: {
+        type: DataTypes.STRING
+      },
+      wardOrCommune: {
+        type: DataTypes.STRING
+      },
+      district: {
+        type: DataTypes.STRING
+      },
+      city: {
+        type: DataTypes.STRING
+      },
+      userId: {
+        type: DataTypes.INTEGER
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    type: {
-      type : DataTypes.ENUM(...ADDRESS_VALUES),
-      defaultValue: ADDRESS_VALUES[1]
-    },
-    streetRoad: {
-      type: DataTypes.STRING,
-    },
-    wardOrCommune: {
-      type: DataTypes.STRING,
-    },
-    district: {
-      type: DataTypes.STRING,
-    },
-    city: {
-      type: DataTypes.STRING,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'Address',
-    tableName: 'addresses',
-    timestamps: true
-  });
+    {
+      sequelize,
+      modelName: 'Address',
+      tableName: 'addresses',
+      timestamps: true
+    }
+  );
   return AddressModel;
 };

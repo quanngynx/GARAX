@@ -6,8 +6,6 @@
 
 ### OTP code
 
-
-
 ### Permission
 
 npx sequelize-cli model:generate --name Permission --attributes keyAccept:string,valueAccept:string,isActive:boolean

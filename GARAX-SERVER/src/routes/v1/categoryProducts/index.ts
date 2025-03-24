@@ -14,7 +14,10 @@ routerCategoryProduct.post('/category-product', asyncHandler(productCategoryCont
 routerCategoryProduct.patch('/category-product/:id', asyncHandler(productCategoryController.updateTitleCategory));
 
 routerCategoryProduct.delete('/category-product', asyncHandler(productCategoryController.deleteTitleCategoryByTitle));
-routerCategoryProduct.delete('/category-product/:id', asyncHandler(productCategoryController.deleteTitleCategoryByTitle));
+routerCategoryProduct.delete(
+  '/category-product/:id',
+  asyncHandler(productCategoryController.deleteTitleCategoryByTitle)
+);
 
 // routerCategoryProduct.get('/products/pub', asyncHandler(productCategoryController.findAllProductPub));
 // routerCategoryProduct.get('/products', asyncHandler(productCategoryController.findAllProduct));

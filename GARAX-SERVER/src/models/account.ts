@@ -1,4 +1,4 @@
- 'use strict';
+'use strict';
 import { Sequelize, DataTypes, Model, Optional, Association } from 'sequelize';
 import { GENDER_VALUES, REGEX, USERS } from '@/common/constants';
 import { Account, Models } from '@/common/interfaces';
@@ -9,13 +9,9 @@ import { CartModel } from './cart';
 import { ApiKeyModel } from './apikey';
 
 const defaultAvatar = USERS.AVATAR.DEFAULT_VALUE;
-export type AccountCreationAttributes = Optional<
-  Account,
-  'id' | 'userName' | 'createdAt' | 'updatedAt'
->;
+export type AccountCreationAttributes = Optional<Account, 'id' | 'userName' | 'createdAt' | 'updatedAt'>;
 
-export class AccountModel
-extends Model<Account, AccountCreationAttributes> {
+export class AccountModel extends Model<Account, AccountCreationAttributes> {
   public id!: number;
   public userName!: string;
   // public firstName!: string;
@@ -50,7 +46,7 @@ extends Model<Account, AccountCreationAttributes> {
   static associate(models: Models) {
     this.hasMany(models.Address, {
       foreignKey: 'userId',
-      as: 'addresses',
+      as: 'addresses'
     });
 
     this.hasOne(models.ApiKey, {
@@ -60,7 +56,7 @@ extends Model<Account, AccountCreationAttributes> {
 
     this.hasMany(models.Order, {
       foreignKey: 'userId',
-      as: 'orders',
+      as: 'orders'
     });
 
     this.hasOne(models.KeyToken, {
@@ -82,7 +78,7 @@ export const accountModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
       userName: {
         type: DataTypes.STRING,
@@ -104,10 +100,10 @@ export const accountModel = (sequelize: Sequelize) => {
       },
       gender: {
         type: DataTypes.ENUM(...GENDER_VALUES),
-        defaultValue: GENDER_VALUES[0],
+        defaultValue: GENDER_VALUES[0]
       },
       dob: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.BIGINT
       },
       email: {
         type: DataTypes.STRING,
@@ -128,7 +124,7 @@ export const accountModel = (sequelize: Sequelize) => {
         defaultValue: defaultAvatar
       },
       password: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       emptyPassword: {
         type: DataTypes.BOOLEAN,
@@ -143,27 +139,27 @@ export const accountModel = (sequelize: Sequelize) => {
         defaultValue: ''
       },
       roleId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
       },
       // keyTokenId: {
       //   type: DataTypes.STRING,
       // },
       createdAt: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+        defaultValue: DataTypes.NOW
       },
       updatedAt: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
+        defaultValue: DataTypes.NOW
+      }
     },
     {
       sequelize,
-      modelName: "AccountModel",
-      tableName: "accounts",
-      timestamps: true,
+      modelName: 'AccountModel',
+      tableName: 'accounts',
+      timestamps: true
     }
   );
 
   return AccountModel;
-}
+};

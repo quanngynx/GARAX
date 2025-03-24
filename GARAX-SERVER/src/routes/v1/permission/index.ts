@@ -13,8 +13,8 @@ const permissionController = PermissionController.default;
 // routerPermission.get('/permission', asyncHandler(permissionController.getAllpermission))
 // routerPermission.get('/permission/:id', asyncHandler(permissionController.getProductById))
 
-routerPermission.post('/permission', asyncHandler(permissionController.createAccessForAdmin))
-routerPermission.post('/permission', asyncHandler(permissionController.createAccessForUser))
+routerPermission.post('/permission', asyncHandler(permissionController.createAccessForAdmin));
+routerPermission.post('/permission', asyncHandler(permissionController.createAccessForUser));
 
 // routerPermission.put('/permission/:id', asyncHandler(permissionController.updateProductById))
 // routerPermission.patch('/permission/:id', asyncHandler(permissionController.updatePartProductById))

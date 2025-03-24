@@ -8,8 +8,7 @@ export type ProductVariantValuesCreationAttributes = Optional<
   'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
-export class ProductVariantValuesModel
-extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
+export class ProductVariantValuesModel extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
   public id!: number;
   // public price!: number;
   // public oldPrice!: number;
@@ -37,7 +36,7 @@ extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
   static associate(models: Models) {
     this.belongsTo(models.Product, {
       foreignKey: 'productId',
-      as: 'products',
+      as: 'products'
     });
 
     this.hasOne(models.CartItems, {
@@ -46,65 +45,68 @@ extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
     });
 
     this.hasOne(models.OrderDetails, {
-      foreignKey: "productVariantId",
-      as: "order_details",
+      foreignKey: 'productVariantId',
+      as: 'order_details'
     });
   }
 }
 
 export const productVariantValuesModel = (sequelize: Sequelize) => {
-  ProductVariantValuesModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  ProductVariantValuesModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      price: {
+        type: DataTypes.INTEGER
+      },
+      oldPrice: {
+        type: DataTypes.INTEGER
+      },
+      stock: {
+        type: DataTypes.INTEGER
+      },
+      sold: {
+        type: DataTypes.INTEGER
+      },
+      sku: {
+        type: DataTypes.STRING
+      },
+      manufacturingDate: {
+        type: DataTypes.BIGINT
+      },
+      productId: {
+        type: DataTypes.INTEGER
+      },
+      productVariantId: {
+        type: DataTypes.INTEGER
+      },
+      addOverDetailSpecsId: {
+        type: DataTypes.INTEGER
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      updatedBy: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    price: {
-      type: DataTypes.INTEGER,
-    },
-    oldPrice: {
-      type: DataTypes.INTEGER,
-    },
-    stock: {
-      type: DataTypes.INTEGER,
-    },
-    sold: {
-      type: DataTypes.INTEGER,
-    },
-    sku: {
-      type: DataTypes.STRING,
-    },
-    manufacturingDate: {
-      type: DataTypes.BIGINT,
-    },
-    productId: {
-      type: DataTypes.INTEGER,
-    },
-    productVariantId: {
-      type: DataTypes.INTEGER,
-    },
-    addOverDetailSpecsId: {
-      type: DataTypes.INTEGER,
-    },
-    createdBy: {
-      type: DataTypes.STRING,
-    },
-    updatedBy: {
-      type: DataTypes.STRING,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'ProductVariantValues',
-    tableName: 'product_variant_values',
-    timestamps: true
-  });
+    {
+      sequelize,
+      modelName: 'ProductVariantValues',
+      tableName: 'product_variant_values',
+      timestamps: true
+    }
+  );
   return ProductVariantValuesModel;
 };

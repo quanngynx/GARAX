@@ -341,4 +341,4 @@ export default {
    * The 511 status code indicates that the client needs to authenticate to gain network access.
    */
   NETWORK_AUTHENTICATION_REQUIRED: 511
-}
+};

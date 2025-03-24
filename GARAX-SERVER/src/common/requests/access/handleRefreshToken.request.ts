@@ -1,10 +1,7 @@
-import { Account } from "@/common/interfaces";
-import { KeyTokenModel } from "@/models";
+import { Account } from '@/common/interfaces';
+import { KeyTokenModel } from '@/models';
 
-interface UserPayload
-extends Pick<Account,
- | 'email'
->{
+interface UserPayload extends Pick<Account, 'email'> {
   userId: number;
 }
 

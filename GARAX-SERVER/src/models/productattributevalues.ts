@@ -9,8 +9,10 @@ export type ProductAttributeValuesCreationAttributes = Optional<
   'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
-export class ProductAttributeValuesModel
-extends Model<ProductAttributeValues, ProductAttributeValuesCreationAttributes> {
+export class ProductAttributeValuesModel extends Model<
+  ProductAttributeValues,
+  ProductAttributeValuesCreationAttributes
+> {
   // public id!: number;
   // public value: number;
   // public variantKeyId: number;
@@ -31,51 +33,54 @@ extends Model<ProductAttributeValues, ProductAttributeValuesCreationAttributes> 
   static associate(models: Models) {
     this.belongsTo(models.Product, {
       foreignKey: 'productId',
-      as: 'products',
+      as: 'products'
     });
 
     this.belongsTo(models.AttributeValues, {
       foreignKey: 'attributeId',
-      as: 'attribute_values',
+      as: 'attribute_values'
     });
   }
 }
 
 export const productattributeValuesModel = (sequelize: Sequelize) => {
-  ProductAttributeValuesModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  ProductAttributeValuesModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      value: {
+        type: DataTypes.STRING
+      },
+      productId: {
+        type: DataTypes.INTEGER
+      },
+      attributeId: {
+        type: DataTypes.INTEGER
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      updatedBy: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    value: {
-      type: DataTypes.STRING,
-    },
-    productId: {
-      type: DataTypes.INTEGER,
-    },
-    attributeId: {
-      type: DataTypes.INTEGER,
-    },
-    createdBy: {
-      type: DataTypes.STRING,
-    },
-    updatedBy: {
-      type: DataTypes.STRING,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  }, {
-    sequelize,
-    modelName: 'ProductAttributeValues',
-    tableName: 'product_attribute_values',
-    timestamps: true
-  });
+    {
+      sequelize,
+      modelName: 'ProductAttributeValues',
+      tableName: 'product_attribute_values',
+      timestamps: true
+    }
+  );
   return ProductAttributeValuesModel;
 };

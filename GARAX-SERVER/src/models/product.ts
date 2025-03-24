@@ -13,7 +13,7 @@ import { PRODUCT_STATUS, PRODUCT_TAG } from '@/common/constants';
 
 export type ProductCreationAttributes = Optional<
   Product,
-  'id'
+  | 'id'
   | 'createdAt'
   | 'updatedAt'
   | 'createdBy'
@@ -24,8 +24,7 @@ export type ProductCreationAttributes = Optional<
   | 'sub3CategoryId'
 >;
 
-export class ProductModel
-extends Model<Product, ProductCreationAttributes> {
+export class ProductModel extends Model<Product, ProductCreationAttributes> {
   public id!: number;
   public name!: string;
   public slug!: string;
@@ -33,7 +32,7 @@ extends Model<Product, ProductCreationAttributes> {
   public desc!: JSON;
   public views!: number;
   public tags!: PRODUCT_TAG;
-  public manufacturingDate!: BigInt;
+  public manufacturingDate!: bigint;
   public minPrice!: number;
   public maxPrice!: number;
   public rate!: number;
@@ -66,122 +65,123 @@ extends Model<Product, ProductCreationAttributes> {
   static associate(models: Models) {
     this.hasMany(models.ProductVariantValues, {
       foreignKey: 'productId',
-      as: 'product_variant_values',
+      as: 'product_variant_values'
     });
 
     this.hasOne(models.CategoryProduct, {
       foreignKey: 'categoryId',
-      as: 'category_products',
+      as: 'category_products'
     });
 
     this.hasMany(models.Image, {
       foreignKey: 'productId',
-      as: 'images',
+      as: 'images'
     });
 
     this.hasOne(models.Video, {
       foreignKey: 'videoId',
-      as: 'videos',
+      as: 'videos'
     });
 
     this.hasMany(models.ProductAttributeValues, {
       foreignKey: 'productId',
-      as: 'product_attribute_values',
+      as: 'product_attribute_values'
     });
   }
 }
 
 export const productModel = (sequelize: Sequelize) => {
-  ProductModel.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  ProductModel.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: ''
+      },
+      slug: {
+        type: DataTypes.STRING
+      },
+      desc: {
+        type: DataTypes.JSON
+      },
+      views: {
+        type: DataTypes.INTEGER
+      },
+      tags: {
+        type: DataTypes.ENUM('test'),
+        defaultValue: 'test'
+      },
+      manufacturingDate: {
+        type: DataTypes.BIGINT
+      },
+      minPrice: {
+        type: DataTypes.INTEGER
+      },
+      maxPrice: {
+        type: DataTypes.INTEGER
+      },
+      rate: {
+        type: DataTypes.FLOAT
+      },
+      totalRate: {
+        type: DataTypes.INTEGER
+      },
+      totalSold: {
+        type: DataTypes.INTEGER
+      },
+      categoryId: {
+        type: DataTypes.INTEGER
+      },
+      subCategoryId: {
+        type: DataTypes.INTEGER
+      },
+      sub2CategoryId: {
+        type: DataTypes.INTEGER
+      },
+      sub3CategoryId: {
+        type: DataTypes.INTEGER
+      },
+      videoId: {
+        type: DataTypes.INTEGER
+      },
+      brandId: {
+        type: DataTypes.INTEGER
+      },
+      status: {
+        type: DataTypes.ENUM('publish', 'draft'),
+        defaultValue: 'publish'
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      updatedBy: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: ''
-    },
-    slug: {
-      type: DataTypes.STRING,
-    },
-    desc: {
-      type: DataTypes.JSON,
-    },
-    views: {
-      type: DataTypes.INTEGER,
-    },
-    tags: {
-      type: DataTypes.ENUM('test'),
-      defaultValue: 'test'
-    },
-    manufacturingDate: {
-      type: DataTypes.BIGINT,
-    },
-    minPrice: {
-      type: DataTypes.INTEGER,
-    },
-    maxPrice: {
-      type: DataTypes.INTEGER,
-    },
-    rate: {
-      type: DataTypes.FLOAT,
-    },
-    totalRate: {
-      type: DataTypes.INTEGER
-    },
-    totalSold: {
-      type: DataTypes.INTEGER
-    },
-    categoryId: {
-      type: DataTypes.INTEGER,
-    },
-    subCategoryId: {
-      type: DataTypes.INTEGER,
-    },
-    sub2CategoryId: {
-      type: DataTypes.INTEGER,
-    },
-    sub3CategoryId: {
-      type: DataTypes.INTEGER,
-    },
-    videoId: {
-      type: DataTypes.INTEGER,
-    },
-    brandId: {
-      type: DataTypes.INTEGER,
-    },
-    status: {
-      type: DataTypes.ENUM('publish', 'draft'),
-      defaultValue: 'publish'
-    },
-    createdBy: {
-      type: DataTypes.STRING,
-    },
-    updatedBy: {
-      type: DataTypes.STRING,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-  },{
-    sequelize,
-    modelName: 'Product',
-    tableName: 'products',
-    timestamps: true,
-    // hooks: {
-    //   beforeValidate: (product) => {
-    //     product.slug = slugify(product.name, { lower: true, trim: true });
-    //   },
-    // },
-  });
+    {
+      sequelize,
+      modelName: 'Product',
+      tableName: 'products',
+      timestamps: true
+      // hooks: {
+      //   beforeValidate: (product) => {
+      //     product.slug = slugify(product.name, { lower: true, trim: true });
+      //   },
+      // },
+    }
+  );
   return ProductModel;
 };
-
-

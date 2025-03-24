@@ -1,8 +1,8 @@
-export interface RequestParams {}
+export type RequestParams = object;
 
-export interface ResponseBody {}
+export type ResponseBody = object;
 
-export interface RequestBody {}
+export type RequestBody = object;
 
 export interface RequestQuery {
   email: string;

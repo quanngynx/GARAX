@@ -1,8 +1,5 @@
-import { Account } from "@/common/interfaces";
+import { Account } from '@/common/interfaces';
 
-export interface FindByEmail
-extends Pick<Account,
-| 'email'
-> {
+export interface FindByEmail extends Pick<Account, 'email'> {
   select: string[];
 }
