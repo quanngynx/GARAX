@@ -1,8 +1,8 @@
 import { Audit } from "../audit.interface";
+import { PrimaryKey } from "../primaryKey.interface";
 
 export interface VariantValues
-extends Audit {
-  id: string;
+extends Audit, PrimaryKey {
   value: string;
   variantKeyId: number;
 }

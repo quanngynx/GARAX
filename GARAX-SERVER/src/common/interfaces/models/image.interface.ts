@@ -1,9 +1,9 @@
 import { IMAGE } from "../../constants";
 import { Audit } from '../audit.interface';
+import { PrimaryKey } from "../primaryKey.interface";
 
 export interface Image
-extends Audit{
-  id: string;
+extends Audit, PrimaryKey{
   image: string;
   coverImage: string;
   alt: string;

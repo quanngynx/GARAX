@@ -1,7 +1,9 @@
 import { PAYMENT_METHOD, PAYMENT_STATUS } from "@/common/constants";
+import { PrimaryKey } from "../primaryKey.interface";
+import { Audit } from "../audit.interface";
 
-export interface Order {
-  id: string;
+export interface Order
+extends Audit, PrimaryKey{
   fullname: string;
   phone: string;
   isReceiveAtStore: boolean;
@@ -14,8 +16,4 @@ export interface Order {
   userId: number;
   addressId: number;
   cartId: number;
-  createBy: string;
-  updateBy: string;
-  createdAt: Date;
-  updatedAt: Date;
 }

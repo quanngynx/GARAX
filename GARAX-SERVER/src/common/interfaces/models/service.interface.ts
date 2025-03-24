@@ -1,5 +1,7 @@
-export interface Service {
-  id: string;
+import { PrimaryKey } from "../primaryKey.interface";
+
+export interface Service
+extends PrimaryKey {
   serviceCategoryId: number;
   serviceImageId: number;
   title: string;

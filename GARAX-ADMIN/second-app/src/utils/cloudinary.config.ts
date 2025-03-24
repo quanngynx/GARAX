@@ -13,17 +13,17 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: {
         // allowedFormats: ['jpg', 'png'],
-        format: async (req, file) => {  
-            const ext = file.mimetype.split("/")[1];
-            return ["jpg", "png", "webp"].includes(ext) ? ext : "jpg"; 
-          },
-        filename: function (
-            _req: Express.Request, 
-            file: Express.Multer.File, 
-            cb: (arg0: null | unknown, arg1: string) => void
-        ) {
-            cb(null, file.originalname);
-        }
+        // format: async (req, file) => {  
+        //     const ext = file.mimetype.split("/")[1];
+        //     return ["jpg", "png", "webp"].includes(ext) ? ext : "jpg"; 
+        // },
+        // filename: function (
+        //     _req: Express.Request, 
+        //     file: Express.Multer.File, 
+        //     cb: (arg0: null | unknown, arg1: string) => void
+        // ) {
+        //     cb(null, file.originalname);
+        // }
     }
 });
 

@@ -19,6 +19,14 @@ class ProductController {
     }).send(res)
   }
 
+  getViewestProduct = async (req: Request, res: Response, _next: NextFunction) => {
+    const { limit } = req.params;
+    new SuccessResponse({
+      message: 'Lấy tất cả hàng hóa thành công!',
+      metadata: await ProductService.getViewestProduct(Number(limit))
+    }).send(res)
+  }
+
   getProductById = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
     new SuccessResponse({

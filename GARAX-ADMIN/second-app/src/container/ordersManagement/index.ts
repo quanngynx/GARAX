@@ -1,1 +1,1 @@
-export { default as PartnersPage } from './page'
+export * as PartnersPage from './page'

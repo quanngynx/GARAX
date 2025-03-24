@@ -1,7 +1,7 @@
 import { GENDER } from "../../constants";
 
 export interface Account {
-  id?: string;
+  id?: number;
   userName: string;
   firstName: string;
   lastName: string;

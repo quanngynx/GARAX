@@ -1,9 +1,9 @@
 import { PRODUCT_STATUS, PRODUCT_TAG } from "@/common/constants";
 import { Audit } from '../audit.interface';
+import { PrimaryKey } from "../primaryKey.interface";
 
 export interface Product
-extends Audit{
-  id: string;
+extends Audit, PrimaryKey {
   name: string;
   slug: string;
   desc: JSON;

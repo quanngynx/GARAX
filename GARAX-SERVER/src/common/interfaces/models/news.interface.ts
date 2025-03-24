@@ -1,5 +1,7 @@
-export interface News {
-  id: string;
+import { PrimaryKey } from "../primaryKey.interface";
+
+export interface News
+extends PrimaryKey {
   title: string;
   alias: string;
   description: string;

@@ -15,6 +15,7 @@ extends Model<CartCreationAttributes> {
   // userId!: string;
   // createdAt!: Date;
   // updatedAt!: Date;
+  cart_items?: CartItemsModel[];
 
   public static associations: {
     cartItems: Association<CartModel, CartItemsModel>;

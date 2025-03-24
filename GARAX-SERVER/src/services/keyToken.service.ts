@@ -31,8 +31,6 @@ export class KeyTokenService {
         tokens = await db.KeyToken.create({
           ...filter,
           ...update,
-          created_at: undefined,
-          updated_at: undefined
         });
         // console.log("tokens::", tokens)
       }

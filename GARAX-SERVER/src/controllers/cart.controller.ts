@@ -18,6 +18,13 @@ class CartController {
     }).send(res)
   }
 
+  checkoutCart = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Checkout cart success!',
+      metadata: await CartService.checkoutCart(req.body)
+    }).send(res)
+  }
+
   updateCart = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Update cart success!',

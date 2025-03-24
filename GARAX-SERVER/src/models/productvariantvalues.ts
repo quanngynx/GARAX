@@ -11,19 +11,20 @@ export type ProductVariantValuesCreationAttributes = Optional<
 export class ProductVariantValuesModel
 extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
   public id!: number;
-  public price!: number;
-  public oldPrice!: number;
-  public stock!: number;
-  public sold!: number;
-  public sku!: string;
-  public manufacturingDate!: BigInt;
-  public productId!: string;
-  public addOverSpecsId!: string;
-  public addOverDetailSpecsId!: string;
+  // public price!: number;
+  // public oldPrice!: number;
+  // public stock!: number;
+  // public sold!: number;
+  // public sku!: string;
+  // public manufacturingDate!: BigInt;
+  // public productId!: string;
+  // public addOverSpecsId!: string;
+  // public addOverDetailSpecsId!: string;
   // public createBy!: Date;
   // public updateBy!: Date;
   // public readonly createdAt!: Date;
   // public readonly updatedAt!: Date;
+  products?: ProductModel;
 
   public static associations: {
     products: Association<ProductModel, ProductVariantValuesModel>;
@@ -38,6 +39,11 @@ extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
       foreignKey: 'productId',
       as: 'products',
     });
+
+    this.hasOne(models.CartItems, {
+      foreignKey: 'productVariantId',
+      as: 'cart_items'
+  });
   }
 }
 

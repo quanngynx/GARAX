@@ -1,8 +1,9 @@
 import { Audit } from "../audit.interface";
+import { PrimaryKey } from "../primaryKey.interface";
+import { Product } from "./product.interface";
 
 export interface ProductVariantValues
-extends Audit{
-  id: string;
+extends Audit, PrimaryKey{
   price: number;
   oldPrice: number
   stock: number;
@@ -12,4 +13,5 @@ extends Audit{
   productId: number;
   productVariantId: number;
   addOverDetailSpecsId: number;
+  products?: Product;
 }

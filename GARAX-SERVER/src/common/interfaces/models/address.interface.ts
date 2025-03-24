@@ -1,7 +1,8 @@
 import { ADDRESS } from "../../constants";
+import { PrimaryKey } from "../primaryKey.interface";
 
-export interface Address {
-  id: string;
+export interface Address
+extends PrimaryKey {
   type: ADDRESS;
   streetRoad: string;
   wardOrCommune: string;

@@ -1,12 +1,12 @@
 import { Table, TableColumnsType } from "antd";
 import { DataType } from "../tableCustom";
 
-interface ExpandedDataType {
-    key: React.Key;
-    date: string;
-    name: string;
-    upgradeNum: string;
-}
+// interface ExpandedDataType {
+//     key: React.Key;
+//     date: string;
+//     name: string;
+//     upgradeNum: string;
+// }
 
 interface ExpandedRowRenderProps {
     expandColumns: TableColumnsType<DataType>

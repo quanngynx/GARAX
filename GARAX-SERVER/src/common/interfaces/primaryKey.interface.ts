@@ -1,3 +1,3 @@
 export interface PrimaryKey {
-  id: string;
+  id: number;
 }

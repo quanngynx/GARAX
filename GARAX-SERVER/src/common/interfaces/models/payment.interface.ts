@@ -1,5 +1,7 @@
-export interface Payment {
-  id: string;
+import { PrimaryKey } from "../primaryKey.interface";
+
+export interface Payment
+extends PrimaryKey {
   amount: number;
   desc: string;
   orderId: number;

@@ -4,11 +4,14 @@ import { default as slugify } from "slugify";
 import {
   AddManyNewProductRequest,
   AddNewProductRequest,
-  GetAllBestSellerProducts
+  GetAllBestSellerProducts,
 } from "@/common/requests/product";
 
 import { db } from "@/models";
-import { BadRequestError, NotFoundError } from '@/middlewares';
+import {
+  BadRequestError,
+  NotFoundError
+} from '@/middlewares';
 import { getProductById } from "@/common/repositories";
 import { generateSKU } from "@/common/utils";
 
@@ -299,6 +302,20 @@ export class ProductService {
     return {
       result: 'See you later'
     }
+  }
+
+  static async getViewestProduct(limit: number) {
+    const topViewedProducts = await db.Product.findAll({
+      order: [['views', 'DESC']],
+      limit: limit,
+    });
+
+    return {
+      limit: limit,
+      result: {
+        topViewedProducts
+      }
+    };
   }
 
   static async updateProductById(id: string, {}) {

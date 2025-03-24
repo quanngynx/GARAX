@@ -6,8 +6,7 @@ import API from "@/utils/axios";
 import { BASE } from "./constants/baseUrl";
 
 import {
-    ROUTES_ACCOUNT,
-    ROUTES_ACCOUNTS,
+    ROUTER_ACCOUNT,
     ROUTES_AUTH,
     ROUTES_BOOKING,
     ROUTES_ORDERS,
@@ -46,13 +45,13 @@ export const resetPassword = (email: string, token: string, newPassword: string)
 
 // region --------------------------ACCOUNT-----------------------------------
 export const getAccountInfo = (signal?: AbortSignal) => API.get(
-    `${BASE(ver_API, ROUTES_ACCOUNT)}`,
+    `${BASE(ver_API, ROUTER_ACCOUNT)}`,
     { signal }
 );
 
 // region --------------------------ACCOUNTS-----------------------------------
 export const getAllAccount = (signal?: AbortSignal) => API.get(
-    `${BASE(ver_API, ROUTES_ACCOUNTS)}`,
+    `${BASE(ver_API, ROUTER_ACCOUNT)}`,
     { signal }
 );
 

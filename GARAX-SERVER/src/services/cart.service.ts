@@ -1,12 +1,12 @@
-'use strict'
-
+'use strict';
 import {
   AddToCartRequest,
+  CheckoutCartRequest,
   CreateUserCartRequest
 } from "@/common/requests/cart";
 
 import { db } from '../models';
-import { NotFoundError } from "@/middlewares";
+import { BadRequestError, InternalServerError, NotFoundError } from "@/middlewares";
 import { createCart } from "@/common/repositories";
 
 export class CartService {
@@ -25,23 +25,6 @@ export class CartService {
     return;
   }
 
-  // static async createUserCart({
-  //   userId,
-  // } : CreateUserCartRequest) {
-  //   const findCartExistByUser = await db.Cart.findAll({
-  //     where: {
-  //       userId: userId
-  //     }
-  //   });
-
-  //   if(findCartExistByUser) throw new BadRequestError(`Tồn tại giỏ hàng của người dùng ${userId}`);
-
-  //   return await db.Cart.create({
-  //     userId: userId,
-  //     sessionId: ''
-  //   })
-  // }
-
   static async addToCart({
     userId,
     productVariantItems
@@ -54,25 +37,22 @@ export class CartService {
 
     // console.log('isExistCart::', isExistCart?.dataValues.id);
 
-    // if (!isExistCart || !isExistCart.id) {
-    //   throw new BadRequestError("Giỏ hàng không tồn tại hoặc không có ID hợp lệ.");
-    // }
-
     if(!isExistCart) {
       const createNewCart = await createCart(userId);
-      const isExistProductVariant = await db.CartItems.findOne({
-        where: {
-          cartId: createNewCart.newCart.dataValues.id,
-          productVariantId: productVariantItems.productVariantId
-        }
-      });
+      // const isExistProductVariant = await db.CartItems.findOne({
+      //   where: {
+      //     cartId: createNewCart.newCart.dataValues.id,
+      //     productVariantId: productVariantItems.productVariantId
+      //   }
+      // });
 
-      console.log('createNewCart id::', createNewCart.newCart.id);
+      // console.log('createNewCart id::', createNewCart.newCart.id);
 
       await db.CartItems.upsert({
         cartId: createNewCart.newCart.id || 0,
         productVariantId: productVariantItems.productVariantId,
-        qty: (isExistProductVariant?.dataValues.qty || 0) + (productVariantItems.qty || 1),
+        // qty: (isExistProductVariant?.dataValues.qty || 0) + (productVariantItems.qty || 1),
+        qty: productVariantItems.qty || 1,
       });
 
       return {
@@ -93,7 +73,8 @@ export class CartService {
 
     if (isExistProductVariant) {
       await db.CartItems.update({
-        qty: isExistProductVariant.dataValues.qty + (productVariantItems.qty || 1)
+        // qty: isExistProductVariant.dataValues.qty + (productVariantItems.qty || 1)
+        qty: productVariantItems.qty
       }, {
           where: {
             cartId: isExistCart.dataValues.id,
@@ -122,6 +103,104 @@ export class CartService {
     return {
       isExistCart,
       cartItems: getAllCartItems
+    }
+  }
+
+  static async checkoutCart({
+    cartId,
+    total,
+    isReceiveAtStore,
+    shippingFee,
+    discount,
+    paymentMethod = "small",
+    paymentStatus = "small"
+  } : CheckoutCartRequest) {
+    /**
+     * 1. init transaction
+     */
+    const transaction = await db.sequelize.transaction();
+    try {
+      /**
+       * 2. get info cart
+       */
+      const getInfoCart = await db.Cart.findByPk(cartId, {
+        include: [{
+          model: db.CartItems,
+          as: 'cart_items',
+          attributes: [
+            'productVariantId',
+            'qty'
+          ],
+          include: [{
+            model: db.ProductVariantValues,
+            as: 'product_variant_values',
+            include: [{
+              model: db.Product,
+              as: 'products',
+              attributes: [
+                'id',
+                'name',
+                'videoId',
+                'desc'
+              ]
+            }],
+          }],
+        }],
+        // raw: true,
+        nest: true
+      });
+      // console.log("getInfoCart::", getInfoCart?.dataValues.cart_items?.reduce((acc, item) =>
+      //     acc + (item.qty * (item.product_variant_values?.price || 1)), 0
+      // ));
+      // console.log("getInfoCart::", getInfoCart?.dataValues.cart_items);
+      // console.log("getInfoCart::", JSON.stringify(getInfoCart?.dataValues.cart_items, null, 2));
+      // getInfoCart?.dataValues.cart_items?.forEach((item, _index) => {
+      //   // console.log(`Item ${index + 1}:`, item);
+      //   // console.log(`Qty: ${item.qty}`);
+      //   // console.log(`Price: ${item.dataValues?.product_variant_values?.dataValues?.price}`);
+      // });
+      // console.log("getInfoCart::", getInfoCart?.dataValues.userId);
+      if(!getInfoCart || !getInfoCart.dataValues.cart_items?.length) {
+        throw new BadRequestError(`Giỏ hàng :${cartId}: không tồn tại hoặc giỏ hàng trống`)
+      }
+
+      const calculatedTotal = getInfoCart.dataValues.cart_items?.reduce((acc, item: any) => {
+        const price = item.dataValues?.product_variant_values?.dataValues?.price ?? 1;
+        return acc + (item.dataValues.qty * price);
+      }, 0);
+      // console.log("calculatedTotal::", calculatedTotal);
+
+      /**
+       * 3. Add infor detail
+       */
+      const newOrder = await db.Order.create({
+        userId: getInfoCart?.dataValues.userId,
+        cartId: 0,
+        total: total || calculatedTotal,
+        fullname: "", // outstanding
+        phone: "", // outstanding
+        isReceiveAtStore: isReceiveAtStore, // Implement payment process later
+        paymentMethod: paymentMethod, // Implement payment process later
+        paymentStatus: paymentStatus, // Implement payment process later
+        subTotalFromProd: calculatedTotal,
+        shippingFee: shippingFee,
+        discount: discount,
+        addressId: 0, // outstanding
+        // note => lack
+      }, {
+        transaction
+      });
+
+      await db.CartItems.destroy({
+        where: {
+          cartId: getInfoCart.dataValues.id
+        }
+      })
+      return {
+        infoCart: getInfoCart
+      }
+    } catch (error) {
+      throw new InternalServerError(`error:: ${error}`);
     }
   }
 

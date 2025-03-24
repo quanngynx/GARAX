@@ -17,6 +17,7 @@ extends Model<CartItemsCreationAttributes> {
   // productVariantId!: string;
   // createdAt!: Date;
   // updatedAt!: Date;
+  product_variant_values?: ProductVariantValuesModel;
 
   public static associations: {
     cartItems: Association<CartItemsModel, CartModel>;
@@ -30,10 +31,14 @@ extends Model<CartItemsCreationAttributes> {
   static associate(models: Models) {
     this.belongsTo(models.Cart, {
       foreignKey: 'cartId',
-      as: 'carts',
+      // as: 'carts',
     });
 
-    this.hasOne(models.ProductVariantValues, {
+    // this.hasOne(models.ProductVariantValues, {
+    //   foreignKey: 'productVariantId',
+    //   as: 'product_variant_values'
+    // });
+    this.belongsTo(models.ProductVariantValues, {
       foreignKey: 'productVariantId',
       as: 'product_variant_values'
     });
