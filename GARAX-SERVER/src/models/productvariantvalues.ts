@@ -43,7 +43,12 @@ extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
     this.hasOne(models.CartItems, {
       foreignKey: 'productVariantId',
       as: 'cart_items'
-  });
+    });
+
+    this.hasOne(models.OrderDetails, {
+      foreignKey: "productVariantId",
+      as: "order_details",
+    });
   }
 }
 

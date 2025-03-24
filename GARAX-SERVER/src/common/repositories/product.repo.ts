@@ -1,8 +1,7 @@
 import { NotFoundError } from "@/middlewares"
 import { db } from "@/models"
-import { PrimaryKey } from "../interfaces"
 
-export const getProductById = async ({ id } : PrimaryKey) => {
+export const getProductById = async (id: number) => {
   const proId = await db.Product.findByPk(id)
 
   if(!proId) throw new NotFoundError('error::get Product by _id')

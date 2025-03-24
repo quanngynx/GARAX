@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt';
 
 // depenc...
 import { db } from '../models';
-import { BadRequestError, AuthFailureError } from '../middlewares/error.response';
+import { BadRequestError, AuthFailureError, InternalServerError } from '../middlewares/error.response';
 import { AccountService } from './account.service';
 // const PartnerService = require('./partner.service')
 import { KeyTokenService } from './keyToken.service';
@@ -99,10 +99,10 @@ export class AuthJWTService {
             message: 'publicKeyString error!:: ' + error,
           };
         }
-        console.log(`publicKeyString::`, publicKeyString);
+        // console.log(`publicKeyString::`, publicKeyString);
 
         const publicKeyObject = crypto.createPublicKey(publicKeyString);
-        console.log(`publicKeyObject::`, publicKeyObject);
+        // console.log(`publicKeyObject::`, publicKeyObject);
         const publicKeyToString = publicKeyObject.export({ type: 'spki', format: 'pem' });
 
         const tokens = await createTokenPair(
@@ -110,7 +110,7 @@ export class AuthJWTService {
           publicKeyToString,
           privateKey
         );
-        console.log(`created tokens success!::`, tokens);
+        // console.log(`created tokens success!::`, tokens);
         return {
           code: 201,
           metadata: {
@@ -235,6 +235,7 @@ export class AuthJWTService {
 
     } catch (error) {
       console.error(error)
+      throw new InternalServerError(`error::${error}`);
     }
   }
 }

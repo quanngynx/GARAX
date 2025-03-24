@@ -1,6 +1,11 @@
-export interface CreateKeyTokenRequest {
-  userId: number;
-  privateKey: string;
-  publicKey: string;
+import { KeyToken } from "../interfaces";
+
+export interface CreateKeyTokenRequest
+extends Pick<KeyToken,
+| 'userId'
+| 'privateKey'
+| 'publicKey'
+// | 'refreshToken'
+> {
   refreshToken?: string;
 }

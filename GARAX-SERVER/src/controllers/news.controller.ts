@@ -26,9 +26,10 @@ class NewsController {
   }
 
   updateProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
       message: 'Update product success!',
-      metadata: await ProductService.updateProductById(req.params.id, req.body)
+      metadata: await ProductService.updateProductById(Number(id), req.body)
     }).send(res)
   }
 
@@ -40,9 +41,10 @@ class NewsController {
   }
 
   removeProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
       message: 'Remove product success!',
-      metadata: await ProductService.removeProductById(req.params.id)
+      metadata: await ProductService.removeProductById(Number(id))
     }).send(res)
   }
 
@@ -54,9 +56,10 @@ class NewsController {
   }
 
   deleteProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
       message: 'Delete product success!',
-      metadata: await ProductService.deleteProductById(req.params.id)
+      metadata: await ProductService.deleteProductById(Number(id))
     }).send(res)
   }
 
@@ -89,4 +92,4 @@ class NewsController {
   }
 }
 
-export default new NewsController()
+export default new NewsController();

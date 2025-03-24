@@ -31,7 +31,7 @@ class ProductController {
     const { id } = req.params;
     new SuccessResponse({
       message: `Lấy hàng hóa ${id} thành công!`,
-      metadata: await getProductById({ id })
+      metadata: await getProductById(Number(id))
     }).send(res)
   }
 
@@ -58,23 +58,26 @@ class ProductController {
   }
 
   updateProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
       message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
-      metadata: await ProductService.updateProductById(req.params.id, req.body)
+      metadata: await ProductService.updateProductById(Number(id), req.body)
     }).send(res)
   }
 
   updatePartProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
       message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
-      metadata: await ProductService.updatePartProductById(req.params.id, req.body)
+      metadata: await ProductService.updatePartProductById(Number(id), req.body)
     }).send(res)
   }
 
   removeProductById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
     new SuccessResponse({
       message: `Remove product ${req.params.id} success!`,
-      metadata: await ProductService.removeProductById(req.params.id)
+      metadata: await ProductService.removeProductById(Number(id))
     }).send(res)
   }
 
@@ -89,7 +92,7 @@ class ProductController {
     const { id } = req.params;
     new SuccessResponse({
       message: `Delete product ${id} success!`,
-      metadata: await ProductService.deleteProductById(id)
+      metadata: await ProductService.deleteProductById(Number(id))
     }).send(res)
   }
 

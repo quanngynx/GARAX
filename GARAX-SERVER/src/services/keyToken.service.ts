@@ -40,7 +40,7 @@ export class KeyTokenService {
     }
   }
 
-  static findByUserId = async (userId: string | string[]) => {
+  static findByUserId = async (userId: number | number[]) => {
     return await db.KeyToken.findOne({
       where: {
         userId: userId
@@ -48,7 +48,7 @@ export class KeyTokenService {
     })
   }
 
-  static removeKeyById = async (id: string) => {
+  static removeKeyById = async (id: number) => {
     return await db.KeyToken.destroy({
       where: {
         id
@@ -73,7 +73,7 @@ export class KeyTokenService {
     })
   }
 
-  static deleteKeyById = async (userId: string) => {
+  static deleteKeyById = async (userId: number) => {
     return await db.KeyToken.destroy({
       where: {
         userId: userId

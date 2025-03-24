@@ -1,17 +1,17 @@
 'use strict';
-import { PAYMENT_METHOD_VALUES, PAYMENT_STATUS_VALUES } from '@/common/constants';
-import { Models, Order } from '@/common/interfaces';
+import { Models, OrderDetails } from '@/common/interfaces';
 import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { AccountModel } from './account';
 import { CartModel } from './cart';
+import { ProductVariantValuesModel } from './productvariantvalues';
 
-export type OrderCreationAttributes = Optional<
-  Order,
+export type OrderDetailsCreationAttributes = Optional<
+  OrderDetails,
   'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'
 >;
 
-export class OrderModel
-extends Model<Order, OrderCreationAttributes> {
+export class OrderDetailsModel
+extends Model<OrderDetails, OrderDetailsCreationAttributes> {
   id!: number;
   // fullname!: string;
   // phone!: string;
@@ -24,7 +24,7 @@ extends Model<Order, OrderCreationAttributes> {
   // total!: number;
   // userId!: string;
   // addressId!: string;
-  cartId!: string;
+  // cartId!: string;
   // createBy!: string;
   // updateBy!: string;
   // public readonly createdAt!: Date;
@@ -33,7 +33,8 @@ extends Model<Order, OrderCreationAttributes> {
   public cart?: CartModel;
 
   public static associations: {
-    order: Association<OrderModel, AccountModel>;
+    orderDetails: Association<OrderDetailsModel, AccountModel>;
+    productVariantValues: Association<OrderDetailsModel, ProductVariantValuesModel>;
   };
   /**
    * Helper method for defining associations.
@@ -46,50 +47,31 @@ extends Model<Order, OrderCreationAttributes> {
       foreignKey: 'userId',
       as: 'account',
     });
+
+    this.belongsTo(models.ProductVariantValues, {
+      foreignKey: "productVariantId",
+      as: "product_variant_values",
+    });
   }
 }
 
-export const orderModel = (sequelize: Sequelize) => {
-  OrderModel.init({
+export const orderDetailsModel = (sequelize: Sequelize) => {
+  OrderDetailsModel.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    fullname: {
-      type: DataTypes.STRING
-    },
-    phone: {
-      type: DataTypes.STRING
-    },
-    isReceiveAtStore: {
-      type: DataTypes.BOOLEAN
-    },
-    paymentMethod: {
-      type: DataTypes.ENUM(...PAYMENT_METHOD_VALUES)
-    },
-    paymentStatus: {
-      type: DataTypes.ENUM(...PAYMENT_STATUS_VALUES)
-    },
-    subTotalFromProd: {
-      type: DataTypes.FLOAT
-    },
-    shippingFee: {
-      type: DataTypes.FLOAT
-    },
-    discount: {
-      type: DataTypes.FLOAT
-    },
-    total: {
-      type: DataTypes.FLOAT
-    },
-    userId: {
+    price: {
       type: DataTypes.INTEGER
     },
-    addressId: {
+    qty: {
       type: DataTypes.INTEGER
     },
-    cartId: {
+    orderId: {
+      type: DataTypes.INTEGER
+    },
+    productVariantId: {
       type: DataTypes.INTEGER
     },
     createdBy: {
@@ -108,8 +90,8 @@ export const orderModel = (sequelize: Sequelize) => {
     },
   }, {
     sequelize,
-    modelName: 'Order',
-    tableName: 'orders'
+    modelName: 'OrderDetails',
+    tableName: 'order_details'
   });
-  return OrderModel;
+  return OrderDetailsModel;
 };

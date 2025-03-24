@@ -1,4 +1,5 @@
 import { VariantValuesModel, VariantKeysModel, VideoModel, AccountModel, AddressModel, ApiKeyModel, BrandModel, CartItemsModel, CartModel, CategoryProductModel, CurrencyModel, ImageModel, ItemPermissionModel, KeyTokenModel, NewsCategoryModel, NewsModel, OrderModel, OtpCodeModel, PaymentModel, PermissionModel, ProductModel, ProductVariantValuesModel, ServiceCategoryModel, ServiceModel, SpecificationDetailProductModel, SpecificationProductModel, AttributeValuesModel, ProductAttributeValuesModel } from "@/models";
+import { OrderDetailsModel } from "@/models/orderdetails";
 import { Sequelize } from "sequelize";
 
 export interface Models {
@@ -16,6 +17,7 @@ export interface Models {
   News: typeof NewsModel;
   NewsCategory: typeof NewsCategoryModel;
   Order: typeof OrderModel;
+  OrderDetails: typeof OrderDetailsModel;
   OtpCode: typeof OtpCodeModel;
   Payment: typeof PaymentModel;
   Permission: typeof PermissionModel;

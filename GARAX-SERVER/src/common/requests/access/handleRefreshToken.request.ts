@@ -5,7 +5,7 @@ interface UserPayload
 extends Pick<Account,
  | 'email'
 >{
-  userId: string;
+  userId: number;
 }
 
 export interface HandleRefreshTokenRequest {

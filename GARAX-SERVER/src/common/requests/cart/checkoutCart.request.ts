@@ -10,4 +10,5 @@ Pick<Order,
 | 'discount'
 | 'paymentMethod'
 | 'paymentStatus'
+| 'addressId'
 > {}

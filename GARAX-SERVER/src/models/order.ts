@@ -2,8 +2,8 @@
 import { PAYMENT_METHOD_VALUES, PAYMENT_STATUS_VALUES } from '@/common/constants';
 import { Models, Order } from '@/common/interfaces';
 import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
-import { AccountModel } from './account';
 import { CartModel } from './cart';
+import { OrderDetailsModel } from './orderdetails';
 
 export type OrderCreationAttributes = Optional<
   Order,
@@ -33,7 +33,7 @@ extends Model<Order, OrderCreationAttributes> {
   public cart?: CartModel;
 
   public static associations: {
-    order: Association<OrderModel, AccountModel>;
+    orderDetails: Association<OrderModel, OrderDetailsModel>;
   };
   /**
    * Helper method for defining associations.

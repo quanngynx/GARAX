@@ -60,7 +60,11 @@ const authentication = asyncHandler(async(req: AuthenticationProps, _res: Respon
   const userId = req.headers[HEADER.CLIENT_ID];
   if (!userId) throw new AuthFailureError('Invalid Request! - 53');
 
-  const keyStore = await KeyTokenService.findByUserId(userId);
+  const parsedUserId: number | number[] = Array.isArray(userId)
+  ? userId.map(id => Number(id))
+  : Number(userId);
+
+  const keyStore = await KeyTokenService.findByUserId(parsedUserId);
   if (!keyStore) throw new NotFoundError('Not found keyStore! - 57');
 
   if (req.headers[HEADER.REFRESHTOKEN]) {

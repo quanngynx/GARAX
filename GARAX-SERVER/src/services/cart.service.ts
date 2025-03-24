@@ -113,7 +113,8 @@ export class CartService {
     shippingFee,
     discount,
     paymentMethod = "small",
-    paymentStatus = "small"
+    paymentStatus = "small",
+    addressId
   } : CheckoutCartRequest) {
     /**
      * 1. init transaction
@@ -164,7 +165,7 @@ export class CartService {
         throw new BadRequestError(`Giỏ hàng :${cartId}: không tồn tại hoặc giỏ hàng trống`)
       }
 
-      const calculatedTotal = getInfoCart.dataValues.cart_items?.reduce((acc, item: any) => {
+      const calculatedTotal = getInfoCart.dataValues.cart_items?.reduce((acc: number, item: any) => {
         const price = item.dataValues?.product_variant_values?.dataValues?.price ?? 1;
         return acc + (item.dataValues.qty * price);
       }, 0);
@@ -173,7 +174,7 @@ export class CartService {
       /**
        * 3. Add infor detail
        */
-      const newOrder = await db.Order.create({
+      const createNewOrder = await db.Order.create({
         userId: getInfoCart?.dataValues.userId,
         cartId: 0,
         total: total || calculatedTotal,
@@ -185,22 +186,44 @@ export class CartService {
         subTotalFromProd: calculatedTotal,
         shippingFee: shippingFee,
         discount: discount,
-        addressId: 0, // outstanding
+        addressId: addressId,
         // note => lack
-      }, { 
+      }, {
         transaction
       });
+
+      for(const item of getInfoCart.dataValues.cart_items) {
+        await db.OrderDetails.create({
+          orderId: createNewOrder.dataValues.id,
+          productVariantId: item.product_variant_values?.id || 0,
+          price: item.product_variant_values?.price || 0,
+          qty: item.qty
+        }, {
+          transaction
+        });
+      }
 
       await db.CartItems.destroy({
         where: {
           cartId: getInfoCart.dataValues.id
         }
       })
+
+      await getInfoCart.destroy({ transaction });
+
+
+      /**
+       * N. Intergrate PAYOS, PRESSPAY
+       */
+
+      await transaction.commit();
+
       return {
-        infoCart: getInfoCart
+        newOrder: createNewOrder
       }
     } catch (error) {
-      throw new InternalServerError(`error:: ${error}`);
+      await transaction.rollback()
+      throw new InternalServerError(`Lỗi thanh toán giỏ hàng:: ${error}`);
     }
   }
 

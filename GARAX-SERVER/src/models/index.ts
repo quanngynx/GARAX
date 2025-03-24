@@ -22,6 +22,7 @@ import { imageModel } from './image';
 import { newsModel } from './news';
 import { newsCategory } from './newscategory';
 import { orderModel } from './order';
+import { orderDetailsModel } from './orderdetails';
 import { paymentModel } from './payment';
 import { productVariantValuesModel } from './productvariantvalues';
 import { serviceModel } from './service';
@@ -75,6 +76,7 @@ const KeyToken = keyTokenModel(sequelize);
 const News = newsModel(sequelize);
 const NewsCategory = newsCategory(sequelize);
 const Order = orderModel(sequelize);
+const OrderDetails= orderDetailsModel(sequelize);
 const OtpCode = otpCodeModel(sequelize);
 const Payment = paymentModel(sequelize);
 const Permission = permissionModel(sequelize);
@@ -90,7 +92,7 @@ const SpecificationDetailProduct = specificationDetailProductModel(sequelize);
 const SpecificationProduct = specificationProductModel(sequelize);
 const Video = videoModel(sequelize);
 
-const db: Models = {
+const db: Models | any= {
   Account,
   Address,
   ApiKey,
@@ -105,6 +107,7 @@ const db: Models = {
   News,
   NewsCategory,
   Order,
+  OrderDetails,
   OtpCode,
   Payment,
   Permission,
@@ -161,6 +164,7 @@ export * from './keytoken';
 export * from './news';
 export * from './newscategory';
 export * from './order';
+export * from './orderdetails';
 export * from './otpcode';
 export * from './payment';
 export * from './permission';

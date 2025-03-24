@@ -14,6 +14,7 @@ export * from './models/news.interface';
 export * from './models/itemPermission.interface';
 export * from './models/newsCategory.interface';
 export * from './models/order.interface';
+export * from './models/orderDetails.interface';
 export * from './models/otpCode.interface';
 export * from './models/product.interface';
 export * from './models/payment.interface';

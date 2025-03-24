@@ -181,9 +181,9 @@ export class ProductService {
 
       createdVariantValues.push({
         sku: sku,
-        price: createdVariant.price,
-        oldPrice: createdVariant.oldPrice,
-        stock: createdVariant.stock
+        price: createdVariant.dataValues.price,
+        oldPrice: createdVariant.dataValues.oldPrice,
+        stock: createdVariant.dataValues.stock
       });
     }
 
@@ -207,10 +207,10 @@ export class ProductService {
   }
 
   static async addVariantProduct(
-    productId: string,
+    productId: number,
     _data: any
   ) {
-    const getProductFromId = await getProductById({ id: productId })
+    const getProductFromId = await getProductById(productId)
 
     if(!getProductFromId) {
       throw new NotFoundError('Not found product from id!')
@@ -318,15 +318,15 @@ export class ProductService {
     };
   }
 
-  static async updateProductById(id: string, {}) {
+  static async updateProductById(id: number, {}) {
     return id
   }
 
-  static async updatePartProductById(id: string, {}) {
+  static async updatePartProductById(id: number, {}) {
     return id
   }
 
-  static async removeProductById(id: string) {
+  static async removeProductById(id: number) {
     return id
   }
 
@@ -334,7 +334,7 @@ export class ProductService {
 
   }
 
-  static async deleteProductById(id: string) {
+  static async deleteProductById(id: number) {
     /**
      * 1. Init transaction | product -> attribute -> variantKeys -> variantValues -> productVariantValues
      */

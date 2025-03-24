@@ -9,8 +9,14 @@ import PayOS from '@payos/node';
 
 // RESPONSE
 import { NotFoundError } from '../middlewares/error.response';
-import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
-import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
+import {
+  CheckoutRequestType,
+  WebhookType
+} from '@payos/node/lib/type';
+import {
+  CancelPaymentLinkPayOSRequest,
+  CreatePaymentLinkPayOSRequest
+} from '@/common/requests/payment';
 
 const payos = new PayOS(
   String(process.env.PAYOS_CLIENT_ID),
