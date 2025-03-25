@@ -20,7 +20,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Aliases with default import */
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "public/*": ["./public/*"],
+      "components/*": ["./components/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "src/**/*.tsx"],
 }

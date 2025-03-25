@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-export function useCheckAuth(navigate) {
+// export function useCheckAuth(navigate) {
 //   const navigate = useNavigate()     ;
 //   const checkAuth = () => {
 //     const token = localStorage.getItem('token');
@@ -10,10 +10,9 @@ export function useCheckAuth(navigate) {
 //       navigate('/auth/login');
 //     }
 //   };
+// }
 
-
-}
-export const isTokenExpired = (token) => {
+export const isTokenExpired = (token: string) => {
     if (!token) return true;
 
     const timeEnd = JSON.parse(atob(token.split('.')[1]));

@@ -1,15 +1,15 @@
 import type { AxiosError } from 'axios';
 
-import { toast } from '../toast';
+import { toast } from '@/components/toasts';
 
 /**
  * Handle bad unauthorized error
- * @param {AxiosError} _error Axios errors
+ * @param {AxiosError} error Axios errors
  */
-export function handleUnauthorizedError(_error: AxiosError): void {
+export function handleUnauthorizedError(error: AxiosError): void {
   toast({
     title: 'Lỗi',
-    description: 'Phiên làm việc đã hết hạn, xin vui lòng đăng nhập lại.',
+    description: 'Phiên làm việc đã hết hạn, xin vui lòng đăng nhập lại.::' + error.message,
     status: 'error',
     isClosable: true,
   });

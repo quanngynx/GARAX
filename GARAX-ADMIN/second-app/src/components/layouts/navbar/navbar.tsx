@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { Breadcrumb } from "../../breadcrumb";
 
@@ -7,15 +8,26 @@ import { SunOutlined } from "../../icons";
 import { ToggleSidenav } from "../../icons";
 import { LineFullWidth } from "../../line";
 import { MingcuteNotificationLine } from "@/components/icons/notification";
+import { Dispatch, SetStateAction } from "react";
 
-function Navbar() {
+interface INavbar {
+    collapsed: boolean
+    setCollapsed: Dispatch<SetStateAction<boolean>>
+}
+
+function Navbar({collapsed, setCollapsed} : INavbar) {
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
     return (
         <div className="w-[100%]">
             <div className="flex justify-between items-center w-[100%] mb-4">
                 <div className="flex flex-row items-center">
                     <div className="flex items-center mr-1">
-                        <button className="p-2 hover:bg-slate-200 rounded-lg">
-                            <ToggleSidenav />
+                        <button onClick={toggleCollapsed} className="p-2 hover:bg-slate-200 rounded-lg">
+                            {/* <ToggleSidenav /> */}
+                            {collapsed ? <ToggleSidenav /> : <ToggleSidenav />}
                         </button>
                     </div>
                     <span className="py-1 font-bold"> | </span>
@@ -35,12 +47,12 @@ function Navbar() {
                 {/* <div className="w-16% h-[118px]"></div> */}
                 <div className="flex justify-between flex-col-reverse sm:flex-row w-50%">
                     <div className="">
-                        <label className=" h-[30px] flex justify-between border-[0.5px] border-gray-300 bg-[#E0E6EE] rounded-md mr-3 focus:border-slate-600">
-                            <SearchOutlined classname="w-[20px] h-[20px] m-1" styled={{ fontWeight: 600 }}/>
+                        <label className=" h-[30px] flex justify-between border-[0.5px] border-gray-300 bg-[#E0E6EE] focus-within:bg-white  rounded-md mr-3 focus:border-slate-600">
+                            <SearchOutlined classname="w-[20px] h-[20px] m-1 focus:bg-white" styled={{ fontWeight: 600 }}/>
                             <input
                                 type="text"
-                                placeholder="Tìm kiếm..."
-                                className="rounded-md outline-none w-full bg-[#E0E6EE] text-black text-base font-medium font-['Inter'] py-2"
+                                placeholder="Tìm kiếm"
+                                className="rounded-md outline-none w-full bg-[#E0E6EE] focus:bg-white text-black text-base font-medium font-['Inter'] py-2"
                             />
                         </label>
                     </div>

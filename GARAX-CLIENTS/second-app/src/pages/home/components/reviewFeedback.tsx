@@ -1,6 +1,6 @@
-import QuotationMarks from '../../../assets/home/icons/Quotation-Marks.svg?react'
-import Avt1 from '../../../assets/home/images/test1-150x150.jpg.png'
-import Avt2 from '../../../assets/home/images/test1-150x150.jpg.png'
+import QuotationMarks from '@/assets/home/icons/Quotation-Marks.svg?react'
+import Avt1 from '../../../assets/home/images/team3-150x150.jpg.png'
+import Avt2 from '../../../assets/home/images/team4-150x150.jpg'
 import Avt3 from '../../../assets/home/images/test1-150x150.jpg.png'
 
 import { IReviewFeedback } from '../interfaces/index'
@@ -8,6 +8,7 @@ import { IReviewFeedback } from '../interfaces/index'
 function reviewFeedback() {
   const feedBack: IReviewFeedback[] = [
     {
+      id: 1,
       tit: "Công việc tuyệt vời",
       img: Avt1,
       icon: <QuotationMarks />,
@@ -16,6 +17,7 @@ function reviewFeedback() {
       role: "Facebook",
     },
     {
+      id: 2,
       tit: "Thiết kế tuyệt vời",
       img: Avt2,
       icon: <QuotationMarks />,
@@ -24,6 +26,7 @@ function reviewFeedback() {
       role: "Designer",
     },
     {
+      id: 3,
       tit: "Tuyệt với",
       img: Avt3,
       icon: <QuotationMarks />,
@@ -34,7 +37,7 @@ function reviewFeedback() {
   ];
 
   const feedBackDiv = feedBack.map((i) => (
-    <div key={i} className='sm:block flex justify-center'>
+    <div key={i.id} className='sm:block flex justify-center'>
       <div className="min-h-[280px] bg-[#ebf7fe] rounded-2xl shadow">
         <div className="p-8">
           {/* TITLE */}
@@ -47,7 +50,7 @@ function reviewFeedback() {
           {/* AVARTAR */}
           <div className="flex flex-row justify-start items-center">
             <div>
-              <image className='w-[60px]' src={i.img} alt='demo'/>
+              <img className='w-[60px]' src={i.img} alt='demo'/>
             </div>
             <div className='flex flex-col items-center'>
               <div className="text-base font-medium font-['DM Sans'] leading-tight">{i.name}</div>

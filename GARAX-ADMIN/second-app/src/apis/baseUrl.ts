@@ -1,0 +1,1 @@
+export const BASE = (ver:string, typeofRoute: string): string => `${ver}/${typeofRoute}`;

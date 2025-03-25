@@ -1,0 +1,50 @@
+name: Build and Test API
+
+on:
+    push:
+    pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest  
+
+    strategy:
+        matrix:
+          node-version: [22.x]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+          cache-dependency-path: GARAX-SERVER/yarn.lock 
+      
+    #   - name: Join GARAX-SERVER
+    #     run: cd GARAX-SERVER
+
+      - name: Install dependencies
+        run: |
+          cd GARAX-SERVER
+          yarn --frozen-lockfile
+
+      - name: Build
+        run: |
+          cd GARAX-SERVER
+          yarn build
+
+      - name: Lint
+        run: |
+          cd GARAX-SERVER
+          yarn lint
+
+
+      # - name: Run Tests
+      #   run: |
+      #     cd GARAX-SERVER
+      #     yarn test

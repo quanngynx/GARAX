@@ -1,17 +1,34 @@
 import slugify from "slugify";
 
-import TopRightTinyIcon from "../../../assets/home/icons/topRight-vector-tiny.svg?react";
-import RangeTinyIcon from "../../../assets/home/icons/range-tiny.svg?react";
-import FuelTypeTinyIcon from "../../../assets/home/icons/fuel-type-tiny.svg?react";
-import TransmissionTypeTinyIcon from "../../../assets/home/icons/transmission-car-tiny.svg?react";
-import ScheduleTinyIcon from "../../../assets/home/icons/schedule-tiny.svg?react";
+import TopRightTinyIcon from "@/assets/home/icons/topRight-vector-tiny.svg?react";
+import RangeTinyIcon from "@/assets/home/icons/range-tiny.svg?react";
+import FuelTypeTinyIcon from "@/assets/home/icons/fuel-type-tiny.svg?react";
+import TransmissionTypeTinyIcon from "@/assets/home/icons/transmission-car-tiny.svg?react";
+import ScheduleTinyIcon from "@/assets/home/icons/schedule-tiny.svg?react";
 
-import LineFull from "../../../components/line/line";
+import { Line } from "@/components/line/line";
 
 import { Link } from "react-router-dom";
+import { ICardProducts } from "@/interfaces/__mock__";
 
+// interface ItemCards {
+//   title: string;
+//   image: string;
+//   description: string;
+//   range: number;
+//   cost: number;
+// }
 
-function products({ card, index }) {
+interface ProductsProps {
+  card: ICardProducts,
+  index: number;
+}
+
+function products({ 
+  card, 
+  index 
+}: ProductsProps) {
+
   const slug = slugify(card.title, { lower: true, strict: true })
   const productPath = `/product/${slug}`;
   return (
@@ -56,12 +73,12 @@ function products({ card, index }) {
         </div>
 
         <div className="my-4 w-full">
-          <LineFull />
+          <Line />
         </div>
 
         <div className="inline-flex justify-between w-full">
           <div className="text-[#050b20] text-xl font-bold font-['DM Sans'] leading-[30px]">
-            ${card.cost}
+            {card.cost} VND
           </div>
 
           <div className="text-[#405ff2] text-[15px] font-medium font-['DM Sans'] leading-7 flex items-center">

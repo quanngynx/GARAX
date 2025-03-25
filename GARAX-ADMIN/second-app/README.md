@@ -48,3 +48,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 [splitter](https://ant.design/components/splitter)
 
 [menu-demo-horizontal](https://ant.design/components/menu#menu-demo-horizontal)
+
+[eslint](https://nextjs.org/docs/app/api-reference/config/eslint)
+
+[nginx](https://www.dhiwise.com/post/how-to-host-your-nextjs-nginx-application-efficiently)
+
+## Extend config for next
+
+- Các thuộc tính như pageExtensions, rewrites, eslint rất hữu ích cho việc tổ chức code và tối ưu hóa phát triển.
+httpAgentOptions, transpilePackages giúp kiểm soát hiệu suất và tương thích gói.
+
+- productionBrowserSourceMaps và generateBuildId quan trọng trong giai đoạn production và CI/CD.
+
+[config-next](https://dev.to/nuro/improving-the-nextjs-config-400j)

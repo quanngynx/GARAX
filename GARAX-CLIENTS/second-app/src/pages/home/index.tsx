@@ -1,38 +1,37 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
-import { useCheckAuth } from "../auth/checkToken";
+// import { useCheckAuth } from "../auth/checkToken";
 
-import { ITabsConfig } from './interfaces'
+// import { ITabsConfig } from './interfaces'
 
-import imagecar from "../../assets/home/images/car-big.webp";
+import imagecar from "@/assets/home/images/car-big.webp";
 import WhyChooseUs from "./components/Whychose";
 import FormSearch from "./components/formSearch";
 import FormHelpDesk from "./components/formHelpDesk";
 import CardProduct from "./components/sliderCardProduct";
 import BtnProducts from "./components/buttonFullWidth";
-import AccessibleTabs from "./components/accessibleTabs";
+// import AccessibleTabs from "./components/accessibleTabs";
 import BroswerByType from "./components/broswerByType";
 import BestCar from "./components/Bestcar";
 import ReviewFeedback from "./components/reviewFeedback";
-import Line from "../../components/line/line";
+import {Line} from "@/components/line/line";
 
-const tabsConfig: ITabsConfig[] = [
-  {
-    label: "Spare Parts",
-    content: "Content Panel 1",
-  },
-  {
-    label: "Support Tools",
-    content: "Content Panel 2",
-  },
-  {
-    label: "Others",
-    content: "Content Panel 3",
-  },
-];
+// const tabsConfig: ITabsConfig[] = [
+//   {
+//     label: "Spare Parts",
+//     content: "Content Panel 1",
+//   },
+//   {
+//     label: "Support Tools",
+//     content: "Content Panel 2",
+//   },
+//   {
+//     label: "Others",
+//     content: "Content Panel 3",
+//   },
+// ];
 
-function HomePage() {
+export function HomePage(): JSX.Element {
   const history = useNavigate();
   const navigateToProductPage = () => {
     history("/product");
@@ -43,14 +42,15 @@ function HomePage() {
   }
 
   return (
-  <div className="md:w-full bg-white h-[100%] p-4 md:p-20">
-      {/* Image section with overlay text */}
+  <div className="md:w-[1222px] bg-white h-[100%] md:py-24">
       <div className="relative">
-        <img
-          src={imagecar}
-          alt="A car in a desert landscape"
-          className="w-full rounded-lg h-[300px] md:h-[600px] object-cover"
-        />
+        <div className="">
+          <img
+            src={imagecar}
+            alt="A car in a desert landscape"
+            className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+          />
+        </div>
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
           <div className="absolute flex flex-col justify-center items-center text-center">
             <h1 className="text-2xl md:text-4xl font-bold">
@@ -64,32 +64,30 @@ function HomePage() {
 
           {/* Spacer div to create space between text and form */}
 
-          <div className=" inset-x-0 bottom-0 transform translate-y-[80%] md:translate-y-0">
+          <div className="w-full inset-x-0 bottom-0 transform translate-y-[60%] md:translate-y-0">
             <FormSearch />
           </div>
         </div>
       </div>
-
-     
       <div>
       {/* Broswer by type */}
       <BroswerByType />
 
       {/* Why choose us */}
       <WhyChooseUs />
+
       {/* The best thing for our car */}
       <BestCar />
+
       <Line />
+
       {/* What customer say */}
       <ReviewFeedback />
 
       {/* HelpDesk Form Section */}
       <FormHelpDesk />
-
+      
       </div>
-       
-     
-  
       <div>
       {/* Featured Listings Section */}
       <div className="mt-8 md:mt-12">
@@ -97,7 +95,7 @@ function HomePage() {
           <div className="text-[#050b20] text-2xl md:text-[40px] font-bold font-['DM Sans'] leading-7 md:leading-10">
             Danh sách sản phẩm
           </div>
-          <AccessibleTabs tabsConfig={tabsConfig} />
+          {/* <AccessibleTabs tabsConfig={tabsConfig} /> */}
         </div>
 
         {/* Product Cards */}
@@ -111,4 +109,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+ 

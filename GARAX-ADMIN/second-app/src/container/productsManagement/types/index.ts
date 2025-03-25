@@ -39,6 +39,8 @@ export type TValuesInforProduct = {
     unit: [];
 };
 
+export type TFixedType = 'left' | 'right' | undefined
+
 /**
  * @description DEMO 
  */
@@ -48,4 +50,8 @@ export type TDataTableType = {
     age: number;
     address: string;
     tags: string[];
+}
+
+export type TDataListResponse = {
+    name: string;
 }

@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 
 
-import { ExpandOutline } from '../../../components/icons'
+import { ExpandOutline } from '@/components/icons'
 import Typography from "@mui/material/Typography";
 
 function leftSidebar() {

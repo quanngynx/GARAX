@@ -1,5 +1,5 @@
-import car1 from "../../../assets/home/icons/car1.svg";
-import car2 from "../../../assets/home/icons/car2.svg";
+import car1 from "@/assets/home/icons/car1.svg";
+import car2 from "@/assets/home/icons/car2.svg";
 
 function CarServiceSection() {
   return (

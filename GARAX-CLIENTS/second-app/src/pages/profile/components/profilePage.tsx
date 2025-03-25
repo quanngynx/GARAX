@@ -1,4 +1,4 @@
-function rightContent() {
+export function rightContent() {
   return (
     <div className="w-[70%]">
       <div className="border-[1px] p-8 rounded">
@@ -115,5 +115,3 @@ function rightContent() {
     </div>
   );
 }
-
-export default rightContent;

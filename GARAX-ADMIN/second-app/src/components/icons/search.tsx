@@ -2,8 +2,8 @@ import { SearchOutlined } from '@ant-design/icons';
 import { CSSProperties } from 'react';
 
 interface ISearchOutlinedIcon {
-    classname: string
-    styled: CSSProperties
+    classname?: string
+    styled?: CSSProperties
 }
 
 function SearchOutlinedIcon({ classname, styled } : ISearchOutlinedIcon) {

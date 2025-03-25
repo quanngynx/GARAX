@@ -1,23 +1,26 @@
-import { createStore } from "https://framer.com/m/framer/store.js@^1.0.0"
-import { randomColor } from "https://framer.com/m/framer/utils.js@^0.9.0"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// import { createStore } from "https://framer.com/m/framer/store.js@^1.0.0";
+// import { randomColor } from "https://framer.com/m/framer/utils.js@^0.9.0";
 
-const useStore = createStore({
-    background: "#0099FF",
-})
 
-export function withRandomColor(Component) {
-    // eslint-disable-next-line react/display-name
-    return (props) => {
-        const [store, setStore] = useStore()
+import type { ComponentType } from "react";
+
+// const useStore = createStore({
+//     background: "#0099FF",
+// })
+
+export function withRandomColor(Component: any): ComponentType {
+    return (props: any) => {
+        // const [store, setStore] = useStore()
 
         return (
             <Component
                 {...props}
                 animate={{
-                    background: store.background,
+                    background: "#0099FF",
                 }}
                 onClick={() => {
-                    setStore({ background: randomColor() })
+                    // setStore({ background: "#0099FF" })
                 }}
             />
         )

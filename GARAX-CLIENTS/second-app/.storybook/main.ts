@@ -8,17 +8,27 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
   ],
-  framework: {
-    name: "@storybook/react-vite",
-    options: {
-      builder: {
-        viteConfigPath: '.storybook/customViteConfig.js',
-      },
-    },
-  },
+  framework: '@storybook/react-vite',
+  // framework: {
+  //   name: "@storybook/react-vite",
+  //   options: {
+  //     builder: {
+  //       // viteConfigPath: '.storybook/customViteConfig.js',
+  //     },
+  //   },
+  // },
   // other storybook options...,
-  async viteFinal(config, options) {
-    // modify and return config
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async viteFinal(config, _options) {
+    // Merge custom configuration into the default config
+    const { mergeConfig } = await import('vite');
+ 
+    return mergeConfig(config, {
+      // Add dependencies to pre-optimization
+      optimizeDeps: {
+        include: ['storybook-dark-mode'],
+      },
+    });
   },
 };
 export default config;

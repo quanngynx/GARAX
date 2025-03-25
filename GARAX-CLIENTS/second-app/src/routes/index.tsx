@@ -1,43 +1,76 @@
+import { lazy, LazyExoticComponent } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 
 //Delay
-import DelayedSuspense from "../components/delaySuspense/DelayedSuspense";
+import DelayedSuspense from "@/components/delaySuspense/DelayedSuspense";
 // layout
-import MainLayout from "../layouts/main/index";
-import OnlyCanvas from "../layouts/onlyCanvas/index";
+import MainLayout from "@/components/layouts/main";
+import OnlyCanvas from "@/components/layouts/onlyCanvas";
+
 // page
-import HomePage from "../pages/home/index";
-import LoginPage from "../pages/auth/login";
-import RegisterPage from "../pages/auth/register";
-import Verify from "../pages/auth/verified"
-import ProductPage from '../pages/products/index'
-import DetailProductPage from '../pages/detailProduct/index'
+import { HomePage } from "@/pages/home";
+import LoginPage from "@/pages/auth/login";
+import RegisterPage from "@/pages/auth/register";
+// import Verify from "@/pages/auth/verified"
+
+const ProductPage: LazyExoticComponent<() => JSX.Element> = lazy(
+  async() => {
+    const module: typeof import('@/pages/products') = await import('@/pages/products')
+    return { default: module.ProductPage };
+  }
+)
+
+// const DetailProductPage: LazyExoticComponent<() => JSX.Element> = lazy(
+//   async() => {
+//     const module: typeof import('@/pages/detailProduct') = await import('@/pages/detailProduct')
+//     return { default: module.detailProduct };
+//   }
+// )
+import { DetailProductPage } from "@/pages/detailProduct";
 
 //Payment
 
 // page service
-import ServicePage from '../pages/service/index'
-import CleaningPage from '../pages/cleaning/index'
-import TestingPage from '../pages/testing/index'
-import MaintainPage from '../pages/maintain/index'
-import UpgradePage from '../pages/upgrade/index'
-import SupportPage from '../pages/support/index'
+import ServicePage from '@/pages/service'
+import CleaningPage from '@/pages/cleaning'
+import TestingPage from '@/pages/testing'
+import MaintainPage from '@/pages/maintain'
+import UpgradePage from '@/pages/upgrade'
+import SupportPage from '@/pages/support'
 
 
 // Profile
-import ProfileUser from '../pages/profile/index'
-import ProfileUserUser from '../pages/profile/components/profilePage'
-import ProfilePaymentInfo from '../pages/profile/page/paymentInfor/paymentInfor'
-import ProfileTheme from '../pages/profile/page/theme/theme'
-import ProfileNotification from '../pages/profile/page/notification/notification'
-import ProfileSercurity from '../pages/profile/page/sercurity/sercurity'
-import ProfileHistoryAccess from '../pages/profile/page/historyAccess/historyAccess'
+const ProfileUser: LazyExoticComponent<() => JSX.Element> = lazy(
+  async() => {
+    const module: typeof import('@/pages/profile') = await import('@/pages/profile')
+    return { default: module.profileUser };
+  }
+)
 
-import ErrorPage from '../pages/error/index'
-import ErrorPage2 from '../pages/error/error2'
+const ProfileUserUser: LazyExoticComponent<() => JSX.Element> = lazy(
+  async() => {
+    const module: typeof import('@/pages/profile/components/profilePage') = await import('@/pages/profile/components/profilePage')
+    return { default: module.rightContent };
+  }
+)
+
+const ProfilePaymentInfo: LazyExoticComponent<() => JSX.Element> = lazy(
+  async() => {
+    const module: typeof import('@/pages/profile/page/paymentInfor/paymentInfor') = await import('@/pages/profile/page/paymentInfor/paymentInfor')
+    return { default: module.paymentInfor };
+  }
+)
+
+import ProfileTheme from '@/pages/profile/page/theme/theme'
+import ProfileNotification from '@/pages/profile/page/notification/notification'
+import ProfileSercurity from '@/pages/profile/page/sercurity/sercurity'
+import ProfileHistoryAccess from '@/pages/profile/page/historyAccess/historyAccess'
+
+import ErrorPage from '@/pages/error'
+import ErrorPage2 from '@/pages/error/error2'
 // Loading
-import Loader from "../components/loading/loading-react";
-// import Spinner from "../components/spinner";
+import Loader from "@/components/loading/loading-react";
+// import Spinner from "@/components/spinner";
 // import { patch } from "@mui/material";
 
 function Routes() {
@@ -52,11 +85,19 @@ function Routes() {
             },
             {
               path: "home",
-              element: <DelayedSuspense delay={500} fallback={<Loader/>}><HomePage /></DelayedSuspense>,
+              element: (
+                <DelayedSuspense delay={250} fallback={<Loader/>}>
+                  <HomePage />
+                </DelayedSuspense>
+              ),
             },
             {
               path: "product",
-              element: <ProductPage />,
+              element: (
+                <DelayedSuspense delay={250} fallback={<Loader/>}>
+              <ProductPage />
+              </DelayedSuspense>
+              ),
             },
             {
               path: "product/:slug",
@@ -114,10 +155,10 @@ function Routes() {
               path: "register",
               element: <RegisterPage/>,
             },
-            {
-              path:"verify",
-              element: <Verify/>,
-            },
+            // {
+            //   path:"verify",
+            //   element: <Verify/>,
+            // },
             {
               path: "login",
               element: <LoginPage />,

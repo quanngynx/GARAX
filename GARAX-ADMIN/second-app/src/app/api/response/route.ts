@@ -1,1 +1,0 @@
-// app/api/response/route.js

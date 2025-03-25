@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-// import setupLocatorUI from "@locator/runtime";
+
 import "./globals.css";
 
 const geistSans = localFont({
