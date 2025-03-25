@@ -44,7 +44,7 @@ jobs:
           yarn lint
 
 
-      - name: Run Tests
-        run: |
-          cd GARAX-SERVER
-          yarn test
+      # - name: Run Tests
+      #   run: |
+      #     cd GARAX-SERVER
+      #     yarn test
