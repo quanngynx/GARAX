@@ -21,7 +21,7 @@
     "@mui/x-data-grid": "^7.20.0",
     "@mui/x-tree-view": "^7.17.0",
     "antd": "^5.21.6",
-    "axios": "^1.7.7",
+    "axios": "^1.8.2",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.5.1",
     "clsx": "^2.1.1",
