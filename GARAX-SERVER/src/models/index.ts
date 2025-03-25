@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DataTypes, Sequelize } from 'sequelize';
 import fs from 'fs';
 import path from 'path';
@@ -40,7 +41,6 @@ import { variantValuesModel } from './variantvalues';
 // const dbConfig = connectionConfig[env];
 const basename = path.basename(__filename);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let sequelize: any;
 if (connectionConfig.database && connectionConfig.username) {
   sequelize = new Sequelize(connectionConfig.database, connectionConfig.username, connectionConfig.password, {
@@ -88,8 +88,7 @@ const SpecificationDetailProduct = specificationDetailProductModel(sequelize);
 const SpecificationProduct = specificationProductModel(sequelize);
 const Video = videoModel(sequelize);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const db: Models | any = {
+const db: Models = {
   Account,
   Address,
   ApiKey,
@@ -123,6 +122,10 @@ const db: Models | any = {
   Sequelize
 };
 
+interface ModelProps {
+  name: any;
+}
+
 fs.readdirSync(__dirname)
   .filter((file) => {
     return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js';
@@ -130,13 +133,17 @@ fs.readdirSync(__dirname)
   .forEach(async (file) => {
     const modelPath = path.join(__dirname, file);
     const modelModule = await import(modelPath);
-    const model = modelModule.default(sequelize, DataTypes);
-    db[model.name] = model;
+    const model: ModelProps = modelModule.default(sequelize, DataTypes);
+    const dbUnknow: unknown = db;
+    const dbAsAny = dbUnknow as any;
+    dbAsAny[model.name] = model;
   });
 
 Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+  const dbUnknow: unknown = db;
+  const dbAsAny = dbUnknow as any;
+  if (dbAsAny[modelName].associate) {
+    dbAsAny[modelName].associate(db);
   }
 });
 

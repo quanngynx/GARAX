@@ -6,7 +6,7 @@ import { CartItemsModel } from './cartitems';
 export type CartCreationAttributes = Optional<Cart, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class CartModel extends Model<CartCreationAttributes> {
-  id!: number;
+  // id!: number;
   // sessionId!: number;
   // userId!: string;
   // createdAt!: Date;

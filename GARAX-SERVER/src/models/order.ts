@@ -1,5 +1,4 @@
 'use strict';
-import { PAYMENT_METHOD_VALUES, PAYMENT_STATUS_VALUES } from '@/common/constants';
 import { Models, Order } from '@/common/interfaces';
 import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { CartModel } from './cart';
@@ -63,10 +62,12 @@ export const orderModel = (sequelize: Sequelize) => {
         type: DataTypes.BOOLEAN
       },
       paymentMethod: {
-        type: DataTypes.ENUM(...PAYMENT_METHOD_VALUES)
+        type: DataTypes.ENUM('COD', 'PAYOS', 'PRESSPAY'),
+        defaultValue: 'COD'
       },
       paymentStatus: {
-        type: DataTypes.ENUM(...PAYMENT_STATUS_VALUES)
+        type: DataTypes.ENUM('PENDING', 'PAID', 'FAILED', 'CANCELLED', 'REFUNDED', 'PROCESSING'),
+        defaultValue: 'PENDING'
       },
       subTotalFromProd: {
         type: DataTypes.FLOAT

@@ -7,7 +7,7 @@ const cartController = CartController.default;
 
 // routerCart.post('/cart', asyncHandler(cartController.createUserCart));
 routerCart.post('/cart', asyncHandler(cartController.addToCart));
-routerCart.get('/cart/checkout', asyncHandler(cartController.checkoutCart));
+routerCart.post('/cart/checkout', asyncHandler(cartController.checkoutCart));
 routerCart.delete('/cart', asyncHandler(cartController.deleteCart));
 routerCart.put('/cart', asyncHandler(cartController.updateCart));
 routerCart.get('/cart/:id', asyncHandler(cartController.getCartById));

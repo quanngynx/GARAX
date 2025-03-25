@@ -42,7 +42,7 @@ export class CartService {
       // console.log('createNewCart id::', createNewCart.newCart.id);
 
       await db.CartItems.upsert({
-        cartId: createNewCart.newCart.id || 0,
+        cartId: createNewCart.newCart.dataValues.id || 0,
         productVariantId: productVariantItems.productVariantId,
         // qty: (isExistProductVariant?.dataValues.qty || 0) + (productVariantItems.qty || 1),
         qty: productVariantItems.qty || 1
@@ -51,7 +51,7 @@ export class CartService {
       return {
         newCart: createNewCart.newCart,
         newItemsCart: db.CartItems.findAll({
-          where: { cartId: createNewCart.newCart.id }
+          where: { cartId: createNewCart.newCart.dataValues.id }
         })
       };
     }
@@ -79,7 +79,7 @@ export class CartService {
       );
     } else {
       await db.CartItems.create({
-        cartId: isExistCart.id || 0,
+        cartId: isExistCart.dataValues.id || 0,
         productVariantId: productVariantItems.productVariantId,
         qty: productVariantItems.qty || 1
       });
@@ -107,8 +107,8 @@ export class CartService {
     isReceiveAtStore,
     shippingFee,
     discount,
-    paymentMethod = 'small',
-    paymentStatus = 'small',
+    paymentMethod,
+    paymentStatus,
     addressId
   }: CheckoutCartRequest) {
     /**
@@ -162,11 +162,12 @@ export class CartService {
         const price = item.dataValues?.product_variant_values?.dataValues?.price ?? 1;
         return acc + item.dataValues.qty * price;
       }, 0);
-      // console.log("calculatedTotal::", calculatedTotal);
+      console.log('=============calculatedTotal=============::', calculatedTotal);
 
       /**
        * 3. Add infor detail
        */
+
       const createNewOrder = await db.Order.create(
         {
           userId: getInfoCart?.dataValues.userId,
@@ -187,6 +188,8 @@ export class CartService {
           transaction
         }
       );
+
+      console.log('=============createNewOrder=============::', createNewOrder);
 
       for (const item of getInfoCart.dataValues.cart_items) {
         await db.OrderDetails.create(

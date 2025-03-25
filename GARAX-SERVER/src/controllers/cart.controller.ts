@@ -43,7 +43,7 @@ class CartController {
   getCartById = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
     new SuccessResponse({
-      message: 'Delete cart success!',
+      message: 'Get cart success!',
       metadata: await CartService.getCartById(id)
     }).send(res);
   };
