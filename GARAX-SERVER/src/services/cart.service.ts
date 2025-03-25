@@ -162,7 +162,7 @@ export class CartService {
         const price = item.dataValues?.product_variant_values?.dataValues?.price ?? 1;
         return acc + item.dataValues.qty * price;
       }, 0);
-      console.log('=============calculatedTotal=============::', calculatedTotal);
+      // console.log('=============calculatedTotal=============::', calculatedTotal);
 
       /**
        * 3. Add infor detail

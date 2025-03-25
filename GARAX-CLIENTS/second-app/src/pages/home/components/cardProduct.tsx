@@ -78,7 +78,7 @@ function products({
 
         <div className="inline-flex justify-between w-full">
           <div className="text-[#050b20] text-xl font-bold font-['DM Sans'] leading-[30px]">
-            ${card.cost}
+            {card.cost} VND
           </div>
 
           <div className="text-[#405ff2] text-[15px] font-medium font-['DM Sans'] leading-7 flex items-center">
