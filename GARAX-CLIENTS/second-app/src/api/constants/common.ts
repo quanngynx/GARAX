@@ -34,11 +34,24 @@ export const ADDRESS_VALUES = ['home', 'office'] as const;
 export type IMAGE = 'small' | 'medium' | 'large';
 export const IMAGE_VALUES = ['small', 'medium', 'large'] as const;
 
-export type PAYMENT_METHOD = 'small' | 'medium' | 'large';
-export const PAYMENT_METHOD_VALUES = ['small', 'medium', 'large'] as const;
+export type PAYMENT_METHOD = 'COD' | 'PAYOS' | 'PRESSPAY';
+export const PAYMENT_METHOD_VALUES = ['COD', 'PAYOS', 'PRESSPAY'] as const;
+// export enum PAYMENT_METHOD {
+//   COD = 'COD',
+//   PAYOS = 'PAYOS',
+//   PRESSPAY = 'PRESSPAY'
+// }
 
-export type PAYMENT_STATUS = 'small' | 'medium' | 'large';
-export const PAYMENT_STATUS_VALUES = ['small', 'medium', 'large'] as const;
+export type PAYMENT_STATUS = 'PENDING' | 'PAID' | 'FAILED' | 'CANCELLED' | 'REFUNDED' | 'PROCESSING';
+export const PAYMENT_STATUS_VALUES = ['PENDING', 'PAID', 'FAILED', 'CANCELLED', 'REFUNDED', 'PROCESSING'] as const;
+// export enum PAYMENT_STATUS {
+//   PENDING = 'PENDING',
+//   PAID = 'PAID',
+//   FAILED = 'FAILED',
+//   CANCELLED = 'CANCELLED',
+//   REFUNDED = 'REFUNDED',
+//   PROCESSING = 'PROCESSING'
+// }
 
 export type PRODUCT_STATUS = 'publish' | 'draft' | 'all';
 export const PRODUCT_STATUS_VALUES = ['publish', 'draft', 'all'] as const;

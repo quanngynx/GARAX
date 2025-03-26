@@ -1,4 +1,4 @@
-import { GENDER } from "../constants";
+import { GENDER } from "../../constants";
 
 export interface AccountInfo {
   id: number;

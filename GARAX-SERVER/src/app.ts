@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config();
 import express, { Request, Response, NextFunction } from 'express';
@@ -9,13 +8,15 @@ import morgan from 'morgan';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { default as helmet } from 'helmet';
+
+import { router } from '@/routes';
+import { ErrorStatus } from '@/common/interfaces';
+import { apiLimiter, corsMiddleware } from '@/middlewares';
+import connection from '@/db/init.mysql';
+
 // sequelize.sync({alter: true});
 // import authRoutes from './routes/access';
-import { router } from './routes';
-import { ErrorStatus } from './common/interfaces';
-import { corsMiddleware } from './middlewares';
 // #region IMPORT DB
-import connection from '@/db/init.mysql';
 
 const connect = async () => {
   try {
@@ -46,6 +47,9 @@ app.use(
   })
 );
 // checkOverLoad()
+
+//#region Init rate limit
+app.use('', apiLimiter);
 
 //#region Init routes
 app.use('', router);

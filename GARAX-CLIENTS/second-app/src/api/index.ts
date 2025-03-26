@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import API from "./config/axios.config";
 
-import { BASE } from "./baseUrl";
+import { BASE } from "./bases/baseUrl";
 
 import { ROUTES_AUTH, ROUTES_OAUTH, ver_API } from "./constants";
 

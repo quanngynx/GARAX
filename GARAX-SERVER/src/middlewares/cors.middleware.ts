@@ -1,4 +1,5 @@
 'use strict';
+import { StatusCodes } from '@/common/utils';
 import { _PORT_CLIENT } from '@/common/venv';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
@@ -22,7 +23,7 @@ export const corsMiddleware: RequestHandler = (req: Request, res: Response, next
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') {
-    res.sendStatus(204); // 204: NO CONTENT
+    res.sendStatus(StatusCodes.default.NO_CONTENT);
     return;
   }
 

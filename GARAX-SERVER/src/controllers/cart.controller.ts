@@ -40,6 +40,14 @@ class CartController {
     }).send(res);
   };
 
+  deleteCartById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
+    new SuccessResponse({
+      message: `Delete cart ${id} success!`,
+      metadata: await CartService.deleteCartById(Number(id))
+    }).send(res);
+  };
+
   getCartById = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
     new SuccessResponse({

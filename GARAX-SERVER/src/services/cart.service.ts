@@ -231,6 +231,9 @@ export class CartService {
   static async updateCart({}) {}
 
   static async deleteCart({}) {}
+  static async deleteCartById(id: number) {
+    return id;
+  }
 
   static async getCartById(id: string) {
     const findCartById = await db.Cart.findByPk(id);
