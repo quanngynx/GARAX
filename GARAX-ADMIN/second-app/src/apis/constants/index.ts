@@ -8,3 +8,4 @@ export * from './user'
 export * from './access';
 export * from './account';
 export * from './common';
+export * from './products';

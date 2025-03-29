@@ -3,7 +3,7 @@ import { ver_API, ROUTES_AUTH } from "./constants";
 import API_CONFIG from '@/utils/axios';
 import { AccountLoginRequest } from "./requests";
 import { AxiosResponse } from "axios";
-import { AccountLoginResponse } from "./responses";
+import { AccountLoginResponse, AccountLogoutResponse } from "./responses";
 
 export const BASE_LOGIN = `${BASE(ver_API, ROUTES_AUTH)}/login`;
 export const BASE_LOGOUT = `${BASE(ver_API, ROUTES_AUTH)}/logout`;
@@ -24,7 +24,7 @@ class AuthAPI {
     )
    }
 
-   async logout() {
+   async logout(): Promise<AxiosResponse<AccountLogoutResponse>>  {
     return API_CONFIG.post(
         BASE_LOGOUT
     )

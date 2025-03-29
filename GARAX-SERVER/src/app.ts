@@ -12,7 +12,7 @@ import { default as helmet } from 'helmet';
 
 import { router } from '@/routes';
 import { ErrorStatus } from '@/common/interfaces';
-import { apiLimiter, corsMiddleware, checkConnect } from '@/middlewares';
+import { apiLimiter, corsMiddleware } from '@/middlewares';
 import connection from '@/db/init.mysql';
 
 // sequelize.sync({alter: true});
@@ -63,7 +63,7 @@ app.use(
     extended: true
   })
 );
-checkConnect.default.checkOverLoad();
+// checkConnect.default.checkOverLoad();
 
 //#region Init rate limit
 app.use('', apiLimiter);

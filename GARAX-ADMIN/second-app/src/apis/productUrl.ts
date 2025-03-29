@@ -6,18 +6,20 @@ import {
 } from "./bases/baseUrl";
 import { 
     ver_API, 
-    ROUTES_PRODUCTS
+    ROUTES_PRODUCTS 
 } from "./constants";
-import API_CONFIG from '../api/config/axios.config';
+import API_CONFIG from '@/utils/axios';
 import { 
     ProductDetailResponse, 
-    ProductListResponse 
+    ProductListResponse, 
+    ProductVariantDetailResponse
 } from "./responses";
 import { 
-    ProductDetailRequest,
-    ProductVariantDetailRequest,
-    ProductViewestByLimitRequest
-} from "./requests/product";
+    ProductViewestByLimitRequest, 
+    ProductDetailRequest, 
+    ProductVariantDetailRequest 
+} from "./requests/products";
+
 
 export const BASE_PRODUCT_LIST = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
 export const BASE_PRODUCT_VIEWEST = `${BASE(ver_API, ROUTES_PRODUCTS)}/viewest`;
@@ -49,7 +51,8 @@ class ProductAPI {
 }
 
 class ProductVariantAPI {
-    async detail(data: ProductVariantDetailRequest): Promise<AxiosResponse<ProductDetailResponse>> {
+    async detail(data: ProductVariantDetailRequest)
+    : Promise<AxiosResponse<ProductVariantDetailResponse>> {
         return API_CONFIG.get(
             `${BASE_PRODUCT_VARIANT_DETAIL}/${data.id}`,
         );
