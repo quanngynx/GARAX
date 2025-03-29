@@ -97,3 +97,4 @@ export const orderDetailsModel = (sequelize: Sequelize) => {
   );
   return OrderDetailsModel;
 };
+export default orderDetailsModel;

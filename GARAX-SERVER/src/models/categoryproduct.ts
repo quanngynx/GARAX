@@ -102,3 +102,4 @@ export const categoryProductModel = (sequelize: Sequelize) => {
   );
   return CategoryProductModel;
 };
+export default categoryProductModel;

@@ -5,4 +5,6 @@ export interface CheckoutCartRequest
     Pick<
       Order,
       'total' | 'isReceiveAtStore' | 'shippingFee' | 'discount' | 'paymentMethod' | 'paymentStatus' | 'addressId'
-    > {}
+    > {
+  desc?: string;
+}

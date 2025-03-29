@@ -63,3 +63,4 @@ export const specificationProductModel = (sequelize: Sequelize) => {
   );
   return SpecificationProductModel;
 };
+export default specificationProductModel;

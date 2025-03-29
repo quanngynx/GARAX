@@ -63,3 +63,4 @@ export const newsCategory = (sequelize: Sequelize) => {
   );
   return NewsCategoryModel;
 };
+export default newsCategory;

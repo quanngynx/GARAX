@@ -1,4 +1,4 @@
-interface itemOrderValues {
+export interface ItemOrderValues {
   name: string;
   quantity: number;
   price: number;
@@ -8,7 +8,7 @@ export interface CreatePaymentLinkPayOSRequest {
   orderCode: number;
   amount: number;
   description: string;
-  items: itemOrderValues[];
+  items: ItemOrderValues[];
   cancelUrl: string;
   returnUrl: string;
 }

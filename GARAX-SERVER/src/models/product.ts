@@ -185,3 +185,4 @@ export const productModel = (sequelize: Sequelize) => {
   );
   return ProductModel;
 };
+export default productModel;

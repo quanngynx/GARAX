@@ -68,3 +68,4 @@ export const attributeValuesModel = (sequelize: Sequelize) => {
   );
   return AttributeValuesModel;
 };
+export default attributeValuesModel;

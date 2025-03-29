@@ -65,3 +65,4 @@ export const serviceCategoryModel = (sequelize: Sequelize) => {
   );
   return ServiceCategoryModel;
 };
+export default serviceCategoryModel;

@@ -68,3 +68,4 @@ export const variantKeysModel = (sequelize: Sequelize) => {
   );
   return VariantKeysModel;
 };
+export default variantKeysModel;

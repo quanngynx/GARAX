@@ -86,3 +86,4 @@ export const newsModel = (sequelize: Sequelize) => {
   );
   return NewsModel;
 };
+export default newsModel;

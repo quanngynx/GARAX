@@ -34,3 +34,4 @@ routerProduct.delete('/products/:id', asyncHandler(productController.deleteProdu
 
 routerProduct.get('/products/pub', asyncHandler(productController.findAllProductPub));
 routerProduct.get('/products', asyncHandler(productController.findAllProduct));
+routerProduct.get('/products/viewest/:limit', asyncHandler(productController.getViewestProduct));

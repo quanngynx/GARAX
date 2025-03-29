@@ -62,3 +62,4 @@ export const paymentModel = (sequelize: Sequelize) => {
   );
   return PaymentModel;
 };
+export default paymentModel;

@@ -52,3 +52,4 @@ export const brandModel = (sequelize: Sequelize): typeof BrandModel => {
   );
   return BrandModel;
 };
+export default brandModel;

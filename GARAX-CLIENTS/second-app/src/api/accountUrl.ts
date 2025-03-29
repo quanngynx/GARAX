@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import API_CONFIG from '../api/config/axios.config';
-import { BASE } from './baseUrl';
+import { BASE } from './bases/baseUrl';
 import { ROUTER_ACCOUNT, ver_API } from './constants';
 import { GetInfoAccountResponse } from './responses/getInfoAccount.response';
 

@@ -1,5 +1,6 @@
 'use strict';
-import { _PORT_CLIENT } from '@/common/venv';
+import { StatusCodes } from '@/common/utils';
+import { _PORT_ADMIN, _PORT_CLIENT } from '@/common/venv';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 /**
@@ -9,7 +10,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
  * @param {*} next - Express next function
  */
 export const corsMiddleware: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
-  const allowedOrigins = ['http://localhost:3050', `http://localhost:${_PORT_CLIENT}`];
+  const allowedOrigins = [`http://localhost:${_PORT_ADMIN}`, `http://localhost:${_PORT_CLIENT}`];
   const origin = req.headers.origin;
 
   if (origin && allowedOrigins.includes(origin)) {
@@ -22,7 +23,7 @@ export const corsMiddleware: RequestHandler = (req: Request, res: Response, next
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') {
-    res.sendStatus(204); // 204: NO CONTENT
+    res.sendStatus(StatusCodes.default.NO_CONTENT);
     return;
   }
 

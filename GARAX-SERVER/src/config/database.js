@@ -1,5 +1,7 @@
-// const dotenv = require('dotenv');
-// dotenv.config();
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-undef */
+import dotenv from 'dotenv';
+dotenv.config();
 
 const host = process.env.HOST_DEV;
 const username = process.env.USER_DEV;
@@ -32,26 +34,26 @@ const database = process.env.DATABASE_DEV;
 import 'dotenv/config';
 
 export default {
-	// logging: (message: string) => {
-	//     if (message.startsWith('Executing (default):')) {
-	//         // ignore regular query logs
-	//         return;
-	//     }
-	//     // log anything else (e.g. errors)
-	//     console.error(message);
-	// },
-	username: process.env.USER_DEV,
-	password: process.env.PASSWORD_DB_DEV,
-	database: process.env.DATABASE_DEV,
-	host: process.env.HOST_DEV,
-	dialect: 'mysql',
-	dialectOptions: {
-		bigNumberStrings: true,
-	},
-	pool: {
-		max: 50,
-		min: 0,
-		acquire: 30000,
-		idle: 10000,
-	},
+  // logging: (message: string) => {
+  //     if (message.startsWith('Executing (default):')) {
+  //         // ignore regular query logs
+  //         return;
+  //     }
+  //     // log anything else (e.g. errors)
+  //     console.error(message);
+  // },
+  username: process.env.USER_DEV,
+  password: process.env.PASSWORD_DB_DEV,
+  database: process.env.DATABASE_DEV,
+  host: process.env.HOST_DEV,
+  dialect: 'mysql',
+  dialectOptions: {
+    bigNumberStrings: true
+  },
+  pool: {
+    max: 50,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
 };

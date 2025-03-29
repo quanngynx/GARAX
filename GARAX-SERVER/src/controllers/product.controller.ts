@@ -23,7 +23,7 @@ class ProductController {
   getViewestProduct = async (req: Request, res: Response, _next: NextFunction) => {
     const { limit } = req.params;
     new SuccessResponse({
-      message: 'Lấy tất cả hàng hóa thành công!',
+      message: `Lấy ${limit} hàng hóa có lượt xem nhiều nhất thành công!`,
       metadata: await ProductService.getViewestProduct(Number(limit))
     }).send(res);
   };

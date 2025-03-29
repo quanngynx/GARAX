@@ -55,3 +55,4 @@ export const currencyModel = (sequelize: Sequelize) => {
   );
   return CurrencyModel;
 };
+export default currencyModel;

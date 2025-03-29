@@ -1,0 +1,1 @@
+export const ROUTES_CART: string = 'cart';

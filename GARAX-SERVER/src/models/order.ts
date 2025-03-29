@@ -113,3 +113,4 @@ export const orderModel = (sequelize: Sequelize) => {
   );
   return OrderModel;
 };
+export default orderModel;
