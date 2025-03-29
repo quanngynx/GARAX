@@ -2,16 +2,22 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config();
 import PayOS from '@payos/node';
+import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
 // import { Pointer } from 'pointer-wallet';
 // const pointer = new Pointer(process.env.POINTER_SECRET_KEY);
 
 // MODEL
 // import { db } from '@/models';
-
-// RESPONSE
-import { NotFoundError } from '../middlewares/error.response';
-import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
-import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
+// MIDDLEWARE
+import {
+  InternalServerError,
+  NotFoundError
+} from '@/middlewares';
+// REQUEST/RESPONSE
+import {
+  CancelPaymentLinkPayOSRequest,
+  CreatePaymentLinkPayOSRequest
+} from '@/common/requests/payment';
 
 const payos = new PayOS(
   String(process.env.PAYOS_CLIENT_ID),
@@ -37,7 +43,7 @@ export class PaymentService {
     items = [],
     cancelUrl,
     returnUrl
-  }: CreatePaymentLinkPayOSRequest) {
+  } : CreatePaymentLinkPayOSRequest) {
     // push item to items
     const pushItems = items;
     // ==================
@@ -60,13 +66,20 @@ export class PaymentService {
     }
   }
 
-  static async getPaymentLinkInformationPayOS({ id }: { id: string }) {
+  /**
+   * Get payment information of an order that has created a payment link
+   * @param {number | string} id Order Id
+   */
+  static async getPaymentLinkInformationPayOS({ id }: { id: number | string }) {
     const paymentLinkInfo = await payos.getPaymentLinkInformation(id);
-    console.log('paymentLinkInfo::', paymentLinkInfo);
+    // console.log('paymentLinkInfo::', paymentLinkInfo);
     return paymentLinkInfo;
   }
 
-  static async cancelPaymentLinkPayOS({ orderCode, cancellationReason }: CancelPaymentLinkPayOSRequest) {
+  static async cancelPaymentLinkPayOS({
+    orderCode,
+    cancellationReason
+  } : CancelPaymentLinkPayOSRequest) {
     if (!orderCode) throw new NotFoundError(`NOT FOUND orderCode!`);
 
     try {
@@ -79,6 +92,7 @@ export class PaymentService {
       return cancelledPaymentLinkInfoWithoutReason;
     } catch (error) {
       console.error('cancelPaymentLinkPayOS::', error);
+      throw new InternalServerError(`error::${error}`);
     }
   }
 

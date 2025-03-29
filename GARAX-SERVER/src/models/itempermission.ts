@@ -67,3 +67,4 @@ export const itemPermissionModel = (sequelize: Sequelize) => {
   );
   return ItemPermissionModel;
 };
+export default itemPermissionModel;

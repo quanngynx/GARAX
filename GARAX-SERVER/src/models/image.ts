@@ -87,3 +87,4 @@ export const imageModel = (sequelize: Sequelize) => {
   );
   return ImageModel;
 };
+export default imageModel;

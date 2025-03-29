@@ -66,3 +66,4 @@ export const variantValuesModel = (sequelize: Sequelize) => {
   );
   return VariantValuesModel;
 };
+export default variantValuesModel;

@@ -9,12 +9,13 @@
 		"module": "NodeNext",
 		"skipLibCheck": true,
 		"outDir": "dist",
-		"rootDir": "src",
-		"esModuleInterop": true,
+		"rootDir": "./",
 
 		/* Bundler mode */
 		"moduleResolution": "NodeNext",
 		"isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
 
 		/* Linting */
 		"strict": true,
@@ -24,13 +25,13 @@
 		"noUncheckedSideEffectImports": true,
 
 		/* Aliases with default import */
-		"baseUrl": "./src",
+		"baseUrl": "./",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./src/*"]
 			// "components/*": ["./components/*"]
 		},
 		"forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
 	},
 	"files": ["src/type.d.ts"],
-	"include": ["src/**/*"]
+	"include": ["src/**/*", "api"]
 }

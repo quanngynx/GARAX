@@ -79,3 +79,4 @@ export const serviceModel = (sequelize: Sequelize) => {
   );
   return ServiceModel;
 };
+export default serviceModel;

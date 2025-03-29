@@ -37,7 +37,7 @@ export class ApiKeyModel extends Model<ApiKeyCreationAttributes> {
   }
 }
 
-export const apiKeyModel = (sequelize: Sequelize) => {
+const apiKeyModel = (sequelize: Sequelize) => {
   ApiKeyModel.init(
     {
       id: {
@@ -68,3 +68,4 @@ export const apiKeyModel = (sequelize: Sequelize) => {
   );
   return ApiKeyModel;
 };
+export default apiKeyModel;

@@ -57,3 +57,4 @@ export const otpCodeModel = (sequelize: Sequelize) => {
   );
   return OtpCodeModel;
 };
+export default otpCodeModel;

@@ -1,41 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DataTypes, Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize';
 import fs from 'fs';
 import path from 'path';
 // import connection from '@/db/init.mysql';
 // import connectionConfig from '../config/database.js';
 import connectionConfig from '@/config/database.js';
-
-import { accountModel } from './account';
-import { apiKeyModel } from './apikey';
-import { keyTokenModel } from './keytoken';
-import { otpCodeModel } from './otpcode';
-import { itemPermissionModel } from './itempermission';
-import { permissionModel } from './permission';
-import { productModel } from './product';
-import { addressModel } from './address';
-import { brandModel } from './brand';
-import { cartModel } from './cart';
-import { cartItemsModel } from './cartitems';
-import { categoryProductModel } from './categoryproduct';
-import { currencyModel } from './currency';
-import { imageModel } from './image';
-import { newsModel } from './news';
-import { newsCategory } from './newscategory';
-import { orderModel } from './order';
-import { orderDetailsModel } from './orderdetails';
-import { paymentModel } from './payment';
-import { productVariantValuesModel } from './productvariantvalues';
-import { serviceModel } from './service';
-import { serviceCategoryModel } from './servicecategory';
-import { specificationDetailProductModel } from './specificationdetailproduct';
-import { specificationProductModel } from './specificationproduct';
-import { videoModel } from './video';
 import { Models } from '@/common/interfaces';
-import { attributeValuesModel } from './attributevalues';
-import { productattributeValuesModel } from './productattributevalues';
-import { variantKeysModel } from './variantkeys';
-import { variantValuesModel } from './variantvalues';
+
+import accountModel from './account';
+import apiKeyModel from './apikey';
+import keyTokenModel from './keytoken';
+import otpCodeModel from './otpcode';
+import itemPermissionModel from './itempermission';
+import permissionModel from './permission';
+import productModel from './product';
+import addressModel from './address';
+import brandModel from './brand';
+import cartModel from './cart';
+import cartItemsModel from './cartitems';
+import categoryProductModel from './categoryproduct';
+import currencyModel from './currency';
+import imageModel from './image';
+import newsModel from './news';
+import newsCategory from './newscategory';
+import orderModel from './order';
+import orderDetailsModel from './orderdetails';
+import paymentModel from './payment';
+import productVariantValuesModel from './productvariantvalues';
+import serviceModel from './service';
+import serviceCategoryModel from './servicecategory';
+import specificationDetailProductModel from './specificationdetailproduct';
+import specificationProductModel from './specificationproduct';
+import videoModel from './video';
+import attributeValuesModel from './attributevalues';
+import productattributeValuesModel from './productattributevalues';
+import variantKeysModel from './variantkeys';
+import variantValuesModel from './variantvalues';
 
 // const env = process.env.NODE_ENV || 'development';
 // const dbConfig = connectionConfig[env];
@@ -122,18 +122,27 @@ const db: Models = {
   Sequelize
 };
 
-interface ModelProps {
-  name: any;
-}
-
 fs.readdirSync(__dirname)
   .filter((file) => {
     return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js';
   })
   .forEach(async (file) => {
-    const modelPath = path.join(__dirname, file);
+    // const modelPath = path.join(__dirname, file);
+    const modelPath = `${path.join(__dirname, file)}`;
     const modelModule = await import(modelPath);
-    const model: ModelProps = modelModule.default(sequelize, DataTypes);
+    // const model = modelModule.default(sequelize);
+
+    let modelFunction;
+    if (modelModule.default && typeof modelModule.default === 'function') {
+      modelFunction = modelModule.default;
+    } else if (typeof modelModule === 'function') {
+      modelFunction = modelModule;
+    } else {
+      // console.error(`❌ Model ${file} không xuất hàm hợp lệ!`, modelModule);
+      return;
+    }
+    const model = modelFunction(sequelize);
+
     const dbUnknow: unknown = db;
     const dbAsAny = dbUnknow as any;
     dbAsAny[model.name] = model;

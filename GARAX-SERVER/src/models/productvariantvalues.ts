@@ -110,3 +110,4 @@ export const productVariantValuesModel = (sequelize: Sequelize) => {
   );
   return ProductVariantValuesModel;
 };
+export default productVariantValuesModel;

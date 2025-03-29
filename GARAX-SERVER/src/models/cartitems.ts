@@ -76,3 +76,4 @@ export const cartItemsModel = (sequelize: Sequelize): typeof CartItemsModel => {
   );
   return CartItemsModel;
 };
+export default cartItemsModel;

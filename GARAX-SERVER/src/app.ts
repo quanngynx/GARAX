@@ -11,12 +11,13 @@ import { default as helmet } from 'helmet';
 
 import { router } from '@/routes';
 import { ErrorStatus } from '@/common/interfaces';
-import { apiLimiter, corsMiddleware } from '@/middlewares';
+import { apiLimiter, corsMiddleware, checkConnect } from '@/middlewares';
 import connection from '@/db/init.mysql';
 
 // sequelize.sync({alter: true});
 // import authRoutes from './routes/access';
 // #region IMPORT DB
+// const ENABLE_JSON_MINIFY = process.env.ENABLE_JSON_MINIFY === 'true';
 
 const connect = async () => {
   try {
@@ -38,7 +39,19 @@ const app = express();
 app.use(corsMiddleware);
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(compression());
+app.use(
+  compression({
+    // chunkSize:
+    level: 6,
+    threshold: 1024,
+    filter: (req, res) => {
+      if (!req.headers['x-no-compression']) {
+        return compression.filter(req, res);
+      }
+      return false; // Don't apply compression if 'x-no-compression' header is present
+    }
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -46,7 +59,7 @@ app.use(
     extended: true
   })
 );
-// checkOverLoad()
+checkConnect.default.checkOverLoad();
 
 //#region Init rate limit
 app.use('', apiLimiter);
@@ -78,5 +91,10 @@ app.get('/', (_req: Request, res: Response, _next: NextFunction) => {
 app.get('/ping', (_req: Request, res: Response, _next: NextFunction) => {
   res.send('pong 🏓');
 });
+
+// app.get('/stress-test', (_req, res) => {
+//   const data = 'This is a post about how to use the compression package'.repeat(10000);
+//   res.send(data);
+// });
 
 export { app };

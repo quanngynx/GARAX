@@ -1,0 +1,34 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "dynamicImport": true,
+      "decorators": false
+      // "decorators": true,  // sp for TypeORM, class-validator if need
+      // "decoratorsBeforeExport": true
+    },
+    "baseUrl": "./",
+    "paths": {
+			"@/*": ["src/*"]
+		},
+    // "transform": null,
+    "target": "es2023",
+    "loose": false,
+    // "externalHelpers": false,
+    "externalHelpers": true, // down size bunlde
+    "keepClassNames": false
+  },
+  "module": {
+    "type": "commonjs",
+    // "strict": false,
+    // "strictMode": false,
+    "strict": true,
+    "strictMode": true,
+    "noInterop": false,
+    "lazy": false
+  },
+  "sourceMaps": false,  // sp debug
+  "minify": true
+}

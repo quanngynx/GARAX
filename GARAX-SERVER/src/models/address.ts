@@ -79,3 +79,4 @@ export const addressModel = (sequelize: Sequelize) => {
   );
   return AddressModel;
 };
+export default addressModel;

@@ -6,6 +6,8 @@ import { AddToCartRequest, CheckoutCartRequest, CreateUserCartRequest } from '@/
 import { db } from '../models';
 import { BadRequestError, InternalServerError, NotFoundError } from '@/middlewares';
 import { createCart } from '@/common/repositories';
+import { PaymentService } from './payment.service';
+import { ItemOrderValues } from '@/common/requests/payment';
 
 export class CartService {
   static async createUserCart({ userId }: CreateUserCartRequest) {
@@ -109,7 +111,8 @@ export class CartService {
     discount,
     paymentMethod,
     paymentStatus,
-    addressId
+    addressId,
+    desc
   }: CheckoutCartRequest) {
     /**
      * 1. init transaction
@@ -216,6 +219,40 @@ export class CartService {
       /**
        * N. Intergrate PAYOS, PRESSPAY
        */
+      if (isReceiveAtStore !== true && paymentMethod === 'PAYOS') {
+        const itemOrderValues: ItemOrderValues[] = [];
+        const getInfoFromCartItem = getInfoCart.dataValues.cart_items?.reduce<ItemOrderValues[]>((acc, item: any) => {
+          const getName = `${item.dataValues?.product_variant_values?.dataValues.products.dataValues.name}_${item.dataValues?.product_variant_values?.dataValues.sku}`;
+          const getQuantity = item.dataValues?.qty;
+          const getPrice = item.dataValues?.product_variant_values?.dataValues?.price;
+
+          acc.push({
+            name: getName,
+            quantity: getQuantity ?? 1,
+            price: getPrice ?? 1
+          });
+
+          return acc;
+        }, []);
+
+        itemOrderValues.push(...getInfoFromCartItem);
+        const createPaymentLinkPayOS = await PaymentService.createPaymentLinkPayOS({
+          orderCode: Number(String(Date.now()).slice(-6)),
+          amount: createNewOrder.dataValues.total,
+          description: desc || '',
+          items: itemOrderValues,
+          cancelUrl: '', // return if faled
+          returnUrl: '' // return link domain QR code if success
+        });
+
+        return {
+          newPayOSLink: createPaymentLinkPayOS,
+          newOrder: createNewOrder
+        };
+      }
+
+      // if (isReceiveAtStore !== true && paymentMethod === 'PRESSPAY') {
+      // }
 
       await transaction.commit();
 
@@ -224,7 +261,7 @@ export class CartService {
       };
     } catch (error) {
       await transaction.rollback();
-      throw new InternalServerError(`Lỗi thanh toán giỏ hàng:: ${error}`);
+      throw new InternalServerError(`Lỗi Checkout giỏ hàng:: ${error}`);
     }
   }
 

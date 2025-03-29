@@ -67,3 +67,4 @@ export const keyTokenModel = (sequelize: Sequelize) => {
   );
   return KeyTokenModel;
 };
+export default keyTokenModel;

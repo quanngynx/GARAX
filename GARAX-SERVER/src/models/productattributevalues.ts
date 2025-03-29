@@ -84,3 +84,4 @@ export const productattributeValuesModel = (sequelize: Sequelize) => {
   );
   return ProductAttributeValuesModel;
 };
+export default productattributeValuesModel;

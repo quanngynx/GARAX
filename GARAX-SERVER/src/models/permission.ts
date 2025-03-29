@@ -66,3 +66,4 @@ export const permissionModel = (sequelize: Sequelize) => {
   );
   return PermissionModel;
 };
+export default permissionModel;

@@ -66,3 +66,4 @@ export const videoModel = (sequelize: Sequelize) => {
   );
   return VideoModel;
 };
+export default videoModel;
