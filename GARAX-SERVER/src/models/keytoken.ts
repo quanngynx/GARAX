@@ -10,10 +10,6 @@ export class KeyTokenModel extends Model<KeyToken, KeyTokenCreationAttributes> {
   public publicKey!: string;
   public refreshToken!: string;
   public refreshTokenUsed!: JSON;
-  // public userId!: string;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

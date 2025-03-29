@@ -7,17 +7,6 @@ import { ProductModel } from './product';
 export type ImageCreationAttributes = Optional<Image, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'>;
 
 export class ImageModel extends Model<ImageCreationAttributes> {
-  // id!: number;
-  // image!: string;
-  // coverImage!: string;
-  // alt!: string;
-  // original!: string;
-  // typeSize!: typeof IMAGE_VALUES[number];
-  // typeImage!: string;
-  // productId!: string;
-  // createdAt!: Date;
-  // updatedAt!: Date;
-
   public static associations: {
     image: Association<ProductModel, ImageModel>;
   };

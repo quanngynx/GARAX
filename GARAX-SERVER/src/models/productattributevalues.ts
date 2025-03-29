@@ -13,14 +13,6 @@ export class ProductAttributeValuesModel extends Model<
   ProductAttributeValues,
   ProductAttributeValuesCreationAttributes
 > {
-  // public id!: number;
-  // public value: number;
-  // public variantKeyId: number;
-  // public createBy!: Date;
-  // public updateBy!: Date;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   public static associations: {
     productAttributeValue: Association<AttributeValuesModel, ProductAttributeValuesModel>; // 1-n
     product: Association<ProductModel, ProductAttributeValuesModel>; // 1-n

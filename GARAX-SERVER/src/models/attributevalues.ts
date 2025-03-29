@@ -11,12 +11,6 @@ export type AttributeValuesCreationAttributes = Optional<
 export class AttributeValuesModel extends Model<AttributeValues, AttributeValuesCreationAttributes> {
   public id!: number;
   public name!: string;
-  // public variantKeyId: number;
-  // public createBy!: Date;
-  // public updateBy!: Date;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   public static associations: {
     productAttributeValues: Association<AttributeValuesModel, ProductAttributeValuesModel>; // 1-n
   };

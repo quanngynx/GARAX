@@ -10,16 +10,23 @@ import { EditOutlined } from '@ant-design/icons';
 
 interface ITableAction {
     handleSetParam: () => void
+    handleOpenForm: () => void
 }
-export function TableAction({ handleSetParam } : ITableAction) {
+export function TableAction({ 
+    handleSetParam,
+    handleOpenForm 
+}: ITableAction) {
 
     return (
         <Space size="middle">
             <button className="p-2"
-            onClick={handleSetParam}>
-            <EditOutlined />
+                onClick={handleSetParam}>
+                <EditOutlined />
             </button>
-            <a>Xóa</a>
+            <button className="px-2 py-1"
+                onClick={handleOpenForm}>
+                <a className="underline">Xóa</a>
+            </button>
         </Space>
     );
 }

@@ -6,7 +6,7 @@ import {
 } from "./bases/baseUrl";
 import { 
     ver_API, 
-    ROUTES_PRODUCTS 
+    ROUTES_PRODUCTS, 
 } from "./constants";
 import API_CONFIG from '@/utils/axios';
 import { 
@@ -17,9 +17,9 @@ import {
 import { 
     ProductViewestByLimitRequest, 
     ProductDetailRequest, 
-    ProductVariantDetailRequest 
+    ProductVariantDetailRequest, 
+    ProductListRequest
 } from "./requests/products";
-
 
 export const BASE_PRODUCT_LIST = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
 export const BASE_PRODUCT_VIEWEST = `${BASE(ver_API, ROUTES_PRODUCTS)}/viewest`;
@@ -28,11 +28,16 @@ export const BASE_PRODUCT_DETAIL = BASE_PRODUCT_LIST;
 export const BASE_PRODUCT_VARIANT_DETAIL = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
 
 class ProductAPI {
-    async list()
-    : Promise<AxiosResponse<ProductListResponse>>  {
-        return API_CONFIG.get(
-            BASE_PRODUCT_LIST
+    async list(request: ProductListRequest, signal?: AbortSignal)
+      {
+        const response = API_CONFIG.get(
+            BASE_PRODUCT_LIST,
+            {
+                params: request,
+                signal
+            }
         );
+        return response;
     }
 
     async viewestByLimit(data: ProductViewestByLimitRequest)

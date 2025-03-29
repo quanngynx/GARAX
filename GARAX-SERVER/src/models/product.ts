@@ -1,5 +1,4 @@
 'use strict';
-// import { PRODUCT_TAG, PRODUCT_STATUS } from '@/common/constants';
 import { Models, Product } from '@/common/interfaces';
 import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
@@ -9,7 +8,6 @@ import { CategoryProductModel } from './categoryproduct';
 import { ImageModel } from './image';
 import { VideoModel } from './video';
 import { ProductAttributeValuesModel } from './productattributevalues';
-import { PRODUCT_STATUS, PRODUCT_TAG } from '@/common/constants';
 
 export type ProductCreationAttributes = Optional<
   Product,
@@ -25,31 +23,6 @@ export type ProductCreationAttributes = Optional<
 >;
 
 export class ProductModel extends Model<Product, ProductCreationAttributes> {
-  public id!: number;
-  public name!: string;
-  public slug!: string;
-  public totalStock!: number;
-  public desc!: JSON;
-  public views!: number;
-  public tags!: PRODUCT_TAG;
-  public manufacturingDate!: bigint;
-  public minPrice!: number;
-  public maxPrice!: number;
-  public rate!: number;
-  public totalRate!: number;
-  public totalSold!: number;
-  public categoryId!: number;
-  public subCategoryId!: number;
-  public sub2CategoryId!: number;
-  public sub3CategoryId!: number;
-  public videoId!: number;
-  public brandId!: number;
-  public status!: PRODUCT_STATUS;
-  public createdBy!: string;
-  public updatedBy!: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-
   public static associations: {
     productVariantValues: Association<ProductModel, ProductVariantValuesModel>;
     categoryProduct: Association<ProductModel, CategoryProductModel>;
@@ -176,11 +149,6 @@ export const productModel = (sequelize: Sequelize) => {
       modelName: 'Product',
       tableName: 'products',
       timestamps: true
-      // hooks: {
-      //   beforeValidate: (product) => {
-      //     product.slug = slugify(product.name, { lower: true, trim: true });
-      //   },
-      // },
     }
   );
   return ProductModel;

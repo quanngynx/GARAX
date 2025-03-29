@@ -1,13 +1,38 @@
 "use client";
 
-import { DataType, TableCustom } from "@/components/tableCustom";
-import { columns, data } from "./Data/TableData";
+import { TableCustom } from "@/components/tableCustom";
+import { columns } from "./Data/TableData";
+import { ProductModel } from "@/apis/models";
+import { ProductListRequest } from "@/apis/requests/products";
+import { useState } from "react";
+import { useGetProductsList } from "../hooks";
 
-function TableProducts() {
+function TableProducts({
+    // onReloadData
+}) {
+    /**
+     * Chuyển về trang chính sau
+     */
+    // #region List Products
+    const [
+        pagedListRequest, 
+        // setPagedListRequest
+    ] = useState<ProductListRequest>({});
+
+    const {
+        data: pagedListResponse,
+        // isLoading: fetchingPagedList,
+        // isError,
+        // error,
+    } =
+        useGetProductsList({
+          request: pagedListRequest,
+    });
+
     return ( 
-        <TableCustom<DataType>  
-        columns={columns}
-        data={data}
+        <TableCustom<ProductModel>  
+            columns={columns}
+            data={pagedListResponse ?? []}
         />
     );
 }

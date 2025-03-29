@@ -5,14 +5,6 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 export type PaymentCreationAttributes = Optional<Payment, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class PaymentModel extends Model<PaymentCreationAttributes> {
-  // public id!: number;
-  // public amount!: number;
-  // public desc!: string;
-  // public orderId!: string;
-  // public currencyId!: string;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

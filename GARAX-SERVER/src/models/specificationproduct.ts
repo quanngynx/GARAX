@@ -6,14 +6,6 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 export type SpecificationProductCreationAttributes = Optional<SpecificationProduct, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class SpecificationProductModel extends Model<SpecificationProduct, SpecificationProductCreationAttributes> {
-  // public id!: number;
-  // public name!: string;
-  // public key!: string;
-  // public value!: string;
-  // public isOriginalProduct!: boolean;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

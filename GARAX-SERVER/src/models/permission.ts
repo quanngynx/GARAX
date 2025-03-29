@@ -6,13 +6,6 @@ import { ItemPermissionModel } from './itempermission';
 export type PermissionCreationAttributes = Optional<Permission, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class PermissionModel extends Model<Permission, PermissionCreationAttributes> {
-  // public id!: number;
-  // public keyAccept!: string;
-  // public valueAccept!: string;
-  // public isActive!: boolean;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   public static associations: {
     itemPermission: Association<PermissionModel, ItemPermissionModel>;
   };

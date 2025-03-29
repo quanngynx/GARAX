@@ -8,12 +8,6 @@ export class SpecificationDetailProductModel extends Model<
   SpecificationDetailProduct,
   SpecificationDetailProductCreationAttributes
 > {
-  // id!: number;
-  // groupName!: string;
-  // groupKey!: string;
-  // groupValue!: string;
-  // isOriginalProduct!: boolean;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

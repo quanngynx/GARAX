@@ -7,12 +7,6 @@ import { ApiKeyModel } from './apikey';
 export type ItemPermissionCreationAttributes = Optional<ItemPermission, 'id'>;
 
 export class ItemPermissionModel extends Model<ItemPermission, ItemPermissionCreationAttributes> {
-  // id!: number;
-  // itemKeyAccept!: string;
-  // itemValueAccept!: string;
-  // isActive!: boolean;
-  // permissionId!: string;
-
   public static associations: {
     permission: Association<PermissionModel, ItemPermissionModel>;
     apiKey: Association<ApiKeyModel, ItemPermissionModel>;

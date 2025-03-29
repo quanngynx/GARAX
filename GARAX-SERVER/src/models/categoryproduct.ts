@@ -8,18 +8,6 @@ export type CategoryProductCreationAttributes = Optional<
 >;
 
 export class CategoryProductModel extends Model<CategoryProductCreationAttributes> {
-  // public id!: number;
-  // public name!: string;
-  // public slug!: string;
-  // public desc!: string;
-  // public countProduct!: number;
-  // public isParentCategory!: boolean;
-  // public isActive!: boolean;
-  // public imageId!: string;
-  // public parentId!: string;
-  // public createdAt!: Date;
-  // public updatedAt!: Date;
-
   public static associations: {
     categoryProduct: Association<CategoryProductModel, CategoryProductModel>;
   };
