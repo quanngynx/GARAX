@@ -1,9 +1,9 @@
+import { PrimaryKey } from "../bases";
 import { PRODUCT_STATUS, PRODUCT_TAG } from "../constants";
 import { Audit } from "../interfaces";
 
 export interface ProductModel
-extends Audit {
-    id: string;
+extends Audit, PrimaryKey {
     name: string;
     slug: string;
     totalStock: number;

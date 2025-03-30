@@ -97,6 +97,7 @@ export const columns: TableColumnsType<IDataTableType> = [
             render: (_: unknown, record: { name: string; }) => (
                 <TableAction
                     handleSetParam={() => handleNavigateToSlug(PATH_DASHBOARD.admin.products.edit, record.name)}
+                    handleOpenForm={() => {}}
                 />
             ),
             width: 125,

@@ -3,3 +3,4 @@ export * from './axios';
 export * from './checkTypeof';
 export * from './navigateToSlug';
 export * from './pathToRegex';
+export * from './dateUtils';

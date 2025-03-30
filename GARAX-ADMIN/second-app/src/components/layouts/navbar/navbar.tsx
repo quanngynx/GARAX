@@ -9,6 +9,8 @@ import { ToggleSidenav } from "../../icons";
 import { LineFullWidth } from "../../line";
 import { MingcuteNotificationLine } from "@/components/icons/notification";
 import { Dispatch, SetStateAction } from "react";
+import { useDispatch } from "react-redux";
+import { toggleSidenav } from "@/stores/slices/sidenavSlice";
 
 interface INavbar {
     collapsed: boolean
@@ -16,10 +18,13 @@ interface INavbar {
 }
 
 function Navbar({collapsed, setCollapsed} : INavbar) {
+    const dispatch = useDispatch();
+    // const isExpanded = useSelector((state: RootState) => state.sidenav.isExpanded);
 
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
+    const toggleCollapsed = () => {
+      setCollapsed(!collapsed);
+      dispatch(toggleSidenav())
+    };
     return (
         <div className="w-[100%]">
             <div className="flex justify-between items-center w-[100%] mb-4">

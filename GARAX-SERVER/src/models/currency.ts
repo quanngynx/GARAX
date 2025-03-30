@@ -6,12 +6,6 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 export type CurrencyCreationAttributes = Optional<Currency, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class CurrencyModel extends Model<CurrencyCreationAttributes> {
-  // id!: number;
-  // currency!: string;
-  // desc!: string;
-  // createdAt!: Date;
-  // updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

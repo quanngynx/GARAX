@@ -7,12 +7,6 @@ import { default as slugify } from 'slugify';
 export type ServiceCategoryCreationAttributes = Optional<ServiceCategory, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class ServiceCategoryModel extends Model<ServiceCategory, ServiceCategoryCreationAttributes> {
-  // id!: number;
-  public title!: string;
-  public alias!: string;
-  // createdAt!: Date;
-  // updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.
@@ -52,15 +46,7 @@ export const serviceCategoryModel = (sequelize: Sequelize) => {
       sequelize,
       modelName: 'ServiceCategory',
       tableName: 'service_category',
-      timestamps: true,
-      hooks: {
-        beforeValidate: (serviceCategory) => {
-          serviceCategory.alias = slugify(serviceCategory.title, {
-            lower: true,
-            trim: true
-          });
-        }
-      }
+      timestamps: true
     }
   );
   return ServiceCategoryModel;

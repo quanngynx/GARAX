@@ -8,14 +8,6 @@ export type VariantValuesCreationAttributes = Optional<
 >;
 
 export class VariantValuesModel extends Model<VariantValues, VariantValuesCreationAttributes> {
-  public id!: number;
-  // public value: number;
-  // public variantKeyId: number;
-  // public createBy!: Date;
-  // public updateBy!: Date;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

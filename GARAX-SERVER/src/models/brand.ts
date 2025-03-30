@@ -5,12 +5,6 @@ import { Brand, Models } from '@/common/interfaces';
 export type BrandCreationAttributes = Optional<Brand, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class BrandModel extends Model<BrandCreationAttributes> {
-  // id!: number;
-  // idBrand!: string;
-  // name!: string;
-  // createdAt!: Date;
-  // updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

@@ -113,7 +113,7 @@ export class ProductService {
 
       await db.ProductAttributeValues.create(
         {
-          productId: newProduct.id,
+          productId: newProduct.dataValues.id,
           attributeId: attribute.id,
           value: attributeData.value
         },
@@ -137,7 +137,7 @@ export class ProductService {
         transaction
       });
 
-      const variantKeyId = variantEntry.dataValues?.id || variantEntry.id;
+      const variantKeyId = variantEntry.dataValues?.id || variantEntry.dataValues.id;
 
       for (const value of variant.values) {
         await db.VariantValues.findOrCreate({
@@ -168,7 +168,7 @@ export class ProductService {
         });
 
         if (variantValue) {
-          variantValueIds.push(variantValue.id);
+          variantValueIds.push(variantValue.dataValues.id);
         }
       }
 
@@ -182,7 +182,7 @@ export class ProductService {
 
       const createdVariant = await db.ProductVariantValues.create(
         {
-          productId: newProduct.id,
+          productId: newProduct.dataValues.id,
           price: variantData.price,
           oldPrice: variantData.oldPrice,
           stock: variantData.stock || 0,

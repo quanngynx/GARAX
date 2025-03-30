@@ -68,7 +68,7 @@ function SidebarCustom({ collapsed }: ISidebarCustom) {
             label: "Bảng điều khiển",
             icon: <FluentMdl2BIDashboard width={16} height={16}/>,
             children: [
-                { key: PATH_DASHBOARD.admin.statictists.root, label: "Thống kê biểu đồ" },
+                { key: PATH_DASHBOARD.admin.statictists.list, label: "Thống kê biểu đồ" },
                 { key: PATH_DASHBOARD.admin.statictists.transactions, label: "Giao dịch" },
                 { key: PATH_DASHBOARD.admin.statictists.revenue, label: "Doanh thu" },
             ],
@@ -105,7 +105,7 @@ function SidebarCustom({ collapsed }: ISidebarCustom) {
             label: "Đánh giá",
             icon: <CarbonReview width={16} height={16}/>,
             children: [
-                { key: PATH_DASHBOARD.admin.reviews.root, label: "Phản hồi từ người dùng" },
+                { key: PATH_DASHBOARD.admin.reviews.list, label: "Phản hồi từ người dùng" },
             ],
         },
         {

@@ -8,11 +8,6 @@ export type CartItemsCreationAttributes = Optional<CartItems, 'id' | 'createdAt'
 
 export class CartItemsModel extends Model<CartItemsCreationAttributes> {
   id!: number;
-  // qty!: number;
-  // cartId!: string;
-  // productVariantId!: string;
-  // createdAt!: Date;
-  // updatedAt!: Date;
   product_variant_values?: ProductVariantValuesModel;
 
   public static associations: {

@@ -5,11 +5,6 @@ import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 export type OtpCodeCreationAttributes = Optional<OtpCode, 'id' | 'expiresAt'>;
 
 export class OtpCodeModel extends Model<OtpCode, OtpCodeCreationAttributes> {
-  // public id!: number;
-  public otp!: string;
-  // public email!: string;
-  // public expiresAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.

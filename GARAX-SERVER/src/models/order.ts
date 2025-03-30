@@ -8,23 +8,6 @@ export type OrderCreationAttributes = Optional<Order, 'id' | 'createdAt' | 'upda
 
 export class OrderModel extends Model<Order, OrderCreationAttributes> {
   id!: number;
-  // fullname!: string;
-  // phone!: string;
-  // isReceiveAtStore!: boolean;
-  // paymentMethod!: typeof PAYMENT_METHOD_VALUES[number];
-  // paymentStatus!: typeof PAYMENT_STATUS_VALUES[number];
-  // subTotalFromProd!: number;
-  // shippingFee!: number;
-  // discount!: number;
-  // total!: number;
-  // userId!: string;
-  // addressId!: string;
-  cartId!: string;
-  // createBy!: string;
-  // updateBy!: string;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   public cart?: CartModel;
 
   public static associations: {

@@ -42,7 +42,8 @@ export const PATH_DASHBOARD = {
     admin: {
         root: path(ROOTS.DASHBOARD, ""),
         statictists: {
-            root: path(ROOTS.DASHBOARD, "/statistics"),
+            root: path(ROOTS.DASHBOARD, "/statistic"),
+            list: path(ROOTS.DASHBOARD, "/statistics"),
             transactions: path(ROOTS.DASHBOARD, "/statistics/transactions"),
             revenue : path(ROOTS.DASHBOARD, "/statistics/revenue"),
         },
@@ -75,7 +76,8 @@ export const PATH_DASHBOARD = {
             details: path(ROOTS.DASHBOARD, "/transactions/[slug]"),
         },
         reviews: {
-            root: path(ROOTS.DASHBOARD, "/reviews"),
+            root: path(ROOTS.DASHBOARD, "/review"),
+            list: path(ROOTS.DASHBOARD, "/reviews"),
             details: path(ROOTS.DASHBOARD, "/reviews/[slug]"),
         },
         users: {

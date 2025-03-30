@@ -7,16 +7,6 @@ import { AccountModel } from './account';
 export type AddressCreationAttributes = Optional<Address, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class AddressModel extends Model<Address, AddressCreationAttributes> {
-  // public id!: number;
-  // public type!: typeof ADDRESS_VALUES[number];
-  // public streetRoad!: string;
-  // public wardOrCommune!: string;
-  // public district!: string;
-  // public city!: string;
-  // public userId!: string;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   public static associations: {
     address: Association<AddressModel, AccountModel>;
   };

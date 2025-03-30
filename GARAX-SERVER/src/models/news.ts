@@ -7,18 +7,6 @@ import { default as slugify } from 'slugify';
 export type NewsCreationAttributes = Optional<News, 'id' | 'createdAt' | 'updatedAt'>;
 
 export class NewsModel extends Model<News, NewsCreationAttributes> {
-  // id!: number;
-  public title!: string;
-  public alias!: string;
-  // description!: string;
-  // detail!: string;
-  // image!: string;
-  // category!: string;
-  // isActive!: boolean;
-  // createDate!: Date;
-  // createdAt!: Date;
-  // updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.
@@ -76,12 +64,7 @@ export const newsModel = (sequelize: Sequelize) => {
       sequelize,
       modelName: 'News',
       tableName: 'news',
-      timestamps: true,
-      hooks: {
-        beforeValidate: (news: NewsModel) => {
-          news.alias = slugify(news.title, { lower: true, trim: true });
-        }
-      }
+      timestamps: true
     }
   );
   return NewsModel;

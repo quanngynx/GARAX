@@ -6,13 +6,6 @@ import { Video } from '../common/interfaces/models/video.interface';
 export type VideoCreationAttributes = Optional<Video, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'>;
 
 export class VideoModel extends Model<Video, VideoCreationAttributes> {
-  // public id!: number;
-  // public directoryPath!: string;
-  // public alt!: string;
-  // public original!: string;
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
   // public static associations: {};
   /**
    * Helper method for defining associations.
