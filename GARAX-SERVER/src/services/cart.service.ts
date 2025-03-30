@@ -156,7 +156,7 @@ export class CartService {
       //   // console.log(`Qty: ${item.qty}`);
       //   // console.log(`Price: ${item.dataValues?.product_variant_values?.dataValues?.price}`);
       // });
-      // console.log("getInfoCart::", getInfoCart?.dataValues.userId);
+      // console.log('getInfoCart::', getInfoCart?.dataValues.userId);
       if (!getInfoCart || !getInfoCart.dataValues.cart_items?.length) {
         throw new BadRequestError(`Giỏ hàng :${cartId}: không tồn tại hoặc giỏ hàng trống`);
       }

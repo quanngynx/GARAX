@@ -9,62 +9,62 @@ class OrdersController {
    * @LOQ-burh
    * @desc Order management by user
    */
-  getInforOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
-    new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
-      metadata: await OrdersService.getInforOrderByUser(req.body)
-    }).send(res);
-  };
-  getListOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
-    new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
-      metadata: await OrdersService.getListOrderByUser(req.body)
-    }).send(res);
-  };
-  updateOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
-    new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
-      metadata: await OrdersService.updateOrderByUser(req.body)
-    }).send(res);
-  };
-  createOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
-    new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
-      metadata: await OrdersService.createOrderByUser(req.body)
-    }).send(res);
-  };
-  cancelOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
-    new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
-      metadata: await OrdersService.cancelOrderByUser(req.body)
-    }).send(res);
-  };
+  // getInforOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
+  //   new SuccessResponse({
+  //     message: 'Get infor successfully',
+  //     metadata: await OrdersService.getInforOrderByUser(req.body)
+  //   }).send(res);
+  // };
+  // getListOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
+  //   new SuccessResponse({
+  //     message: 'Create payment link successfully',
+  //     metadata: await OrdersService.getListOrderByUser(req.body)
+  //   }).send(res);
+  // };
+  // updateOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
+  //   new SuccessResponse({
+  //     message: 'Create payment link successfully',
+  //     metadata: await OrdersService.updateOrderByUser(req.body)
+  //   }).send(res);
+  // };
+  // createOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
+  //   new SuccessResponse({
+  //     message: 'Create payment link successfully',
+  //     metadata: await OrdersService.createOrderByUser(req.body)
+  //   }).send(res);
+  // };
+  // cancelOrderByUser = async (req: Request, res: Response, _next: NextFunction) => {
+  //   new SuccessResponse({
+  //     message: 'Create payment link successfully',
+  //     metadata: await OrdersService.cancelOrderByUser(req.body)
+  //   }).send(res);
+  // };
 
   /**
    * @LOQ-burh
    * @desc Order management by admin/staff
    */
-  getAllOrders = async (req: Request, res: Response, _next: NextFunction) => {
+  getAllOrders = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
-      metadata: await OrdersService.getAllOrders(req.body)
+      message: 'Get all order successfully',
+      metadata: await OrdersService.getAllOrders()
     }).send(res);
   };
   createOrderByAdminOrStaff = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
+      message: 'Create payment link successfully',
       metadata: await OrdersService.createOrderByAdminOrStaff(req.body)
     }).send(res);
   };
   updateOrderByAdminOrStaff = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
+      message: 'Create payment link successfully',
       metadata: await OrdersService.updateOrderByAdminOrStaff(req.body)
     }).send(res);
   };
   cancelOrderByAdminOrStaff = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
-      message: 'Create payment link success (PayOS)!',
+      message: 'Create payment link successfully',
       metadata: await OrdersService.cancelOrderByAdminOrStaff(req.body)
     }).send(res);
   };

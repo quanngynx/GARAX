@@ -3,6 +3,9 @@ import { Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { TablePagination } from "./Pagination/tablePagination";
 import { LineFullWidth } from "../line";
+import { cn } from "@/lib";
+import { useSelector } from "react-redux";
+import { RootState } from "@/stores";
 // import { expandedRowRender } from "./expandableColumn";
 // import { DoubleScrollBar } from "./ScrollTopBottom/doubleScrollTable";
 // import { RefObject, useRef } from "react";
@@ -33,6 +36,8 @@ export const TableCustom = <T,>({
     data 
 }: TableCustomProps<T>) => {
 
+    const isCollapsed = useSelector((state: RootState) => state.sidenav.isCollapsed);
+    
     // #region Selection a object
     const rowSelection: TableProps<T>["rowSelection"] = {
         onChange: (selectedRowKeys: React.Key[], selectedRows: T[]) => {
@@ -50,30 +55,30 @@ export const TableCustom = <T,>({
     };
 
     return (
-        <div>
+        // max-w-[calc(100vw-348px)]
+        <div className=""> 
             <TablePagination />
             <LineFullWidth />
-            <div className="w-full max-w-[1200px]">
-                <Table<T>
-                    columns={columns}
-                    dataSource={data}
-                    expandable={{}}
-                    rowSelection={{ 
-                        type: "checkbox", 
-                        ...rowSelection,
-                        fixed: true 
-                    }}
-                    pagination={{ 
-                        position: ["topRight"],
-                        pageSize: 50
-                    }}
-                    scroll={{ 
-                        x: "max-content",
-                        y: 55 * 5
-                    }}
-                    bordered
-                />
-            </div>
+            <Table<T>
+                columns={columns}
+                dataSource={data}
+                expandable={{}}
+                rowSelection={{ 
+                    type: "checkbox", 
+                    ...rowSelection,
+                    fixed: true 
+                }}
+                pagination={{ 
+                    position: ["topRight"],
+                    pageSize: 50
+                }}
+                scroll={{ 
+                    x: 'max-content',
+                    y: 65 * 5
+                }}
+                className={cn(isCollapsed ? 'w-[1180px]' : 'w-[1350px]')}
+                bordered
+            />
         </div>
     );
 }
