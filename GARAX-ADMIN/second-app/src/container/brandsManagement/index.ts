@@ -1,0 +1,1 @@
+export * as BrandsPage from './page'

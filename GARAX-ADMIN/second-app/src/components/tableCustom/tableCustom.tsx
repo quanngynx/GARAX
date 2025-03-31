@@ -76,7 +76,7 @@ export const TableCustom = <T,>({
                     x: 'max-content',
                     y: 65 * 5
                 }}
-                className={cn(isCollapsed ? 'w-[1180px]' : 'w-[1350px]')}
+                className={cn(isCollapsed ? 'w-[1350px]' : 'w-[1180px]')}
                 bordered
             />
         </div>

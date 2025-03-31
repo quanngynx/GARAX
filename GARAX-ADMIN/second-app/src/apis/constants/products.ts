@@ -1,1 +1,0 @@
-export const ROUTES_PRODUCTS: string = 'products';

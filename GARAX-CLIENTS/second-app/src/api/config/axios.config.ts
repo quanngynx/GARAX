@@ -1,11 +1,12 @@
 import axios from "axios";
 // import { useNavigate } from 'react-router-dom'
 
-const _PORT = import.meta.env.PORT || 5004;
-const API_BASE_URL = `http://localhost:${String(_PORT)}`;
+// const _PORT = import.meta.env.PORT || 5004;
+const NODE_LOCAL_API = import.meta.env.VITE_API_BASE_URL;
+// const API_BASE_URL = `http://localhost:${String(_PORT)}`;
 
 const API = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: NODE_LOCAL_API,
   headers: {
     "Content-Type": "application/json",
     //   'x-api-key': import.meta.env.VITE_SECRET_API_KEY

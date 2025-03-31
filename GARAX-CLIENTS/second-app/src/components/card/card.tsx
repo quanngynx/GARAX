@@ -17,8 +17,8 @@ type TCard = {
   range: string
   transmission: string
   fuel_type: string
-  year: string
-  cost: string
+  year: number
+  cost: number
 }
 
 function card({
@@ -35,7 +35,7 @@ function card({
   const productPath = `${slug}`;
   return (
     <Link to={productPath}>
-      <div className="flex-none w-[300px] min-h-[372px] p-4 bg-white rounded-lg hover:shadow-md mx-4 mb-2 border-[0.5px] border-slate-200">
+      <div className="flex-none w-[300px] min-h-[380px] p-4 bg-white rounded-lg hover:shadow-md mx-4 mb-2 border-[0.5px] border-slate-200">
         <div className="">
           <img
             className="w-full h-32 object-contain mb-4 rounded-lg"
@@ -76,12 +76,12 @@ function card({
           </div>
 
           <div className="inline-flex justify-between w-full">
-            <div className="text-[#050b20] text-xl font-bold font-['DM Sans'] leading-[30px]">
+            <div className="text-[#050b20] text-lg font-bold font-['DM Sans'] leading-[30px]">
               {cost} VND
             </div>
 
             <div className="text-[#405ff2] text-[15px] font-medium font-['DM Sans'] leading-7 flex items-center">
-              <div className="mr-2">View Details</div>
+              <div className="mr-2">Chi tiết</div>
               <TopRightTinyIcon />
             </div>
           </div>

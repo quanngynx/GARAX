@@ -68,6 +68,12 @@ class OrdersController {
       metadata: await OrdersService.cancelOrderByAdminOrStaff(req.body)
     }).send(res);
   };
+  getAllTransactions = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Get all order successfully',
+      metadata: await OrdersService.getAllTransactions(req.params)
+    }).send(res);
+  };
 }
 export default new OrdersController();
 

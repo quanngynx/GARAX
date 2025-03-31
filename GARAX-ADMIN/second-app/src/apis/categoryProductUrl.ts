@@ -10,15 +10,15 @@ import {
 } from "./constants";
 import API_CONFIG from '@/utils/axios';
 import { 
-    CategoryProductsCreationResponse,
-    ProductDetailResponse, 
+    // CategoryProductsCreationResponse,
+    // ProductDetailResponse, 
     ProductListResponse, 
 } from "./responses";
 import { 
-    ProductViewestByLimitRequest, 
-    ProductDetailRequest, 
+    // ProductViewestByLimitRequest, 
+    // ProductDetailRequest, 
 } from "./requests/products";
-import { CategoryProductsCreationRequest } from "./requests/categoryProducts";
+// import { CategoryProductsCreationRequest } from "./requests/categoryProducts";
 
 
 export const BASE_CATEGORY_PRODUCT_LIST = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
@@ -31,16 +31,16 @@ class CategoryProductAPI {
     async list()
     : Promise<AxiosResponse<ProductListResponse>>  {
         return API_CONFIG.get(
-            BASE_PRODUCT_LIST
+            BASE_CATEGORY_PRODUCT_LIST
         );
     }
 
-    async create(data: CategoryProductsCreationRequest)
-    : Promise<AxiosResponse<CategoryProductsCreationResponse>> {
-        return API_CONFIG.post(
-            `${BASE_PRODUCT_DETAIL}/${data.id}`,
-        );
-    }
+    // async create(data: CategoryProductsCreationRequest)
+    // : Promise<AxiosResponse<CategoryProductsCreationResponse>> {
+    //     return API_CONFIG.post(
+    //         `${BASE_PRODUCT_DETAIL}/${data.id}`,
+    //     );
+    // }
 }
 
 export const productApi: CategoryProductAPI = new CategoryProductAPI();

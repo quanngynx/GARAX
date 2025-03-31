@@ -1,10 +1,11 @@
 import { Audit, PrimaryKey } from '../../bases';
 import { PRODUCT_STATUS, PRODUCT_TAG } from '../../constants';
 
-export interface Product extends Audit, PrimaryKey {
+export interface ProductModel extends Audit, PrimaryKey {
   name: string;
   slug: string;
-  desc: JSON;
+  // desc: JSON;
+  desc: string;
   views: number;
   tags: PRODUCT_TAG;
   manufacturingDate: bigint;

@@ -11,3 +11,7 @@ export * from './products/productDetail.response';
 export * from './products/productVariantDetail.response';
 
 export * from './categoryProducts/categoryProductsCreation.response';
+
+export * from './orders/orderList.response';
+
+export * from './brands/brandList.response';

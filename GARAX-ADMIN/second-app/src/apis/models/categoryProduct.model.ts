@@ -1,6 +1,6 @@
 import { PrimaryKey, Audit } from "../bases";
 
-export interface CategoryProduct
+export interface CategoryProductModel
 extends Audit, PrimaryKey {
   name: string;
   slug: string;

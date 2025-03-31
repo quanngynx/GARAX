@@ -10,11 +10,10 @@ import {
     ROUTES_AUTH,
     ROUTES_BOOKING,
     ROUTES_ORDERS,
+    ROUTES_PRODUCTS,
     ROUTES_TRANSACTIONS,
-    // ROUTES_USERS,
     ver_API,
 } from "./constants";
-import { ROUTES_PRODUCTS } from "./constants/products";
 import { IGetAllDataTable, IGetAllProduct } from "./requests/interfaces";
 import { 
     TLoginBody, 

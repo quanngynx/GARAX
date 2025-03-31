@@ -1,6 +1,6 @@
-import { CategoryProduct } from "@/apis/models";
+import { CategoryProductModel } from "@/apis/models";
 
 export type CategoryProductsCreationRequest = Pick<
-CategoryProduct,
+CategoryProductModel,
 'name' | 'desc' | 'isParentCategory' | 'isActive' | 'imageId' | 'parentId'
 >

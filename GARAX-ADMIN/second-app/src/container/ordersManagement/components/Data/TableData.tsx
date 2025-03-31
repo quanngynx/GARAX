@@ -1,102 +1,127 @@
-import { IDataTableType } from "@/container/productsManagement/interfaces";
+// import { IDataTableType } from "@/container/productsManagement/interfaces";
 import { TableColumnsType, Tag } from "antd";
 import { TableAction } from "@/components/tableCustom/ColumnAction/tableAction";
 import { handleNavigateToSlug } from "@/utils/navigateToSlug";
 import { PATH_DASHBOARD } from "@/routes/paths";
 import { TFixedType } from "@/container/productsManagement/types";
+import { OrderModel } from "@/apis/models";
 type TTags = {
     tags: string[];
 };
 
-export const data = Array.from({ length: 100 }).map<IDataTableType>((_, i) => ({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-    tags: ["nice", "developer"],
-}));
+// export const data = Array.from({ length: 100 }).map<IDataTableType>((_, i) => ({
+//     key: i,
+//     name: `Edward King ${i}`,
+//     age: 32,
+//     address: `London, Park Lane no. ${i}`,
+//     tags: ["nice", "developer"],
+// }));
 
-export const columns: TableColumnsType<IDataTableType> = [
+export const columns: TableColumnsType<OrderModel> = [
         {
             title: "Khách hàng",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "fullname",
+            key: "fullname",
             render: (text: string) => <a>{text}</a>,
             width: 200,
         },
         {
             title: "Số điện thoại",
-            dataIndex: "age",
-            key: "age",
+            dataIndex: "phone",
+            key: "phone",
             width: 200,
         },
         {
             title: "Nhận tại cửa hàng?",
-            dataIndex: "age",
-            key: "age",
+            dataIndex: "isReceiveAtStore",
+            key: "isReceiveAtStore",
             width: 200,
         },
         {
             title: "Phương thức thanh toán",
-            dataIndex: "age",
-            key: "age",
+            dataIndex: "paymentMethod",
+            key: "paymentMethod",
             width: 200,
         },
         {
             title: "Trạng thái thanh toán",
-            key: "tags",
-            dataIndex: "tags",
-            render: (tags: string[]) => <TableData tags={tags} />,
+            dataIndex: "paymentStatus",
+            key: "paymentStatus",
+            // render: (tags: string[]) => <TableData tags={tags} />,
             width: 200,
         },
         {
             title: "Tổng tiền từ sản phẩm",
-            dataIndex: "address",
-            key: "address",
+            dataIndex: "subTotalFromProd",
+            key: "subTotalFromProd",
             width: 200,
         },
         {
             title: "Phí giao hàng",
-            key: "tags",
-            dataIndex: "tags",
+            key: "shippingFee",
+            dataIndex: "shippingFee",
             width: 200,
         },
         {
             title: "Đã giảm",
-            key: "tags",
-            dataIndex: "tags",
+            key: "discount",
+            dataIndex: "discount",
             width: 200,
         },
         {
             title: "Tổng cộng",
-            key: "tags",
-            dataIndex: "tags",
+            key: "total",
+            dataIndex: "total",
             width: 200,
         },
         {
-            title: "Nhân viên tạo",
-            key: "tags",
-            dataIndex: "tags",
+            title: "Mã người dùng",
+            key: "userId",
+            dataIndex: "userId",
             width: 200,
         },
         {
-            title: "Lịch sử cập nhật",
-            key: "tags",
-            dataIndex: "tags",
+            title: "Mã địa chỉ",
+            key: "addressId",
+            dataIndex: "addressId",
+            width: 200,
+        },
+        {
+            title: "Mã giỏ hàng",
+            key: "cartId",
+            dataIndex: "cartId",
+            width: 200,
+        },
+        {
+            title: "Người tạo",
+            key: "createdBy",
+            dataIndex: "createdBy",
+            width: 200,
+        },
+        {
+            title: "Người cập nhật",
+            key: "updatedBy",
+            dataIndex: "updatedBy",
             width: 200,
         },
         {
             title: "Tạo lúc",
-            key: "tags",
-            dataIndex: "tags",
+            key: "createdAt",
+            dataIndex: "createdAt",
+            width: 200,
+        },
+        {
+            title: "Cập nhật lần cuối",
+            key: "updatedAt",
+            dataIndex: "updatedAt",
             width: 200,
         },
         {
             title: "Hành động",
             key: "action",
-            render: (_: unknown, record: { name: string; }) => (
+            render: (_: unknown, record: { fullname: string; }) => (
                 <TableAction
-                    handleSetParam={() => handleNavigateToSlug(PATH_DASHBOARD.admin.products.edit, record.name)}
+                    handleSetParam={() => handleNavigateToSlug(PATH_DASHBOARD.admin.products.edit, record.fullname)}
                     handleOpenForm={() => {}}
                 />
             ),

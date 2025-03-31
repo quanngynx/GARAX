@@ -1,9 +1,10 @@
-function TransactionsPage() {
+
+
+function TransactionPage() {
     return ( 
         <div className="">
-
         </div>
      );
 }
 
-export default TransactionsPage;
+export default TransactionPage;

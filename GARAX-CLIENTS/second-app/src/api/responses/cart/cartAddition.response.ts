@@ -1,7 +1,7 @@
 import { BaseResponse } from "@/api/bases/response";
-import { Cart, CartItems, Product, ProductVariantValues } from "@/api/models";
+import { Cart, CartItems, ProductModel, ProductVariantValues } from "@/api/models";
 
-type ProductAdditionMetadata = Pick<Product,
+type ProductAdditionMetadata = Pick<ProductModel,
 | 'id'
 | 'name'
 | 'videoId'
