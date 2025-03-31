@@ -24,15 +24,12 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }>) {
     const [collapsed, setCollapsed] = useState(false);
-    // const dispatch = useDispatch();
-    // const isExpanded = useSelector((state: RootState) => state.sidenav.isExpanded);
-    
     const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet())
- 
+
     useServerInsertedHTML(() => {
-      const styles = styledComponentsStyleSheet.getStyleElement()
-      styledComponentsStyleSheet.instance.clearTag()
-      return <>{styles}</>
+        const styles = styledComponentsStyleSheet.getStyleElement()
+        styledComponentsStyleSheet.instance.clearTag()
+        return <>{styles}</>
     })
 
     return (
@@ -46,9 +43,9 @@ export default function DashboardLayout({
                                 <div className="sm:w-full">
                                     <div className="bg-white ml-4 rounded-2xl min-h-[100vh] shadow">
                                         <div className="p-4 max-w-full text-black">
-                                            <Navbar 
-                                                collapsed={collapsed} 
-                                                setCollapsed={setCollapsed} 
+                                            <Navbar
+                                                collapsed={collapsed}
+                                                setCollapsed={setCollapsed}
                                             />
                                             <Suspense fallback={<Loading />}>
                                                 {children}

@@ -15,6 +15,7 @@ import {
 } from "./responses";
 import { 
     ProductDetailRequest,
+    ProductListRequest,
     ProductVariantDetailRequest,
     ProductViewestByLimitRequest
 } from "./requests/product";
@@ -26,17 +27,23 @@ export const BASE_PRODUCT_DETAIL = BASE_PRODUCT_LIST;
 export const BASE_PRODUCT_VARIANT_DETAIL = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
 
 class ProductAPI {
-    async list()
-    : Promise<AxiosResponse<ProductListResponse>>  {
+    async list(request: ProductListRequest, signal?: AbortSignal)
+    : Promise<AxiosResponse<ProductListResponse>> {
         return API_CONFIG.get(
-            BASE_PRODUCT_LIST
+            BASE_PRODUCT_LIST,
+            {
+                params: request,
+                signal
+            }
         );
     }
 
-    async viewestByLimit(data: ProductViewestByLimitRequest)
-    : Promise<AxiosResponse<ProductListResponse>>  {
+    async viewestByLimit(data: ProductViewestByLimitRequest, signal?: AbortSignal) {
         return API_CONFIG.get(
             `${BASE_PRODUCT_VIEWEST}/${data.limit}`,
+            {
+                signal
+            }
         );
     }
 
@@ -49,7 +56,8 @@ class ProductAPI {
 }
 
 class ProductVariantAPI {
-    async detail(data: ProductVariantDetailRequest): Promise<AxiosResponse<ProductDetailResponse>> {
+    async detail(data: ProductVariantDetailRequest)
+    : Promise<AxiosResponse<ProductDetailResponse>> {
         return API_CONFIG.get(
             `${BASE_PRODUCT_VARIANT_DETAIL}/${data.id}`,
         );

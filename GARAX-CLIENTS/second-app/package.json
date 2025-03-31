@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "anyalize-bundle": "npx vite-bundle-visualizer",
+    "anyalize-bundle:f": "npx vite-bundle-visualizer -c vite.config.ts"
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",

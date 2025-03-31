@@ -1,15 +1,33 @@
 "use client";
 
 import { TableCustom } from "@/components/tableCustom";
-import { columns, data } from "./Data/TableData";
+import { columns } from "./Data/TableData";
+import { TransactionsListRequest, TransactionsModel } from "@/apis/requests/orders";
+import { useState } from "react";
+import { useGetTransactionsList } from "../hooks";
 
 function TableProducts() {
+    /**
+     * Chuyển về trang chính sau
+     */
+    // #region List Products
+    const [
+        pagedListRequest, 
+        // setPagedListRequest
+    ] = useState<TransactionsListRequest>({});
+
+    const {
+        data: pagedListResponse,
+        // isLoading: fetchingPagedList,
+        // isError,
+        // error,
+    } = useGetTransactionsList({ request: pagedListRequest });
     return ( 
-        <TableCustom 
-        columns={columns}
-        data={data}
+        <TableCustom<TransactionsModel>
+            columns={columns}
+            data={pagedListResponse ?? []}
         />
-     );
+    );
 }
 
 export default TableProducts;

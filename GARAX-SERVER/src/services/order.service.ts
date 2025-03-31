@@ -1,6 +1,7 @@
 /* eslint-disable no-empty-pattern */
 'use strict';
 
+import { Order } from '@/common/interfaces';
 import { NotFoundError } from '@/middlewares';
 import { db } from '@/models';
 
@@ -37,4 +38,20 @@ export class OrdersService {
   static async updateOrderByAdminOrStaff({}) {}
 
   static async cancelOrderByAdminOrStaff({}) {}
+
+  /**
+   * #region transaction
+   * @desc transaction
+   * @param any
+   */
+  static async getAllTransactions(orderParam: Partial<Order>) {
+    const {} = orderParam;
+    const allTransactions = await db.Order.findAll({
+      attributes: ['id', 'fullname', 'phone', 'total', 'paymentMethod']
+    });
+
+    if (!allTransactions) throw new NotFoundError('error::find all Order!');
+
+    return allTransactions;
+  }
 }

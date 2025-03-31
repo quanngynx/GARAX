@@ -153,10 +153,14 @@ function SidebarCustom({ collapsed }: ISidebarCustom) {
         <Menu
             onClick={onClick}
             style={{
+                // position: 'fixed',
                 width: collapsed? 80 : 256,
                 borderRadius: 16,
                 boxShadow:
                     "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
+                maxHeight: '100vh',
+                // overflow: 'auto',
+                // zIndex: 100
             }}
             defaultSelectedKeys={["1"]}
             defaultOpenKeys={["sub1"]}

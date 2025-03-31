@@ -17,6 +17,13 @@ const experimental = {
 
 const nextConfig: NextConfig = {
     /* config options here */
+    compiler: {
+        removeConsole: {
+            exclude: ['error'],
+        },
+        styledComponents: true,
+    },
+    // styledComponents: true,
     onDemandEntries: {
         maxInactiveAge: 30 * 1000,
         pagesBufferLength: 5,
@@ -35,7 +42,7 @@ const nextConfig: NextConfig = {
         parallelServerCompiles: true,
         parallelServerBuildTraces: true,
         webpackBuildWorker: true,
-        webpackMemoryOptimizations: true
+        webpackMemoryOptimizations: true,
     },
     /**
       * @description unit: sec

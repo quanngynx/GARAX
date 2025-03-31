@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 // import cartReducer from './cart';
 // import counterReducer from '../slices/counterSlice'
 import sidenavReducer from "./slices/sidenavSlice";
+import synchronousHeightReducer from "./slices/synchronousHeight";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         // . . . user,
         // auth: authReducer,
         sidenav: sidenavReducer,
+        synchronousHeight : synchronousHeightReducer
     }
 })
 

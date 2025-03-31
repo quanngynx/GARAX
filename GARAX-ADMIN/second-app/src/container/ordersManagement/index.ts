@@ -1,1 +1,1 @@
-export * as PartnersPage from './page'
+export * as OrdersPage from './page'

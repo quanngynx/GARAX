@@ -42,21 +42,24 @@ import SupportPage from '@/pages/support'
 // Profile
 const ProfileUser: LazyExoticComponent<() => JSX.Element> = lazy(
   async() => {
-    const module: typeof import('@/pages/profile') = await import('@/pages/profile')
+    const module: typeof import('@/pages/profile') 
+    = await import('@/pages/profile')
     return { default: module.profileUser };
   }
 )
 
 const ProfileUserUser: LazyExoticComponent<() => JSX.Element> = lazy(
   async() => {
-    const module: typeof import('@/pages/profile/components/profilePage') = await import('@/pages/profile/components/profilePage')
+    const module: typeof import('@/pages/profile/components/profilePage') 
+    = await import('@/pages/profile/components/profilePage')
     return { default: module.rightContent };
   }
 )
 
 const ProfilePaymentInfo: LazyExoticComponent<() => JSX.Element> = lazy(
   async() => {
-    const module: typeof import('@/pages/profile/page/paymentInfor/paymentInfor') = await import('@/pages/profile/page/paymentInfor/paymentInfor')
+    const module: typeof import('@/pages/profile/page/paymentInfor/paymentInfor') 
+    = await import('@/pages/profile/page/paymentInfor/paymentInfor')
     return { default: module.paymentInfor };
   }
 )

@@ -1,7 +1,7 @@
 import { IMAGE } from '../constants';
 import { Audit } from '../interfaces';
 
-export interface Image
+export interface ImageModel
 extends Audit{
   id: string;
   image: string;

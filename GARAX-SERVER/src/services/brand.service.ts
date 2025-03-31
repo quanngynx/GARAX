@@ -1,5 +1,5 @@
 'use strict';
-import { BadRequestError, InternalServerError } from '@/middlewares';
+import { BadRequestError, InternalServerError, NotFoundError } from '@/middlewares';
 import { db } from '../models';
 import { AddNewBrandRequest } from '@/common/requests/brand';
 
@@ -19,5 +19,11 @@ export class BrandService {
     }
   }
 
-  static async getAllBrand() {}
+  static async getAllBrand() {
+    const allBrand = await db.Brand.findAll({});
+
+    if (!allBrand) throw new NotFoundError('error::find all Brand!');
+
+    return allBrand;
+  }
 }

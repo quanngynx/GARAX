@@ -1,5 +1,4 @@
-import { PrimaryKey } from '../primaryKey.interface';
-import { Audit } from '../audit.interface';
+import { Audit, PrimaryKey } from "@/api/bases";
 
 export interface OrderDetails extends Audit, PrimaryKey {
   orderId: number;
