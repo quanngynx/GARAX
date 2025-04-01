@@ -9,6 +9,7 @@ import ScheduleTinyIcon from "@/assets/home/icons/schedule-tiny.svg?react";
 import {Line} from "../line/line";
 
 type TCard = {
+  id: number
   image: string
   title: string
   description: string
@@ -19,9 +20,12 @@ type TCard = {
   fuel_type: string
   year: number
   cost: number
+
+
 }
 
 function card({
+  id,
   image,
   title,
   description,
@@ -30,9 +34,11 @@ function card({
   fuel_type,
   year,
   cost,
+
+  
 }: TCard) {
   const slug = slugify(title, { lower: true, strict: true })
-  const productPath = `${slug}`;
+  const productPath = `${id}/${slug}`;
   return (
     <Link to={productPath}>
       <div className="flex-none w-[300px] min-h-[380px] p-4 bg-white rounded-lg hover:shadow-md mx-4 mb-2 border-[0.5px] border-slate-200">

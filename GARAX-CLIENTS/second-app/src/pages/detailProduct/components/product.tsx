@@ -61,7 +61,6 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 
 // ]
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function product({
   selectAttribute,
   setSelectAttribute,
@@ -145,7 +144,7 @@ function product({
         {/* content */}
         <div className="w-[70%]">
           <div className="text-[#050b20] text-[40px] font-bold font-['DM Sans'] leading-10 mt-4 mb-6">
-            Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024
+            Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024 // - desc
           </div>
           <div className="text-[#050b20] text-xl font-medium font-['DM Sans'] leading-[24px] mb-6">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum

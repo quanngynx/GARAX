@@ -134,36 +134,14 @@ export function ProductPage() {
   ] = useState<ProductListRequest>({});
 
   const {
-      data: pagedListResponse,
-      // isLoading: fetchingPagedList,
-      // isError,
-      // error,
-  } =
-      useGetProductsList({
-        request: pagedListRequest,
+    data: pagedListResponse,
+    // isLoading: fetchingPagedList,
+    // isError,
+    // error,
+  } = useGetProductsList({
+    request: pagedListRequest,
   });
-
-  const result = () => {
-    return (
-      pagedListResponse?.map((item) => (
-        <ProductsCard
-          key={item.id}
-          image={""}
-          title={item.name}
-          description={item.desc}
-          // descriptionDetail1={descriptionDetail1}
-          // descriptionDetail2={descriptionDetail2}
-          range={item.name}
-          transmission={item.name}
-          fuel_type={item.name}
-          year={item.minPrice}
-          cost={item.minPrice} 
-          descriptionDetail1={""} 
-          descriptionDetail2={""}
-        />
-      ))
-    )
-  }
+  console.log("pagedListResponse::", pagedListResponse)
 
   return (
     <div className="flex flex-col bg-white justify-center mt-24 w-[1222px]">
@@ -195,7 +173,26 @@ export function ProductPage() {
         </div>
         <div className="md:w-full bg-white h-auto">
           {/* <Products result={result} /> */}
-          <Products result={result} />
+          <section className="grid md:grid-cols-4 gap-2 z-[-2]">
+            {pagedListResponse?.map((item) => (
+                <ProductsCard
+                  key={item.id}
+                  image={""}
+                  title={item.name}
+                  description={item.desc}
+                  // descriptionDetail1={descriptionDetail1}
+                  // descriptionDetail2={descriptionDetail2}
+                  range={item.name}
+                  transmission={item.name}
+                  fuel_type={item.name}
+                  year={item.minPrice}
+                  cost={item.minPrice}
+                  descriptionDetail1={""}
+                  descriptionDetail2={""} 
+                  id={item.id}                
+                />
+            ))}
+          </section>
         </div>
 
         <div className="flex justify-center items-center mt-6">
