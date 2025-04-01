@@ -1,6 +1,6 @@
 // import LeftArrow from '../../assets/icons/left--vector-tiny.svg?react'
 import { useState } from 'react';
-import Product, { ItemAttributeProps } from './components/product'
+import Product, { ItemAttributeProps, ItemVariantProps } from './components/product'
 import RelatestListProducts from "./components/relatestListProducts";
 
 // const contextDemo = [
@@ -18,49 +18,50 @@ import RelatestListProducts from "./components/relatestListProducts";
 // ];
 const btnAttributes: ItemAttributeProps[] = [
   {
-    id: '0',
-    name: 'hi'
+    attributeId: '0',
+    attributeName: 'hi'
   },
   {
-    id: '1',
-    name: 'hi'
+    attributeId: '1',
+    attributeName: 'hi'
   },
   {
-    id: '2',
-    name: 'hi'
+    attributeId: '2',
+    attributeName: 'hi'
   },
   {
-    id: '3',
-    name: 'hi'
+    attributeId: '3',
+    attributeName: 'hi'
   },
   {
-    id: '4',
-    name: 'hi'
+    attributeId: '4',
+    attributeName: 'hi'
   },
 ];
 
-const btnVariants: ItemAttributeProps[] = [
+const btnVariants: ItemVariantProps[] = [
   {
-    id: '0',
-    name: 'hi'
+    variantId: '0',
+    variantName: 'hi'
   },
   {
-    id: '1',
-    name: 'hi'
+    variantId: '1',
+    variantName: 'hi'
   },
   {
-    id: '2',
-    name: 'hi'
+    variantId: '2',
+    variantName: 'hi'
   },
   {
-    id: '3',
-    name: 'hi'
+    variantId: '3',
+    variantName: 'hi'
   },
   {
-    id: '4',
-    name: 'hi'
+    variantId: '4',
+    variantName: 'hi'
   },
 ];
+
 export function DetailProductPage() {
   const [selectAttribute, setSelectAttribute] = useState<string | null>(null);
   const [selectVariant, setSelectVariant] = useState<string | null>(null);
@@ -76,8 +77,11 @@ export function DetailProductPage() {
             selectVariant={selectVariant}
             setSelectVariant={setSelectVariant}
             btnVariant={btnVariants}
-            id={''}
-            name={''}
+
+            attributeId={''}
+            attributeName={''} 
+            variantId={''} 
+            variantName={''}
           />
 
           <div className="h-[1px] bg-slate-200"></div>

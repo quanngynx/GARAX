@@ -8,6 +8,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { setAccessToken, setEmail } from '@/redux/slices';
 import { authApi } from '@/api/authUrl';
 import { AccountLoginRequest } from '@/api/requests';
+import { localStorageService } from '@/utils';
 
 function Login() {
   const dispatch: AppDispatch = useAppDispatch();
@@ -38,14 +39,14 @@ function Login() {
       //   openNotification(true, 'Đăng nhập thất bại');
       // }
 
-      console.log('t::', response);
+      // console.log('t::', response.data.metadata.user.email);
       if (!response) return;
-
-      dispatch(setAccessToken(response.metadata.tokens.accessToken));
-      dispatch(setEmail(response.metadata.user.email))
+      localStorageService.set<string>('token', response.data.metadata.tokens.refreshToken);
+      dispatch(setAccessToken(response.data.metadata.tokens.accessToken));
+      dispatch(setEmail(response.data.metadata.user.email))
       navigate('/');
     } catch (error) {
-      // console.error('ERROR LOGIN:', error);
+      console.error('ERROR LOGIN:', error);
       openNotification(true, `Đăng nhập thất bại:: ${error} \n ${isError}`)
       setIsError(true);
     } finally {

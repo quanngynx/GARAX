@@ -1,30 +1,37 @@
 import { BaseResponse } from "@/api/bases/response";
-import { Cart, CartItems, ProductModel, ProductVariantValues } from "@/api/models";
+import { Cart, CartItems } from "@/api/models";
 
-type ProductAdditionMetadata = Pick<ProductModel,
+// type ProductAdditionMetadata = Pick<ProductModel,
+// | 'id'
+// | 'name'
+// | 'videoId'
+// | 'desc'>;
+
+// interface ProductVariantValuesAdditionMetadata
+// extends ProductVariantValues {
+//   products: ProductAdditionMetadata
+// }
+
+type CartItemsAdditionMetadata = Pick<CartItems,
 | 'id'
-| 'name'
-| 'videoId'
-| 'desc'>;
-
-interface ProductVariantValuesAdditionMetadata
-extends ProductVariantValues {
-  products: ProductAdditionMetadata
-}
-interface CartItemsAdditionMetadata 
-extends Pick<CartItems,
+| 'qty'
+| 'cartId'
 | 'productVariantId'
-| 'qty'> {
-  product_variant_values: ProductVariantValuesAdditionMetadata
-}
+>
+
+type CartExistAdditionMetadata = Pick<Cart,
+| 'id'
+| 'sessionId'
+| 'userId'
+>
+// export interface InfoCartAdditionMetadata {
+//   infoCart: CartAdditionMetadata;
+// }
 
 interface CartAdditionMetadata
 extends Cart {
+  isExistCart: CartExistAdditionMetadata;
   cart_items: CartItemsAdditionMetadata[];
-}
-
-export interface InfoCartAdditionMetadata {
-  infoCart: CartAdditionMetadata;
 }
 
 export type CartAdditionResponse = 

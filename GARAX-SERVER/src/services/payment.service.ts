@@ -9,15 +9,9 @@ import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
 // MODEL
 // import { db } from '@/models';
 // MIDDLEWARE
-import {
-  InternalServerError,
-  NotFoundError
-} from '@/middlewares';
+import { InternalServerError, NotFoundError } from '@/middlewares';
 // REQUEST/RESPONSE
-import {
-  CancelPaymentLinkPayOSRequest,
-  CreatePaymentLinkPayOSRequest
-} from '@/common/requests/payment';
+import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
 
 const payos = new PayOS(
   String(process.env.PAYOS_CLIENT_ID),
@@ -43,7 +37,7 @@ export class PaymentService {
     items = [],
     cancelUrl,
     returnUrl
-  } : CreatePaymentLinkPayOSRequest) {
+  }: CreatePaymentLinkPayOSRequest) {
     // push item to items
     const pushItems = items;
     // ==================
@@ -76,10 +70,7 @@ export class PaymentService {
     return paymentLinkInfo;
   }
 
-  static async cancelPaymentLinkPayOS({
-    orderCode,
-    cancellationReason
-  } : CancelPaymentLinkPayOSRequest) {
+  static async cancelPaymentLinkPayOS({ orderCode, cancellationReason }: CancelPaymentLinkPayOSRequest) {
     if (!orderCode) throw new NotFoundError(`NOT FOUND orderCode!`);
 
     try {

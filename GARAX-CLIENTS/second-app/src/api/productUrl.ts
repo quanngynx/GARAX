@@ -11,7 +11,7 @@ import {
 import API_CONFIG from '../api/config/axios.config';
 import { 
     ProductDetailResponse, 
-    ProductListResponse 
+    // ProductListResponse 
 } from "./responses";
 import { 
     ProductDetailRequest,
@@ -27,8 +27,7 @@ export const BASE_PRODUCT_DETAIL = BASE_PRODUCT_LIST;
 export const BASE_PRODUCT_VARIANT_DETAIL = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
 
 class ProductAPI {
-    async list(request: ProductListRequest, signal?: AbortSignal)
-    : Promise<AxiosResponse<ProductListResponse>> {
+    async list(request: ProductListRequest, signal?: AbortSignal) {
         return API_CONFIG.get(
             BASE_PRODUCT_LIST,
             {

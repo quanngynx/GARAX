@@ -13,18 +13,23 @@ import { Dispatch, SetStateAction } from "react";
 import { cn } from "@/utils";
 
 export interface ItemAttributeProps {
-  id: string; 
-  name: string; 
+  attributeId: string; 
+  attributeName: string; 
 }
 
-interface ProductProps extends ItemAttributeProps {
+export interface ItemVariantProps {
+  variantId: string; 
+  variantName: string; 
+}
+
+interface ProductProps extends ItemAttributeProps, ItemVariantProps {
   selectAttribute: string | null;
   setSelectAttribute: Dispatch<SetStateAction<string | null>>;
   btnAttribute: ItemAttributeProps[];
 
   selectVariant: string | null;
   setSelectVariant: Dispatch<SetStateAction<string | null>>;
-  btnVariant: ItemAttributeProps[];
+  btnVariant: ItemVariantProps[];
 }
 
 const useStyle = createStyles(({ prefixCls, css }) => ({
@@ -61,7 +66,6 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 
 // ]
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function product({
   selectAttribute,
   setSelectAttribute,
@@ -69,7 +73,9 @@ function product({
 
   selectVariant,
   setSelectVariant,
-  btnVariant
+  btnVariant,
+
+
 }: ProductProps) {
   // const [selectIndex, setSelectIndex] = useState<number | null>(null);
 
@@ -145,7 +151,7 @@ function product({
         {/* content */}
         <div className="w-[70%]">
           <div className="text-[#050b20] text-[40px] font-bold font-['DM Sans'] leading-10 mt-4 mb-6">
-            Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024
+            Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024 // - desc
           </div>
           <div className="text-[#050b20] text-xl font-medium font-['DM Sans'] leading-[24px] mb-6">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
@@ -185,14 +191,14 @@ function product({
               <div className="flex justify-between items-start border-b-[1px] mb-4 pb-2">
                 <div className="w-[40%]">Thuộc tính:</div>
                 <div className="grid grid-cols-3 gap-1">
-                  {btnAttribute.map(({id, name}) => (
+                  {btnAttribute.map(({attributeId, attributeName}) => (
                     <Button 
-                      onClick={() => handleClickSelectAttribute(id)} 
-                      color={selectAttribute === id ? "blue" : "default"} 
-                      variant={selectAttribute === id ? "solid" : "outlined"}
+                      onClick={() => handleClickSelectAttribute(attributeId)} 
+                      color={selectAttribute === attributeId ? "blue" : "default"} 
+                      variant={selectAttribute === attributeId ? "solid" : "outlined"}
                       className={cn('min-w-16')}
                       >
-                      {name ?? ''}
+                      {attributeName ?? ''}
                     </Button>
                   ))}
                 </div>
@@ -201,14 +207,14 @@ function product({
               <div className="flex justify-between items-start border-b-[1px] mb-4 pb-2">
                 <div className="w-[40%]">Biến thể:</div>
                 <div className="grid grid-cols-3 gap-1">
-                  {btnVariant.map(({id, name}) => (
+                  {btnVariant.map(({variantId, variantName}) => (
                     <Button 
-                      onClick={() => handleClickSelectVariant(id)} 
-                      color={selectVariant === id ? "blue" : "default"} 
-                      variant={selectVariant === id ? "solid" : "outlined"}
+                      onClick={() => handleClickSelectVariant(variantId)} 
+                      color={selectVariant === variantId ? "blue" : "default"} 
+                      variant={selectVariant === variantId ? "solid" : "outlined"}
                       className={cn('min-w-16')}
                       >
-                      {name ?? ''}
+                      {variantName ?? ''}
                     </Button>
                   ))}
                 </div>

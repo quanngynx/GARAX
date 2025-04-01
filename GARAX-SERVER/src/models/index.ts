@@ -139,7 +139,7 @@ fs.readdirSync(__dirname)
     } else if (typeof modelModule === 'function') {
       modelFunction = modelModule;
     } else {
-      // console.error(`❌ Model ${file} không xuất hàm hợp lệ!`, modelModule);
+      // console.error(`Model ${file} không xuất hàm hợp lệ!`, modelModule);
       return;
     }
     const model = modelFunction(sequelize);

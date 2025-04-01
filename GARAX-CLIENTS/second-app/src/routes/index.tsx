@@ -103,7 +103,7 @@ function Routes() {
               ),
             },
             {
-              path: "product/:slug",
+              path: "product/:id/:slug",
               element: <DetailProductPage />,
             },
             {

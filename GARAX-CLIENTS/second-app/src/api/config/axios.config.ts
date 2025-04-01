@@ -17,6 +17,7 @@ const API = axios.create({
 
 // API.defaults.withCredentials = true
 // axios.defaults.withCredentials = true
+axios.defaults.baseURL = NODE_LOCAL_API
 
 API.interceptors.request.use(
   async (config) => {
@@ -32,7 +33,7 @@ API.interceptors.request.use(
 API.interceptors.response.use(
   (response) => {
     if(response && response.data) {
-      return response.data
+      return response
     }
     return response
   },
