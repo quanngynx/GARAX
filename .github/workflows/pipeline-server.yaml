@@ -2,10 +2,14 @@ name: Build and Test API
 
 on:
     push:
+      branches:
+      - main
     pull_request:
+      branches:
+      - main
 
 jobs:
-  test:
+  test-and-lint-commit-msg:
     runs-on: ubuntu-latest  
     # environment: test
     
@@ -24,30 +28,32 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
           cache-dependency-path: GARAX-SERVER/yarn.lock 
-      
-    #   - name: Join GARAX-SERVER
-    #     run: cd GARAX-SERVER
 
       - name: Install dependencies
         run: |
           cd GARAX-SERVER
           yarn --frozen-lockfile
-
-      - name: Build
+      
+      - name: Lint commit message
         run: |
-          cd GARAX-SERVER
-          yarn build
+            cd GARAX-SERVER
+            npx commitlint --last --verbose
 
       - name: Lint
         run: |
           cd GARAX-SERVER
           yarn lint
 
+      - name: Build
+        run: |
+          cd GARAX-SERVER
+          yarn build
 
       # - name: Run Tests
       #   run: |
       #     cd GARAX-SERVER
       #     yarn test
+
   build-deploy:
     # needs: test
     runs-on: ubuntu-latest  
@@ -65,22 +71,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
           cache-dependency-path: GARAX-SERVER/yarn.lock 
-      
-    #   - name: Join GARAX-SERVER
-    #     run: cd GARAX-SERVER        
+     
       - name: Install dependencies
         run: |
           cd GARAX-SERVER
-          yarn --frozen-lockfile        
+          yarn --frozen-lockfile       
+
       - name: Build
         run: |
           cd GARAX-SERVER
           yarn build        
-      - name: Lint
-        run: |
-          cd GARAX-SERVER
-          yarn lint        
-      # - name: Run Tests
-      #   run: |
-      #     cd GARAX-SERVER
-      #     yarn test
