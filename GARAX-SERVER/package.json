@@ -58,7 +58,6 @@
 		"numeral": "^2.0.6",
 		"otp-generator": "^4.0.1",
 		"pointer-wallet": "^1.0.8",
-		"pre-commit": "^1.2.2",
 		"sequelize": "^6.37.3",
 		"sequelize-cli": "^6.6.2",
 		"sequelize-slugify": "^1.6.2",

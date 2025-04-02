@@ -13,6 +13,8 @@ export class ProductAttributeValuesModel extends Model<
   ProductAttributeValues,
   ProductAttributeValuesCreationAttributes
 > {
+  attribute_values?: AttributeValuesModel;
+
   public static associations: {
     productAttributeValue: Association<AttributeValuesModel, ProductAttributeValuesModel>; // 1-n
     product: Association<ProductModel, ProductAttributeValuesModel>; // 1-n

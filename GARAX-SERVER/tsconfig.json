@@ -14,8 +14,8 @@
 		/* Bundler mode */
 		"moduleResolution": "NodeNext",
 		"isolatedModules": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
 
 		/* Linting */
 		"strict": true,

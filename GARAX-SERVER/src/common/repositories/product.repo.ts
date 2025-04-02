@@ -25,6 +25,8 @@ export const getProductById = async (id: number) => {
     nest: true
   });
 
+  console.log('proId::', proId?.dataValues.product_attribute_values?.attribute_values);
+
   if (!proId) throw new NotFoundError('error::get Product by _id');
 
   // console.log("_id pro::", proId)

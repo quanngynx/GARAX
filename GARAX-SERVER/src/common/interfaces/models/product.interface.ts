@@ -1,6 +1,7 @@
 import { PRODUCT_STATUS, PRODUCT_TAG } from '@/common/constants';
 import { Audit } from '../audit.interface';
 import { PrimaryKey } from '../primaryKey.interface';
+import { ProductAttributeValues } from './productAttributeValues.interface';
 
 export interface Product extends Audit, PrimaryKey {
   name: string;
@@ -21,4 +22,5 @@ export interface Product extends Audit, PrimaryKey {
   videoId: number;
   brandId: number;
   status: PRODUCT_STATUS;
+  product_attribute_values?: ProductAttributeValues;
 }
