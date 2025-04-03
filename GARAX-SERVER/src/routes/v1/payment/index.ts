@@ -1,7 +1,21 @@
 import express from 'express';
-const router = express.Router();
-// import AsyncHandler from '../../../middlewares/asyncHandler.middleware'
-// import ProductController from '../../../controllers/product.controller'
+import { asyncHandler } from '@/middlewares';
+import { PaymentController } from '@/controllers';
+
+export const routerPayment = express.Router();
+const paymentController = PaymentController.default;
+
+routerPayment.get(
+  '/transactions/query',
+  // '/products/query/:filters.name/:filters.brand/:search.field/:search.keyword/:sort.field/:sort.order/:pagination.page/:pagination.limit',
+  /*              └─────┬──────────────────────┘└───┬────────────────────────┘└─────┬────────────────┘└─────┬─────────────────────────┘
+   *                    │                           │                               │                       pagination
+   *                    │                           │                               sort
+   *                    │                           search
+   *                   filters
+   */
+  asyncHandler(paymentController.getAllTransactionsByQueryOptions)
+);
 
 // router.get('/products', AsyncHandler(ProductController.getAllProducts))
 // router.get('/products/:id', AsyncHandler(ProductController.getProductById))
@@ -16,5 +30,3 @@ const router = express.Router();
 
 // router.get('/products/pub', AsyncHandler(ProductController.findAllProductPub))
 // router.get('/products', AsyncHandler(ProductController.findAllProduct))
-
-module.exports = router;

@@ -46,7 +46,7 @@ export class OrdersService {
    *   rows: OrderModel[];
    * }>}
    */
-  static async getAllProductsByQueryOptions({
+  static async getAllOrdersByQueryOptions({
     filters,
     search,
     sort,

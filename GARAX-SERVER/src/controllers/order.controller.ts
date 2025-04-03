@@ -3,6 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import { OrdersService } from '../services/order.service';
 
 import { SuccessResponse } from '../middlewares/success.response';
+import { RequestBody, RequestParams, ResponseBody } from '@/common/interfaces';
+import { GetAllProductsByQueryOptionsQuery } from './product.controller';
 
 class OrdersController {
   /**
@@ -48,6 +50,21 @@ class OrdersController {
     new SuccessResponse({
       message: 'Get all order successfully',
       metadata: await OrdersService.getAllOrders()
+    }).send(res);
+  };
+  getAllOrdersByQueryOptions = async (
+    req: Request<RequestParams, ResponseBody, RequestBody, GetAllProductsByQueryOptionsQuery>,
+    res: Response,
+    _next: NextFunction
+  ) => {
+    // const { filters, search, sort, pagination } = req.query;
+    // console.log('filters::', filters);
+    // console.log('search::', search);
+    // console.log('sort::', sort);
+    // console.log('pagination::', pagination);
+    new SuccessResponse({
+      message: 'Lấy tất cả hàng hóa thành công!',
+      metadata: await OrdersService.getAllOrdersByQueryOptions(req.query)
     }).send(res);
   };
   createOrderByAdminOrStaff = async (req: Request, res: Response, _next: NextFunction) => {

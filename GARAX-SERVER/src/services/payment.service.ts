@@ -202,7 +202,7 @@ export class PaymentService {
    *   rows: OrderModel[];
    * }>}
    */
-  static async getAllProductsByQueryOptions({
+  static async getAllTransactionsByQueryOptions({
     filters,
     search,
     sort,

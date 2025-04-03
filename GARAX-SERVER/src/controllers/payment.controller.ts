@@ -3,6 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import { SuccessResponse } from '@/middlewares';
 import { PaymentService } from '@/services';
+import { RequestBody, RequestParams, ResponseBody } from '@/common/interfaces';
+import { GetAllProductsByQueryOptionsQuery } from './product.controller';
 
 class PaymentController {
   createPaymentLinkPayOS = async (req: Request, res: Response, _next: NextFunction) => {
@@ -37,6 +39,22 @@ class PaymentController {
     new SuccessResponse({
       message: 'Verify payment webhook data success!',
       metadata: await PaymentService.verifyPaymentWebhookData(req.body)
+    }).send(res);
+  };
+
+  getAllTransactionsByQueryOptions = async (
+    req: Request<RequestParams, ResponseBody, RequestBody, GetAllProductsByQueryOptionsQuery>,
+    res: Response,
+    _next: NextFunction
+  ) => {
+    // const { filters, search, sort, pagination } = req.query;
+    // console.log('filters::', filters);
+    // console.log('search::', search);
+    // console.log('sort::', sort);
+    // console.log('pagination::', pagination);
+    new SuccessResponse({
+      message: 'Lấy tất cả hàng hóa thành công!',
+      metadata: await PaymentService.getAllTransactionsByQueryOptions(req.query)
     }).send(res);
   };
 

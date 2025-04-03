@@ -3,6 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import { SuccessResponse } from '../middlewares/success.response';
 import { BrandService } from '@/services';
+import { RequestBody, RequestParams, ResponseBody } from '@/common/interfaces';
+import { GetAllProductsByQueryOptionsQuery } from './product.controller';
 
 class BrandController {
   addNewBrand = async (req: Request, res: Response, _next: NextFunction) => {
@@ -17,6 +19,17 @@ class BrandController {
     new SuccessResponse({
       message: 'Get all product Brand success!',
       metadata: await BrandService.getAllBrand()
+    }).send(res);
+  };
+
+  getAllBrandsByQueryOptions = async (
+    req: Request<RequestParams, ResponseBody, RequestBody, GetAllProductsByQueryOptionsQuery>,
+    res: Response,
+    _next: NextFunction
+  ) => {
+    new SuccessResponse({
+      message: 'Lấy tất cả hàng hóa thành công!',
+      metadata: await BrandService.getAllBrandsByQueryOptions(req.query)
     }).send(res);
   };
 

@@ -40,7 +40,7 @@ export class BrandService {
    *   rows: BrandModel[];
    * }>}
    */
-  static async getAllProductsByQueryOptions({
+  static async getAllBrandsByQueryOptions({
     filters,
     search,
     sort,
