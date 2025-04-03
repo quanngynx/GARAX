@@ -2,7 +2,7 @@
 import { Models, ServiceCategory } from '@/common/interfaces';
 import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
-import { default as slugify } from 'slugify';
+// import { default as slugify } from 'slugify';
 
 export type ServiceCategoryCreationAttributes = Optional<ServiceCategory, 'id' | 'createdAt' | 'updatedAt'>;
 
