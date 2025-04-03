@@ -4,12 +4,42 @@ import { NextFunction, Request, Response } from 'express';
 import { SuccessResponse } from '@/middlewares';
 import { ProductService } from '@/services';
 import { getProductById, getProductVariantValueByIdProduct } from '@/common/repositories';
+import { QueryOptions, RequestBody, RequestParams, RequestQuery, ResponseBody } from '@/common/interfaces';
+import { ProductModel } from '@/models';
+
+// interface GetAllProductsByQueryOptionsParam extends RequestParams {
+//   options: GetAllProductsByQueryOptions;
+// }
+interface GetAllProductsByQueryOptionsQuery
+  extends RequestQuery,
+    Omit<QueryOptions<ProductModel>, 'filters' | 'search' | 'sort' | 'pagination'> {
+  filters: string;
+  search: string;
+  sort: string;
+  pagination: string;
+}
 
 class ProductController {
   getAllProducts = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Lấy tất cả hàng hóa thành công!',
       metadata: await ProductService.getAllProducts()
+    }).send(res);
+  };
+
+  getAllProductsByQueryOptions = async (
+    req: Request<RequestParams, ResponseBody, RequestBody, GetAllProductsByQueryOptionsQuery>,
+    res: Response,
+    _next: NextFunction
+  ) => {
+    // const { filters, search, sort, pagination } = req.query;
+    // console.log('filters::', filters);
+    // console.log('search::', search);
+    // console.log('sort::', sort);
+    // console.log('pagination::', pagination);
+    new SuccessResponse({
+      message: 'Lấy tất cả hàng hóa thành công!',
+      metadata: await ProductService.getAllProductsByQueryOptions(req.query)
     }).send(res);
   };
 

@@ -16,6 +16,17 @@ const productController = ProductController.default;
  */
 
 routerProduct.get('/products', asyncHandler(productController.getAllProducts));
+routerProduct.get(
+  '/products/query',
+  // '/products/query/:filters.name/:filters.brand/:search.field/:search.keyword/:sort.field/:sort.order/:pagination.page/:pagination.limit',
+  /*              └─────┬──────────────────────┘└───┬────────────────────────┘└─────┬────────────────┘└─────┬─────────────────────────┘
+   *                    │                           │                               │                       pagination
+   *                    │                           │                               sort
+   *                    │                           search
+   *                   filters
+   */
+  asyncHandler(productController.getAllProductsByQueryOptions)
+);
 routerProduct.get('/products/without-options', asyncHandler(productController.getAllProductsWithoutOptions));
 routerProduct.get('/products/:id', asyncHandler(productController.getProductById));
 routerProduct.get(

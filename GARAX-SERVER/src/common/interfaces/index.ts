@@ -35,6 +35,7 @@ export * from './keyStore.interface';
 export * from './audit.interface';
 export * from './primaryKey.interface';
 export * from './extendRequestQuery.interface';
+export * from './queryOptions.interface';
 
 export * from './middlewares/errorResponseProps.interface';
 export * from './middlewares/successResponseProps.interface';

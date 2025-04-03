@@ -47,7 +47,7 @@ jobs:
       - name: Build
         run: |
           cd GARAX-SERVER
-          yarn build
+          yarn build:swc
 
       # - name: Run Tests
       #   run: |

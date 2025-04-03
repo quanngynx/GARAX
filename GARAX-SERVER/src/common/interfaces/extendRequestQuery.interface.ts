@@ -4,6 +4,4 @@ export type ResponseBody = object;
 
 export type RequestBody = object;
 
-export interface RequestQuery {
-  email: string;
-}
+export type RequestQuery = object;

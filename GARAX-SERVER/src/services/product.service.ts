@@ -3,12 +3,20 @@
 'use strict';
 import { default as slugify } from 'slugify';
 
-import { AddManyNewProductRequest, AddNewProductRequest, GetAllBestSellerProducts } from '@/common/requests/product';
+import {
+  AddManyNewProductRequest,
+  AddNewProductRequest,
+  GetAllBestSellerProducts,
+  GetAllProductsByQueryOptions
+} from '@/common/requests/product';
 
-import { db } from '@/models';
+import { db, ProductModel } from '@/models';
 import { BadRequestError, NotFoundError } from '@/middlewares';
 import { getProductById } from '@/common/repositories';
-import { generateSKU } from '@/common/utils';
+import { generateSKU, jsonUtils } from '@/common/utils';
+import { QueryOptionsByBuilder } from './queryOptions';
+
+const productOptionsQuery = new QueryOptionsByBuilder<ProductModel>(ProductModel);
 
 export class ProductService {
   static async addNewProduct({
@@ -114,7 +122,7 @@ export class ProductService {
       await db.ProductAttributeValues.create(
         {
           productId: newProduct.dataValues.id,
-          attributeId: attribute.id,
+          attributeId: attribute.dataValues.id,
           value: attributeData.value
         },
         {
@@ -123,7 +131,7 @@ export class ProductService {
       );
 
       createAttributes.push({
-        name: attribute.name,
+        name: attribute.dataValues.name,
         value: attributeData.value
       });
     }
@@ -284,6 +292,43 @@ export class ProductService {
     if (!allPro) throw new NotFoundError('error::find all Product');
 
     return allPro;
+  }
+
+  /**
+   * @refference: https://sequelize.org/docs/v6/other-topics/typescript/#utility-types
+   * @param options: GetAllProductsByQueryOptions
+   * @returns {Promise<{
+   *   rows: Promise<ProductModel[]>;
+   *   totalPage: {};
+   *   totalRows: number;
+   * }>}
+   */
+  static async getAllProductsByQueryOptions({
+    filters,
+    search,
+    sort,
+    pagination
+  }: {
+    filters: string;
+    search: string;
+    sort: string;
+    pagination: string;
+  }) {
+    const filtersParse = jsonUtils.jsonParse(filters, {});
+    const searchParse = jsonUtils.jsonParse(search, {});
+    const sortParse = jsonUtils.jsonParse(sort, {});
+    const paginationParse = jsonUtils.jsonParse(pagination, {});
+    // console.log('\nfilters::', filtersParse);
+    // console.log('search::', searchParse);
+    // console.log('sort::', sortParse);
+    // console.log('pagination::', paginationParse);
+    const response = productOptionsQuery.getList({
+      filters: filtersParse,
+      search: searchParse,
+      sort: sortParse,
+      pagination: paginationParse
+    });
+    return response;
   }
 
   static async getAllProductsWithoutOptions() {

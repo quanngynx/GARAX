@@ -4,9 +4,12 @@ import { RequestBody, RequestParams, RequestQuery, ResponseBody } from '@/common
 import { SuccessResponse } from '@/middlewares';
 import { AccountService } from '@/services';
 
+interface GetInfoUserByEmailQuery extends RequestQuery {
+  email: string;
+}
 class AccountController {
   getInfoUserByEmail = async (
-    req: Request<RequestParams, ResponseBody, RequestBody, RequestQuery>,
+    req: Request<RequestParams, ResponseBody, RequestBody, GetInfoUserByEmailQuery>,
     res: Response,
     _next: NextFunction
   ) => {

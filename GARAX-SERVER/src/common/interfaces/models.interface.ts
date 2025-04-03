@@ -29,9 +29,9 @@ import {
   ProductAttributeValuesModel
 } from '@/models';
 import { OrderDetailsModel } from '@/models/orderdetails';
-import { Sequelize } from 'sequelize';
+import { Model, Sequelize } from 'sequelize';
 
-export interface Models {
+export interface Models extends Model {
   Account: typeof AccountModel;
   Address: typeof AddressModel;
   ApiKey: typeof ApiKeyModel;
