@@ -40,7 +40,7 @@ jobs:
       - name: Lint
         run: |
           cd GARAX-SERVER
-          yarn lint
+          yarn add eslint --dev && yarn lint
 
       - name: Build
         run: |
