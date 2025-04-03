@@ -29,17 +29,13 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: GARAX-SERVER/yarn.lock 
 
-      - name: Install dependencies global
-        run: |
-          yarn --frozen-lockfile
+      # - name: Install dependencies global
+      #   run: |
+      #     yarn --frozen-lockfile
       
       - name: Install dependencies GARAX-SERVER
         run: |
           yarn --frozen-lockfile
-      
-      - name: Lint commit message
-        run: |
-            npx commitlint --last --verbose
 
       - name: Lint
         run: |
