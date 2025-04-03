@@ -10,7 +10,7 @@ import { ProductModel } from '@/models';
 // interface GetAllProductsByQueryOptionsParam extends RequestParams {
 //   options: GetAllProductsByQueryOptions;
 // }
-interface GetAllProductsByQueryOptionsQuery
+export interface GetAllProductsByQueryOptionsQuery
   extends RequestQuery,
     Omit<QueryOptions<ProductModel>, 'filters' | 'search' | 'sort' | 'pagination'> {
   filters: string;

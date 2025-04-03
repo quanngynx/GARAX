@@ -2,8 +2,12 @@
 'use strict';
 
 import { Order } from '@/common/interfaces';
+import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
 import { NotFoundError } from '@/middlewares';
-import { db } from '@/models';
+import { db, OrderModel } from '@/models';
+import { QueryOptionsByBuilder } from './queryOptions';
+
+const orderOptionsQuery = new QueryOptionsByBuilder<OrderModel>(OrderModel);
 
 export class OrdersService {
   /**
@@ -31,6 +35,35 @@ export class OrdersService {
     if (!allOrder) throw new NotFoundError('error::find all Order!');
 
     return allOrder;
+  }
+
+  /**
+   * @refference: https://sequelize.org/docs/v6/other-topics/typescript/#utility-types
+   * @param options: GetAllProductsByQueryOptions
+   * @returns {Promise<{
+   *   totalPage: number;
+   *   totalRows: number;
+   *   rows: OrderModel[];
+   * }>}
+   */
+  static async getAllProductsByQueryOptions({
+    filters,
+    search,
+    sort,
+    pagination
+  }: GetAllProductsByQueryOptionsQueryState): Promise<{
+    totalPage: number;
+    totalRows: number;
+    rows: OrderModel[];
+  }> {
+    const optionsParse = await orderOptionsQuery.optionsParse({
+      filters,
+      search,
+      sort,
+      pagination
+    });
+    const response = orderOptionsQuery.getList(optionsParse);
+    return response;
   }
 
   static async createOrderByAdminOrStaff({}) {}

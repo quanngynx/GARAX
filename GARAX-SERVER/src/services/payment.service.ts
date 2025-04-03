@@ -12,6 +12,9 @@ import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
 import { InternalServerError, NotFoundError } from '@/middlewares';
 // REQUEST/RESPONSE
 import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
+import { QueryOptionsByBuilder } from './queryOptions';
+import { OrderModel } from '@/models';
+import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
 
 const payos = new PayOS(
   String(process.env.PAYOS_CLIENT_ID),
@@ -28,6 +31,8 @@ const payos = new PayOS(
 //   "YOUR_PAYOS_CHECKSUM_KEY",
 //   "YOUR_PARTNER_CODE"
 // );
+
+const transactionOptionsQuery = new QueryOptionsByBuilder<OrderModel>(OrderModel);
 
 export class PaymentService {
   static async createPaymentLinkPayOS({
@@ -187,6 +192,35 @@ export class PaymentService {
   //   console.log(data);
   //   return data
   // }
+
+  /**
+   * @refference: https://sequelize.org/docs/v6/other-topics/typescript/#utility-types
+   * @param options: GetAllProductsByQueryOptions
+   * @returns {Promise<{
+   *   totalPage: number;
+   *   totalRows: number;
+   *   rows: OrderModel[];
+   * }>}
+   */
+  static async getAllProductsByQueryOptions({
+    filters,
+    search,
+    sort,
+    pagination
+  }: GetAllProductsByQueryOptionsQueryState): Promise<{
+    totalPage: number;
+    totalRows: number;
+    rows: OrderModel[];
+  }> {
+    const optionsParse = await transactionOptionsQuery.optionsParse({
+      filters,
+      search,
+      sort,
+      pagination
+    });
+    const response = transactionOptionsQuery.getList(optionsParse);
+    return response;
+  }
 
   static async deleteProductById() {}
 

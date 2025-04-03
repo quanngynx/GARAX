@@ -1,4 +1,6 @@
 import { QueryOptions } from '@/common/interfaces';
+import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
+import { jsonUtils } from '@/common/utils';
 import { NotFoundError } from '@/middlewares';
 import { Model, ModelStatic } from 'sequelize';
 
@@ -10,12 +12,7 @@ export class QueryOptionsByBuilder<T extends Model> {
     // queryValues: ParamQueryMustHave
   ) {
     let data;
-    const {
-      // filters,
-      // search,
-      // sort,
-      pagination
-    } = queryOptions;
+    const { filters, search, sort, pagination } = queryOptions;
     try {
       /**
        * 1. pagination
@@ -26,45 +23,93 @@ export class QueryOptionsByBuilder<T extends Model> {
       };
       /**
        * 2. filter
+       * @example
+       * where: {
+       *   createdAt: {
+       *     [Op.gt]: sql.cast('2012-01-01', 'date'),
+       *   },
+       * },
+       * where: {
+       *   createdAt: {
+       *     [Op.gt]: sql.cast('2012-01-01', 'date'),
+       *   },
+       * },
        */
-      const queryFilter = {};
+      // const where: Record<any, any> = {};
+      console.log('filters::', filters);
+      console.log('search::', search);
+      if (filters) {
+        // for (const [key, value] of Object.entries(filters)) {
+        //   where[key as keyof T] = value;
+        // }
+        // const filtersArray = Object.entries(filters);
+      }
+
       /**
        * 3. Search
        */
-      const querySearch = {};
+      if (search.keyword) {
+        // where[search.field] = { [Op.like]: `%${search.keyword}%` };
+        // search.field = { [Op.substring]: field };
+        // for (const key in this.chooseModel.rawAttributes) {
+        //   // const filters = [];
+        //   const filtersArray = Object.entries(filters);
+        //   console.log(key);
+        //   filtersArray.push(sequelize.where(
+        //     sequelize.cast(sequelize.col(key), 'varchar'),
+        //     { [Op.iLike]: `%${search.keyword}%` }
+        //   ));
+        // }
+      }
       /**
        * 4. Sort
        */
-      const querySort = {};
-      /**
-       * 3. cal toal page
-       */
-      const calTotalPage = {};
-      /**
-       * . countAll
-       */
+      // const querySort = {};
+      const querySort: [string, string][] = [];
+      if (sort) {
+        querySort.push([sort.field as string, sort.order]);
+      }
+
       const options = {
-        ...queryPagination,
-        ...queryFilter,
-        ...querySearch,
-        ...querySort
+        ...queryPagination // limit + offset
+        // order: querySort, // order
+        // where: filters // search + filter
       };
-      data = this.chooseModel.findAll(options) as Promise<T[]>;
+      data = this.chooseModel.findAndCountAll(options);
+
+      /**
+       * n. cal total page & total rows
+       */
+      const calTotalPage = (await data).count / pagination.limit;
+      const calRows = (await data).count;
 
       return {
-        totalPage: calTotalPage,
-        totalRows: 0,
-        rows: data
+        totalPage: Math.ceil(calTotalPage),
+        totalRows: calRows,
+        rows: (await data).rows
       };
     } catch (error) {
       throw new NotFoundError(`Not found or error get list ${this.chooseModel}::${error}`);
     }
   }
 
-  // async getList(queryOptions: QueryOptions<T>): Promise<T[]> {
+  async optionsParse({ filters, search, sort, pagination }: GetAllProductsByQueryOptionsQueryState) {
+    const filtersParse = jsonUtils.jsonParse(filters, {});
+    const searchParse = jsonUtils.jsonParse(search, {});
+    const sortParse = jsonUtils.jsonParse(sort, {});
+    const paginationParse = jsonUtils.jsonParse(pagination, {});
+    return {
+      filters: filtersParse,
+      search: searchParse,
+      sort: sortParse,
+      pagination: paginationParse
+    };
+  }
+
+  // async getListOrder(queryOptions: QueryOptions<T>): Promise<T[]> {
   //   const { filters, search, sort, pagination } = queryOptions;
 
-  //   let where: WhereOptions<T> = {};
+  //   const where: WhereOptions<T> = {};
 
   //   // 📌 1️⃣ Xử lý bộ lọc (filters)
   //   if (filters) {
@@ -79,7 +124,7 @@ export class QueryOptionsByBuilder<T extends Model> {
   //   }
 
   //   // 📌 3️⃣ Xử lý sắp xếp (sort)
-  //   let order: [string, string][] = [];
+  //   const order: [string, string][] = [];
   //   if (sort) {
   //     order.push([sort.field as string, sort.order]);
   //   }
@@ -97,9 +142,9 @@ export class QueryOptionsByBuilder<T extends Model> {
   //     where,
   //     order,
   //     limit,
-  //     offset,
+  //     offset
   //   };
 
-  //   return this.model.findAll(options) as Promise<T[]>;
+  //   return this.chooseModel.findAll(options) as Promise<T[]>;
   // }
 }

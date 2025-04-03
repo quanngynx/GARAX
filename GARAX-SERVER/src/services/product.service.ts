@@ -7,13 +7,14 @@ import {
   AddManyNewProductRequest,
   AddNewProductRequest,
   GetAllBestSellerProducts,
-  GetAllProductsByQueryOptions
+  // GetAllProductsByQueryOptions,
+  GetAllProductsByQueryOptionsQueryState
 } from '@/common/requests/product';
 
 import { db, ProductModel } from '@/models';
 import { BadRequestError, NotFoundError } from '@/middlewares';
 import { getProductById } from '@/common/repositories';
-import { generateSKU, jsonUtils } from '@/common/utils';
+import { generateSKU } from '@/common/utils';
 import { QueryOptionsByBuilder } from './queryOptions';
 
 const productOptionsQuery = new QueryOptionsByBuilder<ProductModel>(ProductModel);
@@ -296,11 +297,11 @@ export class ProductService {
 
   /**
    * @refference: https://sequelize.org/docs/v6/other-topics/typescript/#utility-types
-   * @param options: GetAllProductsByQueryOptions
+   * @param options: GetAllProductsByQueryOptionsQueryState
    * @returns {Promise<{
-   *   rows: Promise<ProductModel[]>;
-   *   totalPage: {};
+   *   totalPage: number;
    *   totalRows: number;
+   *   rows: ProductModel[];
    * }>}
    */
   static async getAllProductsByQueryOptions({
@@ -308,26 +309,23 @@ export class ProductService {
     search,
     sort,
     pagination
-  }: {
-    filters: string;
-    search: string;
-    sort: string;
-    pagination: string;
-  }) {
-    const filtersParse = jsonUtils.jsonParse(filters, {});
-    const searchParse = jsonUtils.jsonParse(search, {});
-    const sortParse = jsonUtils.jsonParse(sort, {});
-    const paginationParse = jsonUtils.jsonParse(pagination, {});
+  }: GetAllProductsByQueryOptionsQueryState): Promise<{
+    totalPage: number;
+    totalRows: number;
+    rows: ProductModel[];
+  }> {
+    const optionsParse = await productOptionsQuery.optionsParse({
+      filters,
+      search,
+      sort,
+      pagination
+    });
     // console.log('\nfilters::', filtersParse);
     // console.log('search::', searchParse);
     // console.log('sort::', sortParse);
     // console.log('pagination::', paginationParse);
-    const response = productOptionsQuery.getList({
-      filters: filtersParse,
-      search: searchParse,
-      sort: sortParse,
-      pagination: paginationParse
-    });
+    const response = productOptionsQuery.getList(optionsParse);
+    // console.log('response::', (await response).rows);
     return response;
   }
 
