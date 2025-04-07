@@ -10,6 +10,13 @@ import { routerCart } from './cart';
 import { routerOrder } from './order';
 import { routerCheckout } from './checkout';
 import { routerBrand } from './brand';
+import { routerStatictists } from './statictists';
+// import { checkAuth } from '@/middlewares';
+
+// check apiKey
+// routerV1.use(checkAuth.checkApiKey);
+// check permission
+// routerV1.use(checkAuth.permission());
 
 routerV1.use('', routerAccess);
 routerV1.use('', routerAuth);
@@ -20,4 +27,5 @@ routerV1.use('', routerCheckout);
 routerV1.use('', routerProduct);
 routerV1.use('', routerCategoryProduct);
 routerV1.use('', routerBrand);
+routerV1.use('', routerStatictists);
 // routerV1.use('',require('./categoryNews'));

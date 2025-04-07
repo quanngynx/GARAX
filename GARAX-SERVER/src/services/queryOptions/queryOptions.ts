@@ -1,8 +1,8 @@
+import { Model, ModelStatic } from 'sequelize';
 import { QueryOptions } from '@/common/interfaces';
 import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
 import { jsonUtils } from '@/common/utils';
 import { NotFoundError } from '@/middlewares';
-import { Model, ModelStatic } from 'sequelize';
 
 export class QueryOptionsByBuilder<T extends Model> {
   constructor(private chooseModel: ModelStatic<T>) {}
@@ -10,7 +10,11 @@ export class QueryOptionsByBuilder<T extends Model> {
   async getList(
     queryOptions: QueryOptions<T>
     // queryValues: ParamQueryMustHave
-  ) {
+  ): Promise<{
+    totalPage: number;
+    totalRows: number;
+    rows: T[];
+  }> {
     let data;
     const { filters, search, sort, pagination } = queryOptions;
     try {
@@ -36,8 +40,8 @@ export class QueryOptionsByBuilder<T extends Model> {
        * },
        */
       // const where: Record<any, any> = {};
-      console.log('filters::', filters);
-      console.log('search::', search);
+      // console.log('filters::', filters);
+      // console.log('search::', search);
       if (filters) {
         // for (const [key, value] of Object.entries(filters)) {
         //   where[key as keyof T] = value;
@@ -105,6 +109,10 @@ export class QueryOptionsByBuilder<T extends Model> {
       pagination: paginationParse
     };
   }
+
+  // async findByPk(id: number, options?: Omit<FindOptions<Attributes<T>>, 'where'>) {
+  //   return this.chooseModel.findByPk(id, options);
+  // }
 
   // async getListOrder(queryOptions: QueryOptions<T>): Promise<T[]> {
   //   const { filters, search, sort, pagination } = queryOptions;

@@ -4,7 +4,7 @@ import { Model, DataTypes, Sequelize, Optional, Association } from 'sequelize';
 import { ItemPermissionModel } from './itempermission';
 import { PermissionModel } from './permission';
 
-export type ApiKeyCreationAttributes = Optional<ApiKey, 'id'>;
+export type ApiKeyCreationAttributes = Optional<ApiKey, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'>;
 
 export class ApiKeyModel extends Model<ApiKeyCreationAttributes> {
   public static associations: {
@@ -51,6 +51,22 @@ const apiKeyModel = (sequelize: Sequelize) => {
       },
       permissionId: {
         type: DataTypes.INTEGER
+      },
+      createdBy: {
+        type: DataTypes.STRING,
+        defaultValue: ''
+      },
+      updatedBy: {
+        type: DataTypes.STRING,
+        defaultValue: ''
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
       }
     },
     {

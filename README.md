@@ -68,6 +68,14 @@ Tell people where they can go to for help. It can be any combination of an issue
 
 If you have ideas for releases in the future, it is a good idea to list them in the README.
 
+### Statictist's feat
+
+- Intergarion server-sent-event for statictist's module
+
+Xây tool upload video lên TikTok chạy local.
+
+Mã hóa AES cho file m3u8 để hạn chế sao chép nội dung.
+
 Tích hợp các công cụ marketing
 Email marketing: Tích hợp với các công cụ email marketing để gửi thông tin khuyến mãi, sản phẩm mới đến khách hàng.
 Retargeting ads: Sử dụng công cụ retargeting để quảng cáo lại cho những khách hàng đã từng truy cập website.
@@ -146,14 +154,14 @@ The different types of branches we may use are:
 
 - example: "Creating a feature branch"
 
-```
+```cmd
 $ git checkout -b myfeature develop
 Switched to a new branch "myfeature"
 ```
 
 - example: "Incorporating a finished feature on develop"
 
-```
+```cmd
 $ git checkout develop
 Switched to branch 'develop'
 $ git merge --no-ff myfeature

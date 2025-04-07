@@ -204,7 +204,7 @@ export class AuthJWTService {
 
       const isValid = await OtpService.validateOtp({
         otp: otp,
-        hashOtp: lastOtp.otp
+        hashOtp: lastOtp.dataValues.otp
       });
 
       return {

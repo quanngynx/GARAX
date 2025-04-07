@@ -1,14 +1,19 @@
-import { VariantItems } from '../requests/product';
 import { getUniqueIdOptions } from './uuid';
 
 interface GenerateSKUProps {
   categoryId: number;
   brandId: number;
   name: string;
-  variants: VariantItems[];
+  variantValuesId: number;
 }
 
-export const generateSKU = ({ categoryId, brandId, name, variants }: GenerateSKUProps) => {
+type CreateVariantCodeInSkuProps = Pick<GenerateSKUProps, 'variantValuesId'>;
+
+const createVariantCodeInSku = ({ variantValuesId }: CreateVariantCodeInSkuProps) => {
+  return variantValuesId ? variantValuesId : 'NV'; // NV = No Variant
+};
+
+export const generateSKU = ({ categoryId, brandId, name, variantValuesId }: GenerateSKUProps) => {
   const categoryCode = categoryId ? `C${categoryId}` : 'NC'; // NC = No Category
   const brandCode = brandId ? `B${brandId}` : 'NB'; // NB = No Brand
 
@@ -18,23 +23,17 @@ export const generateSKU = ({ categoryId, brandId, name, variants }: GenerateSKU
     .join('')
     .substring(0, 4); // Limit 5 chars
 
-  // const variantCode = variants
-  //   ? variants
-  //   .map((v: VariantItems) =>
-  //     v.values.substring(0, 2).toUpperCase()).join("")
-  //   : "NV"; // NV = No Variant
-
-  const variantCode =
-    variants.length > 0
-      ? variants
-          .map(
-            (v: VariantItems) =>
-              Array.isArray(v.values) ? v.values.map((value) => value.substring(0, 2).toUpperCase()).join('') : 'UK' // UK = Unknow
-          )
-          .join('-')
-      : 'NV'; // NV = No Variant
+  const variantCode = createVariantCodeInSku({ variantValuesId });
 
   const uniqueId = getUniqueIdOptions(6);
 
   return `${categoryCode}-${brandCode}-${productCode}-${variantCode}-${uniqueId}`;
 };
+
+const result = generateSKU({
+  categoryId: 1,
+  brandId: 2,
+  name: 'abc',
+  variantValuesId: 1
+});
+console.log(result);

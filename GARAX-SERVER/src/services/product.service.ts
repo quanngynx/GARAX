@@ -8,7 +8,8 @@ import {
   AddNewProductRequest,
   GetAllBestSellerProducts,
   // GetAllProductsByQueryOptions,
-  GetAllProductsByQueryOptionsQueryState
+  GetAllProductsByQueryOptionsQueryState,
+  VariantItems
 } from '@/common/requests/product';
 
 import { db, ProductModel } from '@/models';
@@ -168,6 +169,7 @@ export class ProductService {
       const variantValueIds = [];
 
       // console.log('variantData.variantCombination:', variantData.variantCombination)
+      let sku;
       for (const value of variantData.variantCombination) {
         const variantValue = await db.VariantValues.findOne({
           where: {
@@ -178,16 +180,16 @@ export class ProductService {
 
         if (variantValue) {
           variantValueIds.push(variantValue.dataValues.id);
+
+          // Create SKU: 'id1-id2-id3-...'
+          sku = generateSKU({
+            categoryId,
+            brandId,
+            name,
+            variantValuesId: variantValue.dataValues.id
+          });
         }
       }
-
-      // Create SKU: 'id1-id2-id3-...'
-      const sku = generateSKU({
-        categoryId,
-        brandId,
-        name,
-        variants
-      });
 
       const createdVariant = await db.ProductVariantValues.create(
         {
@@ -196,7 +198,7 @@ export class ProductService {
           oldPrice: variantData.oldPrice,
           stock: variantData.stock || 0,
           sold: 0,
-          sku: sku,
+          sku: sku || '',
           manufacturingDate: manufacturingDate,
           productVariantId: 1,
           addOverDetailSpecsId: 1
@@ -320,16 +322,11 @@ export class ProductService {
       sort,
       pagination
     });
-    // console.log('\nfilters::', filtersParse);
-    // console.log('search::', searchParse);
-    // console.log('sort::', sortParse);
-    // console.log('pagination::', paginationParse);
     const response = productOptionsQuery.getList(optionsParse);
-    // console.log('response::', (await response).rows);
     return response;
   }
 
-  static async getAllProductsWithoutOptions() {
+  static async getAllProductsWithoutOptions(): Promise<ProductModel[]> {
     const allPro = await db.Product.findAll({});
 
     if (!allPro) throw new NotFoundError('error::find all Product');
@@ -371,7 +368,11 @@ export class ProductService {
     };
   }
 
-  static async updateProductById(id: number, {}) {
+  static async updateProductById(
+    id: number, {
+
+    }) {
+
     return id;
   }
 

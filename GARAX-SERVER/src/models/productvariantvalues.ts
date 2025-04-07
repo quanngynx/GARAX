@@ -9,7 +9,7 @@ export type ProductVariantValuesCreationAttributes = Optional<
 >;
 
 export class ProductVariantValuesModel extends Model<ProductVariantValues, ProductVariantValuesCreationAttributes> {
-  public id!: number;
+  // public id!: number;
   products?: ProductModel;
 
   public static associations: {

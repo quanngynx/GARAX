@@ -22,6 +22,14 @@ export async function up(queryInterface, Sequelize) {
     permissionId: {
       type: Sequelize.INTEGER
     },
+    createdBy: {
+      type: Sequelize.STRING,
+      defaultValue: ''
+    },
+    updatedBy: {
+      type: Sequelize.STRING,
+      defaultValue: ''
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE
