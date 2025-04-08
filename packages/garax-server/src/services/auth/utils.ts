@@ -2,6 +2,7 @@
 import { NextFunction, Request, Response } from 'express';
 import JWT, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { KeyTokenService } from '@/services';
 import { AuthFailureError, InternalServerError, NotFoundError, asyncHandler } from '@/middlewares';
 import { HEADER } from '@/common/constants';
@@ -128,8 +129,8 @@ const sendOtpByNodemailer = async ({ title, otp, toEmail }: SendOtpByNodemailerP
       subject: title,
       text: `Mã OTP của bạn là: ${otp}`
     };
-    transporter.sendMail(options, (error: any, info: { response: string }) =>
-      error ? console.log(error) : console.log('Email sent: ' + info.response)
+    transporter.sendMail(options, (error: Error | null, info: SMTPTransport.SentMessageInfo) =>
+      error ? console.error(error) : console.log('Email sent: ' + info.response)
     );
   } catch (error) {
     console.error(error);
