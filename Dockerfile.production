@@ -19,7 +19,7 @@ WORKDIR /garrax
 COPY --from=build /garrax/node_modules ./node_modules
 COPY --from=build /garrax .
 
-ENV NODE_ENV=production
+ENV NODE_ENV=production 
 # ENV PORT=3003
 
 # EXPOSE 3003
