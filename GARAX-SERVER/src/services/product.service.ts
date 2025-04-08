@@ -167,8 +167,7 @@ export class ProductService {
     for (const variantData of variantValues) {
       const variantValueIds = [];
 
-      // console.log('variantData.variantCombination:', variantData.variantCombination)
-      let sku;
+      // console.log('variantData.variantCombination:', variantData.variantCombination);
       for (const value of variantData.variantCombination) {
         const variantValue = await db.VariantValues.findOne({
           where: {
@@ -176,19 +175,19 @@ export class ProductService {
           },
           transaction
         });
-
+        // console.log('variantValue::', variantValue);
         if (variantValue) {
           variantValueIds.push(variantValue.dataValues.id);
-
-          // Create SKU: 'id1-id2-id3-...'
-          sku = generateSKU({
-            categoryId,
-            brandId,
-            name,
-            variantValuesId: variantValue.dataValues.id
-          });
         }
       }
+
+      // Create SKU: 'id1-id2-id3-...'
+      const sku = generateSKU({
+        categoryId,
+        brandId,
+        name,
+        variantValuesId: variantValueIds
+      });
 
       const createdVariant = await db.ProductVariantValues.create(
         {
@@ -197,7 +196,7 @@ export class ProductService {
           oldPrice: variantData.oldPrice,
           stock: variantData.stock || 0,
           sold: 0,
-          sku: sku || '',
+          sku: sku,
           manufacturingDate: manufacturingDate,
           productVariantId: 1,
           addOverDetailSpecsId: 1

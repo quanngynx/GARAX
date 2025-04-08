@@ -4,13 +4,14 @@ interface GenerateSKUProps {
   categoryId: number;
   brandId: number;
   name: string;
-  variantValuesId: number;
+  variantValuesId: number[];
 }
 
 type CreateVariantCodeInSkuProps = Pick<GenerateSKUProps, 'variantValuesId'>;
 
 const createVariantCodeInSku = ({ variantValuesId }: CreateVariantCodeInSkuProps) => {
-  return variantValuesId ? variantValuesId : 'NV'; // NV = No Variant
+  // return variantValuesId ? variantValuesId : 'NV'; // NV = No Variant
+  return variantValuesId ? variantValuesId.map((v) => v.toString()).join('-') : 'NV'; // NV = No Variant
 };
 
 export const generateSKU = ({ categoryId, brandId, name, variantValuesId }: GenerateSKUProps) => {
@@ -27,13 +28,13 @@ export const generateSKU = ({ categoryId, brandId, name, variantValuesId }: Gene
 
   const uniqueId = getUniqueIdOptions(6);
 
-  return `${categoryCode}-${brandCode}-${productCode}-${variantCode}-${uniqueId}`;
+  return `${categoryCode}-${brandCode}-${productCode}/${variantCode}/${uniqueId}`;
 };
 
-const result = generateSKU({
-  categoryId: 1,
-  brandId: 2,
-  name: 'abc',
-  variantValuesId: 1
-});
-console.log(result);
+// const result = generateSKU({
+//   categoryId: 1,
+//   brandId: 2,
+//   name: 'abc',
+//   variantValuesId: [1, 2, 4]
+// });
+// console.log(result);
