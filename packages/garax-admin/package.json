@@ -1,0 +1,21 @@
+{
+  "name": "garax-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nx next:dev -p 3002",
+    "build": "nx next:build",
+    "build:product": "ANALYZE=true yarn build",
+    "start": "nx next:start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

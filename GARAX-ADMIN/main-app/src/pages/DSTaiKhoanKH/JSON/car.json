@@ -1,9 +1,0 @@
-{"name": "Car"}
-[{"IDCar":"775d6e18","IDUser":1,"Brand":"Allview","Name":"Frontier","Color":"Pink","Chairs":1,"Status":1},
-{"IDCar":"11365fb0","IDUser":2,"Brand":"Xiaomi","Name":"Sorento","Color":"Yellow","Chairs":2,"Status":2},
-{"IDCar":"f5bfaae8","IDUser":3,"Brand":"vivo","Name":"Park Avenue","Color":"Yellow","Chairs":3,"Status":3}]
-
-{"name": "User"}
-[{"IDUser":1,"IdAcc":1,"fullname":"Julita Piser","phone":"244-617-1224","email":"jpiser0@opera.com"},
-{"IDUser":2,"IdAcc":2,"fullname":"Kevina Nevitt","phone":"194-159-1453","email":"knevitt1@diigo.com"},
-{"IDUser":3,"IdAcc":3,"fullname":"Bartel Schirok","phone":"605-792-4495","email":"bschirok2@blogs.com"}]

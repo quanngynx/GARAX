@@ -172,3 +172,5 @@ secret.txt
 
 src.md
 /src.md
+vite.config.*.timestamp*
+vitest.config.*.timestamp*

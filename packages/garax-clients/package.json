@@ -1,0 +1,23 @@
+{
+  "name": "garax-clients",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nx serve",
+    "build": "tsc -b && nx vite:build",
+    "lint": "nx eslint:lint",
+    "preview": "nx vite:preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "anyalize-bundle": "npx vite-bundle-visualizer",
+    "anyalize-bundle:f": "npx vite-bundle-visualizer -c vite.config.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}

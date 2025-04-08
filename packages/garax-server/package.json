@@ -1,0 +1,39 @@
+{
+	"name": "garax-server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "api/server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "npx nodemon",
+		"dev:swc": "npx nodemon --watch src --ext ts --exec yarn run build:swc && yarn start",
+		"build": "rimraf ./dist && tsc && tsc-alias",
+		"build:swc": "rimraf ./dist && swc src --out-dir dist && swc api --out-dir dist",
+		"start": "cross-env NODE_ENV=production node dist/api/server.js",
+		"check": "node --trace-warnings api/server.ts",
+		"ts.check": "tsc --project tsconfig.json",
+		"migrate:up": "cross-env NODE_ENV=development npx sequelize-cli db:migrate",
+		"migrate:undo": "cross-env NODE_ENV=development npx sequelize-cli db:migrate:undo",
+		"db:migrate:fresh": "npx sequelize-cli db:migrate:undo:all && yarn run db:migrate",
+		"seed:generate": "bash scripts/generate-seeds.sh",
+		"seed:run": "bash scripts/run-seeds.sh",
+		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+		"lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+		"lint-staged": "lint-staged",
+		"prettier": "prettier --check .",
+		"prettier:fix": "prettier --write ."
+	},
+	"keywords": [],
+	"author": "",
+	"contributors": [],
+	"license": "MIT",
+	"dependencies": {},
+	"devDependencies": {},
+	"lint-staged": {
+		"*.ts": [
+			"yarn lint",
+			"yarn format",
+			"git add ."
+		]
+	}
+}
