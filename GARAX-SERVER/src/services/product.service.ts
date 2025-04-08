@@ -8,8 +8,7 @@ import {
   AddNewProductRequest,
   GetAllBestSellerProducts,
   // GetAllProductsByQueryOptions,
-  GetAllProductsByQueryOptionsQueryState,
-  VariantItems
+  GetAllProductsByQueryOptionsQueryState
 } from '@/common/requests/product';
 
 import { db, ProductModel } from '@/models';
@@ -368,11 +367,7 @@ export class ProductService {
     };
   }
 
-  static async updateProductById(
-    id: number, {
-
-    }) {
-
+  static async updateProductById(id: number, {}) {
     return id;
   }
 

@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Sequelize } from 'sequelize';
 import fs from 'fs';
 import path from 'path';
-// import connection from '@/db/init.mysql';
-// import connectionConfig from '../config/database.js';
 import connectionConfig from '@/config/database.js';
 import { Models } from '@/common/interfaces';
 
@@ -37,10 +34,9 @@ import productattributeValuesModel from './productattributevalues';
 import variantKeysModel from './variantkeys';
 import variantValuesModel from './variantvalues';
 
-// const env = process.env.NODE_ENV || 'development';
-// const dbConfig = connectionConfig[env];
 const basename = path.basename(__filename);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let sequelize: any;
 if (connectionConfig.database && connectionConfig.username) {
   sequelize = new Sequelize(connectionConfig.database, connectionConfig.username, connectionConfig.password, {
@@ -128,10 +124,8 @@ fs.readdirSync(__dirname)
     return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js';
   })
   .forEach(async (file) => {
-    // const modelPath = path.join(__dirname, file);
     const modelPath = `${path.join(__dirname, file)}`;
     const modelModule = await import(modelPath);
-    // const model = modelModule.default(sequelize);
 
     let modelFunction;
     if (modelModule.default && typeof modelModule.default === 'function') {
@@ -145,12 +139,14 @@ fs.readdirSync(__dirname)
     const model = modelFunction(sequelize);
 
     const dbUnknow: unknown = db;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const dbAsAny = dbUnknow as any;
     dbAsAny[model.name] = model;
   });
 
 Object.keys(db).forEach((modelName) => {
   const dbUnknow: unknown = db;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dbAsAny = dbUnknow as any;
   if (dbAsAny[modelName].associate) {
     dbAsAny[modelName].associate(db);

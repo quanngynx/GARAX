@@ -1,8 +1,8 @@
+'use strict';
 import { db } from '@/models';
-'use strict'
 
 export class ApiKeyService {
-  static async findById( key: string ) {
+  static async findById(key: string) {
     // const newKey = await apikeyModel.create({
     //     key: crypto.randomBytes(64).toString('hex'),
     //     permissions: ['0000']
@@ -15,7 +15,7 @@ export class ApiKeyService {
         isActive: true
       },
       raw: true
-    })
-    return objKey
-}
+    });
+    return objKey;
+  }
 }
