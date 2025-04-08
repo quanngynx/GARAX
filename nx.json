@@ -6,7 +6,9 @@
         "^build"
       ],
       "outputs": [
-        "{projectRoot}/./packages/garax-clients/dist, ./packages/garax-admin/.next, ./packages/garax-server/dist"
+        "{projectRoot}/packages/garax-clients/dist",
+        "{projectRoot}/packages/garax-admin/.next",
+        "{projectRoot}/packages/garax-server/dist"
       ],
       "cache": true
     },
@@ -26,7 +28,7 @@
         "^build-storybook"
       ],
       "outputs": [
-        "{projectRoot}/./packages/garax-clients/storybook-static"
+        "{projectRoot}/packages/garax-clients/storybook-static"
       ],
       "cache": true
     },
@@ -35,7 +37,7 @@
         "^build:swc"
       ],
       "outputs": [
-        "{projectRoot}/./packages/garax-server/dist"
+        "{projectRoot}/packages/garax-server/dist"
       ],
       "cache": true
     }
