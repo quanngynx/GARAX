@@ -19,11 +19,14 @@ interface AuthenticationProps extends Request {
   refreshToken: string | string[];
 }
 
-const verifyCallbackOption = (err: VerifyErrors | null, decoded: JwtPayload | string | undefined) => {
+const verifyCallbackOption = (
+  err: VerifyErrors | null
+  // decoded: JwtPayload | string | undefined
+) => {
   if (err) {
     console.error(`error verify::`, err);
   } else {
-    console.log(`decode verify::`, decoded);
+    // console.log(`decode verify::`, decoded);
     // saveToSession(decoded);
   }
 };
