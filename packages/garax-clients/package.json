@@ -8,6 +8,7 @@
     "build": "tsc -b && nx vite:build",
     "lint": "nx eslint:lint",
     "preview": "nx vite:preview",
+    "start": "nx vite:preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "anyalize-bundle": "npx vite-bundle-visualizer",
