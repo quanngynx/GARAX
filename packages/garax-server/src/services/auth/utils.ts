@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 import { NextFunction, Request, Response } from 'express';
-import JWT, { JwtPayload } from 'jsonwebtoken';
+import JWT, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import { KeyTokenService } from '@/services';
-import { AuthFailureError, NotFoundError, asyncHandler } from '@/middlewares';
+import { AuthFailureError, InternalServerError, NotFoundError, asyncHandler } from '@/middlewares';
 import { HEADER } from '@/common/constants';
 import { KeyStore } from '@/common/interfaces';
 
@@ -16,9 +15,18 @@ interface SendOtpByNodemailerProps {
 
 interface AuthenticationProps extends Request {
   keyStore: KeyStore;
-  user: any;
+  user: JwtPayload;
   refreshToken: string | string[];
 }
+
+const verifyCallbackOption = (err: VerifyErrors | null, decoded: JwtPayload | string | undefined) => {
+  if (err) {
+    console.error(`error verify::`, err);
+  } else {
+    console.log(`decode verify::`, decoded);
+    // saveToSession(decoded);
+  }
+};
 
 const createTokenPair = async (
   payLoad: string | Buffer | object,
@@ -36,17 +44,10 @@ const createTokenPair = async (
       expiresIn: '3 days'
     });
 
-    JWT.verify(accessToken, publicKey, (err: any, decode: any) => {
-      if (err) {
-        console.error(`error verify::`, err);
-      } else {
-        console.log(`decode verify::`, decode);
-      }
-    });
+    JWT.verify(accessToken, publicKey, verifyCallbackOption);
     return { accessToken, refreshToken };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    /* empty */
+    throw new InternalServerError(`${error}`);
   }
 };
 

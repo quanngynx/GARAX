@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Sequelize } from 'sequelize';
 import fs from 'fs';
 import path from 'path';
@@ -36,7 +37,6 @@ import variantValuesModel from './variantvalues';
 
 const basename = path.basename(__filename);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let sequelize: any;
 if (connectionConfig.database && connectionConfig.username) {
   sequelize = new Sequelize(connectionConfig.database, connectionConfig.username, connectionConfig.password, {
@@ -139,14 +139,12 @@ fs.readdirSync(__dirname)
     const model = modelFunction(sequelize);
 
     const dbUnknow: unknown = db;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const dbAsAny = dbUnknow as any;
     dbAsAny[model.name] = model;
   });
 
 Object.keys(db).forEach((modelName) => {
   const dbUnknow: unknown = db;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dbAsAny = dbUnknow as any;
   if (dbAsAny[modelName].associate) {
     dbAsAny[modelName].associate(db);
