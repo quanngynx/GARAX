@@ -6,9 +6,19 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
-  ...compat.config({
-    extends: ['next', 'prettier'],
+  ...compat.config({    
+    parser: '@typescript-eslint/parser',
+    plugins: ['@typescript-eslint'],
+    extends: [
+        'next', 
+        'next/core-web-vitals', 
+        'plugin:@typescript-eslint/recommended',
+        'prettier'
+    ],
   }),
+  {
+    ignores: ['.next/**/*', 'node_modules/'],
+  },
 ]
 
 export default eslintConfig

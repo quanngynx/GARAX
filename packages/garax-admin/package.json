@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "nx next:dev -p 3002",
-    "build": "nx next:build",
-    "build:product": "ANALYZE=true yarn build",
+    "build": "cross-env NODE_ENV=production nx next:build",
+    "build:product": "cross-env ANALYZE=true yarn build",
     "start": "nx next:start",
-    "lint": "next lint",
+    "lint": "eslint . --ext .ts,.tsx,.js",
     "export": "next export"
   },
   "importSort": {

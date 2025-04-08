@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "concurrently \"yarn workspace garax-server dev\" \"yarn workspace garax-clients dev\" \"yarn workspace garax-admin dev\"",
     "build": "concurrently \"yarn workspace garax-server build:swc\" \"yarn workspace garax-clients build\" \"yarn workspace garax-admin build\"",
+    "build:nx": "yarn nx run-many -t build",
     "start": "concurrently \"yarn workspace garax-server start\" \"yarn workspace garax-clients preview\" \"yarn workspace garax-admin start\"",
     "lint": "concurrently \"yarn workspace garax-server lint\" \"yarn workspace garax-clients lint\" \"yarn workspace garax-admin lint\"",
     "dev:a": "yarn workspace garax-admin dev",
@@ -42,7 +43,8 @@
     "lint-staged:s": "yarn workspace garax-server lint-staged",
     "prettier:s": "yarn workspace garax-server lint",
     "prettier:fix:s": "yarn workspace garax-server lint",
-    "doctor": "npx depcheck"
+    "doctor": "npx depcheck",
+    "graph": "yarn nx graph"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.22.0",
@@ -173,6 +175,8 @@
     "@types/react-redux": "^7.1.34",
     "@types/sequelize": "^4.28.20",
     "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitest/ui": "^3.0.0",
     "autoprefixer": "^10.4.20",
@@ -180,7 +184,7 @@
     "concurrently": "^9.1.2",
     "critters": "^0.0.25",
     "cross-env": "^7.0.3",
-    "eslint": "^8",
+    "eslint": "^9.24.0",
     "eslint-config-next": "15.0.3",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.4",

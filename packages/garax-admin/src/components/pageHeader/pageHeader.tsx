@@ -7,12 +7,9 @@ import dayjs from 'dayjs';
 
 import { RotateSolidIcon } from '../icons';
 function PageHeader({ namePage } : { namePage: string }) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [currentTime, setCurrentTime] = useState(new Date());
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const {width} = useWindowSize();
     const dateFormat = width < 768 ? 'MM.DD.YYYY' : 'MMMM DD, YYYY';    
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(new Date());

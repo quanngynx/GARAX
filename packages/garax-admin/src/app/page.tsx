@@ -11,7 +11,7 @@ export default function Home() {
             <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
             <Boxes />
-            <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+            <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
                 {/* <Image
                     className="dark:invert"
                     src="/next.svg"
@@ -166,7 +166,7 @@ export default function Home() {
                         </Form.Item>
                     </Form>
                 </Flex>
-            </main>
+            </div>
         </div>
     );
 }
