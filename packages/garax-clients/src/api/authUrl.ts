@@ -3,7 +3,7 @@ import { ver_API, ROUTES_AUTH } from "./constants";
 import API_CONFIG from '../api/config/axios.config';
 import { AccountLoginRequest } from "./requests";
 import { AxiosResponse } from "axios";
-import { AccountLoginResponse } from "./responses";
+import { AccountLoginResponse, AccountRegisterResponse } from "./responses";
 
 export const BASE_LOGIN = `${BASE(ver_API, ROUTES_AUTH)}/login`;
 export const BASE_REGISTER = `${BASE(ver_API, ROUTES_AUTH)}/register`;
@@ -19,7 +19,8 @@ class AuthAPI {
     );
    }
 
-   async register(data: AccountLoginRequest) {
+   async register(data: AccountLoginRequest)
+   : Promise<AxiosResponse<AccountRegisterResponse>> {
     return API_CONFIG.post(
         BASE_REGISTER, 
         data
