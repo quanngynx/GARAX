@@ -286,3 +286,4 @@ NOTE: The one exception to the rule here is that, when a release branch currentl
 $ git branch -d hotfix-1.2.1
 Deleted branch hotfix-1.2.1 (was abbe5d6).
 ```
+
