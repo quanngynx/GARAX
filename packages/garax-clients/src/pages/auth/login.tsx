@@ -23,13 +23,13 @@ function Login() {
 
   // const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
-  const handleLogin: FormProps<AccountLoginRequest>['onFinish'] = async (data: AccountLoginRequest) => {
+  const handleLogin: FormProps<AccountLoginRequest>['onFinish'] 
+  = async (data: AccountLoginRequest) => {
     try {
       setIsError(false);
       setLoggingIn(true);
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const response: any = await authApi.login(
+      const response = await authApi.login(
         data,
       );
 
@@ -41,6 +41,7 @@ function Login() {
 
       // console.log('t::', response.data.metadata.user.email);
       if (!response) return;
+      openNotification(false, `Đăng nhập thành công`);
       localStorageService.set<string>('token', response.data.metadata.tokens.refreshToken);
       dispatch(setAccessToken(response.data.metadata.tokens.accessToken));
       dispatch(setEmail(response.data.metadata.user.email))

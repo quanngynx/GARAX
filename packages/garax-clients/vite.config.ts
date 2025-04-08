@@ -20,4 +20,19 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['chunk-I4MZPW7S.js', 'chunk-M324AGAM.js']
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          antd: ['antd'],
+          lodash: ['lodash'],
+          framer: ['framer'],
+          framerMotion: ['framer-motion'],
+          tailwindMerge: ['tailwind-merge'],
+          i18next: ['i18next']
+        }
+      }
+    }
+  }
 })

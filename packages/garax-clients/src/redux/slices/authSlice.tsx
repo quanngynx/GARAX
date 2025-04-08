@@ -1,4 +1,4 @@
-import { AccountInfo } from '@/api/models';
+import { AccountModel } from '@/api/models';
 import { localStorageService } from '@/utils';
 import { createSlice, PayloadAction, Slice, } from '@reduxjs/toolkit';
 import { RootState } from '../stores';
@@ -6,7 +6,7 @@ import { RootState } from '../stores';
 export interface AuthState {
   accessToken: string | null;
   email: string | null;
-  accountGeneralInfo: AccountInfo | null;
+  accountGeneralInfo: AccountModel | null;
   isLoggedIn: boolean
   fetchingInfo: boolean;
 }
@@ -39,7 +39,7 @@ AuthState,
 
   setAccountInfo: (
     state: AuthState,
-    action: PayloadAction<AccountInfo>,
+    action: PayloadAction<AccountModel>,
   ) => void;
  
   login: (state: AuthState) => void;
@@ -75,7 +75,7 @@ AuthState,
 
     setAccountInfo(
       state: AuthState,
-      action: PayloadAction<AccountInfo>,
+      action: PayloadAction<AccountModel>,
     ) {
       state.accountGeneralInfo = { ...action.payload };
     },
@@ -120,7 +120,7 @@ export const selectEmail = (state: RootState): string | null =>
 
 export const selectAccountGeneralInfo = (
   state: RootState,
-): AccountInfo | null => state.auth.accountInfo;
+): AccountModel | null => state.auth.accountInfo;
 
 export const selectFetchingInfo = (state: RootState): boolean =>
   state.auth.fetchingInfo;

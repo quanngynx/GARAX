@@ -1,7 +1,7 @@
+import { PrimaryKey } from "@/api/bases";
 import { GENDER } from "../../constants";
 
-export interface AccountInfo {
-  id: number;
+export interface AccountModel extends PrimaryKey {
   username: string;
   userName: string;
   firstName: string;

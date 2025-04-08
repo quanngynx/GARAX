@@ -1,20 +1,20 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import Accordion from "@mui/material/Accordion";
 // import AccordionSummary from "@mui/material/AccordionSummary";
 // import AccordionDetails from "@mui/material/AccordionDetails";
 
 
-import { ExpandOutline } from '@/components/icons'
+// import { ExpandOutline } from '@/components/icons'
 // import Typography from "@mui/material/Typography";
 
 function leftSidebar() {
  // eslint-disable-next-line react-hooks/rules-of-hooks
- const navigate = useNavigate()
-  const handleLogout = () => {
-    navigate('/')
-    window.location.reload()
-  }
+  // const navigate = useNavigate();
+  // const handleLogout = () => {
+  //   navigate('/')
+  //   window.location.reload()
+  // }
 
   return (
     <div className="w-[30%]">
