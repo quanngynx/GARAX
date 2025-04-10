@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
@@ -27,6 +27,7 @@ function Header() {
   const [openOrderInfo, setOpenOrderInfo] = useState(false);
   const [openOrderPayment, setOpenOrderPayment] = useState(false);
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (window.location.hash === "#info-cart-order") {
       setOpen(false);
@@ -111,8 +112,9 @@ function Header() {
   // };
 
   const handleProceedToOrderInfo = () => {
-    // Cập nhật URL với hash mới mà không tải lại trang
-    window.location.hash = "#info-cart-order";
+    // window.location.hash = "#info-cart-order";
+    navigate('/checkout');
+    setOpen(false);
   };
 
   const handleProceedToOrderPayment = () => {
@@ -123,7 +125,7 @@ function Header() {
   };
 
   const scrollDirection = useScrollDirectionV2(10);
-  console.log(scrollDirection);
+  // console.log(scrollDirection);
   return (
     <div className={
       cn(`bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3 ${scrollDirection === "down" ? "top-0" : "top-11"}`,

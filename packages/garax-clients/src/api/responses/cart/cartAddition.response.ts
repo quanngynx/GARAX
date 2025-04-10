@@ -1,32 +1,22 @@
 import { BaseResponse } from "@/api/bases/response";
 import { Cart, CartItems } from "@/api/models";
 
-// type ProductAdditionMetadata = Pick<ProductModel,
-// | 'id'
-// | 'name'
-// | 'videoId'
-// | 'desc'>;
-
-// interface ProductVariantValuesAdditionMetadata
-// extends ProductVariantValues {
-//   products: ProductAdditionMetadata
-// }
+type CartExistAdditionMetadata = Pick<Cart,
+| 'id'
+| 'sessionId'
+| 'userId'
+| 'createdAt'
+| 'updatedAt'
+>
 
 type CartItemsAdditionMetadata = Pick<CartItems,
 | 'id'
 | 'qty'
 | 'cartId'
 | 'productVariantId'
+| 'createdAt'
+| 'updatedAt'
 >
-
-type CartExistAdditionMetadata = Pick<Cart,
-| 'id'
-| 'sessionId'
-| 'userId'
->
-// export interface InfoCartAdditionMetadata {
-//   infoCart: CartAdditionMetadata;
-// }
 
 interface CartAdditionMetadata
 extends Cart {
@@ -35,4 +25,4 @@ extends Cart {
 }
 
 export type CartAdditionResponse = 
-BaseResponse<CartAdditionMetadata>
+BaseResponse<CartAdditionMetadata>;

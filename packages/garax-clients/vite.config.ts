@@ -33,6 +33,17 @@ export default defineConfig({
           i18next: ['i18next']
         }
       }
-    }
+    },
+    terserOptions: {
+      compress: true,
+      ecma: 2020,
+      mangle: true,
+      module: true,
+      format: {
+        ascii_only: true,
+        comments: false
+      }
+    },
+    minify: 'terser'
   }
 })

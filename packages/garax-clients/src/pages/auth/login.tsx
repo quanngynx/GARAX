@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Flex, Form, FormProps, Input, notification } from 'antd';
 
-import backgroundImage from '../../../public/gfcu2jnjinvtyfffq4yl.webp';
+import backgroundImage from '@/assets/auth/images/gfcu2jnjinvtyfffq4yl.webp';
 import { AppDispatch } from '@/redux/stores';
 import { useAppDispatch } from '@/redux/hooks';
 import { setAccessToken, setEmail } from '@/redux/slices';
