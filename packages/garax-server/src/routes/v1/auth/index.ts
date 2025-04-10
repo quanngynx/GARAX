@@ -5,7 +5,7 @@ import { AuthController } from '@/controllers';
 
 import { asyncHandler } from '@/middlewares';
 
-// import { authentication } from '@/services/auth/utils'
+// import { authentication } from '@/services/auth/utils';
 
 const authController = AuthController.default;
 

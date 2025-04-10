@@ -2,6 +2,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { ApiKeyService } from '@/services';
 import { ForbidenError, InternalServerError } from './error.response';
+import { StatusCodes } from '@/common/utils';
 
 const HEADER = {
   API_KEY: 'x-api-key',
@@ -37,15 +38,15 @@ export const checkApiKey = async (req: ApiKeyProps, _res: Response, next: NextFu
 export const permission = (permission: any) => {
   return (req: ApiKeyProps, res: Response, next: NextFunction) => {
     if (!req.objKey.permissions) {
-      return res.status(403).json({
-        message: 'Permission denied'
+      return res.status(StatusCodes.default.UNAUTHORIZED).json({
+        message: "User's UNAUTHORIZED!"
       });
     }
-    console.log(`permissions::`, req.objKey.permissions);
+    // console.log(`permissions::`, req.objKey.permissions);
 
     const validPermission = req.objKey.permissions.includes(permission);
     if (!validPermission) {
-      return res.status(403).json({
+      return res.status(StatusCodes.default.FORBIDDEN).json({
         message: 'Permission denied'
       });
     }
@@ -53,26 +54,3 @@ export const permission = (permission: any) => {
     return next();
   };
 };
-
-// const authenticateToken = (req, res, next) => {
-//   const authHeader =  req.headers['authorization']; // Lấy Authorization header
-//   const token =  authHeader && authHeader.split(' ')[1];
-
-//   if (!token) {
-//     return res.status(403).json({ message: 'No token provided' });
-//   }
-
-//   verify(token, process.env.JWT_SECRET, (err, decoded) => {
-//     if (err) {
-//       return res.status(401).json({ message: 'Unauthorized access' });
-
-//     }
-//     console.log(decoded);
-//     req.IDAcc=decoded.userID;
-//     req.role=decoded.role;
-
-//     next();
-//   });
-// };
-
-// export default authenticateToken;

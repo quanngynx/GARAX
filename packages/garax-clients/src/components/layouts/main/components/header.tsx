@@ -16,7 +16,7 @@ import MenuIcon from "@/assets/layout/iconMenu.svg?react";
 import iconBrand from "@/assets/layout/GRAX.svg";
 import iconPhone from "@/assets/layout/noun-display-big-notch-4064633.svg";
 import CartTiny from "@/assets/layout/cart-tity.svg?react";
-import { useScrollDirection } from "./hooks";
+import { useScrollDirectionV2 } from "./hooks";
 import { accountAPI } from "@/api/accountUrl";
 
 function Header() {
@@ -66,15 +66,15 @@ function Header() {
   // console.log("email:::", email)
   useEffect(() => {
     try {
-      if(!getEmail) { return }
+      if (!getEmail) { return }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const response: any = accountAPI.getInfoUserByEmail(getEmail);
-      if(response.metadata.userName === '') {
+      if (response.metadata.userName === '') {
         setEmail(response.metadata.email);
       } else {
         setEmail(response.metadata.userName);
       }
-      
+
     } catch (error) {
       localStorage.clear();
       setEmail(null);
@@ -122,15 +122,14 @@ function Header() {
     window.location.hash = "#info-cart-order#payment-cart-order";
   };
 
-  const scrollDirection = useScrollDirection();
-
+  const scrollDirection = useScrollDirectionV2(10);
+  console.log(scrollDirection);
   return (
-    <>
     <div className={
-      cn(`bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3 ${ scrollDirection === "down" ? "-top-0" : "top-11"}`,
+      cn(`bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3 ${scrollDirection === "down" ? "top-0" : "top-11"}`,
         hideMenu ? 'h-[400px] items-start top-0 relative' : ''
       )
-      }>
+    }>
       <div className="w-[1351.47px] flex flex-col sm:flex-row justify-between items-center">
         <div
           className={cn(
@@ -254,11 +253,10 @@ function Header() {
             <FlyoutMenus />
           </div>
         )
-      ): (
+      ) : (
         <></>
       )}
     </div>
-    </>
   );
 }
 

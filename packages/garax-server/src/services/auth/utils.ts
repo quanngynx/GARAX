@@ -67,12 +67,12 @@ const authentication = asyncHandler(async (req: AuthenticationProps, _res: Respo
    */
 
   const userId = req.headers[HEADER.CLIENT_ID];
-  if (!userId) throw new AuthFailureError('Invalid Request! - 53');
+  if (!userId) throw new AuthFailureError('Invalid Request! - 70');
 
   const parsedUserId: number | number[] = Array.isArray(userId) ? userId.map((id) => Number(id)) : Number(userId);
 
   const keyStore = await KeyTokenService.findByUserId(parsedUserId);
-  if (!keyStore) throw new NotFoundError('Not found keyStore! - 57');
+  if (!keyStore) throw new NotFoundError('Not found keyStore! - 75');
 
   if (req.headers[HEADER.REFRESHTOKEN]) {
     // try {
@@ -102,7 +102,7 @@ const authentication = asyncHandler(async (req: AuthenticationProps, _res: Respo
   // }
   const decodeUser = JWT.verify(accessToken, keyStore.publicKey) as JwtPayload;
 
-  if (userId !== decodeUser.userId) throw new AuthFailureError('Invalid userId! - 83');
+  if (userId !== decodeUser.userId) throw new AuthFailureError('Invalid userId! - 105');
 
   req.keyStore = keyStore;
   req.user = decodeUser;

@@ -31,10 +31,16 @@ export const generateSKU = ({ categoryId, brandId, name, variantValuesId }: Gene
   return `${categoryCode}-${brandCode}-${productCode}/${variantCode}/${uniqueId}`;
 };
 
+export const getVariantValuesIdFromSKU = (sku: string) => {
+  const match = sku.match(/\/([^/]+)\//);
+  return match ? match[1].split('-').map(Number) : [];
+};
+
 // const result = generateSKU({
 //   categoryId: 1,
 //   brandId: 2,
 //   name: 'abc',
 //   variantValuesId: [1, 2, 4]
 // });
+// const result = getVariantValuesIdFromSKU('C1-B1-SPM1/1-2-4-2-4/019613');
 // console.log(result);
