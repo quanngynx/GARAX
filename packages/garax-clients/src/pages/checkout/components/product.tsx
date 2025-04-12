@@ -6,11 +6,14 @@ import { Link } from "react-router-dom";
 import RelatestListProducts from "./relatestListProducts";
 
 import LeftArrow from '@/assets/ListProduct/icons/left--vector-tiny.svg?react'
-import { Button, ConfigProvider, Rate } from "antd";
+import { Button, Col, ConfigProvider, Row, Select, Space, Typography } from "antd";
 import { createStyles } from 'antd-style';
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Dispatch, SetStateAction } from "react";
 import { cn } from "@/utils";
+import Input from "antd/es/input/Input";
+import '../sass/select.moddule.css';
+import TextArea from "antd/es/input/TextArea";
 
 export interface ItemAttributeProps {
   attributeId: string; 
@@ -65,6 +68,21 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 // const mockVariants = [
 
 // ]
+
+const options = [
+  {
+    value: 'him',
+    label: 'Anh',
+  },
+  {
+    value: 'her',
+    label: 'Chị',
+  },
+  {
+    value: 'order',
+    label: 'Không tiết lộ',
+  },
+];
 
 function product({
   selectAttribute,
@@ -126,47 +144,120 @@ function product({
             <div className="ml-4 font-semibold">Quay lại</div>
           </div>
         </Link>
-        <div className="inline-flex gap-2">
-          <div>
-            <Rate allowHalf defaultValue={4.5} />
-          </div>
-          <div>|</div>
-          <div className="font-medium font-['DM Sans'] leading-[24px]">
-            (68 đánh giá từ người dùng)
-          </div>
-          <div>|</div>
-          <div className="font-medium font-['DM Sans'] leading-[24px]">
-            Đã bán: 1821
+        <div className="inline-flex">
+          <div className="font-normal font-['DM Sans'] leading-[24px]">
+            *Có 7 người đang thêm cùng sản phẩm giống bạn vào giỏ hàng.
           </div>
         </div>
       </div>
-      <div
+      {/* <div
         className="h-[434px] bg-cover bg-center rounded-2xl"
         style={{
           backgroundImage:
             'url("https://framerusercontent.com/images/ErwgiAQGhqflp1GJT5ZZf2Xodw.jpg?scale-down-to=1024")',
         }}
-      ></div>
+      ></div> */}
       <div className="flex sm:flex-row flex-col-reverse">
         {/* content */}
         <div className="w-[70%]">
-          <div className="text-[#050b20] text-[40px] font-bold font-['DM Sans'] leading-10 mt-4 mb-6">
-            Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024 // - desc
+          <div className="text-[#050b20] text-[32px] font-bold font-['DM Sans'] leading-10 mt-4 mb-6">
+            Thông tin đặt hàng
           </div>
-          <div className="text-[#050b20] text-xl font-medium font-['DM Sans'] leading-[24px] mb-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            sit amet ligula ornare, volutpat justo eu, molestie risus. {" "}
-          </div>
-          <div className="text-black text-base font-medium font-['DM Sans'] leading-[24px] mb-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            sit amet ligula ornare, volutpat justo eu, molestie risus. Aenean
-            augue ipsum, malesuada in iaculis et, tempus ac mauris. Cras tellus
-            odio, egestas id orci sed, finibus dictum quam. Morbi hendrerit,
-            enim in cursus suscipit, erat odio porttitor erat, vel dignissim
-            arcu ligula id arcu. Nulla facilisi. Suspendisse eget feugiat lorem.
-            Praesent laoreet nibh accumsan tristique sollicitudin. Curabitur
-            tincidunt consequat ex quis consectetur. Aenean pharetra mattis arcu
-            sit amet efficitur.
+          
+          <div className="text-black gap-2">
+            <Row gutter={8}>
+              <Col span={16}>
+                <Typography.Title level={5}>Họ và tên</Typography.Title>
+                <Space.Compact 
+                  className="w-full"
+                >
+                  <Select 
+                    className="custom-select" 
+                    size="large"
+                    defaultValue="Anh/Chị" 
+                    options={options} 
+                  />
+                  <Input 
+                    className="rounded-full"
+                    size="large" 
+                    placeholder="large size" 
+                    // prefix={<UserOutlined />} 
+                  />
+                </Space.Compact>
+              </Col>
+              <Col span={8}>
+                <Typography.Title level={5}>Số điện thoại</Typography.Title>
+                <Input 
+                    className="rounded-full"
+                    size="large" 
+                    placeholder="large size" 
+                    // prefix={<UserOutlined />} 
+                  />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={24}>
+                <Typography.Title level={5}>Email</Typography.Title>
+                <Input 
+                    className="rounded-full"
+                    size="large" 
+                    placeholder="large size" 
+                    // prefix={<UserOutlined />} 
+                  />
+              </Col>
+            </Row>
+
+            <Row gutter={8}>
+              <Col span={8}>
+                <Typography.Title level={5}>Tỉnh/Thành</Typography.Title>
+                <Input 
+                    className="rounded-full"
+                    size="large" 
+                    placeholder="large size" 
+                    // prefix={<UserOutlined />} 
+                  />
+              </Col>
+
+              <Col span={8}>
+                <Typography.Title level={5}>Quận/Huyện</Typography.Title>
+                <Input 
+                    className="rounded-full"
+                    size="large" 
+                    placeholder="large size" 
+                    // prefix={<UserOutlined />} 
+                  />
+              </Col>
+
+              <Col span={8}>
+                <Typography.Title level={5}>Phường/Xã</Typography.Title>
+                <Input 
+                    className="rounded-full"
+                    size="large" 
+                    placeholder="large size" 
+                    // prefix={<UserOutlined />} 
+                  />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={24}>
+                <Typography.Title level={5}>Địa chỉ</Typography.Title>
+                <Input 
+                    className="rounded-full"
+                    size="large" 
+                    placeholder="large size" 
+                    // prefix={<UserOutlined />} 
+                  />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={24}>
+                <Typography.Title level={5}>Ghi chú</Typography.Title>
+                <TextArea size="large" className="rounded-3xl" placeholder="Ví dụ: Giao hàng giờ hành chính" autoSize />
+              </Col>
+            </Row>
           </div>
         </div>
         {/* card info + add to Card */}

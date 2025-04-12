@@ -7,6 +7,12 @@ import FbIcon from "@/assets/layout/fb-brand.svg?react";
 import InsIcon from "@/assets/layout/ins-brand.svg?react";
 import XIcon from "@/assets/layout/x-brand.svg?react";
 import LinkedlnIcon from "@/assets/layout/linkedin-brand.svg?react";
+import Dropdown from "antd/es/dropdown";
+import Button from "antd/es/button";
+import Space from "antd/es/space";
+import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { MenuProps } from "antd/es/menu";
+import message from "antd/es/message";
 
 
 // const titleFooter = [
@@ -155,9 +161,45 @@ const connectVia = [
   },
 ];
 
+const handleMenuClick: MenuProps['onClick'] = (e) => {
+  message.info('Click on menu item.');
+  console.log('click', e);
+};
+
+const items: MenuProps['items'] = [
+  {
+    label: 'Việt Nam',
+    key: '1',
+    icon: <UserOutlined />,
+  },
+  {
+    label: 'Hoa Kì',
+    key: '2',
+    icon: <UserOutlined />,
+  },
+  // {
+  //   label: '3rd menu item',
+  //   key: '3',
+  //   icon: <UserOutlined />,
+  //   danger: true,
+  // },
+  // {
+  //   label: '4rd menu item',
+  //   key: '4',
+  //   icon: <UserOutlined />,
+  //   danger: true,
+  //   disabled: true,
+  // },
+];
+
+const menuProps = {
+  items,
+  onClick: handleMenuClick,
+};
+
 function bodyFooter() {
   return (
-    <div className="grid grid-cols-2 md:sm:grid-cols-5 gap-8 px-10 py-8">
+    <div className="grid grid-cols-2 md:sm:grid-cols-5 gap-8 px-10 py-6">
       {/* row 1 */}
       <div>
         <h3 className="text-white font-semibold mb-4">Company</h3>
@@ -349,12 +391,12 @@ function bodyFooter() {
       </div>
       {/* row 5 */}
       <div className="">
-        <div className="mb-4">
+        <div className="mb-0">
           <h3 className="text-white font-semibold mb-4">Ứng dụng</h3>
 
           {cardDown.map((tab, index) => (
             <div className="flex items-center" key={`tab-${index}`}>
-              <div className="flex  items-center py-3 px-4 bg-white/5 rounded-2xl w-[190px] max-w-[190px] mb-4">
+              <div className="flex items-center py-3 px-4 bg-white/5 rounded-2xl w-[190px] max-w-[190px] mb-4 cursor-pointer">
                 <div className="mr-3">{tab.brand}</div>
                 <div className="">
                   <div className="text-white text-xs font-normal font-['DM Sans'] leading-3">
@@ -367,8 +409,20 @@ function bodyFooter() {
               </div>
             </div>
           ))}
-          <div className=""></div>
         </div>
+        
+        <Dropdown 
+          menu={menuProps}
+          trigger={['click']}
+          className="mb-4 font-semibold w-[190px]"
+        >
+          <Button>
+            <Space>
+              Chọn ngôn ngữ
+              <DownOutlined />
+            </Space>
+          </Button>
+        </Dropdown>
 
         <div className="">
           <h3 className="text-white font-semibold mb-4">Kết nối với chúng tôi</h3>

@@ -4,7 +4,7 @@ function endFooter() {
       <div className="w-[50%]">
         © 2024 exemple.com. All rights reserved.
       </div>
-      <div className="w-[50%] inline-flex justify-end py-4 ">
+      <div className="w-[50%] inline-flex justify-end py-4">
         <div className="">Terms & Conditions</div>
         <div>.</div>
         <div className="">Privacy Notice</div>
