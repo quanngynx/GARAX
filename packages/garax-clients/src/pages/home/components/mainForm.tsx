@@ -1,20 +1,20 @@
 function MainForm() {
   return (
-    <div className="w-full md:w-[540px] p-4 md:p-0">
+    <div className="w-full md:w-[540px] px-4 py-4 md:p-0">
       {/* Title */}
-      <div className="text-white text-2xl md:text-4xl font-bold font-['DM Sans'] text-center md:text-left">
+      <div className="text-white text-xl md:text-4xl font-bold font-['DM Sans'] text-center md:text-left">
         Yêu cầu sửa chữa ô tô
       </div>
 
       {/* Description */}
-      <div className="text-white text-base md:text-[15px] font-normal font-['DM Sans'] my-4 md:my-10 text-center md:text-left">
+      <div className="text-white text-base md:text-[15px] font-normal font-['DM Sans'] my-4 md:my-2 text-center md:text-left">
       Sử dụng và điền vào mẫu này để gửi cho chúng tôi yêu cầu sửa chữa sự cố ô tô của bạn.      </div>
 
       {/* Email Input */}
       <input
         type="email"
         id="helper-text"
-        className="h-[50px] md:h-[58px] my-4 md:my-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className="h-[32px] md:h-[42px] my-2 md:my-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5"
         placeholder="Điền email của bạn"
       />
 
@@ -22,7 +22,7 @@ function MainForm() {
       <input
         type="tel"
         id="phone-number"
-        className="h-[50px] md:h-[58px] my-4 md:my-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className="h-[32px] md:h-[42px] my-2 md:my-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5"
         placeholder="Điền số điện thoại của bạn"
       />
 

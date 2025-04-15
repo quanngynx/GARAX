@@ -4,6 +4,16 @@ import svgr from "vite-plugin-svgr";
 import * as path from "path";
 import { PORT } from './src/venv/port';
 
+const chunkGroups = {
+  react: ['react', 'react-dom', 'react-router-dom'],
+  antd: ['antd'],
+  lodash: ['lodash'],
+  framer: ['framer'],
+  framerMotion: ['framer-motion'],
+  tailwindMerge: ['tailwind-merge'],
+  i18next: ['i18next']
+};
+
 // https://vite.dev/config/
 export default defineConfig({
   server: {
@@ -25,40 +35,24 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // manualChunks: {
-        //   vendor: ['react', 'react-dom', 'react-router-dom'],
+        //   react: ['react', 'react-dom', 'react-router-dom'],
         //   antd: ['antd'],
         //   lodash: ['lodash'],
         //   framer: ['framer'],
         //   framerMotion: ['framer-motion'],
         //   tailwindMerge: ['tailwind-merge'],
-        //   i18next: ['i18next']
-        // }
+        //   i18next: ['i18next'],
+        // },
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'react';
-            }
-            if (id.includes('antd')) {
-              return 'antd';
-            }
-            if (id.includes('framer-motion')) {
-              return 'framerMotion';
-            }
-            if (id.includes('framer')) {
-              return 'framer';
-            }
-            if (id.includes('tailwind-merge')) {
-              return 'tailwindMerge';
-            }
-            if (id.includes('i18next')) {
-              return 'i18next';
+            for (const [chunkName, deps] of Object.entries(chunkGroups)) {
+              if (deps.some(dep => id.includes(dep))) {
+                return chunkName;
+              }
             }
             return 'vendor';
           }
-          if (id.includes('src/components/')) {
-            return 'components';
-          }
-        },
+        }
       }
     },
     terserOptions: {

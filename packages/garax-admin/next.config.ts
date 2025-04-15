@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 import withBundleAnalyzer from '@next/bundle-analyzer';
+import { ExperimentalConfig } from "next/dist/server/config-shared";
 
 const bundleAnalyzer = withBundleAnalyzer({
     enabled: process.env.ANALYZE === 'true',
 })
 
-const experimental = {
+const experimental: ExperimentalConfig = {
     optimizePackageImports: [
         'antd',
         'framer-motion',
@@ -17,6 +18,7 @@ const experimental = {
 
 const nextConfig: NextConfig = {
     /* config options here */
+    compress: true,
     compiler: {
         removeConsole: {
             exclude: ['error'],

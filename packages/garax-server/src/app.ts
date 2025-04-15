@@ -1,5 +1,4 @@
 'use strict';
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config();
@@ -14,12 +13,10 @@ import { router } from '@/routes';
 import { ErrorStatus } from '@/common/interfaces';
 import { apiLimiter, corsMiddleware } from '@/middlewares';
 import connection from '@/db/init.mysql';
-
-// sequelize.sync({alter: true});
-// import authRoutes from './routes/access';
-// #region IMPORT DB
 // const ENABLE_JSON_MINIFY = process.env.ENABLE_JSON_MINIFY === 'true';
 
+// #region IMPORT DB
+// sequelize.sync({alter: true});
 const connect = async () => {
   try {
     await connection.authenticate();
@@ -33,6 +30,7 @@ connect();
 declare module 'express-serve-static-core' {
   interface Response {
     error: (code: number, message: string) => Response;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     success: (code: number, message: string, result: any) => Response;
   }
 }

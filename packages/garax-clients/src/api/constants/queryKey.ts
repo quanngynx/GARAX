@@ -4,34 +4,17 @@ import { OrderListRequest } from '../requests/orders';
 import { CartAdditionRequest } from '../requests/cart';
 
 class ProductQueryKey {
-    LIST = (request: ProductListRequest): QueryKey => [
-        'products',
-        request, 
-    ];
+    LIST = (request: ProductListRequest): QueryKey => ['products', request];
       
-    DETAILS = (request: ProductDetailRequest): QueryKey => [
-        'products',
-        request, 
-    ];
+    DETAILS = (request: ProductDetailRequest): QueryKey => ['products', request];
 }
 
 class OrderQueryKey {
-    LIST = (request: OrderListRequest): QueryKey => [
-        'orders',
-        request, 
-    ];
-      
-    // DETAILS = (request: OrderDetailRequest): QueryKey => [
-    //     'orders',
-    //     request, 
-    // ];
+    LIST = (request: OrderListRequest): QueryKey => ['orders', request];
 }
 
 class CartQueryKey {
-    ADD = (request: CartAdditionRequest): QueryKey => [
-        'carts',
-        request, 
-    ];
+    ADD = (request: CartAdditionRequest): QueryKey => ['carts', request];
 }
 
 export const productQueryKey: ProductQueryKey = new ProductQueryKey();
