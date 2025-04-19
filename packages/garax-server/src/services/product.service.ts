@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-empty-pattern */
 'use strict';
 import { default as slugify } from 'slugify';
 
 import {
-  AddManyNewProductRequest,
+  // AddManyNewProductRequest,
   AddNewProductRequest,
-  GetAllBestSellerProducts,
-  // GetAllProductsByQueryOptions,
+  // GetAllBestSellerProducts,
   GetAllProductsByQueryOptionsQueryState
 } from '@/common/requests/product';
 
@@ -229,10 +226,12 @@ export class ProductService {
     };
   }
 
-  static async addManyNewProduct({}: AddManyNewProductRequest) {}
+  static async addManyNewProduct() {}
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static async addVariantProduct(productId: number, _data: any) {
+  static async addVariantProduct(
+    productId: number
+    // _data: any
+  ) {
     const getProductFromId = await getProductById(productId);
 
     if (!getProductFromId) {
@@ -242,7 +241,7 @@ export class ProductService {
     // Create variant from id
   }
 
-  static async getAllProducts(_options = {}) {
+  static async getAllProducts() {
     // const {
     //   fields,
     //   limit = 10,
@@ -332,7 +331,7 @@ export class ProductService {
     return allPro;
   }
 
-  static async getAllBestSellerProducts(_options: GetAllBestSellerProducts = {}) {
+  static async getAllBestSellerProducts() {
     // const {
     //   fields,
     //   limit = 10,
@@ -366,11 +365,17 @@ export class ProductService {
     };
   }
 
-  static async updateProductById(id: number, {}) {
+  static async updateProductById(
+    id: number
+    // {}
+  ) {
     return id;
   }
 
-  static async updatePartProductById(id: number, {}) {
+  static async updatePartProductById(
+    id: number
+    // {}
+  ) {
     return id;
   }
 

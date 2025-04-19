@@ -1,6 +1,6 @@
 export interface Audit {
-  createBy: Date;
-  updateBy: Date;
+  createdBy: Date;
+  updatedBy: Date;
   createdAt: Date;
   updatedAt: Date;
 }

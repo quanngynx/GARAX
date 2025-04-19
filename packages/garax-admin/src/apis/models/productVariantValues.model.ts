@@ -1,6 +1,6 @@
 import { Audit } from "../interfaces";
 
-export interface ProductVariantValues
+export interface ProductVariantValuesModel
 extends Audit{
   id: string;
   price: number;
