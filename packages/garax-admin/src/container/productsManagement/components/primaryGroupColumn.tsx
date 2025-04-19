@@ -72,9 +72,9 @@ function PrimaryGroupColumn() {
     //     });
       return (
         <div className="w-[60%] border-[0.5px] border-solid border-slate-300 rounded-2xl px-[16px] py-[24px]">
-          {/* <div className="text-[#212121] text-[32px] font-semibold font-['Roboto'] leading-normal mb-4">
-            Thông tin chi tiết
-          </div> */}
+          <div className="text-[#212121] text-lg font-semibold font-['Roboto'] leading-normal mb-4">
+            Chi tiết sản phẩm
+          </div>
           <div className="">
             <form
             >

@@ -192,7 +192,7 @@ export class CartService {
         }
       );
 
-      console.log('=============createNewOrder=============::', createNewOrder);
+      // console.log('=============createNewOrder=============::', createNewOrder);
 
       for (const item of getInfoCart.dataValues.cart_items) {
         await db.OrderDetails.create(

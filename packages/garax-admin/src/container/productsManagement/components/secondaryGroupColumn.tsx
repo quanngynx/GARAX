@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 // import { useNavigate } from 'react-router-dom'
-import { useDropzone } from "react-dropzone";
+import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
 // import { useForm, Controller } from "react-hook-form";
 
 import styles from "../styles/Home.module.css";
@@ -14,6 +14,8 @@ import styles from "../styles/Home.module.css";
 
 // import { TValuesMediaProduct } from "../types";
 import { UploadOutline } from "@/components/icons";
+import { cn } from "@/lib";
+import { Col, Row } from "antd";
 
 function SecondaryGroupColumn() {
     // const defaultValues: TValuesMediaProduct = {
@@ -32,13 +34,14 @@ function SecondaryGroupColumn() {
     //     productSKU: "SKU-123456",
     //     qty: 100,
     // };
-    const [ selectedImages ] = useState([]);
+    const [selectedImages, setSelectedImages] = useState([]);
 
-    //   const onDrop = useCallback((acceptedFiles: string[], rejectedFiles: unknown) => {
-    //     acceptedFiles.forEach((file: string) => {
-    //       setSelectedImages((prevState) => [...prevState, file]);
-    //     });
-    //   }, []);
+    const onDrop: <T extends File>(acceptedFiles: T[], fileRejections: FileRejection[], event: DropEvent) => void = useCallback(
+        (acceptedFiles: File[], rejectedFiles: unknown) => {
+            acceptedFiles.forEach((file) => {
+                setSelectedImages((prevState) => [...prevState, file]);
+            });
+    }, []);
 
     const {
         getRootProps,
@@ -46,7 +49,7 @@ function SecondaryGroupColumn() {
         isDragActive,
         // isDragAccept,
         // isDragReject,
-    } = useDropzone();
+    } = useDropzone({ onDrop });
 
     const handleNavivateToUnplash = () => {
         window.open("https://unsplash.com/");
@@ -65,31 +68,125 @@ function SecondaryGroupColumn() {
         <div className="w-[40%] border-[0.5px] border-solid border-slate-300 rounded-2xl px-[16px] py-[24px]">
             <div className="">
                 <div className="flex flex-col">
-                    <label className="text-gray-700">Hình ảnh</label>
-
-                    <div className={styles.container}>
-                        <div className={styles.dropzone} {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            {isDragActive ? (
-                                <p>Drop file(s) here ...</p>
-                            ) : (
-                                <div className="flex flex-col justify-center items-center">
-                                    <UploadOutline ClassName="text-3xl"/>
-                                   <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
+                    <label className="text-lg font-semibold font-['Roboto'] leading-normal text-gray-700">Hình ảnh sản phẩm</label>
+                    {/* 100% */}
+                    <Row>
+                        <Col span={24}>
+                            <div className={cn(styles.container)}>
+                                <div className={cn(styles.dropzone)} {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    {isDragActive ? (
+                                        <p>Drop file(s) here ...</p>
+                                    ) : (
+                                        <div className="flex flex-col justify-center items-center">
+                                            <UploadOutline ClassName="text-3xl" />
+                                            <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                        </div>
-                        <div className={styles.images}>
-                            {selectedImages.length > 0 &&
-                                selectedImages.map((image, index) => (
-                                    <Image
-                                        src={`${URL.createObjectURL(image)}`}
-                                        key={index}
-                                        alt=""
-                                    />
-                                ))}
-                        </div>
-                    </div>
+                                <div className={styles.images}>
+                                    {selectedImages.length > 0 &&
+                                        selectedImages.map((image, index) => (
+                                            <Image
+                                                width={100}
+                                                height={60}
+                                                src={`${URL.createObjectURL(image)}`}
+                                                key={index}
+                                                alt=""
+                                            />
+                                        ))}
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    
+                    <Row gutter={[8, 8]}>
+                        <Col span={8}>
+                            <div className={cn(styles.container)}>
+                                <div className={cn(styles.dropzone)} {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    {isDragActive ? (
+                                        <p>Drop file(s) here ...</p>
+                                    ) : (
+                                        <div className="flex flex-col justify-center items-center">
+                                            <UploadOutline ClassName="text-3xl" />
+                                            <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className={styles.images}>
+                                    {selectedImages.length > 0 &&
+                                        selectedImages.map((image, index) => (
+                                            <Image
+                                            width={100}
+                                            height={60}
+                                                src={`${URL.createObjectURL(image)}`}
+                                                key={index}
+                                                alt=""
+                                            />
+                                        ))}
+                                </div>
+                            </div>
+                        </Col>
+                        {/* <Col span={8}>
+                            <div className={cn(styles.container)}>
+                                <div className={cn(styles.dropzone)} {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    {isDragActive ? (
+                                        <p>Drop file(s) here ...</p>
+                                    ) : (
+                                        <div className="flex flex-col justify-center items-center">
+                                            <UploadOutline ClassName="text-3xl" />
+                                            <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className={styles.images}>
+                                    {selectedImages.length > 0 &&
+                                        selectedImages.map((image, index) => (
+                                            <Image
+                                            width={100}
+                                                height={60}
+                                                src={`${URL.createObjectURL(image)}`}
+                                                key={index}
+                                                alt=""
+                                            />
+                                        ))}
+                                </div>
+                            </div>
+                        </Col>
+
+                        <Col span={8}>
+                            <div className={cn(styles.container)}>
+                                <div className={cn(styles.dropzone)} {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    {isDragActive ? (
+                                        <p>Drop file(s) here ...</p>
+                                    ) : (
+                                        <div className="flex flex-col justify-center items-center">
+                                            <UploadOutline ClassName="text-3xl" />
+                                            <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className={styles.images}>
+                                    {selectedImages.length > 0 &&
+                                        selectedImages.map((image, index) => (
+                                            <Image
+                                            width={100}
+                                                height={60}
+                                                src={`${URL.createObjectURL(image)}`}
+                                                key={index}
+                                                alt=""
+                                            />
+                                        ))}
+                                </div>
+                            </div>
+                        </Col> */}
+                    </Row>
+                    
+
+                    
                 </div>
 
                 <div className="">

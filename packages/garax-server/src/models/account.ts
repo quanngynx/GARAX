@@ -12,20 +12,20 @@ const defaultAvatar = USERS.AVATAR.DEFAULT_VALUE;
 export type AccountCreationAttributes = Optional<Account, 'id' | 'userName' | 'createdAt' | 'updatedAt'>;
 
 export class AccountModel extends Model<Account, AccountCreationAttributes> {
-  public id!: number;
-  public userName!: string;
+  // public id!: number;
+  // public userName!: string;
   // public firstName!: string;
   // public lastName!: string;
   // public gender!: typeof GENDER_VALUES[number];
   // public dob!: number;
-  public email!: string;
+  // public email!: string;
   // public phone!: string;
   // public avatar!: string;
-  public password!: string;
+  // public password!: string;
   // public emptyPassword!: boolean;
   // public googleId!: string;
   // public pointerId!: string;
-  public roleId!: string;
+  // public roleId!: string;
   // public readonly createdAt!: Date;
   // public readonly updatedAt!: Date;
   public address?: AddressModel;

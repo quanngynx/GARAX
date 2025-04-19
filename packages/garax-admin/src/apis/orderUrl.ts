@@ -7,6 +7,8 @@ import {
 } from "./constants";
 import API_CONFIG from '@/utils/axios';
 import { OrderListRequest, TransactionsListRequest } from "./requests/orders";
+import { AxiosResponse } from "axios";
+import { OrderListResponse } from "./responses";
 
 export const BASE_ORDER_LIST = `${BASE(ver_API, ROUTES_ORDERS)}/all`;
 // export const BASE_PRODUCT_VIEWEST = `${BASE(ver_API, ROUTES_ORDERS)}/viewest`;
@@ -15,7 +17,8 @@ export const BASE_ORDER_LIST = `${BASE(ver_API, ROUTES_ORDERS)}/all`;
 export const BASE_TRANSACTIONS_LIST = `${BASE(ver_API, "transactions")}/all`;
 
 class OrderAPI {
-    async list(request: OrderListRequest, signal?: AbortSignal) {
+    async list(request: OrderListRequest, signal?: AbortSignal)
+    : Promise<AxiosResponse<OrderListResponse>> {
         const response = API_CONFIG.get(
             BASE_ORDER_LIST,
             {

@@ -28,7 +28,7 @@ function TableProducts() {
     return ( 
         <TableCustom<BrandModel>
             columns={columns}
-            data={pagedListResponse ?? []}
+            data={pagedListResponse.metadata ?? []}
         />
      );
 }

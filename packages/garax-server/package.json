@@ -7,7 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "npx nodemon",
 		"dev:swc": "npx nodemon --watch src --ext ts --exec yarn run build:swc && yarn start",
-		"build": "rimraf ./dist && swc src --out-dir dist && swc api --out-dir dist",
+		"build": "rimraf ./dist && swc src --out-dir dist && swc api --out-dir dist && tsc-alias",
 		"build:swc": "rimraf ./dist && swc src --out-dir dist && swc api --out-dir dist",
 		"start": "cross-env NODE_ENV=production node dist/api/server.js",
 		"check": "node --trace-warnings api/server.ts",

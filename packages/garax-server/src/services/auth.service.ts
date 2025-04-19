@@ -25,6 +25,7 @@ import {
 import { GENDER_VALUES } from '@/common/constants';
 import { KeyStoreRequest, LoginRequest, RegisterRequest, VerifyOtpRequest } from '@/common/requests/auth';
 import { error } from 'node:console';
+import { Account } from '@/common/interfaces';
 
 export class AuthJWTService {
   static register = async ({ userName, email, password, roleId = 1 }: RegisterRequest) => {
@@ -85,7 +86,7 @@ export class AuthJWTService {
         // console.log("generateKeyPairSync success!::", { privateKey, publicKey });
 
         const publicKeyString = await KeyTokenService.createKeyToken({
-          userId: newUser.id,
+          userId: newUser.dataValues.id ?? 0,
           publicKey,
           privateKey
         });
@@ -104,14 +105,14 @@ export class AuthJWTService {
           format: 'pem'
         });
 
-        const tokens = await createTokenPair({ userId: newUser.id, email }, publicKeyToString, privateKey);
+        const tokens = await createTokenPair({ userId: newUser.dataValues.id, email }, publicKeyToString, privateKey);
         // console.log(`created tokens success!::`, tokens);
         return {
           code: 201,
           metadata: {
-            user: getInfoData({
+            user: getInfoData<Partial<Account>>({
               fields: ['id', 'userName', 'email'],
-              object: newUser
+              object: newUser.dataValues
             }),
             tokens
           }
@@ -142,7 +143,7 @@ export class AuthJWTService {
     });
     if (!foundUser) throw new BadRequestError('User not registered!');
 
-    const match = bcrypt.compare(password, foundUser.password);
+    const match = bcrypt.compare(password, foundUser.dataValues.password);
     if (!match) throw new AuthFailureError('Authentication error!');
 
     const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
@@ -160,7 +161,7 @@ export class AuthJWTService {
     const {
       id: userId
       // roleId
-    } = foundUser;
+    } = foundUser.dataValues;
     const isUserId = userId !== undefined ? userId : 0;
     const tokens = await createTokenPair(
       {
@@ -179,9 +180,9 @@ export class AuthJWTService {
     });
 
     return {
-      user: getInfoData({
+      user: getInfoData<Partial<Account>>({
         fields: ['id', 'userName', 'email', 'roleId'],
-        object: foundUser
+        object: foundUser.dataValues
       }),
       tokens
     };

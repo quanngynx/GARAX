@@ -28,7 +28,8 @@ export const BASE_PRODUCT_DETAIL = BASE_PRODUCT_LIST;
 export const BASE_PRODUCT_VARIANT_DETAIL = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
 
 class ProductAPI {
-    async list(request: ProductListRequest, signal?: AbortSignal) {
+    async list(request: ProductListRequest, signal?: AbortSignal)
+    : Promise<AxiosResponse<ProductListResponse>> {
         const response = API_CONFIG.get(
             BASE_PRODUCT_LIST,
             {

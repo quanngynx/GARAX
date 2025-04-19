@@ -34,15 +34,6 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // manualChunks: {
-        //   react: ['react', 'react-dom', 'react-router-dom'],
-        //   antd: ['antd'],
-        //   lodash: ['lodash'],
-        //   framer: ['framer'],
-        //   framerMotion: ['framer-motion'],
-        //   tailwindMerge: ['tailwind-merge'],
-        //   i18next: ['i18next'],
-        // },
         manualChunks(id) {
           if (id.includes('node_modules')) {
             for (const [chunkName, deps] of Object.entries(chunkGroups)) {
