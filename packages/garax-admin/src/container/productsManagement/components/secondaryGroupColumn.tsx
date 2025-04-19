@@ -49,7 +49,26 @@ function SecondaryGroupColumn() {
         isDragActive,
         // isDragAccept,
         // isDragReject,
+        acceptedFiles,
+        fileRejections,
     } = useDropzone({ onDrop });
+
+    const acceptedFileItems = acceptedFiles.map(file => (
+        <li key={file.path}>
+            {file.path} - {file.size} bytes
+        </li>
+    ));
+
+    const fileRejectionItems = fileRejections.map(({ file, errors }) => (
+        <li key={file.path}>
+            {file.path} - {file.size} bytes
+            <ul>
+                {errors.map(e => (
+                    <li key={e.code}>{e.message}</li>
+                ))}
+            </ul>
+        </li>
+    ));
 
     const handleNavivateToUnplash = () => {
         window.open("https://unsplash.com/");
@@ -186,7 +205,16 @@ function SecondaryGroupColumn() {
                     </Row>
                     
 
-                    
+                    <Col span={24}>
+                        <Row>
+                            <aside>
+                                <h4>Accepted files</h4>
+                                <ul>{acceptedFileItems}</ul>
+                                <h4>Rejected files</h4>
+                                <ul>{fileRejectionItems}</ul>
+                            </aside>
+                        </Row>
+                    </Col>
                 </div>
 
                 <div className="">

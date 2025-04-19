@@ -11,17 +11,17 @@ interface Props {
 /**
  * Hooks for fetching active paged list
  * @param {Props} props component properties
- * @returns {UseQueryResult<OrderListResponse, AxiosError>} query result
+ * @returns {UseQueryResult<OrderListMetadata[], AxiosError>} query result
  */
 export function useGetTransactionsList({ 
     request 
-}: Props): UseQueryResult<OrderListResponse, AxiosError> {
-    return useQuery<OrderListResponse, AxiosError>({
+}: Props): UseQueryResult<OrderListMetadata[], AxiosError> {
+    return useQuery<OrderListMetadata[], AxiosError>({
         queryKey: orderQueryKey.LIST(request),
         queryFn: async ({ signal }) => {
             const response = await orderApi.list(request, signal);
             // console.log("📌 response:", response.data.metadata);
-            return response.data
+            return response.data.metadata
         },
         // enabled: 
         //     accessToken !== null &&

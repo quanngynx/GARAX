@@ -32,7 +32,7 @@ function TableProducts({
     return ( 
         <TableCustom<ProductModel>  
             columns={columns}
-            data={pagedListResponse.metadata ?? []}
+            data={pagedListResponse ?? []}
         />
     );
 }
