@@ -32,7 +32,7 @@ export class AuthJWTService {
     try {
       const modelUser = await db.Account.findOne({ where: { email: email } });
 
-      if (modelUser) {
+      if (modelUser?.dataValues) {
         throw new BadRequestError('Error: Account already registered!');
       }
 
@@ -70,7 +70,7 @@ export class AuthJWTService {
         roleId: roleId
       });
 
-      if (newUser) {
+      if (newUser.dataValues) {
         // console.log(newUser);
         await db.OtpCode.destroy({
           where: {

@@ -81,10 +81,10 @@ class ProductController {
     }).send(res);
   };
 
-  addManyNewProduct = async (req: Request, res: Response, _next: NextFunction) => {
+  addManyNewProduct = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Thêm mới nhiều hàng hóa thành công!',
-      metadata: await ProductService.addManyNewProduct(req.body)
+      metadata: await ProductService.addManyNewProduct()
     }).send(res);
   };
 
@@ -92,7 +92,7 @@ class ProductController {
     const { id } = req.params;
     new SuccessResponse({
       message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
-      metadata: await ProductService.updateProductById(Number(id), req.body)
+      metadata: await ProductService.updateProductById(Number(id))
     }).send(res);
   };
 
@@ -100,7 +100,7 @@ class ProductController {
     const { id } = req.params;
     new SuccessResponse({
       message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
-      metadata: await ProductService.updatePartProductById(Number(id), req.body)
+      metadata: await ProductService.updatePartProductById(Number(id))
     }).send(res);
   };
 

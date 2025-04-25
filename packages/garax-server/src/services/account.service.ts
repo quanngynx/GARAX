@@ -25,7 +25,7 @@ export class AccountService {
     return await db.Account.findOne({
       where: { email },
       // attributes: select,
-      raw: true // Tương đương với .lean() trong Mongoose
+      raw: true
     });
   }
 }

@@ -13,7 +13,7 @@ export class ProductCategoryService {
     imageId,
     parentId
   }: AddNewCategoryRequest) {
-    console.log('name::', name);
+    // console.log('name::', name);
 
     // const isExist = await db.ProductCategory.findOne({ where: { title: title } });
     // console.log('isExist::', isExist)

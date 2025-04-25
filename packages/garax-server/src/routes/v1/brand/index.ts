@@ -21,3 +21,6 @@ routerBrand.get(
    */
   asyncHandler(brandController.getAllBrandsByQueryOptions)
 );
+
+routerBrand.delete('/brands/:id', asyncHandler(brandController.deleteBrandById));
+routerBrand.delete('/brands', asyncHandler(brandController.deleteAllBrand));

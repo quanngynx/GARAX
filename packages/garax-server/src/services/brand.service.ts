@@ -59,4 +59,20 @@ export class BrandService {
     const response = brandOptionsQuery.getList(optionsParse);
     return response;
   }
+
+  static async deleteBrandById(id: number) {
+    const isExist = db.Brand.findOne({ where: { id } });
+
+    if (!isExist) throw new BadRequestError('Brand is not exist!!!');
+
+    return await db.Brand.destroy({
+      where: {
+        id
+      }
+    });
+  }
+
+  static async deleteAllBrand({ confirm }: { confirm: boolean }) {
+    return confirm ? await db.Brand.destroy({ truncate: true }) : null;
+  }
 }
