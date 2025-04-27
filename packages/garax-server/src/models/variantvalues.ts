@@ -1,6 +1,7 @@
 'use strict';
 import { Models, VariantValues } from '@/common/interfaces';
-import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { VariantKeysModel } from './variantkeys';
 
 export type VariantValuesCreationAttributes = Optional<
   VariantValues,
@@ -8,15 +9,20 @@ export type VariantValuesCreationAttributes = Optional<
 >;
 
 export class VariantValuesModel extends Model<VariantValues, VariantValuesCreationAttributes> {
-  // public static associations: {};
+  public static associations: {
+    variantKey: Association<VariantKeysModel, VariantValuesModel>;
+  };
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
    * The `models/index` file will call this method automatically.
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static associate(_models: Models) {
+  static associate(models: Models) {
     // define association here
+    this.belongsTo(models.VariantKeys, {
+      foreignKey: 'variantKeyId',
+      as: 'variant_key'
+    });
   }
 }
 

@@ -1,5 +1,5 @@
 'use strict';
-import { FindByEmail } from '@/common/requests/account';
+import { FindByEmail, GetInfoUserByEmail } from '@/common/requests/account';
 import { AccountModel, db } from '../models';
 
 export class AccountService {
@@ -21,7 +21,7 @@ export class AccountService {
     });
   };
 
-  static async getInfoUserByEmail({ email }: { email: string }) {
+  static async getInfoUserByEmail({ email }: GetInfoUserByEmail) {
     return await db.Account.findOne({
       where: { email },
       // attributes: select,

@@ -222,6 +222,7 @@ export class CartService {
       if (isReceiveAtStore !== true && paymentMethod === 'PAYOS') {
         const itemOrderValues: ItemOrderValues[] = [];
         const getInfoFromCartItem = getInfoCart.dataValues.cart_items?.reduce<ItemOrderValues[]>((acc, item: any) => {
+          console.log('itemOrder 225::', item);
           const getName = `${item.dataValues?.product_variant_values?.dataValues.products.dataValues.name}_${item.dataValues?.product_variant_values?.dataValues.sku}`;
           const getQuantity = item.dataValues?.qty;
           const getPrice = item.dataValues?.product_variant_values?.dataValues?.price;

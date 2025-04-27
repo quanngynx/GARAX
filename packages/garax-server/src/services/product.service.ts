@@ -431,6 +431,10 @@ export class ProductService {
     return id;
   }
 
+  static async deleteProductVariantById(id: number) {
+    // return await
+  }
+
   static async deleteAllProduct() {}
 
   static async findAllProductPublishByQuery() {}

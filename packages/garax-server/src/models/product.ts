@@ -23,7 +23,8 @@ export type ProductCreationAttributes = Optional<
 >;
 
 export class ProductModel extends Model<Product, ProductCreationAttributes> {
-  public product_attribute_values?: ProductAttributeValuesModel;
+  public product_attribute_values?: ProductAttributeValuesModel[];
+  public product_variant_values?: ProductVariantValuesModel[];
 
   public static associations: {
     productVariantValues: Association<ProductModel, ProductVariantValuesModel>;
