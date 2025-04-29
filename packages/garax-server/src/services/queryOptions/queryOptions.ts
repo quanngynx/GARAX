@@ -1,4 +1,4 @@
-import { Model, ModelStatic } from 'sequelize';
+import { Model, ModelStatic, WhereOptions } from 'sequelize';
 import { QueryOptions } from '@/common/interfaces';
 import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
 import { jsonUtils } from '@/common/utils';
@@ -108,6 +108,11 @@ export class QueryOptionsByBuilder<T extends Model> {
       sort: sortParse,
       pagination: paginationParse
     };
+  }
+
+  async deleteMany(values: number[] | number) {
+    const where: WhereOptions = { id: values };
+    return await this.chooseModel.destroy({ where });
   }
 
   // async findByPk(id: number, options?: Omit<FindOptions<Attributes<T>>, 'where'>) {

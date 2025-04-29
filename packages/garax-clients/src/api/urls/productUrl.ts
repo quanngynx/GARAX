@@ -3,22 +3,22 @@ import {
 } from "axios";
 import { 
     BASE 
-} from "./bases/baseUrl";
+} from "../bases/baseUrl";
 import { 
     ver_API, 
     ROUTES_PRODUCTS
-} from "./constants";
-import API_CONFIG from '../api/config/axios.config';
+} from "../constants";
+import API_CONFIG from '../config/axios.config';
 import { 
     ProductDetailResponse, 
     // ProductListResponse 
-} from "./responses";
+} from "../responses";
 import { 
     ProductDetailRequest,
     ProductListRequest,
     ProductVariantDetailRequest,
     ProductViewestByLimitRequest
-} from "./requests/product";
+} from "../requests/product";
 
 export const BASE_PRODUCT_LIST = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
 export const BASE_PRODUCT_VIEWEST = `${BASE(ver_API, ROUTES_PRODUCTS)}/viewest`;

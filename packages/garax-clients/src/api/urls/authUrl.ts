@@ -1,9 +1,9 @@
-import { BASE } from "./bases/baseUrl";
-import { ver_API, ROUTES_AUTH } from "./constants";
-import API_CONFIG from '../api/config/axios.config';
-import { AccountLoginRequest } from "./requests";
+import { BASE } from "../bases/baseUrl";
+import { ver_API, ROUTES_AUTH } from "../constants";
+import API_CONFIG from '../config/axios.config';
+import { AccountLoginRequest } from "../requests";
 import { AxiosResponse } from "axios";
-import { AccountLoginResponse, AccountRegisterResponse } from "./responses";
+import { AccountLoginResponse, AccountRegisterResponse } from "../responses";
 
 export const BASE_LOGIN = `${BASE(ver_API, ROUTES_AUTH)}/login`;
 export const BASE_REGISTER = `${BASE(ver_API, ROUTES_AUTH)}/register`;

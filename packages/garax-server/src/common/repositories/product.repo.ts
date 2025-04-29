@@ -18,6 +18,14 @@ export const getManyVariantValues = async (variantValues: number[] | number) => 
   });
 };
 
+export const deleteManyVariantValue = async (variantValues: number[] | number) => {
+  return await db.VariantValues.destroy({
+    where: {
+      id: variantValues
+    }
+  });
+};
+
 export const getProductById = async (id: number) => {
   const proId = await db.Product.findByPk(id, {
     include: [

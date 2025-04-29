@@ -42,6 +42,8 @@ routerProduct.patch('/products/:id', asyncHandler(productController.updatePartPr
 
 routerProduct.delete('/products', asyncHandler(productController.deleteAllProduct));
 routerProduct.delete('/products/:id', asyncHandler(productController.deleteProductById));
+routerProduct.delete('/products-variant/:id', asyncHandler(productController.deleteProductVariantById));
+routerProduct.delete('/products-attribute/:id', asyncHandler(productController.deleteProductAttributesById));
 
 routerProduct.get('/products/pub', asyncHandler(productController.findAllProductPub));
 routerProduct.get('/products/find', asyncHandler(productController.findAllProduct));

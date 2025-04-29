@@ -6,7 +6,7 @@ import backgroundImage from '@/assets/auth/images/gfcu2jnjinvtyfffq4yl.webp';
 import { AppDispatch } from '@/redux/stores';
 import { useAppDispatch } from '@/redux/hooks';
 import { setAccessToken, setEmail } from '@/redux/slices';
-import { authApi } from '@/api/authUrl';
+import { authApi } from '@/api/urls/authUrl';
 import { AccountLoginRequest } from '@/api/requests';
 import { localStorageService } from '@/utils';
 

@@ -17,7 +17,7 @@ import iconBrand from "@/assets/layout/GRAX.svg";
 import iconPhone from "@/assets/layout/noun-display-big-notch-4064633.svg";
 import CartTiny from "@/assets/layout/cart-tity.svg?react";
 import { useScrollDirectionV2 } from "./hooks";
-import { accountAPI } from "@/api/accountUrl";
+import { accountAPI } from "@/api/urls/accountUrl";
 
 function Header() {
   // const [fullname, setFullname] = useState(localStorage.getItem("fullname"));

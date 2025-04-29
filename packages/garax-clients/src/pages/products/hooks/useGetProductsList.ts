@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { productQueryKey } from "@/api/constants";
-import { productApi } from "@/api/productUrl";
+import { productApi } from "@/api/urls/productUrl";
 import { ProductListRequest } from "@/api/requests/product";
 import { ProductListMetadata } from "@/api/responses";
 

@@ -1,19 +1,19 @@
 import { AxiosResponse } from 'axios';
-import API_CONFIG from '../api/config/axios.config';
+import API_CONFIG from '../config/axios.config';
 import { 
     BASE 
-} from "./bases";
+} from "../bases";
 import { 
     ROUTES_CART, 
     ver_API 
-} from "./constants";
+} from "../constants";
 import { 
     CartAdditionRequest, 
     CartCheckoutRequest, 
     CartDeletionRequest, 
     CartDetailRequest 
-} from './requests/cart';
-import { CartAdditionResponse, CartCheckoutResponse, CartDetailResponse } from './responses/cart';
+} from '../requests/cart';
+import { CartAdditionResponse, CartCheckoutResponse, CartDetailResponse } from '../responses/cart';
 
 export const BASE_CART_ADD = `${BASE(ver_API, ROUTES_CART)}`;
 export const BASE_CART_CHECKOUT = `${BASE(ver_API, ROUTES_CART)}/checkout`;

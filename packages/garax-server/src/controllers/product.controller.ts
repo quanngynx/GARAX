@@ -127,6 +127,20 @@ class ProductController {
     }).send(res);
   };
 
+  deleteProductAttributesById = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Delete all product success!',
+      metadata: await ProductService.deleteProductAttributesById(req.body)
+    }).send(res);
+  };
+
+  deleteProductVariantById = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Delete all product success!',
+      metadata: await ProductService.deleteProductVariantById(req.body)
+    }).send(res);
+  };
+
   deleteAllProduct = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Delete all product success!',

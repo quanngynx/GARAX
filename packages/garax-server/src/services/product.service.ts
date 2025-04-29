@@ -2,19 +2,34 @@
 import { default as slugify } from 'slugify';
 
 import {
-  // AddManyNewProductRequest,
   AddNewProductRequest,
-  // GetAllBestSellerProducts,
+  DeleteProductAttributesByIdRequest,
+  DeleteProductVariantByIdRequest,
   GetAllProductsByQueryOptionsQueryState
 } from '@/common/requests/product';
 
-import { db, ProductModel } from '@/models';
-import { BadRequestError, NotFoundError } from '@/middlewares';
+import {
+  db,
+  AttributeValuesModel,
+  ProductAttributeValuesModel,
+  ProductModel,
+  ProductVariantValuesModel,
+  VariantValuesModel
+} from '@/models';
+import { BadRequestError, InternalServerError, NotFoundError } from '@/middlewares';
 import { getProductById } from '@/common/repositories';
 import { generateSKU } from '@/common/utils';
 import { QueryOptionsByBuilder } from './queryOptions';
 
 const productOptionsQuery = new QueryOptionsByBuilder<ProductModel>(ProductModel);
+const productVariantValuesOptionsQuery = new QueryOptionsByBuilder<ProductVariantValuesModel>(
+  ProductVariantValuesModel
+);
+const variantValuesOptionsQuery = new QueryOptionsByBuilder<VariantValuesModel>(VariantValuesModel);
+const attributeValuesOptionsQuery = new QueryOptionsByBuilder<AttributeValuesModel>(AttributeValuesModel);
+const productAttributeValuesOptionsQuery = new QueryOptionsByBuilder<ProductAttributeValuesModel>(
+  ProductAttributeValuesModel
+);
 
 export class ProductService {
   static async addNewProduct({
@@ -431,9 +446,33 @@ export class ProductService {
     return id;
   }
 
-  static async deleteProductVariantById(id: number) {
-    // return await
+  static async deleteProductAttributesById({ id, attributeValuesIds }: DeleteProductAttributesByIdRequest) {
+    try {
+      const deleteAttributeValuesProps = attributeValuesOptionsQuery.deleteMany(attributeValuesIds);
+      const deleteProductAttributeValuesProps = productAttributeValuesOptionsQuery.deleteMany(id);
+      return {
+        resVariantProps: deleteAttributeValuesProps,
+        resProductVariantProps: deleteProductAttributeValuesProps
+      };
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
   }
+
+  static async deleteProductVariantById({ id, variantValuesIds }: DeleteProductVariantByIdRequest) {
+    try {
+      const deleteVariantProps = productVariantValuesOptionsQuery.deleteMany(variantValuesIds);
+      const deleteProductVariantProps = variantValuesOptionsQuery.deleteMany(id);
+      return {
+        resVariantProps: deleteVariantProps,
+        resProductVariantProps: deleteProductVariantProps
+      };
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
+  }
+
+  static async deleteProductAttributeById() {}
 
   static async deleteAllProduct() {}
 
