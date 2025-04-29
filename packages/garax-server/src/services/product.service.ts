@@ -472,8 +472,6 @@ export class ProductService {
     }
   }
 
-  static async deleteProductAttributeById() {}
-
   static async deleteAllProduct() {}
 
   static async findAllProductPublishByQuery() {}
