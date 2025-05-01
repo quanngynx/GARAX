@@ -12,7 +12,7 @@ import { CheckoutRequestType, WebhookType } from '@payos/node/lib/type';
 import { InternalServerError, NotFoundError } from '@/middlewares';
 // REQUEST/RESPONSE
 import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
-import { QueryOptionsByBuilder } from './queryOptions';
+import { orderOptionsQuery } from './queryOptions';
 import { OrderModel } from '@/models';
 import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
 
@@ -32,7 +32,7 @@ const payos = new PayOS(
 //   "YOUR_PARTNER_CODE"
 // );
 
-const transactionOptionsQuery = new QueryOptionsByBuilder<OrderModel>(OrderModel);
+const transactionOptionsQuery = orderOptionsQuery;
 
 export class PaymentService {
   static async createPaymentLinkPayOS({

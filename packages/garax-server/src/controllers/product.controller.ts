@@ -141,10 +141,10 @@ class ProductController {
     }).send(res);
   };
 
-  deleteAllProduct = async (_req: Request, res: Response, _next: NextFunction) => {
+  deleteAllProduct = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Delete all product success!',
-      metadata: await ProductService.deleteAllProduct()
+      metadata: await ProductService.deleteAllProduct(req.body)
     }).send(res);
   };
 

@@ -1,8 +1,17 @@
-import { Model, ModelStatic, WhereOptions } from 'sequelize';
+import { Model, ModelStatic, Transaction, WhereOptions } from 'sequelize';
 import { QueryOptions } from '@/common/interfaces';
 import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
 import { jsonUtils } from '@/common/utils';
 import { NotFoundError } from '@/middlewares';
+import {
+  ProductModel,
+  ProductVariantValuesModel,
+  VariantValuesModel,
+  AttributeValuesModel,
+  ProductAttributeValuesModel,
+  OrderModel,
+  VariantKeysModel
+} from '@/models';
 
 export class QueryOptionsByBuilder<T extends Model> {
   constructor(private chooseModel: ModelStatic<T>) {}
@@ -110,9 +119,14 @@ export class QueryOptionsByBuilder<T extends Model> {
     };
   }
 
-  async deleteMany(values: number[] | number) {
+  async deleteMany(values: number[] | number, transaction?: Transaction) {
     const where: WhereOptions = { id: values };
-    return await this.chooseModel.destroy({ where });
+    return await this.chooseModel.destroy({ where, transaction });
+  }
+
+  async deleteAll(truncate?: boolean, transaction?: Transaction) {
+    const where: WhereOptions = {};
+    return await this.chooseModel.destroy({ where, truncate, transaction });
   }
 
   // async findByPk(id: number, options?: Omit<FindOptions<Attributes<T>>, 'where'>) {
@@ -161,3 +175,16 @@ export class QueryOptionsByBuilder<T extends Model> {
   //   return this.chooseModel.findAll(options) as Promise<T[]>;
   // }
 }
+
+export const productOptionsQuery = new QueryOptionsByBuilder<ProductModel>(ProductModel);
+export const productVariantValuesOptionsQuery = new QueryOptionsByBuilder<ProductVariantValuesModel>(
+  ProductVariantValuesModel
+);
+export const variantValuesOptionsQuery = new QueryOptionsByBuilder<VariantValuesModel>(VariantValuesModel);
+export const variantKeysOptionsQuery = new QueryOptionsByBuilder<VariantKeysModel>(VariantKeysModel);
+export const attributeValuesOptionsQuery = new QueryOptionsByBuilder<AttributeValuesModel>(AttributeValuesModel);
+export const productAttributeValuesOptionsQuery = new QueryOptionsByBuilder<ProductAttributeValuesModel>(
+  ProductAttributeValuesModel
+);
+
+export const orderOptionsQuery = new QueryOptionsByBuilder<OrderModel>(OrderModel);

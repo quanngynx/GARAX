@@ -5,9 +5,8 @@ import { Order } from '@/common/interfaces';
 import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
 import { NotFoundError } from '@/middlewares';
 import { db, OrderModel } from '@/models';
-import { QueryOptionsByBuilder } from './queryOptions';
+import { orderOptionsQuery } from './queryOptions';
 
-const orderOptionsQuery = new QueryOptionsByBuilder<OrderModel>(OrderModel);
 
 export class OrdersService {
   /**

@@ -8,28 +8,18 @@ import {
   GetAllProductsByQueryOptionsQueryState
 } from '@/common/requests/product';
 
-import {
-  db,
-  AttributeValuesModel,
-  ProductAttributeValuesModel,
-  ProductModel,
-  ProductVariantValuesModel,
-  VariantValuesModel
-} from '@/models';
+import { db, ProductModel } from '@/models';
 import { BadRequestError, InternalServerError, NotFoundError } from '@/middlewares';
 import { getProductById } from '@/common/repositories';
 import { generateSKU } from '@/common/utils';
-import { QueryOptionsByBuilder } from './queryOptions';
-
-const productOptionsQuery = new QueryOptionsByBuilder<ProductModel>(ProductModel);
-const productVariantValuesOptionsQuery = new QueryOptionsByBuilder<ProductVariantValuesModel>(
-  ProductVariantValuesModel
-);
-const variantValuesOptionsQuery = new QueryOptionsByBuilder<VariantValuesModel>(VariantValuesModel);
-const attributeValuesOptionsQuery = new QueryOptionsByBuilder<AttributeValuesModel>(AttributeValuesModel);
-const productAttributeValuesOptionsQuery = new QueryOptionsByBuilder<ProductAttributeValuesModel>(
-  ProductAttributeValuesModel
-);
+import {
+  attributeValuesOptionsQuery,
+  productAttributeValuesOptionsQuery,
+  productOptionsQuery,
+  productVariantValuesOptionsQuery,
+  variantKeysOptionsQuery,
+  variantValuesOptionsQuery
+} from './queryOptions';
 
 export class ProductService {
   static async addNewProduct({
@@ -459,6 +449,9 @@ export class ProductService {
     }
   }
 
+  /**
+   * @returns Promise<number> The number of destroyed rows
+   */
   static async deleteProductVariantById({ id, variantValuesIds }: DeleteProductVariantByIdRequest) {
     try {
       const deleteVariantProps = productVariantValuesOptionsQuery.deleteMany(variantValuesIds);
@@ -472,7 +465,47 @@ export class ProductService {
     }
   }
 
-  static async deleteAllProduct() {}
+  static async deleteAllProduct(confirm: boolean) {
+    const transaction = await db.sequelize.transaction();
+    try {
+      if (confirm) {
+        const deleteCategoryProduct = await db.CategoryProduct.destroy({ where: {}, truncate: true, transaction });
+
+        const deleteImage = await db.Image.destroy({ where: {}, truncate: true, transaction });
+
+        const getAllVariantValues = await db.VariantValues.findAll({
+          attributes: ['variantKeyId'],
+          transaction
+        });
+
+        const variantKeyIds = getAllVariantValues.map((v) => v.dataValues.variantKeyId);
+        const deleteVariantKeys = variantKeysOptionsQuery.deleteMany(variantKeyIds, transaction);
+
+        const deleteVariantValues = await db.VariantValues.destroy({
+          where: {},
+          truncate: true,
+          transaction
+        });
+
+        const deleteProduct = await productOptionsQuery.deleteAll(true, transaction);
+
+        return {
+          categoryProduct: deleteCategoryProduct,
+          image: deleteImage,
+          variantKeys: deleteVariantKeys,
+          variantValues: deleteVariantValues,
+          product: deleteProduct
+        };
+      }
+
+      await transaction.commit();
+
+      return null;
+    } catch (error) {
+      await transaction.rollback();
+      throw new InternalServerError(`Error delete all product:: ${error}`);
+    }
+  }
 
   static async findAllProductPublishByQuery() {}
 
