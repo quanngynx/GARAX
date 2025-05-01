@@ -38,11 +38,6 @@ class ProductController {
     res: Response,
     _next: NextFunction
   ) => {
-    // const { filters, search, sort, pagination } = req.query;
-    // console.log('filters::', filters);
-    // console.log('search::', search);
-    // console.log('sort::', sort);
-    // console.log('pagination::', pagination);
     new SuccessResponse({
       message: 'Lấy tất cả hàng hóa thành công!',
       metadata: await ProductService.getAllProductsByQueryOptions(req.query)

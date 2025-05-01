@@ -6,7 +6,7 @@ import {
   DeleteProductAttributesByIdRequest,
   DeleteProductVariantByIdRequest,
   FindAllProductByQueryRequest,
-  GetAllProductsByQueryOptionsQueryState
+  GetAllProductsRequest
 } from '@/common/requests/product';
 
 import { db, ProductModel } from '@/models';
@@ -24,6 +24,14 @@ import {
   variantValuesOptionsQuery
 } from './queryOptions';
 import { literal } from 'sequelize';
+import {
+  AddNewProductResponse,
+  DeleteProductAttributesByIdResponse,
+  DeleteProductVariantByIdResponse,
+  FindAllProductByQueryResponse,
+  GetAllProductsByQueryOptionsResponse,
+  GetViewestProductResponse
+} from '@/common/responses/product';
 
 export class ProductService {
   static async addNewProduct({
@@ -49,7 +57,7 @@ export class ProductService {
     attributes = [],
     variants = [],
     variantValues = []
-  }: AddNewProductRequest) {
+  }: AddNewProductRequest): Promise<AddNewProductResponse> {
     /**
      * 1. Check categoryId & brandId?
      */
@@ -228,7 +236,7 @@ export class ProductService {
       ...newProduct.get({ plain: true }),
       attributes: createAttributes,
       variants: variants.map((variant) => ({
-        name: variant.key,
+        key: variant.key,
         values: variant.values
       })),
       variantValues: createdVariantValues
@@ -306,22 +314,14 @@ export class ProductService {
   /**
    * @refference: https://sequelize.org/docs/v6/other-topics/typescript/#utility-types
    * @param options: GetAllProductsByQueryOptionsQueryState
-   * @returns {Promise<{
-   *   totalPage: number;
-   *   totalRows: number;
-   *   rows: ProductModel[];
-   * }>}
+   * @returns Promise: GetAllProductsByQueryOptionsResponse
    */
   static async getAllProductsByQueryOptions({
     filters,
     search,
     sort,
     pagination
-  }: GetAllProductsByQueryOptionsQueryState): Promise<{
-    totalPage: number;
-    totalRows: number;
-    rows: ProductModel[];
-  }> {
+  }: GetAllProductsRequest): Promise<GetAllProductsByQueryOptionsResponse> {
     const optionsParse = await productOptionsQuery.optionsParse({
       filters,
       search,
@@ -360,7 +360,7 @@ export class ProductService {
     };
   }
 
-  static async getViewestProduct(limit: number) {
+  static async getViewestProduct(limit: number): Promise<GetViewestProductResponse> {
     const topViewedProducts = await db.Product.findAll({
       order: [['views', 'DESC']],
       limit: limit
@@ -368,9 +368,7 @@ export class ProductService {
 
     return {
       limit: limit,
-      result: {
-        topViewedProducts
-      }
+      result: topViewedProducts
     };
   }
 
@@ -440,7 +438,10 @@ export class ProductService {
     return id;
   }
 
-  static async deleteProductAttributesById({ id, attributeValuesIds }: DeleteProductAttributesByIdRequest) {
+  static async deleteProductAttributesById({
+    id,
+    attributeValuesIds
+  }: DeleteProductAttributesByIdRequest): Promise<DeleteProductAttributesByIdResponse> {
     try {
       const deleteAttributeValuesProps = attributeValuesOptionsQuery.deleteMany(attributeValuesIds);
       const deleteProductAttributeValuesProps = productAttributeValuesOptionsQuery.deleteMany(id);
@@ -456,7 +457,10 @@ export class ProductService {
   /**
    * @returns Promise<number> The number of destroyed rows
    */
-  static async deleteProductVariantById({ id, variantValuesIds }: DeleteProductVariantByIdRequest) {
+  static async deleteProductVariantById({
+    id,
+    variantValuesIds
+  }: DeleteProductVariantByIdRequest): Promise<DeleteProductVariantByIdResponse> {
     try {
       const deleteVariantProps = productVariantValuesOptionsQuery.deleteMany(variantValuesIds);
       const deleteProductVariantProps = variantValuesOptionsQuery.deleteMany(id);
@@ -511,7 +515,11 @@ export class ProductService {
 
   static async findAllProductUnpublishByQuery() {}
 
-  static async findAllProductByQuery({ keyword, limit = 10, offset = 0 }: FindAllProductByQueryRequest) {
+  static async findAllProductByQuery({
+    keyword,
+    limit = 10,
+    offset = 0
+  }: FindAllProductByQueryRequest): Promise<FindAllProductByQueryResponse | null> {
     const safeKeyword = db.sequelize.escape(keyword);
     const fullTextCondition = literal(`MATCH(name, slug) AGAINST('${safeKeyword}' IN NATURAL LANGUAGE MODE)`);
     const result = await db.Product.findAndCountAll({

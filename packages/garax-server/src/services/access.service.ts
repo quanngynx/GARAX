@@ -6,9 +6,14 @@ import { AuthFailureError, ForbidenError } from '@/middlewares/error.response';
 import { findByEmail } from '@/common/repositories';
 import { createTokenPair } from './auth/utils';
 import { Sequelize } from 'sequelize';
+import { HandleRefreshTokenResponse } from '@/common/responses/access';
 
 export class AccessService {
-  static async handleRefreshToken({ keyStore, user, refreshToken }: HandleRefreshTokenRequest) {
+  static async handleRefreshToken({
+    keyStore,
+    user,
+    refreshToken
+  }: HandleRefreshTokenRequest): Promise<HandleRefreshTokenResponse> {
     const { userId, email } = user;
 
     const convertToArray = JSON.parse(JSON.stringify(keyStore.refreshTokenUsed));
