@@ -19,6 +19,12 @@ export interface GetAllProductsByQueryOptionsQuery
   pagination: string;
 }
 
+export interface FindAllProductByQueryOptionsQuery extends RequestQuery {
+  keyword: string;
+  limit: number;
+  offset: number;
+}
+
 class ProductController {
   getAllProducts = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
@@ -155,10 +161,14 @@ class ProductController {
     }).send(res);
   };
 
-  findAllProduct = async (req: Request, res: Response, _next: NextFunction) => {
+  findAllProductByQuery = async (
+    req: Request<RequestParams, ResponseBody, RequestBody, FindAllProductByQueryOptionsQuery>,
+    res: Response,
+    _next: NextFunction
+  ) => {
     new SuccessResponse({
-      message: `Find all product with query::${req.query.nameProd} success!`,
-      metadata: await ProductService.findAllProductByQuery()
+      message: `Find all product with query::${req.query} success!`,
+      metadata: await ProductService.findAllProductByQuery(req.query)
     }).send(res);
   };
 }

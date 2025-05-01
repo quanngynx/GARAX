@@ -46,5 +46,5 @@ routerProduct.delete('/products-variant/:id', asyncHandler(productController.del
 routerProduct.delete('/products-attribute/:id', asyncHandler(productController.deleteProductAttributesById));
 
 routerProduct.get('/products/pub', asyncHandler(productController.findAllProductPub));
-routerProduct.get('/products/find', asyncHandler(productController.findAllProduct));
+routerProduct.get('/products/find', asyncHandler(productController.findAllProductByQuery));
 routerProduct.get('/products/viewest/:limit', asyncHandler(productController.getViewestProduct));

@@ -5,6 +5,7 @@ import {
   AddNewProductRequest,
   DeleteProductAttributesByIdRequest,
   DeleteProductVariantByIdRequest,
+  FindAllProductByQueryRequest,
   GetAllProductsByQueryOptionsQueryState
 } from '@/common/requests/product';
 
@@ -22,6 +23,7 @@ import {
   variantKeysOptionsQuery,
   variantValuesOptionsQuery
 } from './queryOptions';
+import { literal } from 'sequelize';
 
 export class ProductService {
   static async addNewProduct({
@@ -509,5 +511,24 @@ export class ProductService {
 
   static async findAllProductUnpublishByQuery() {}
 
-  static async findAllProductByQuery() {}
+  static async findAllProductByQuery({ keyword, limit = 10, offset = 0 }: FindAllProductByQueryRequest) {
+    const safeKeyword = db.sequelize.escape(keyword);
+    const fullTextCondition = literal(`MATCH(name, slug) AGAINST('${safeKeyword}' IN NATURAL LANGUAGE MODE)`);
+    const result = await db.Product.findAndCountAll({
+      where: fullTextCondition,
+      attributes: {
+        include: [[literal(`MATCH(name, slug) AGAINST(${safeKeyword} IN NATURAL LANGUAGE MODE)`), 'relevance']]
+      },
+      order: [[literal('relevance'), 'DESC']],
+      limit,
+      offset,
+      // distinct: true,
+      nest: true
+    });
+
+    if (result.count === 0) {
+      return null;
+    }
+    return result;
+  }
 }
