@@ -14,6 +14,8 @@ import { getProductById } from '@/common/repositories';
 import { generateSKU } from '@/common/utils';
 import {
   attributeValuesOptionsQuery,
+  categoryProductOptionsQuery,
+  imageOptionsQuery,
   productAttributeValuesOptionsQuery,
   productOptionsQuery,
   productVariantValuesOptionsQuery,
@@ -469,9 +471,9 @@ export class ProductService {
     const transaction = await db.sequelize.transaction();
     try {
       if (confirm) {
-        const deleteCategoryProduct = await db.CategoryProduct.destroy({ where: {}, truncate: true, transaction });
+        const deleteCategoryProduct = await categoryProductOptionsQuery.deleteAll(true, transaction);
 
-        const deleteImage = await db.Image.destroy({ where: {}, truncate: true, transaction });
+        const deleteImage = await imageOptionsQuery.deleteAll(true, transaction);
 
         const getAllVariantValues = await db.VariantValues.findAll({
           attributes: ['variantKeyId'],
@@ -481,11 +483,7 @@ export class ProductService {
         const variantKeyIds = getAllVariantValues.map((v) => v.dataValues.variantKeyId);
         const deleteVariantKeys = variantKeysOptionsQuery.deleteMany(variantKeyIds, transaction);
 
-        const deleteVariantValues = await db.VariantValues.destroy({
-          where: {},
-          truncate: true,
-          transaction
-        });
+        const deleteVariantValues = await variantValuesOptionsQuery.deleteAll(true, transaction);
 
         const deleteProduct = await productOptionsQuery.deleteAll(true, transaction);
 

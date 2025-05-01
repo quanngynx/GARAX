@@ -10,7 +10,9 @@ import {
   AttributeValuesModel,
   ProductAttributeValuesModel,
   OrderModel,
-  VariantKeysModel
+  VariantKeysModel,
+  CategoryProductModel,
+  ImageModel
 } from '@/models';
 
 export class QueryOptionsByBuilder<T extends Model> {
@@ -177,6 +179,7 @@ export class QueryOptionsByBuilder<T extends Model> {
 }
 
 export const productOptionsQuery = new QueryOptionsByBuilder<ProductModel>(ProductModel);
+export const categoryProductOptionsQuery = new QueryOptionsByBuilder<CategoryProductModel>(CategoryProductModel);
 export const productVariantValuesOptionsQuery = new QueryOptionsByBuilder<ProductVariantValuesModel>(
   ProductVariantValuesModel
 );
@@ -188,3 +191,4 @@ export const productAttributeValuesOptionsQuery = new QueryOptionsByBuilder<Prod
 );
 
 export const orderOptionsQuery = new QueryOptionsByBuilder<OrderModel>(OrderModel);
+export const imageOptionsQuery = new QueryOptionsByBuilder<ImageModel>(ImageModel);
