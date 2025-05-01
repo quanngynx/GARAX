@@ -6,6 +6,6 @@ import { asyncHandler } from '@/middlewares';
 const accessController = AccessController.default;
 export const routerAccess = express.Router();
 // Authentication
-// router.use(authentication)
+// routerAccess.use(asyncHandler(authentication));
 // handle refreshToken
 routerAccess.post('/access/hanlde-refreshToken', asyncHandler(accessController.handleRefreshToken));
