@@ -110,7 +110,7 @@ export class AuthJWTService {
         return {
           code: 201,
           metadata: {
-            user: getInfoData<Partial<Account>>({
+            user: getInfoData<Account>({
               fields: ['id', 'userName', 'email'],
               object: newUser.dataValues
             }),
@@ -180,7 +180,7 @@ export class AuthJWTService {
     });
 
     return {
-      user: getInfoData<Partial<Account>>({
+      user: getInfoData<Account>({
         fields: ['id', 'userName', 'email', 'roleId'],
         object: foundUser.dataValues
       }),

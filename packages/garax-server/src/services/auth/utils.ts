@@ -7,6 +7,7 @@ import { KeyTokenService } from '@/services';
 import { AuthFailureError, InternalServerError, NotFoundError, asyncHandler } from '@/middlewares';
 import { HEADER } from '@/common/constants';
 import { KeyStore } from '@/common/interfaces';
+import { PairToken } from '@/common/responses/access';
 
 interface SendOtpByNodemailerProps {
   title: string;
@@ -36,7 +37,7 @@ const createTokenPair = async (
   payLoad: string | Buffer | object,
   publicKey: string | Buffer<ArrayBufferLike>,
   privateKey: string
-) => {
+): Promise<PairToken> => {
   try {
     const accessToken = JWT.sign(payLoad, privateKey, {
       algorithm: 'RS256',
