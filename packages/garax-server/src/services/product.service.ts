@@ -6,7 +6,10 @@ import {
   DeleteProductAttributesByIdRequest,
   DeleteProductVariantByIdRequest,
   FindAllProductByQueryRequest,
-  GetAllProductsRequest
+  GetAllProductsRequest,
+  UpdateProductAttributeByIdRequest,
+  UpdateProductByIdRequest,
+  UpdateProductVariantByIdRequest
 } from '@/common/requests/product';
 
 import { db, ProductModel } from '@/models';
@@ -373,17 +376,48 @@ export class ProductService {
   }
 
   static async updateProductById(
-    id: number
-    // {}
-  ) {
-    return id;
+    id: number,
+    data: Partial<UpdateProductByIdRequest>
+  ): Promise<[affectedCount: number]> {
+    try {
+      return await db.Product.update(data, {
+        where: {
+          id
+        }
+      });
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
   }
 
-  static async updatePartProductById(
-    id: number
-    // {}
-  ) {
-    return id;
+  static async updateProductAttributeById(
+    id: number,
+    data: Partial<UpdateProductAttributeByIdRequest>
+  ): Promise<[affectedCount: number]> {
+    try {
+      return await db.ProductAttributeValues.update(data, {
+        where: {
+          id
+        }
+      });
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
+  }
+
+  static async updateProductVariantById(
+    id: number,
+    data: Partial<UpdateProductVariantByIdRequest>
+  ): Promise<[affectedCount: number]> {
+    try {
+      return await db.ProductVariantValues.update(data, {
+        where: {
+          id
+        }
+      });
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
   }
 
   static async removeProductById(id: number) {

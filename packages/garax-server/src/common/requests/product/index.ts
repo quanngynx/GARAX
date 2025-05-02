@@ -7,3 +7,6 @@ export * from './deleteProductAttributesById.request';
 export * from './getViewestProduct.request';
 export * from './getAllProductsByQueryOptions.request';
 export * from './findAllProductByQuery.request';
+export * from './updateProductById.request';
+export * from './updateProductAttributeById.request';
+export * from './updateProductVariantById.request';

@@ -93,15 +93,23 @@ class ProductController {
     const { id } = req.params;
     new SuccessResponse({
       message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
-      metadata: await ProductService.updateProductById(Number(id))
+      metadata: await ProductService.updateProductById(Number(id), req.body)
     }).send(res);
   };
 
-  updatePartProductById = async (req: Request, res: Response, _next: NextFunction) => {
+  updateProductAttributeById = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
     new SuccessResponse({
       message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
-      metadata: await ProductService.updatePartProductById(Number(id))
+      metadata: await ProductService.updateProductAttributeById(Number(id), req.body)
+    }).send(res);
+  };
+
+  updateProductVariantById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
+    new SuccessResponse({
+      message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
+      metadata: await ProductService.updateProductVariantById(Number(id), req.body)
     }).send(res);
   };
 
