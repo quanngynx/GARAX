@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { OrderListMetadata } from "@/apis/responses";
+import { OrderListResponse } from "@/apis/responses";
 import { orderQueryKey } from "@/apis/constants";
 import { OrderListRequest } from "@/apis/requests/orders";
 import { orderApi } from "@/apis/orderUrl";
@@ -11,17 +11,16 @@ interface Props {
 /**
  * Hooks for fetching active paged list
  * @param {Props} props component properties
- * @returns {UseQueryResult<OrderListMetadata[], AxiosError>} query result
+ * @returns {UseQueryResult<OrderListResponse, AxiosError>} query result
  */
 export function useGetOrdersList({ 
     request 
-}: Props): UseQueryResult<OrderListMetadata[], AxiosError> {
-    return useQuery<OrderListMetadata[], AxiosError>({
+}: Props): UseQueryResult<OrderListResponse, AxiosError> {
+    return useQuery<OrderListResponse, AxiosError>({
         queryKey: orderQueryKey.LIST(request),
         queryFn: async ({ signal }) => {
             const response = await orderApi.list(request, signal);
-            // console.log("📌 response:", response.data.metadata);
-            return response.data.metadata
+            return response.data
         },
         // enabled: 
         //     accessToken !== null &&

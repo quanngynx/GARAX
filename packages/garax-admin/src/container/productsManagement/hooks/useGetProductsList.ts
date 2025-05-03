@@ -20,7 +20,7 @@ export function useGetProductsList({
         queryKey: productQueryKey.LIST(request),
         queryFn: async ({ signal }) => {
             const response = await productApi.list(request, signal);
-            console.log("📌 response:", response.data);
+            console.log("📌 response:", response);
 
             return response.data
         },

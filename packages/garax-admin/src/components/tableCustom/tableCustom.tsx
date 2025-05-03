@@ -1,5 +1,4 @@
-// import { FC } from "react";
-import { Table } from "antd";
+import { Empty, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { TablePagination } from "./Pagination/tablePagination";
 import { LineFullWidth } from "../line";
@@ -54,6 +53,8 @@ export const TableCustom = <T,>({
         }),
     };
 
+    const totalFixedWidth = columns.reduce((result, { width }) => result + (width ?? 0), 0);
+    const minResponsiveWidth = 1180;
     return (
         // max-w-[calc(100vw-348px)]
         <div className=""> 
@@ -73,11 +74,13 @@ export const TableCustom = <T,>({
                     pageSize: 50
                 }}
                 scroll={{ 
-                    x: 'max-content',
+                    x: totalFixedWidth + minResponsiveWidth,
+                    // x: 'max-content',
                     y: 65 * 5
                 }}
                 className={cn(isCollapsed ? 'w-[1350px]' : 'w-[1180px]')}
                 bordered
+                locale={{ emptyText: <Empty description="No Data1212123"></Empty> }}
             />
         </div>
     );

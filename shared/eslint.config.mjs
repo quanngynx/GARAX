@@ -1,22 +1,14 @@
+import baseConfig from '../packages/garax-server/eslint.config.mjs';
+
 // import tsParser from '@typescript-eslint/parser';
 /** @type {import('eslint').Linter.Config[]} */
 export default [
+  ...baseConfig,
   {
-    extends: ["../../packages/garax-server/eslint.config.mjs"],
-    ignorePatterns: ["!**/*"],
-    overrides: [
-      {
-        files: ["*.ts", "*.tsx", "*.js", "*.jsx"],
-        rules: {}
-      },
-      {
-        files: ["*.ts", "*.tsx"],
-        rules: {}
-      },
-      {
-        files: ["*.js", "*.jsx"],
-        rules: {}
-      }
-    ]
-  }
+    ignores: ['!**/*'],
+  },
+  {
+    files: ['*.ts', '*.tsx', '*.js', '*.jsx'],
+    rules: {},
+  },
 ];

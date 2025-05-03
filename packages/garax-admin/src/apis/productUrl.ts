@@ -11,6 +11,7 @@ import {
 import API_CONFIG from '@/utils/axios';
 import { 
     ProductDetailResponse, 
+    ProductListMetadata, 
     ProductListResponse, 
     ProductVariantDetailResponse
 } from "./responses";
