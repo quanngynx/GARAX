@@ -52,8 +52,15 @@ export const TableCustom = <T,>({
             // name: record.name,
         }),
     };
-
-    const totalFixedWidth = columns.reduce((result, { width }) => result + (width ?? 0), 0);
+    /**
+     * @ref https://github.com/ant-design/ant-design/issues/8981
+     */
+    const totalFixedWidth = columns.reduce((result, { width }) => {
+        if (typeof width === 'number') {
+            return result + width;
+          }
+          return result;
+    }, 0);
     const minResponsiveWidth = 1180;
     return (
         // max-w-[calc(100vw-348px)]

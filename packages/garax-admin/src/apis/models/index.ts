@@ -14,3 +14,4 @@ export * from './orderDetails.model';
 
 export * from './brand.interface';
 
+export * from './permission.model';

@@ -7,3 +7,4 @@ export * from './deleteProductAttributesById.response';
 export * from './getViewestProduct.response';
 export * from './getAllProductsByQueryOptions.response';
 export * from './findAllProductByQuery.response';
+export * from './deleteAllProduct.response';

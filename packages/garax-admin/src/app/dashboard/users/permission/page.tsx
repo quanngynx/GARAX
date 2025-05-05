@@ -1,9 +1,9 @@
+import { PermissionPage } from "@/container/permission";
+
 function PermissionPages() {
     return ( 
-        <div>
-            PermissionPages
-        </div>
-     );
+        <PermissionPage />
+    );
 }
 
 export default PermissionPages;

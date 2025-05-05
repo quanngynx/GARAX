@@ -28,6 +28,7 @@ routerProduct.get(
   asyncHandler(productController.getAllProductsByQueryOptions)
 );
 routerProduct.get('/products/without-options', asyncHandler(productController.getAllProductsWithoutOptions));
+routerProduct.get('/products/find', asyncHandler(productController.findAllProductByQuery));
 routerProduct.get('/products/:id', asyncHandler(productController.getProductById));
 routerProduct.get(
   '/product-variant-value/:productId',
@@ -38,7 +39,6 @@ routerProduct.post('/products', asyncHandler(productController.addNewProduct));
 routerProduct.post('/products/many', asyncHandler(productController.addManyNewProduct));
 
 routerProduct.put('/products/:id', asyncHandler(productController.updateProductById));
-routerProduct.patch('/products/:id', asyncHandler(productController.updatePartProductById));
 
 routerProduct.delete('/products', asyncHandler(productController.deleteAllProduct));
 routerProduct.delete('/products/:id', asyncHandler(productController.deleteProductById));
@@ -46,5 +46,4 @@ routerProduct.delete('/products-variant/:id', asyncHandler(productController.del
 routerProduct.delete('/products-attribute/:id', asyncHandler(productController.deleteProductAttributesById));
 
 routerProduct.get('/products/pub', asyncHandler(productController.findAllProductPub));
-routerProduct.get('/products/find', asyncHandler(productController.findAllProductByQuery));
 routerProduct.get('/products/viewest/:limit', asyncHandler(productController.getViewestProduct));

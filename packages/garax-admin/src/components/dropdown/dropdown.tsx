@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode } from "react";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";

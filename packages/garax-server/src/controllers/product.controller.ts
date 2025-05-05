@@ -169,6 +169,7 @@ class ProductController {
     res: Response,
     _next: NextFunction
   ) => {
+    console.log('query::', req.query);
     new SuccessResponse({
       message: `Find all product with query::${req.query} success!`,
       metadata: await ProductService.findAllProductByQuery(req.query)

@@ -151,7 +151,14 @@ export const productModel = (sequelize: Sequelize) => {
       sequelize,
       modelName: 'Product',
       tableName: 'products',
-      timestamps: true
+      timestamps: true,
+      indexes: [
+        {
+          type: 'FULLTEXT',
+          name: 'fullText',
+          fields: ['name', 'slug']
+        }
+      ]
     }
   );
   return ProductModel;

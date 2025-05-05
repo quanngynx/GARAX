@@ -29,6 +29,7 @@ import {
 import { literal } from 'sequelize';
 import {
   AddNewProductResponse,
+  DeleteAllProductResponse,
   DeleteProductAttributesByIdResponse,
   DeleteProductVariantByIdResponse,
   FindAllProductByQueryResponse,
@@ -507,7 +508,7 @@ export class ProductService {
     }
   }
 
-  static async deleteAllProduct(confirm: boolean) {
+  static async deleteAllProduct(confirm: boolean): Promise<DeleteAllProductResponse | null> {
     const transaction = await db.sequelize.transaction();
     try {
       if (confirm) {
@@ -551,15 +552,15 @@ export class ProductService {
 
   static async findAllProductByQuery({
     keyword,
-    limit = 10,
-    offset = 0
+    limit,
+    offset
   }: FindAllProductByQueryRequest): Promise<FindAllProductByQueryResponse | null> {
-    const safeKeyword = db.sequelize.escape(keyword);
-    const fullTextCondition = literal(`MATCH(name, slug) AGAINST('${safeKeyword}' IN NATURAL LANGUAGE MODE)`);
+    // const safeKeyword = db.sequelize.escape(keyword);
+    const fullTextCondition = literal(`MATCH(name, slug) AGAINST("${keyword}" IN NATURAL LANGUAGE MODE)`);
     const result = await db.Product.findAndCountAll({
       where: fullTextCondition,
       attributes: {
-        include: [[literal(`MATCH(name, slug) AGAINST(${safeKeyword} IN NATURAL LANGUAGE MODE)`), 'relevance']]
+        include: [[literal(`MATCH(name, slug) AGAINST(${keyword} IN NATURAL LANGUAGE MODE)`), 'relevance']]
       },
       order: [[literal('relevance'), 'DESC']],
       limit,
@@ -571,6 +572,7 @@ export class ProductService {
     if (result.count === 0) {
       return null;
     }
+    console.log('result::', result);
     return result;
   }
 }
