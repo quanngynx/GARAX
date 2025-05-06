@@ -3,6 +3,8 @@ export * from './image.model';
 
 export * from './product.model';
 export * from './productVariantValues.model';
+export * from './attributeValues.model';
+export * from './productAttributeValues.model';
 export * from './variantKeys.model';
 export * from './variantValues.model';
 export * from './categoryProduct.model';

@@ -123,5 +123,3 @@ const nextConfig: NextConfig = {
 };
 
 export default bundleAnalyzer(nextConfig);
-
-

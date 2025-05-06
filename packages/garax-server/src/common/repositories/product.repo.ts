@@ -76,9 +76,32 @@ export const getProductVariantValueByIdProduct = async ({ productId }: { product
     where: {
       productId: productId
     }
+    // attributes: []
   });
 
   if (!proId) throw new NotFoundError('error::get Product by productId');
+
+  // console.log("_id pro::", proId)
+  // console.log(proId instanceof db.Product);
+  return proId;
+};
+
+export const getProductAttributeValuesByIdProduct = async ({ productId }: { productId: string }) => {
+  const proId = await db.ProductAttributeValues.findAll({
+    where: {
+      productId: productId
+    },
+    attributes: ['id', 'value', 'attributeId'],
+    include: [
+      {
+        model: db.AttributeValues,
+        as: 'attribute_values',
+        attributes: ['name']
+      }
+    ]
+  });
+
+  if (!proId) throw new NotFoundError('error::get Product Attribute Values by productId');
 
   // console.log("_id pro::", proId)
   // console.log(proId instanceof db.Product);

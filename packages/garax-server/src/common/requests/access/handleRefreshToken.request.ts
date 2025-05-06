@@ -1,7 +1,7 @@
 import { Account } from '@/common/interfaces';
 import { KeyTokenModel } from '@/models';
 
-interface UserPayload extends Pick<Account, 'email'> {
+export interface UserPayload extends Pick<Account, 'email'> {
   userId: number;
 }
 

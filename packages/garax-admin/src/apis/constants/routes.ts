@@ -1,4 +1,7 @@
 export const ROUTES_PRODUCTS: string = 'products';
+export const ROUTES_PRODUCTS_ATTRIBUTE: string = 'products-attribute';
+export const ROUTES_PRODUCTS_VARIANT: string = 'products-variant';
+
 export const ROUTES_ORDERS: string = 'orders';
 export const ROUTES_BRANDS: string = 'brands';
 

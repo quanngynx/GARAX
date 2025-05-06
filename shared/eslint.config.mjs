@@ -5,10 +5,10 @@ import baseConfig from '../packages/garax-server/eslint.config.mjs';
 export default [
   ...baseConfig,
   {
-    ignores: ['!**/*'],
+    ignores: ['!**/*']
   },
   {
     files: ['*.ts', '*.tsx', '*.js', '*.jsx'],
-    rules: {},
-  },
+    rules: {}
+  }
 ];

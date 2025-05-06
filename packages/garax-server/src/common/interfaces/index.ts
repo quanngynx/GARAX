@@ -1,5 +1,6 @@
 export * from './error.interface';
 export * from './models.interface';
+export * from './models/attributeValues.interface';
 export * from './models/account.interface';
 export * from './models/address.interface';
 export * from './models/brand.interface';

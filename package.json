@@ -10,6 +10,9 @@
     "packages/*"
   ],
   "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=22.x"
+  },
   "scripts": {
     "dev": "yarn nx run-many -t dev",
     "build": "yarn nx run-many -t build",

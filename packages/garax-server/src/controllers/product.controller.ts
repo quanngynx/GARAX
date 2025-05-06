@@ -3,7 +3,11 @@ import { NextFunction, Request, Response } from 'express';
 
 import { SuccessResponse } from '@/middlewares';
 import { ProductService } from '@/services';
-import { getProductById, getProductVariantValueByIdProduct } from '@/common/repositories';
+import {
+  getProductAttributeValuesByIdProduct,
+  getProductById,
+  getProductVariantValueByIdProduct
+} from '@/common/repositories';
 import { QueryOptions, RequestBody, RequestParams, RequestQuery, ResponseBody } from '@/common/interfaces';
 import { ProductModel } from '@/models';
 
@@ -72,6 +76,14 @@ class ProductController {
     new SuccessResponse({
       message: `Lấy biến thể hàng hóa bằng id sản phẩm :${productId}: thành công!`,
       metadata: await getProductVariantValueByIdProduct({ productId })
+    }).send(res);
+  };
+
+  getProductAttributeValuesByIdProduct = async (req: Request, res: Response, _next: NextFunction) => {
+    const { productId } = req.params;
+    new SuccessResponse({
+      message: `Lấy biến thể hàng hóa bằng id sản phẩm :${productId}: thành công!`,
+      metadata: await getProductAttributeValuesByIdProduct({ productId })
     }).send(res);
   };
 

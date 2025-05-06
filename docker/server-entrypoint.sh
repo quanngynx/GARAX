@@ -4,7 +4,6 @@
 
 echo "Starting application..."
 
-# Check if Prisma commands have already been executed
 if [ ! -f "/packages/garax-server/dist" ]; then
   echo "Running yarn db:migrate:fresh..."
   yarn db:migrate:fresh
@@ -21,9 +20,6 @@ if [ ! -f "/packages/garax-server/dist" ]; then
   echo "Running yarn seed:run..."
   yarn seed:run
   echo "yarn seed:run completed."
-
-  # Create a marker file to indicate that Prisma commands have been executed
-  # touch /app/.prisma_initialized
 else
   echo "Squelize initialization already done, skipping..."
 fi
