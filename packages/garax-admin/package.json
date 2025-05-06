@@ -15,7 +15,5 @@
       "style": "module",
       "parser": "typescript"
     }
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  }
 }

@@ -1513,6 +1513,11 @@
   resolved "https://registry.npmjs.org/@fullcalendar/daygrid/-/daygrid-6.1.17.tgz"
   integrity sha512-K7m+pd7oVJ9fW4h7CLDdDGJbc9szJ1xDU1DZ2ag+7oOo1aCNLv44CehzkkknM6r8EYlOOhgaelxQpKAI4glj7A==
 
+"@fullcalendar/interaction@^6.1.17":
+  version "6.1.17"
+  resolved "https://registry.npmjs.org/@fullcalendar/interaction/-/interaction-6.1.17.tgz"
+  integrity sha512-AudvQvgmJP2FU89wpSulUUjeWv24SuyCx8FzH2WIPVaYg+vDGGYarI7K6PcM3TH7B/CyaBjm5Rqw9lXgnwt5YA==
+
 "@fullcalendar/react@^6.1.17":
   version "6.1.17"
   resolved "https://registry.npmjs.org/@fullcalendar/react/-/react-6.1.17.tgz"
@@ -8320,20 +8325,14 @@ functions-have-names@^1.2.3:
 "garax-admin@file:C:\\D\\project\\GARAX\\packages\\garax-admin":
   version "0.1.0"
   resolved "file:packages/garax-admin"
-  dependencies:
-    garax-admin "file:"
 
 "garax-clients@file:C:\\D\\project\\GARAX\\packages\\garax-clients":
   version "0.0.0"
   resolved "file:packages/garax-clients"
-  dependencies:
-    garax-clients "file:"
 
 "garax-server@file:C:\\D\\project\\GARAX\\packages\\garax-server":
   version "1.0.0"
   resolved "file:packages/garax-server"
-  dependencies:
-    garax-server "file:"
 
 gauge@^3.0.0:
   version "3.0.2"
