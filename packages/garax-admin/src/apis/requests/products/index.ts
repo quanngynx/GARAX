@@ -1,5 +1,6 @@
 export * from './productList.request';
 export * from './productDetail.request';
+export * from './productDelete.request';
 export * from './productViewestByLimit.request';
 export * from './productVariantDetail.request';
 export * from './productCreation.request';
@@ -9,3 +10,6 @@ export * from './productAdditionMany.request';
 export * from './productUpdate.request';
 export * from './productAttributeUpdate.request';
 export * from './productVariantUpdate.request';
+export * from './productAttributeDetail.request';
+export * from './productAttributeDelete.request';
+export * from './productVariantDelete.request';

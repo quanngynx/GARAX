@@ -15,10 +15,14 @@ import {
     FindAllProductByQueryResponse,
     ProductAdditionManyResponse,
     ProductAdditionResponse,
+    ProductAttributeDeleteResponse,
+    ProductAttributeDetailResponse,
     ProductAttributeUpdateResponse,
+    ProductDeleteResponse,
     ProductDetailResponse, 
     ProductListResponse, 
     ProductUpdateResponse, 
+    ProductVariantDeleteResponse, 
     ProductVariantDetailResponse,
     ProductVariantUpdateResponse
 } from "./responses";
@@ -32,7 +36,11 @@ import {
     ProductAdditionManyRequest,
     ProductAttributeUpdateRequest,
     ProductUpdateRequest,
-    ProductVariantUpdateRequest
+    ProductVariantUpdateRequest,
+    ProductAttributeDetailRequest,
+    ProductDeleteRequest,
+    ProductAttributeDeleteRequest,
+    ProductVariantDeleteRequest
 } from "./requests/products";
 
 export const BASE_PRODUCT_LIST = `${BASE(ver_API, ROUTES_PRODUCTS)}`;
@@ -50,6 +58,7 @@ export const BASE_PRODUCT_VARIANT_UPDATE = BASE_PRODUCT_VARIANT;
 export const BASE_PRODUCT_VARIANT_DELETE = BASE_PRODUCT_VARIANT;
 
 export const BASE_PRODUCT_ATTRIBUTE = `${BASE(ver_API, ROUTES_PRODUCTS_ATTRIBUTE)}`;
+export const BASE_PRODUCT_ATTRIBUTE_DETAIL = BASE_PRODUCT_ATTRIBUTE;
 export const BASE_PRODUCT_ATTRIBUTE_UPDATE = BASE_PRODUCT_ATTRIBUTE;
 export const BASE_PRODUCT_ATTRIBUTE_DELETE = BASE_PRODUCT_ATTRIBUTE;
 
@@ -111,11 +120,10 @@ class ProductAPI {
         );
     }
 
-    async delete(data: ProductUpdateRequest)
-    : Promise<AxiosResponse<ProductUpdateResponse>> {
+    async delete(data: ProductDeleteRequest)
+    : Promise<AxiosResponse<ProductDeleteResponse>> {
         return API_CONFIG.put(
-            `${BASE_PRODUCT_DELETE}`,
-            data
+            `${BASE_PRODUCT_DELETE}/${data.id}`,
         );
     }
 }
@@ -136,16 +144,22 @@ class ProductVariantAPI {
         );
     }
 
-    async delete(data: ProductUpdateRequest)
-    : Promise<AxiosResponse<ProductUpdateResponse>> {
-        return API_CONFIG.put(
-            `${BASE_PRODUCT_VARIANT_DELETE}`,
-            data
+    async delete(data: ProductVariantDeleteRequest)
+    : Promise<AxiosResponse<ProductVariantDeleteResponse>> {
+        return API_CONFIG.delete(
+            `${BASE_PRODUCT_VARIANT_DELETE}/${data.id}`
         );
     }
 }
 
 class ProductAttributeAPI {
+    async detail(data: ProductAttributeDetailRequest)
+    : Promise<AxiosResponse<ProductAttributeDetailResponse>> {
+        return API_CONFIG.get(
+            `${BASE_PRODUCT_ATTRIBUTE_DETAIL}/${data.id}`,
+        );
+    }
+
     async update(data: ProductAttributeUpdateRequest)
     : Promise<AxiosResponse<ProductAttributeUpdateResponse>> {
         return API_CONFIG.put(
@@ -154,11 +168,10 @@ class ProductAttributeAPI {
         );
     }
 
-    async delete(data: ProductUpdateRequest)
-    : Promise<AxiosResponse<ProductUpdateResponse>> {
-        return API_CONFIG.put(
-            `${BASE_PRODUCT_ATTRIBUTE_DELETE}`,
-            data
+    async delete(data: ProductAttributeDeleteRequest)
+    : Promise<AxiosResponse<ProductAttributeDeleteResponse>> {
+        return API_CONFIG.delete(
+            `${BASE_PRODUCT_ATTRIBUTE_DELETE}/${data.id}`,
         );
     }
 }

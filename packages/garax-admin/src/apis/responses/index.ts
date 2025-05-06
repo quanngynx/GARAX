@@ -15,6 +15,10 @@ export * from './products/productAdditionMany.response';
 export * from './products/productUpdate.response';
 export * from './products/productAttributeUpdate.response';
 export * from './products/productVariantUpdate.response';
+export * from './products/productAttributeDetail.response';
+export * from './products/productDelete.response';
+export * from './products/productAttributeDelete.response';
+export * from './products/productVariantDelete.response';
 
 export * from './categoryProducts/categoryProductsCreation.response';
 
