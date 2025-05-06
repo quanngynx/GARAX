@@ -21,10 +21,9 @@ class ProductCategoryController {
   };
 
   updateTitleCategory = async (req: Request, res: Response, _next: NextFunction) => {
-    const { name } = req.params;
     new SuccessResponse({
       message: 'Update title - product category success!',
-      metadata: await ProductCategoryService.updateTitleCategory(name)
+      metadata: await ProductCategoryService.updateTitleCategory(req.body)
     }).send(res);
   };
 
