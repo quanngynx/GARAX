@@ -1,15 +1,19 @@
 "use client";
 import { AccountLoginRequest } from "@/apis/requests";
-import { Boxes } from "@/components/backgrounds";
+// import { Boxes } from "@/components/backgrounds";
 import { Button, Flex, Form, Input } from "antd";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 export default function Home() {
-    const router = useRouter();
+    // const router = useRouter();
+
+    const handleLogin = async (data: any) => {
+        console.log('check data::', data);
+    }
     return (
         <div className="h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center">
             <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-            <Boxes />
+            {/* <Boxes /> */}
             <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start backdrop-blur-none bg-white/95 rounded-xl">
                 <Flex
                     align="start"
@@ -29,7 +33,7 @@ export default function Home() {
                         labelCol={{ span: 48 }}
                         style={{ maxWidth: 800 }}
                         initialValues={{ remember: true }}
-                        //   onFinish={handleLogin}
+                        onFinish={handleLogin}
                         //   onFinishFailed={onFinishFailed}
                         autoComplete="off"
                     >
@@ -60,12 +64,12 @@ export default function Home() {
                         </Form.Item>
 
                         {/* <Form.Item<FieldType>
-            name="remember"
-            valuePropName="checked"
-            label={null}
-          >
-            <Checkbox>Nhớ thông tin sau khi đăng nhập</Checkbox>
-          </Form.Item> */}
+                          name="remember"
+                          valuePropName="checked"
+                          label={null}
+                        >
+                          <Checkbox>Nhớ thông tin sau khi đăng nhập</Checkbox>
+                        </Form.Item> */}
 
                         <Form.Item
                             style={{
@@ -83,9 +87,9 @@ export default function Home() {
                                 type="primary"
                                 htmlType="submit"
                                 //   loading={loggingIn}
-                                onClick={() => {
-                                    router.push('/dashboard')
-                                }}
+                                // onClick={() => {
+                                //     router.push('/dashboard')
+                                // }}
                             >
                                 Đăng nhập
                             </Button>

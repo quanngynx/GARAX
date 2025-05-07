@@ -3,7 +3,7 @@ export default function Authlayout({
   }: Readonly<{
     children: React.ReactNode;
   }>) {
-    return ( 
+    return (
         <div className="bg-slate-100 w-full h-[100vh] flex justify-center items-center">
             {children}
         </div>

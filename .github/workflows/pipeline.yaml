@@ -43,9 +43,7 @@ jobs:
           yarn add eslint --dev && yarn lint
 
       - name: Build
-        run: |
-          cd GARAX-SERVER
-          yarn build:swc
+        run: yarn build
 
       # - name: Run Tests
       #   run: |
@@ -68,7 +66,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-          cache-dependency-path: GARAX-SERVER/yarn.lock 
+          cache-dependency-path: yarn.lock 
      
       - name: Install dependencies
         run: |
@@ -78,4 +76,4 @@ jobs:
       - name: Build
         run: |
           cd GARAX-SERVER
-          yarn build:swc      
+          yarn build:s      

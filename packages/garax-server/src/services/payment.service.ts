@@ -14,7 +14,7 @@ import { InternalServerError, NotFoundError } from '@/middlewares';
 import { CancelPaymentLinkPayOSRequest, CreatePaymentLinkPayOSRequest } from '@/common/requests/payment';
 import { orderOptionsQuery } from './queryOptions';
 import { OrderModel } from '@/models';
-import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
+import { GetAllProductsRequest } from '@/common/requests/product';
 
 const payos = new PayOS(
   String(process.env.PAYOS_CLIENT_ID),
@@ -23,6 +23,7 @@ const payos = new PayOS(
 );
 
 // const myDomain = process.env.MY_DOMAIN || '';
+
 // or
 
 // const payos = new PayOS(
@@ -202,12 +203,7 @@ export class PaymentService {
    *   rows: OrderModel[];
    * }>}
    */
-  static async getAllTransactionsByQueryOptions({
-    filters,
-    search,
-    sort,
-    pagination
-  }: GetAllProductsByQueryOptionsQueryState): Promise<{
+  static async getAllTransactionsByQueryOptions({ filters, search, sort, pagination }: GetAllProductsRequest): Promise<{
     totalPage: number;
     totalRows: number;
     rows: OrderModel[];

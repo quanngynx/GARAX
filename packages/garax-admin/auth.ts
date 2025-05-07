@@ -1,8 +1,7 @@
-import { handleUnauthorizedError } from "@/middlewares/handleUnauthorizedError";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions: NextAuthOptions = {
     providers: [
         Credentials({
             // You can specify which fields should be submitted, by adding keys to the `credentials` object.
@@ -12,11 +11,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 email: {},
                 password: {},
             },
-            authorize: async (credentials: Record<"email" | "password", string>) => {
-                let user = null
+            authorize: async (credentials) => {
+                let user = null;
+
+                console.log(">> Check credentials::", credentials);
 
                 // call server
                 // ...
+                user = {
+                    _id: '123',
+                    username: '123',
+                    email: '123',
+                    isVerify: '123',
+                    type: '123',
+                    role: '123',
+                };
                 // ===========
 
                 if (!user) {
@@ -31,6 +40,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
         }),
     ],
+    pages: {
+        signIn: '/auth/login',
+        // signOut: ''
+    },
     theme: { logo: "https://authjs.dev/img/logo-sm.png" },
-    session: { strategy: "jwt" },
-})
+    // session: { strategy: "jwt" },
+}
+
+export const {
+    auth,
+    signIn,
+    signOut,
+} = NextAuth(authOptions);

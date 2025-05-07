@@ -4,13 +4,14 @@ import { configureStore } from '@reduxjs/toolkit';
 // import counterReducer from '../slices/counterSlice'
 import sidenavReducer from "./slices/sidenavSlice";
 import synchronousHeightReducer from "./slices/synchronousHeight";
+import { authReducer } from './slices/authSlice';
 
 export const store = configureStore({
     reducer: {
         // cart: cartReducer,
         // counter: counterReducer,
         // . . . user,
-        // auth: authReducer,
+        auth: authReducer,
         sidenav: sidenavReducer,
         synchronousHeight : synchronousHeightReducer
     }

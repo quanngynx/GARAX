@@ -1,0 +1,72 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "allowJs": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2023",
+    "module": "NodeNext",
+    "lib": [
+      "es2023",
+      "dom",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/admin/components/*": [
+        "packages/garax-admin/src/components/*"
+      ],
+      "@/admin/features/*": [
+        "packages/garax-admin/src/container/*"
+      ],
+      "@/clients/components/*": [
+        "packages/garax-clients/src/components/*"
+      ],
+      "@/clients/features/*": [
+        "packages/garax-clients/src/pages/*"
+      ],
+      "@components/*": [
+        "shared/src/ui/components/*"
+      ],
+      "@core/*": [
+        "shared/src/core/*"
+      ],
+      "@hooks/*": [
+        "shared/src/ui/hooks/*"
+      ],
+      "@languages/*": [
+        "shared/src/i18n/*"
+      ],
+      "@shared/*": [
+        "shared/src/*"
+      ],
+      "@stores/*": [
+        "shared/src/ui/stores/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

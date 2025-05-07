@@ -1,3 +1,4 @@
+export * from './account.model';
 export * from './categoryProduct.model';
 export * from './image.model';
 

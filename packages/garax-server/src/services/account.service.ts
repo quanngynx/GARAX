@@ -1,24 +1,27 @@
 'use strict';
 import { FindByEmail, GetInfoUserByEmail } from '@/common/requests/account';
-import { AccountModel, db } from '../models';
+import { db } from '../models';
+import { GetInforAccountResponse } from '@/common/responses/access';
 
 export class AccountService {
   static findByEmail = async ({
     email,
-    select = [
-      'email',
-      'password',
-      'userName',
-      'phone',
-      // 'status',
-      'roleId'
-    ]
-  }: FindByEmail): Promise<AccountModel | null> => {
-    return await db.Account.findOne({
+    select = ['id', 'email', 'password', 'userName', 'phone', 'roleId']
+  }: FindByEmail) => {
+    const result = (await db.Account.findOne({
       where: { email },
       attributes: select,
-      raw: true // Tương đương với .lean() trong Mongoose
-    });
+      raw: true
+    })) as GetInforAccountResponse | null;
+
+    return {
+      id: result?.id || 0,
+      email: result?.email || '',
+      password: result?.password || '',
+      userName: result?.userName || '',
+      phone: result?.phone || '',
+      roleId: result?.roleId || 0
+    };
   };
 
   static async getInfoUserByEmail({ email }: GetInfoUserByEmail) {

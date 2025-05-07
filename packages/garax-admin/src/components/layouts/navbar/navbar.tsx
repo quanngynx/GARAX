@@ -11,6 +11,10 @@ import { MingcuteNotificationLine } from "@/components/icons/notification";
 import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { toggleSidenav } from "@/stores/slices/sidenavSlice";
+import { useAppSelector } from "@/stores/hooks";
+import { selectAccessToken, selectAccountGeneralInfo } from "@/stores/slices/authSlice";
+import { localStorageService } from "@/utils";
+import { AccountModel } from "@/apis/models";
 
 interface INavbar {
     collapsed: boolean
@@ -20,6 +24,11 @@ interface INavbar {
 function Navbar({collapsed, setCollapsed} : INavbar) {
     const dispatch = useDispatch();
     // const isExpanded = useSelector((state: RootState) => state.sidenav.isExpanded);
+
+    const accessToken: string | null = useAppSelector(selectAccessToken) ?? localStorageService.get('accessToken');
+    const accountGeneralInfo: AccountModel | null = useAppSelector(
+        selectAccountGeneralInfo,
+    );
 
     const toggleCollapsed = () => {
       setCollapsed(!collapsed);
