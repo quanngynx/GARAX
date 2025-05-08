@@ -1,4 +1,4 @@
-import { drawersCartInterfaces } from './interfaces'
+import { ItemCart } from '@/components/card/itemCart.tsx';
 
 import {
   Dialog,
@@ -9,8 +9,8 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-
-import { ItemCart } from "@/components/card";
+import React from 'react';
+import { drawersCartInterfaces } from './interfaces/index.ts';
 function drawersForCart({ open, setOpen, onProceed } : drawersCartInterfaces) {
   return (
     <Dialog open={open} onClose={() => setOpen(true)} className="relative z-10">

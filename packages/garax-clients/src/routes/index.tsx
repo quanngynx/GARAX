@@ -74,6 +74,7 @@ import ErrorPage from '@/pages/error'
 import ErrorPage2 from '@/pages/error/error2'
 // Loading
 import Loader from "@/components/loading/loading-react";
+import React from "react";
 // import Spinner from "@/components/spinner";
 // import { patch } from "@mui/material";
 
