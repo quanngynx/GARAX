@@ -125,7 +125,6 @@ function Header() {
   };
 
   const scrollDirection = useScrollDirectionV2(10);
-  // console.log(scrollDirection);
   return (
     <div className={
       cn(`bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3 ${scrollDirection === "down" ? "top-0" : "top-11"}`,

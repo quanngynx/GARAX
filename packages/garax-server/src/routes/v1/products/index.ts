@@ -42,7 +42,12 @@ routerProduct.delete('/products', asyncHandler(productController.deleteAllProduc
 routerProduct.delete('/products/:id', asyncHandler(productController.deleteProductById));
 
 routerProduct.get('/products/pub', asyncHandler(productController.findAllProductPub));
-routerProduct.get('/products/viewest/:limit', asyncHandler(productController.getViewestProduct));
+routerProduct.get('/products/spare-part/viewest/:limit', asyncHandler(productController.getViewestProductSparePart));
+routerProduct.get(
+  '/products/support-tools/viewest/:limit',
+  asyncHandler(productController.getViewestProductSupportTools)
+);
+routerProduct.get('/products/others/viewest/:limit', asyncHandler(productController.getViewestProductOthers));
 // #endregion Product
 
 // #region Variant

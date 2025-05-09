@@ -1,5 +1,4 @@
 'use strict';
-// import slugify from 'slugify';
 import { db } from '@/models';
 import { BadRequestError, InternalServerError } from '@/middlewares';
 import { AddNewCategoryRequest } from '@/common/requests/productCategory';

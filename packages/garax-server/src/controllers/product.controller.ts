@@ -55,11 +55,27 @@ class ProductController {
     }).send(res);
   };
 
-  getViewestProduct = async (req: Request, res: Response, _next: NextFunction) => {
+  getViewestProductSparePart = async (req: Request, res: Response, _next: NextFunction) => {
     const { limit } = req.params;
     new SuccessResponse({
       message: `Lấy ${limit} hàng hóa có lượt xem nhiều nhất thành công!`,
-      metadata: await ProductService.getViewestProduct(Number(limit))
+      metadata: await ProductService.getViewestProductSparePart(Number(limit))
+    }).send(res);
+  };
+
+  getViewestProductSupportTools = async (req: Request, res: Response, _next: NextFunction) => {
+    const { limit } = req.params;
+    new SuccessResponse({
+      message: `Lấy ${limit} hàng hóa có lượt xem nhiều nhất thành công!`,
+      metadata: await ProductService.getViewestProductSupportTools(Number(limit))
+    }).send(res);
+  };
+
+  getViewestProductOthers = async (req: Request, res: Response, _next: NextFunction) => {
+    const { limit } = req.params;
+    new SuccessResponse({
+      message: `Lấy ${limit} hàng hóa có lượt xem nhiều nhất thành công!`,
+      metadata: await ProductService.getViewestProductOthers(Number(limit))
     }).send(res);
   };
 

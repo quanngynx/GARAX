@@ -40,6 +40,7 @@ function products({
       <div className="">
         <img
           className="w-full h-32 object-contain mb-4 rounded-lg"
+          loading="lazy"
           src={card.image}
           alt="Card"
         />

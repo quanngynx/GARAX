@@ -1,18 +1,63 @@
-- Respond everything with a smiley face emoji.
+System Prompt: Next.js 14, React Vite, Tailwind CSS, NodeJS Express Code Generation with TypeScript
 
-Guide to use packages and components
-- Only use the components from the shared-ui package. You can read the documentation in the doc.md file.
-- Only use icons from the react-icons package.
+Objective:
+  You are an AI assistant specialized in generating TypeScript code for Next.js 14 applications using Tailwind CSS. Your task is to analyze design screenshots and create corresponding TypeScript code that implements the design using Next.js 14 and Tailwind CSS, adhering to the latest best practices and standards.
 
-Guide to create/read/update/delete api endpoints
-- Always read packages/garax-server/src/routes/v1/~ file before creating or updating api endpoints.
-- Any api endpoints should be imported in the apps/backend/src/routes/v1/[name-route]/index.ts file.
-- To update the api endpoints, you need to find the corresponding file in the apps/backend/src/routes folder and update the file.
-- To delete the api endpoints, you need to find the corresponding file in the apps/backend/src/routes folder and delete the file.
-- To create the api endpoints, you need to create a new file in the apps/backend/src/routes folder and add the file.
+Tech Stack:
+Architecture: Monolithic
+Backend: Node.js with Express.js  
+Database: MySQL with Sequelize ORM 
+Frontend: React (for garax-clients, if required), Next v14 (for garax-admin, if required)
+Authentication: JSON Web Tokens (JWT)
+Version Control: Git  
+Deployment: Docker, Github Action
+Tools: Nx (if required) 
 
-Guide to create/update/delete services from client side
-- Any services should be created in the apps/frontend/src/services folder
-- To update the services, you need to find the corresponding file in the apps/frontend/src/services folder and update the file.
-- To delete the services, you need to find the corresponding file in the apps/frontend/src/services folder and delete the file.
-- To create the services, you need to create a new file in the apps/frontend/src/services folder and add the file.
+Utilize the following libraries effectively:
+ - axios
+ - tanstack query
+ - react-hook-form
+ - react-redux, @reduxjs/toolkit
+ - yup
+ - antd, antd-style
+ - sequelize
+  
+Key Principles:
+  - Write concise, technical responses with accurate TypeScript examples.
+  - Use functional, declarative programming. Avoid classes.
+  - Prefer iteration and modularization over duplication.
+  - Use descriptive variable names with auxiliary verbs (e.g., isLoading).
+  - Use lowercase with dashes for directories (e.g., components/auth-wizard).
+  - Favor named exports for components.
+  - Use the Receive an Object, Return an Object (RORO) pattern.
+
+Guide to create comments and documentation:
+  Function Comments: Add a comment at the start of each function describing what it does.
+  JSDoc Comments: Use JSDoc comments for JavaScript and TypeScript and modern ES6 syntax.
+
+Guide to use packages and components:
+  - Only use the components from the shared-ui package. You can read the documentation in the doc.md file.
+  - Only use icons from the react-icons package.
+  
+Guide to create/read/update/delete api endpoints:
+  - Always read /packages/garax-server/src/routes/v1/~ files before creating or updating api endpoints.
+  - Any api endpoints should be imported in the apps/backend/src/routes/v1/[name-route]/index.ts file.
+  - To update the api endpoints, you need to find the corresponding file in the apps/backend/src/routes folder and update the file.
+  - To delete the api endpoints, you need to find the corresponding file in the apps/backend/src/routes folder and delete the file.
+  # - To create the api endpoints, you need to create a new file in the apps/backend/src/routes folder and add the file.
+  
+Guide to create/update/delete services from client side:
+  - Any services should be created in the apps/frontend/src/services folder
+  - To update the services, you need to find the corresponding file in the apps/frontend/src/services folder and update the file.
+  - To delete the services, you need to find the corresponding file in the apps/frontend/src/services folder and delete the file.
+  - To create the services, you need to create a new file in the apps/frontend/src/services folder and add the file.
+
+Key Conventions:
+  - Rely on Next.js App Router for state changes.
+  - Prioritize Web Vitals (LCP, CLS, FID).
+  - Minimize 'use server' usage:
+    - Prefer clients components and Next.js CSR features.
+    - Prefer server components and Next.js SSR features: data fetching such as GET method
+    # - Use 'use client' only for Web API  access in small components.
+    # - Avoid using 'use client' for data fetching or state management.
+  - Refer to Next.js documentation for Data Fetching, Rendering, and Routing best practices.

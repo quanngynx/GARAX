@@ -364,7 +364,31 @@ export class ProductService {
     };
   }
 
-  static async getViewestProduct(limit: number): Promise<GetViewestProductResponse> {
+  static async getViewestProductSparePart(limit: number): Promise<GetViewestProductResponse> {
+    const topViewedProducts = await db.Product.findAll({
+      order: [['views', 'DESC']],
+      limit: limit
+    });
+
+    return {
+      limit: limit,
+      result: topViewedProducts
+    };
+  }
+
+  static async getViewestProductSupportTools(limit: number): Promise<GetViewestProductResponse> {
+    const topViewedProducts = await db.Product.findAll({
+      order: [['views', 'DESC']],
+      limit: limit
+    });
+
+    return {
+      limit: limit,
+      result: topViewedProducts
+    };
+  }
+
+  static async getViewestProductOthers(limit: number): Promise<GetViewestProductResponse> {
     const topViewedProducts = await db.Product.findAll({
       order: [['views', 'DESC']],
       limit: limit

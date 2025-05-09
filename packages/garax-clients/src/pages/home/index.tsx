@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Carousel } from "antd";
 
 // import { useCheckAuth } from "../auth/checkToken";
 
@@ -15,6 +16,9 @@ import BroswerByType from "./components/broswerByType";
 import BestCar from "./components/Bestcar";
 import ReviewFeedback from "./components/reviewFeedback";
 import {Line} from "@/components/line/line";
+import { NextArrow, PrevArrow } from "@/components/carousel";
+// import { cardProducts } from "@/__mock__";
+// import CardProducts from './components/cardProduct' 
 
 // const tabsConfig: ITabsConfig[] = [
 //   {
@@ -42,14 +46,41 @@ export function HomePage(): JSX.Element {
   }
 
   return (
-  <div className="md:w-[1222px] bg-white h-[100%] md:py-24">
+  <div className="md:w-[1222px] bg-white h-[100%] md:py-[84px]">
       <div className="relative">
         <div className="">
-          <img
+          {/* <img
             src={imagecar}
             alt="A car in a desert landscape"
             className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
-          />
+          /> */}
+          <Carousel
+            arrows
+            autoplay
+            prevArrow={<PrevArrow />}
+            nextArrow={<NextArrow />}
+          >
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+          </Carousel>
         </div>
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
           <div className="absolute flex flex-col justify-center items-center text-center">
@@ -100,6 +131,49 @@ export function HomePage(): JSX.Element {
 
         {/* Product Cards */}
         <CardProduct />
+        {/* <Carousel 
+          arrows
+          autoplay
+          prevArrow={<PrevArrow />}
+          nextArrow={<NextArrow />}
+          slidesToShow={4}    
+          slidesToScroll={1} 
+          autoplaySpeed={3000}
+          swipeToSlide={true}
+          lazyLoad="ondemand"
+          responsive={[
+            {
+              breakpoint: 1200,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ]}
+          dots={false}
+        >
+          {cardProducts.map((card, index) => (
+            <CardProducts 
+            card={card} 
+            index={index} 
+            key={index} 
+            />
+          ))}
+        </Carousel> */}
 
         {/* Button to navigate to product page */}
         <BtnProducts navigateTo={navigateToProductPage} />
