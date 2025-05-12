@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Carousel } from "antd";
+import { Carousel, Tabs, TabsProps } from "antd";
 
 // import { useCheckAuth } from "../auth/checkToken";
 
@@ -20,20 +20,23 @@ import { NextArrow, PrevArrow } from "@/components/carousel";
 // import { cardProducts } from "@/__mock__";
 // import CardProducts from './components/cardProduct' 
 
-// const tabsConfig: ITabsConfig[] = [
-//   {
-//     label: "Spare Parts",
-//     content: "Content Panel 1",
-//   },
-//   {
-//     label: "Support Tools",
-//     content: "Content Panel 2",
-//   },
-//   {
-//     label: "Others",
-//     content: "Content Panel 3",
-//   },
-// ];
+const itemsTab: TabsProps['items'] = [
+  {
+    key: '1',
+    label: 'Phụ tùng',
+    children: <CardProduct />,
+  },
+  {
+    key: '2',
+    label: 'Công cụ hỗ trợ',
+    children: <CardProduct />,
+  },
+  {
+    key: '3',
+    label: 'Khác',
+    children: <CardProduct />,
+  },
+];
 
 export function HomePage(): JSX.Element {
   const history = useNavigate();
@@ -44,6 +47,10 @@ export function HomePage(): JSX.Element {
       behavior: "smooth",
     });
   }
+
+  const onChange = (key: string) => {
+    console.log(key);
+  };
 
   return (
   <div className="md:w-[1222px] bg-white h-[100%] md:py-[84px]">
@@ -122,7 +129,7 @@ export function HomePage(): JSX.Element {
       <div>
       {/* Featured Listings Section */}
       <div className="mt-8 md:mt-12">
-        <div className="px-4 md:px-8">
+        <div className="md:pr-8 mb-4">
           <div className="text-[#050b20] text-2xl md:text-[40px] font-bold font-['DM Sans'] leading-7 md:leading-10">
             Danh sách sản phẩm
           </div>
@@ -130,50 +137,9 @@ export function HomePage(): JSX.Element {
         </div>
 
         {/* Product Cards */}
-        <CardProduct />
-        {/* <Carousel 
-          arrows
-          autoplay
-          prevArrow={<PrevArrow />}
-          nextArrow={<NextArrow />}
-          slidesToShow={4}    
-          slidesToScroll={1} 
-          autoplaySpeed={3000}
-          swipeToSlide={true}
-          lazyLoad="ondemand"
-          responsive={[
-            {
-              breakpoint: 1200,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              },
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              },
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              },
-            },
-          ]}
-          dots={false}
-        >
-          {cardProducts.map((card, index) => (
-            <CardProducts 
-            card={card} 
-            index={index} 
-            key={index} 
-            />
-          ))}
-        </Carousel> */}
+        <Tabs defaultActiveKey="1" items={itemsTab} onChange={onChange} />
+        
+        {/* <CardProduct /> */}
 
         {/* Button to navigate to product page */}
         <BtnProducts navigateTo={navigateToProductPage} />
@@ -182,5 +148,3 @@ export function HomePage(): JSX.Element {
   </div>
   );
 }
-
- 

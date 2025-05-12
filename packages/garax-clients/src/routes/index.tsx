@@ -76,6 +76,7 @@ import ErrorPage2 from '@/pages/error/error2'
 // Loading
 import Loader from "@/components/loading/loading-react";
 import { HelpCenterPage } from "@/pages/helpCenter";
+import { ContactUsPage } from "@/pages/contactUs";
 // import Spinner from "@/components/spinner";
 // import { patch } from "@mui/material";
 
@@ -219,6 +220,10 @@ function Routes() {
       path: 'help',
       element: <OnlyContact />,
       children: [
+        {
+          path: '',
+          element: <ContactUsPage />
+        },
         {
           path: 'contact-us',
           element: <HelpCenterPage />

@@ -53,11 +53,18 @@ Guide to create/update/delete services from client side:
   - To create the services, you need to create a new file in the apps/frontend/src/services folder and add the file.
 
 Key Conventions:
+  - Use functional components and TypeScript interfaces.
   - Rely on Next.js App Router for state changes.
   - Prioritize Web Vitals (LCP, CLS, FID).
+  - Use function, not const, for components.
+  - Use declarative JSX.
+  - Optimize images: WebP format, size data, lazy loading.
+  - Use dynamic loading for non-critical components.
+  - Wrap client components in Suspense with fallback.
   - Minimize 'use server' usage:
     - Prefer clients components and Next.js CSR features.
     - Prefer server components and Next.js SSR features: data fetching such as GET method
     # - Use 'use client' only for Web API  access in small components.
     # - Avoid using 'use client' for data fetching or state management.
   - Refer to Next.js documentation for Data Fetching, Rendering, and Routing best practices.
+  - https://nextjs.org/docs

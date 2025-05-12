@@ -34,7 +34,7 @@ function products({
   return (
    <Link to={productPath}>
      <div
-      className="flex-none w-[328px] p-4 bg-white rounded-lg shadow-md mx-4 mb-2"
+      className="flex-none w-[300px] p-4 bg-white rounded-lg hover:shadow-md mx-4 mb-2 border-[0.5px]"
       key={index}
     >
       <div className="">

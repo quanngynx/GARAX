@@ -11,6 +11,7 @@ import { routerOrder } from './order';
 import { routerCheckout } from './checkout';
 import { routerBrand } from './brand';
 import { routerStatictists } from './statictists';
+import { routerAddress } from './address';
 // import { checkAuth } from '@/middlewares';
 
 // check apiKey
@@ -28,4 +29,5 @@ routerV1.use('', routerProduct);
 routerV1.use('', routerCategoryProduct);
 routerV1.use('', routerBrand);
 routerV1.use('', routerStatictists);
+routerV1.use('', routerAddress);
 // routerV1.use('',require('./categoryNews'));

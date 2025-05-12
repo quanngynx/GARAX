@@ -45,7 +45,7 @@ const MultiCardCarousel = () => {
           prevArrow={<PrevArrow />}
           nextArrow={<NextArrow />}
           slidesToShow={4}    
-          slidesToScroll={1} 
+          slidesToScroll={4} 
           autoplaySpeed={3000}
           swipeToSlide={true}
           lazyLoad="ondemand"

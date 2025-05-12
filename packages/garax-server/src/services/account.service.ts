@@ -27,8 +27,31 @@ export class AccountService {
   static async getInfoUserByEmail({ email }: GetInfoUserByEmail) {
     return await db.Account.findOne({
       where: { email },
-      // attributes: select,
-      raw: true
+      attributes: [
+        'id',
+        'userName',
+        'firstName',
+        'lastName',
+        'gender',
+        'dob',
+        'email',
+        'phone',
+        'avatar',
+        'password',
+        'emptyPassword',
+        'googleId',
+        'pointerId',
+        'roleId'
+      ],
+      include: [
+        {
+          model: db.Address,
+          as: 'variant_key',
+          attributes: ['id', 'key']
+        }
+      ],
+      raw: true,
+      nest: true
     });
   }
 }

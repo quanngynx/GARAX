@@ -123,3 +123,8 @@ export const cancelOrder = (orderId: unknown) =>
 // --------------------------PRESSPAYPOINTER------------------------
 
 // -----------------------------------------------------------------
+export * from './urls/accessUrl';
+export * from './urls/accountUrl';
+export * from './urls/authUrl';
+export * from './urls/cartUrl';
+export * from './urls/productUrl';
