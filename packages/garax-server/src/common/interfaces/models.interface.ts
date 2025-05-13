@@ -26,7 +26,8 @@ import {
   SpecificationDetailProductModel,
   SpecificationProductModel,
   AttributeValuesModel,
-  ProductAttributeValuesModel
+  ProductAttributeValuesModel,
+  BookingModel
 } from '@/models';
 import { OrderDetailsModel } from '@/models/orderdetails';
 import { Sequelize } from 'sequelize';
@@ -36,6 +37,7 @@ export interface Models {
   Address: typeof AddressModel;
   ApiKey: typeof ApiKeyModel;
   Brand: typeof BrandModel;
+  Booking: typeof BookingModel;
   Cart: typeof CartModel;
   CartItems: typeof CartItemsModel;
   CategoryProduct: typeof CategoryProductModel;

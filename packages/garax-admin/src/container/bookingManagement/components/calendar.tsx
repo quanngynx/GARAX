@@ -7,26 +7,37 @@ import {DateSelectArg, EventApi, EventClickArg, formatDate,} from "@fullcalendar
 import interactionPlugin from '@fullcalendar/interaction';
 import ModalEvent from "@/container/bookingManagement/components/modalEvent";
 import "./calendar.css"
+import { IEventData } from "@/container/bookingManagement/types";
 
-interface EventData {
-    title?: string;
-    start?: string;
-    end?: string;
-    description?: string;
-    allDay?: boolean;
-}
  
 const Calendar = () => {
     const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [newEventTitle, setNewEventTitle] = useState<string>("");
     const [selectedDate, setSelectedDate] = useState<DateSelectArg | null>(null);
-    
+    const [error, setError] = useState<string>('');
+
     useEffect(() => {
         if (typeof window !== "undefined"){
             // TODO: get events from API
         }
     })
+
+    useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedEvents = localStorage.getItem("events");
+      if (savedEvents) {
+        setCurrentEvents(JSON.parse(savedEvents));
+      }
+    }
+  }, []);
+
+    useEffect(() => {
+        // Save events to local storage whenever they change
+        if (typeof window !== "undefined") {
+        localStorage.setItem("events", JSON.stringify(currentEvents));
+        }
+    }, [currentEvents]);
 
     const handleDateClick = (selected: DateSelectArg) => {
         setSelectedDate(selected);
@@ -34,7 +45,6 @@ const Calendar = () => {
     };
 
     const handleEventClick = (selected: EventClickArg) => {
-        // Prompt user for confirmation before deleting an event
         if (
             window.confirm(
                 `Are you sure you want to delete the event "${selected.event.title}"?`
@@ -43,19 +53,19 @@ const Calendar = () => {
             selected.event.remove();
         }
     };
-    
-    const handleAddEvent = (eventData: EventData) => {
-        if (eventData.title && selectedDate) {
+
+    const handleAddEvent = (IEventData: IEventData) => {
+        if (IEventData.title && selectedDate) {
             const calendarApi = selectedDate.view.calendar;
             calendarApi.unselect();
 
             const newEvent = {
-                id: `${selectedDate.start.toISOString()}-${eventData.title}`,
-                title: newEventTitle,
-                start: selectedDate.start,
-                end: selectedDate.end,
-                allDay: selectedDate.allDay,
-                description: eventData.description,
+                id: `${IEventData.start}-${IEventData.title}`,
+                title: IEventData.title,
+                start: IEventData.start,
+                end: IEventData.end,
+                allDay: IEventData.allDay,
+                description: IEventData.description,
             };
 
             calendarApi.addEvent(newEvent);
@@ -66,7 +76,9 @@ const Calendar = () => {
     const handleCloseModal = () => {
         setModalOpen(false);
         setNewEventTitle("");
+        setError("");
     };
+
     
     return (
         <div>
@@ -87,6 +99,10 @@ const Calendar = () => {
                                 <li
                                     className="border border-gray-200 shadow px-4 py-2 rounded-md text-blue-800"
                                     key={event.id}
+                                    onClick={() => {
+                                        // seeEvent(event);
+                                        setModalOpen(true);
+                                    }}
                                 >
                                     {event.title}
                                     <br />
@@ -132,6 +148,9 @@ const Calendar = () => {
                     setModalOpen={setModalOpen}
                     handleAddEvent={handleAddEvent}
                     handleCloseModal={handleCloseModal}
+                    selectedDate={selectedDate}
+                    error={error}
+                    setError={setError}
                 />
             </div>
         </div>

@@ -1,105 +1,130 @@
 "use client"
 
-import React from 'react';
-import {Checkbox, DatePicker, Form, FormProps, Input, Modal} from 'antd';
+import React, { useState, useEffect } from 'react';
+import {Checkbox, DatePicker, Form, FormProps, Input, Modal, TimePicker} from 'antd';
 import dayjs from "dayjs";
-
-interface EventData {
-    title?: string;
-    start?: string;
-    end?: string;
-    description?: string;
-    allDay?: boolean;
-}
+import { DateSelectArg } from '@fullcalendar/core';
+import { IEventData } from "@/container/bookingManagement/types";
 
 interface ModalEventProps {
     modalOpen: boolean;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    handleAddEvent: (eventData: EventData) => void;
+    handleAddEvent: (IEventData: IEventData) => void;
     handleCloseModal: () => void;
+    selectedDate: DateSelectArg | null;
+    error: string;
+    setError: React.Dispatch<React.SetStateAction<string>>;
 }
 
-type FieldType = {
-    title?: string;
-    start?: dayjs.Dayjs; 
-    end?: dayjs.Dayjs;
-    description?: string;
-    allDay?: boolean;
-};
+const ModalEvent: React.FC<ModalEventProps> = ({ modalOpen, handleAddEvent, handleCloseModal, selectedDate, error, setError }) => {
+    const [newEventTitle, setNewEventTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [allDay, setAllDay] = useState(false);
+    const [startDateTime, setStartDateTime] = useState<dayjs.Dayjs | null>(null);
+    const [endDateTime, setEndDateTime] = useState<dayjs.Dayjs | null>(null);
 
-const ModalEvent: React.FC<ModalEventProps> = ({ modalOpen, handleAddEvent, handleCloseModal }) => {
-    const [form] = Form.useForm();
-    
-    const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-        // Format datetime
-        const formattedValues = {
-            ...values,
-            start: values.start?.toISOString(),
-            end: values.end?.toISOString(),
-        };
-        handleAddEvent(formattedValues);
-        form.resetFields();
+    useEffect(() => {
+        if (selectedDate) {
+            setStartDateTime(dayjs(selectedDate.start));
+            setEndDateTime(dayjs(selectedDate.end));
+        }
+    }, [selectedDate]);
+
+    const handleSubmit = () => {
+        if (!newEventTitle.trim()) {
+            setError('Vui lòng nhập tiêu đề lịch hẹn');
+            return;
+        }
+
+        if (!startDateTime || !endDateTime) {
+            setError('Vui lòng chọn thời gian');
+            return;
+        }
+
+        handleAddEvent({
+            title: newEventTitle,
+            description: description,
+            allDay: allDay,
+            start: startDateTime.toISOString(),
+            end: endDateTime.toISOString()
+        });
+        setNewEventTitle('');
+        setDescription('');
+        setError('');
+        setAllDay(false);
+        handleCloseModal();
     };
-
-    // const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    //     console.log('Failed:', errorInfo);
-    // };
 
     return (
         <Modal
             title="Lịch hẹn mới"
             centered
-            okText={"Thêm lịch"}
+            okText="Thêm lịch"
+            onOk={handleSubmit}
             cancelText={"Hủy"}
             open={modalOpen}
             onCancel={handleCloseModal}
         >
-            <Form
-                form={form}
-                name="eventForm"
-                labelCol={{ span: 6 }}
-                wrapperCol={{ span: 18 }}
-                onFinish={onFinish}
-                autoComplete="off"
-            >
-                <Form.Item<FieldType>
-                    label="Tiêu đề"
-                    name="title"
-                    rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]}
-                >
-                    <Input />
-                </Form.Item>
+            <form className="space-y-4">
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Tiêu đề</label>
+                    <input
+                        type="text"
+                        placeholder="Nhập tiêu đề lịch hẹn"
+                        value={newEventTitle}
+                        onChange={(e) => setNewEventTitle(e.target.value)}
+                        required
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+                {error && <p className="text-red-500">{error}</p>}
 
-                <Form.Item<FieldType>
-                    label="Bắt đầu"
-                    name="start"
-                    rules={[{ required: true, message: 'Vui lòng chọn thời gian bắt đầu!' }]}
-                >
-                    <DatePicker showTime style={{ width: '100%' }} />
-                </Form.Item>
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">Thời gian bắt đầu</label>
+                        <DatePicker
+                            showTime
+                            value={startDateTime}
+                            onChange={(date) => setStartDateTime(date)}
+                            className="w-full"
+                            format="DD/MM/YYYY HH:mm"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">Thời gian kết thúc</label>
+                        <DatePicker
+                            showTime
+                            value={endDateTime}
+                            onChange={(date) => setEndDateTime(date)}
+                            className="w-full"
+                            format="DD/MM/YYYY HH:mm"
+                        />
+                    </div>
+                </div>
 
-                <Form.Item<FieldType>
-                    label="Kết thúc"
-                    name="end"
-                >
-                    <DatePicker showTime style={{ width: '100%' }} />
-                </Form.Item>
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Mô tả</label>
+                    <textarea
+                        placeholder="Nhập mô tả lịch hẹn"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
+                    />
+                </div>
 
-                <Form.Item<FieldType>
-                    label="Mô tả"
-                    name="description"
-                >
-                    <Input.TextArea />
-                </Form.Item>
-
-                <Form.Item<FieldType>
-                    name="allDay"
-                    valuePropName="checked"
-                    wrapperCol={{ offset: 6, span: 18 }}
-                >
-                    <Checkbox>Sự kiện cả ngày</Checkbox>
-                </Form.Item>
-            </Form>
+                <div className="flex items-center space-x-2">
+                    <input
+                        type="checkbox"
+                        id="allDay"
+                        checked={allDay}
+                        onChange={(e) => setAllDay(e.target.checked)}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <label htmlFor="allDay" className="text-sm font-medium text-gray-700">
+                        Sự kiện cả ngày
+                    </label>
+                </div>
+            </form>
         </Modal>
     );
 };

@@ -10,5 +10,6 @@ export * as PermissionController from './permission.controller';
 export * as ProductController from './product.controller';
 export * as ProductCategoryController from './productCategory.controller';
 export * as BrandController from './brand.controller';
+export * as BookingController from './booking.controller';
 
 export * as StatictistsController from './statictists.controller';
