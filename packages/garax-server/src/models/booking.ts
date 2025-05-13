@@ -30,7 +30,7 @@ export const bookingModel = (sequelize: Sequelize): typeof BookingModel => {
         type: DataTypes.STRING
       },
       desc: {
-        type: DataTypes.JSON
+        type: DataTypes.STRING
       },
       createdAt: {
         type: DataTypes.DATE,

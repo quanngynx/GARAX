@@ -19,7 +19,7 @@ const Calendar = () => {
 
     useEffect(() => {
         if (typeof window !== "undefined"){
-            // TODO: get events from API
+            
         }
     })
 

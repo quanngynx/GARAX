@@ -20,6 +20,9 @@ export async function up(queryInterface, Sequelize) {
     end: {
       type: Sequelize.STRING
     },
+    desc: {
+      type: Sequelize.STRING
+    },
     createdBy: {
       type: Sequelize.STRING
     },
