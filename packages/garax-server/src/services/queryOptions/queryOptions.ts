@@ -1,6 +1,6 @@
 import { Model, ModelStatic, Transaction, WhereOptions } from 'sequelize';
 import { QueryOptions } from '@/common/interfaces';
-import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
+import { GetAllProductsRequest } from '@/common/requests/product';
 import { jsonUtils } from '@/common/utils';
 import { NotFoundError } from '@/middlewares';
 import {
@@ -108,7 +108,7 @@ export class QueryOptionsByBuilder<T extends Model> {
     }
   }
 
-  async optionsParse({ filters, search, sort, pagination }: GetAllProductsByQueryOptionsQueryState) {
+  async optionsParse({ filters, search, sort, pagination }: GetAllProductsRequest) {
     const filtersParse = jsonUtils.jsonParse(filters, {});
     const searchParse = jsonUtils.jsonParse(search, {});
     const sortParse = jsonUtils.jsonParse(sort, {});
