@@ -31,6 +31,13 @@ class AddressController {
       metadata: await AddressService.addNewAddress(req.body)
     }).send(res);
   };
+
+  deleteAddressById = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Add new address success!',
+      metadata: await AddressService.deleteAddressById(req.body)
+    }).send(res);
+  };
 }
 
 export default new AddressController();

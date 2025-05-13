@@ -1,6 +1,6 @@
 'use strict';
 
-import { AddNewAddressRequest, GetAddressByIdRequest } from '@/common/requests/address';
+import { AddNewAddressRequest } from '@/common/requests/address';
 import { InternalServerError, NotFoundError } from '@/middlewares';
 import { db } from '@/models';
 
@@ -58,6 +58,17 @@ export class AddressService {
       }
 
       return createNewAddress;
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
+  }
+  static async deleteAddressById(id: number) {
+    try {
+      const deleteAdress = await db.Address.destroy({
+        where: {
+          id: id
+        }
+      });
     } catch (error) {
       throw new InternalServerError(`${error}`);
     }
