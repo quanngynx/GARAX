@@ -34,6 +34,7 @@ import attributeValuesModel from './attributevalues';
 import productattributeValuesModel from './productattributevalues';
 import variantKeysModel from './variantkeys';
 import variantValuesModel from './variantvalues';
+import bookingModel from './booking';
 
 const basename = path.basename(__filename);
 
@@ -59,6 +60,7 @@ const Account = accountModel(sequelize);
 const Address = addressModel(sequelize);
 const ApiKey = apiKeyModel(sequelize);
 const Brand = brandModel(sequelize);
+const Booking = bookingModel(sequelize);
 const Cart = cartModel(sequelize);
 const CartItems = cartItemsModel(sequelize);
 const CategoryProduct = categoryProductModel(sequelize);
@@ -90,6 +92,7 @@ const db: Models = {
   Address,
   ApiKey,
   Brand,
+  Booking,
   Cart,
   CartItems,
   CategoryProduct,
@@ -160,6 +163,7 @@ export * from './account';
 export * from './address';
 export * from './apikey';
 export * from './brand';
+export * from './booking';
 export * from './cart';
 export * from './cartitems';
 export * from './categoryproduct';

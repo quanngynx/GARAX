@@ -6,9 +6,12 @@ import { SettingOutlined } from "@ant-design/icons";
 import { AutoCompletePrimary } from "@/components/autoComplete";
 import { useRouter } from "next/navigation";
 import { PATH_DASHBOARD } from "@/routes/paths";
+import {useState} from "react";
 
 function MainFeat() {
     const router = useRouter();
+    const [modalOpen, setModalOpen] = useState(false);
+    
     const handleNavigateToCreate = () => {
         router.push(PATH_DASHBOARD.admin.products.add);
     };

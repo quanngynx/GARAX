@@ -1,8 +1,8 @@
 import { PageHeaderCustom } from "@/components/pageHeader";
 import MainFeat from "./components/mainFeat";
 import CategoryProductsFilter from "./components/categoryProducts";
-import TableProducts from "./components/tableProducts";
 import { LineFullWidth } from "@/components/line";
+import Calendar from "@/container/bookingManagement/components/calendar";
 function BookingManagementPage() {
     return ( 
     <div className="">
@@ -14,7 +14,7 @@ function BookingManagementPage() {
 
         <LineFullWidth />
 
-        <TableProducts />
+        <Calendar />
     </div> 
     );
 }

@@ -1,0 +1,13 @@
+/* calendar.css */
+.fc .fc-button {
+    border-radius: 40px;  /* Làm tròn nút */
+    padding: 6px 14px;      /* Tuỳ chỉnh kích thước nút */
+    background-color: #2563eb; /* Màu nền xanh */
+    color: white;
+    border: none;
+    transition: 0.2s;
+}
+
+.fc .fc-button:hover {
+    background-color: #1d4ed8;
+}

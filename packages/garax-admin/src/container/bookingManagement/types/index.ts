@@ -8,3 +8,11 @@ export type TDataTableType = {
     address: string;
     tags: string[];
 }
+
+export interface IEventData {
+    title?: string;
+    start?: string;
+    end?: string;
+    description?: string;
+    allDay?: boolean;
+}
