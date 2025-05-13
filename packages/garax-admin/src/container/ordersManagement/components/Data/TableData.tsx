@@ -24,6 +24,12 @@ export const columns: TableColumnsType<OrderModel> = [
             key: "fullname",
             render: (text: string) => <a>{text}</a>,
             width: 200,
+            // onHeaderCell: () => ({
+            //     className: "min-w-[200px]"
+            //   }),
+            //   onCell: () => ({
+            //     className: "min-w-[200px]"
+            //   }),
         },
         {
             title: "Số điện thoại",

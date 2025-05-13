@@ -1,0 +1,23 @@
+node_modules
+.dockerignore
+Dockerfile
+Dockerfile.prod
+
+node_modules_linux
+.gitignore
+.git
+.vscode
+
+/docker/Dockerfile
+
+# clients
+/docker/clients/Dockerfile
+/docker/clients/Dockerfile.prod
+
+# admin
+/docker/admin/Dockerfile
+/docker/admin/Dockerfile.prod
+
+# server
+/docker/server/Dockerfile
+/docker/server/Dockerfile.prod

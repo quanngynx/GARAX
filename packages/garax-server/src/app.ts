@@ -61,6 +61,7 @@ app.use(
     extended: true
   })
 );
+
 // checkConnect.default.checkOverLoad();
 
 //#region Init rate limit
@@ -70,12 +71,6 @@ app.use('', apiLimiter);
 app.use('', router);
 
 //#region hanlding errors
-// app.use((next: NextFunction) => {
-//   const error = new Error('Not Found')
-//   error.cause = 404
-//   next(error)
-// })
-
 app.use((err: ErrorStatus, _req: Request, res: Response, _next: NextFunction) => {
   const statusCode = err.status || 500;
   res.status(statusCode).json({
@@ -96,61 +91,7 @@ app.get('/ping', (_req: Request, res: Response, _next: NextFunction) => {
 
 app.get('/stress-test', (_req, res) => {
   // const data = 'This is a post about how to use the compression package'.repeat(100);
-  const data = {
-    name: 'Sản phẩm mẫu 2',
-    desc: 'This is a product description',
-    views: 500,
-    tags: 'test',
-    manufacturingDate: '1696118400000',
-    minPrice: 50.99,
-    maxPrice: 99.99,
-    rate: 4.5,
-    totalRate: 100,
-    totalSold: 50,
-    categoryId: 1,
-    subCategoryId: 1,
-    sub2CategoryId: 1,
-    sub3CategoryId: 1,
-    videoId: 1,
-    brandId: 1,
-    status: 'publish',
-    createdBy: 'admin',
-    updatedBy: '',
-    attributes: [
-      {
-        key: 'color',
-        value: 'red'
-      },
-      {
-        key: 'size',
-        value: 'L'
-      }
-    ],
-    variants: [
-      {
-        key: 'Red - Large',
-        values: ['red', 'green']
-      },
-      {
-        key: 'Blue - Medium',
-        values: ['blue', 'black']
-      }
-    ],
-    variantValues: [
-      {
-        price: 89.99,
-        oldPrice: 89.99,
-        stock: 120,
-        variantCombination: ['absdadcd12']
-      },
-      {
-        price: 79.99,
-        oldPrice: 79.99,
-        stock: 120,
-        variantCombination: ['abcd1234']
-      }
-    ]
-  };
+  const data = {};
   res.send(data);
 });
 

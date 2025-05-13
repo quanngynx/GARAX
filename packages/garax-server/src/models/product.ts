@@ -23,7 +23,8 @@ export type ProductCreationAttributes = Optional<
 >;
 
 export class ProductModel extends Model<Product, ProductCreationAttributes> {
-  public product_attribute_values?: ProductAttributeValuesModel;
+  public product_attribute_values?: ProductAttributeValuesModel[];
+  public product_variant_values?: ProductVariantValuesModel[];
 
   public static associations: {
     productVariantValues: Association<ProductModel, ProductVariantValuesModel>;
@@ -150,7 +151,14 @@ export const productModel = (sequelize: Sequelize) => {
       sequelize,
       modelName: 'Product',
       tableName: 'products',
-      timestamps: true
+      timestamps: true,
+      indexes: [
+        {
+          type: 'FULLTEXT',
+          name: 'fullText',
+          fields: ['name', 'slug']
+        }
+      ]
     }
   );
   return ProductModel;

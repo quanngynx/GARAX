@@ -6,10 +6,12 @@ import { ProductModel } from "@/apis/models";
 import { ProductListRequest } from "@/apis/requests/products";
 import { useState } from "react";
 import { useGetProductsList } from "../hooks";
+import { message } from "antd";
 
 function TableProducts({
     // onReloadData
 }) {
+    const [messageApi, contextHolder] = message.useMessage();
     /**
      * Chuyển về trang chính sau
      */
@@ -21,19 +23,31 @@ function TableProducts({
 
     const {
         data: pagedListResponse,
-        // isLoading: fetchingPagedList,
-        // isError,
-        // error,
+        isLoading: fetchingPagedList,
+        isError: isErrorPagedList,
+        error: errorPagedList,
     } =
         useGetProductsList({
           request: pagedListRequest,
     });
 
+    if(fetchingPagedList) return (<p>Đang tải dữ liệu...</p>);
+    if(isErrorPagedList) return (<p>Đã xảy ra lỗi</p>);
+    if(errorPagedList) {
+        messageApi.open({
+            type: 'error',
+            content: `Đã xảy ra lỗi: \n ${errorPagedList}`,
+        });
+    }
+
     return ( 
+        <>
+        {contextHolder}
         <TableCustom<ProductModel>  
             columns={columns}
-            data={pagedListResponse.metadata ?? []}
+            data={pagedListResponse?.metadata ?? []}
         />
+        </>
     );
 }
 

@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { cartQueryKey } from "@/api/constants";
 import { CartAdditionResponse } from "@/api/responses/cart";
-import { cartApi } from "@/api/cartUrl";
+import { cartApi } from "@/api/urls/cartUrl";
 import { CartAdditionRequest } from "@/api/requests/cart";
 
 interface Props {

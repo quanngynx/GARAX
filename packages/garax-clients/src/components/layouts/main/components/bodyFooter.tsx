@@ -7,12 +7,9 @@ import FbIcon from "@/assets/layout/fb-brand.svg?react";
 import InsIcon from "@/assets/layout/ins-brand.svg?react";
 import XIcon from "@/assets/layout/x-brand.svg?react";
 import LinkedlnIcon from "@/assets/layout/linkedin-brand.svg?react";
-import Dropdown from "antd/es/dropdown";
-import Button from "antd/es/button";
-import Space from "antd/es/space";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
-import { MenuProps } from "antd/es/menu";
-import message from "antd/es/message";
+import React from "react";
+import { Button, Dropdown, MenuProps, message, Space } from "antd";
 
 
 // const titleFooter = [
@@ -161,7 +158,8 @@ const connectVia = [
   },
 ];
 
-const handleMenuClick: MenuProps['onClick'] = (e) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const handleMenuClick: MenuProps['onClick'] = (e: any) => {
   message.info('Click on menu item.');
   console.log('click', e);
 };

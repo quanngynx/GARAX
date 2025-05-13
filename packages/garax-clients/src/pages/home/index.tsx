@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Carousel, Tabs, TabsProps } from "antd";
 
 // import { useCheckAuth } from "../auth/checkToken";
 
@@ -15,21 +16,27 @@ import BroswerByType from "./components/broswerByType";
 import BestCar from "./components/Bestcar";
 import ReviewFeedback from "./components/reviewFeedback";
 import {Line} from "@/components/line/line";
+import { NextArrow, PrevArrow } from "@/components/carousel";
+// import { cardProducts } from "@/__mock__";
+// import CardProducts from './components/cardProduct' 
 
-// const tabsConfig: ITabsConfig[] = [
-//   {
-//     label: "Spare Parts",
-//     content: "Content Panel 1",
-//   },
-//   {
-//     label: "Support Tools",
-//     content: "Content Panel 2",
-//   },
-//   {
-//     label: "Others",
-//     content: "Content Panel 3",
-//   },
-// ];
+const itemsTab: TabsProps['items'] = [
+  {
+    key: '1',
+    label: 'Phụ tùng',
+    children: <CardProduct />,
+  },
+  {
+    key: '2',
+    label: 'Công cụ hỗ trợ',
+    children: <CardProduct />,
+  },
+  {
+    key: '3',
+    label: 'Khác',
+    children: <CardProduct />,
+  },
+];
 
 export function HomePage(): JSX.Element {
   const history = useNavigate();
@@ -41,15 +48,46 @@ export function HomePage(): JSX.Element {
     });
   }
 
+  const onChange = (key: string) => {
+    console.log(key);
+  };
+
   return (
-  <div className="md:w-[1222px] bg-white h-[100%] md:py-24">
+  <div className="md:w-[1222px] bg-white h-[100%] md:py-[84px]">
       <div className="relative">
         <div className="">
-          <img
+          {/* <img
             src={imagecar}
             alt="A car in a desert landscape"
             className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
-          />
+          /> */}
+          <Carousel
+            arrows
+            autoplay
+            prevArrow={<PrevArrow />}
+            nextArrow={<NextArrow />}
+          >
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+              <img
+                src={imagecar}
+                alt="A car in a desert landscape"
+                className="w-full rounded-lg h-[300px] md:h-[480px] object-cover"
+              />
+          </Carousel>
         </div>
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
           <div className="absolute flex flex-col justify-center items-center text-center">
@@ -91,7 +129,7 @@ export function HomePage(): JSX.Element {
       <div>
       {/* Featured Listings Section */}
       <div className="mt-8 md:mt-12">
-        <div className="px-4 md:px-8">
+        <div className="md:pr-8 mb-4">
           <div className="text-[#050b20] text-2xl md:text-[40px] font-bold font-['DM Sans'] leading-7 md:leading-10">
             Danh sách sản phẩm
           </div>
@@ -99,7 +137,9 @@ export function HomePage(): JSX.Element {
         </div>
 
         {/* Product Cards */}
-        <CardProduct />
+        <Tabs defaultActiveKey="1" items={itemsTab} onChange={onChange} />
+        
+        {/* <CardProduct /> */}
 
         {/* Button to navigate to product page */}
         <BtnProducts navigateTo={navigateToProductPage} />
@@ -108,5 +148,3 @@ export function HomePage(): JSX.Element {
   </div>
   );
 }
-
- 

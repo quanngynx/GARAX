@@ -25,7 +25,7 @@ function TableProducts() {
     return ( 
         <TableCustom<TransactionsModel>
             columns={columns}
-            data={pagedListResponse.metadata ?? []}
+            data={pagedListResponse?.metadata ?? []}
         />
     );
 }

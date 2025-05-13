@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { ProductListRequest } from "@/apis/requests/products";
-import { ProductListResponse } from "@/apis/responses";
+import { ProductListMetadata, ProductListResponse } from "@/apis/responses";
 import { productQueryKey } from "@/apis/constants";
 import { productApi } from "@/apis/productUrl";
 
@@ -20,7 +20,7 @@ export function useGetProductsList({
         queryKey: productQueryKey.LIST(request),
         queryFn: async ({ signal }) => {
             const response = await productApi.list(request, signal);
-            // console.log("📌 response:", response.data.metadata);
+            console.log("📌 response:", response);
 
             return response.data
         },

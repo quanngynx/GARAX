@@ -1,0 +1,1 @@
+export const ROUTER_ACCOUNT = 'account';

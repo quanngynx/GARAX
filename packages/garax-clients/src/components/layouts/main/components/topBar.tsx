@@ -1,4 +1,4 @@
- import { cn } from '@/utils';
+import { cn } from '@/utils';
 
 export function TopBar() {  
     return (
@@ -17,7 +17,11 @@ export function TopBar() {
                         <a href='https://kuanngyn.io.vn'>Blog</a>
                     </div>
                     <div className="font-light px-3 py-3">|</div>
-                    <div className="px-3 py-3 hover:bg-[#2B2B2F] cursor-pointer">Trung tâm CSKH</div>
+                    <a href='http://localhost:5006/help/contact-us'>
+                        <div className="px-3 py-3 hover:bg-[#2B2B2F] cursor-pointer">
+                        Trung tâm CSKH
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

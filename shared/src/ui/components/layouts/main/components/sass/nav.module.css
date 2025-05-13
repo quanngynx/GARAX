@@ -1,0 +1,17 @@
+.nav__expand {
+    display: grid;//
+    
+    grid-auto-rows: max-content;
+    
+    justify-items: end;
+    position: absolute;//
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100vw;
+    height: 100vh;
+    padding: 0 40px;
+    opacity: 0;
+    
+    animation: slideDown 0.6s ease-out forwards;
+}

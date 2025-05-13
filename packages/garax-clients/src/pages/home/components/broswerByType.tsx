@@ -6,7 +6,7 @@ function broswerByType() {
   return (
     <div className="flex mt-36 max-h-[600px] w-full h-[500px] sm:h-[400px] md:h-[500px] lg:h-[400px] rounded-2xl  ">
       <div className="w-full">
-        <div className="flex flex-row justify-between items-center my-5 px-6">
+        <div className="flex flex-row justify-between items-center mb-5 px-6">
           <div className="text-[#050b20] text-3xl font-bold font-['DM Sans'] leading-10">
             Chọn Loại Dịch Vụ
           </div>

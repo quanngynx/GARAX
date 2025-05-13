@@ -1,7 +1,7 @@
 import { GENDER } from '../../constants';
+import { PrimaryKey } from '../primaryKey.interface';
 
-export interface Account {
-  id?: number;
+export interface Account extends PrimaryKey {
   userName: string;
   firstName: string;
   lastName: string;

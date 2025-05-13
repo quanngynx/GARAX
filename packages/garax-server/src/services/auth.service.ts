@@ -26,13 +26,16 @@ import { GENDER_VALUES } from '@/common/constants';
 import { KeyStoreRequest, LoginRequest, RegisterRequest, VerifyOtpRequest } from '@/common/requests/auth';
 import { error } from 'node:console';
 import { Account } from '@/common/interfaces';
+import { GetInforAccountResponse } from '@/common/responses/access';
+
+type GetInforDataAccount = Pick<GetInforAccountResponse, 'id' | 'userName' | 'email' | 'roleId'>;
 
 export class AuthJWTService {
   static register = async ({ userName, email, password, roleId = 1 }: RegisterRequest) => {
     try {
       const modelUser = await db.Account.findOne({ where: { email: email } });
 
-      if (modelUser) {
+      if (modelUser?.dataValues) {
         throw new BadRequestError('Error: Account already registered!');
       }
 
@@ -70,7 +73,7 @@ export class AuthJWTService {
         roleId: roleId
       });
 
-      if (newUser) {
+      if (newUser.dataValues) {
         // console.log(newUser);
         await db.OtpCode.destroy({
           where: {
@@ -110,7 +113,7 @@ export class AuthJWTService {
         return {
           code: 201,
           metadata: {
-            user: getInfoData<Partial<Account>>({
+            user: getInfoData<Account>({
               fields: ['id', 'userName', 'email'],
               object: newUser.dataValues
             }),
@@ -136,14 +139,14 @@ export class AuthJWTService {
     password
     // refreshToken = ''
   }: LoginRequest) => {
-    const selectedColumns: string | string[] = ['email', 'password', 'userName', 'phone', 'roleId'];
+    const selectedColumns: string | string[] = ['id', 'email', 'password', 'userName', 'phone', 'roleId'];
     const foundUser = await AccountService.findByEmail({
       email,
       select: selectedColumns.length ? selectedColumns : ['id']
     });
-    if (!foundUser) throw new BadRequestError('User not registered!');
 
-    const match = bcrypt.compare(password, foundUser.dataValues.password);
+    if (!foundUser) throw new BadRequestError('User not registered!');
+    const match = bcrypt.compare(password, foundUser.password);
     if (!match) throw new AuthFailureError('Authentication error!');
 
     const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
@@ -161,7 +164,7 @@ export class AuthJWTService {
     const {
       id: userId
       // roleId
-    } = foundUser.dataValues;
+    } = foundUser;
     const isUserId = userId !== undefined ? userId : 0;
     const tokens = await createTokenPair(
       {
@@ -180,9 +183,9 @@ export class AuthJWTService {
     });
 
     return {
-      user: getInfoData<Partial<Account>>({
+      user: getInfoData<GetInforDataAccount>({
         fields: ['id', 'userName', 'email', 'roleId'],
-        object: foundUser.dataValues
+        object: foundUser
       }),
       tokens
     };

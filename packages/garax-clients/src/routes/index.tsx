@@ -6,6 +6,7 @@ import DelayedSuspense from "@/components/delaySuspense/DelayedSuspense";
 // layout
 import MainLayout from "@/components/layouts/main";
 import OnlyCanvas from "@/components/layouts/onlyCanvas";
+import OnlyContact from "@/components/layouts/onlyContact";
 
 // page
 import { HomePage } from "@/pages/home";
@@ -74,6 +75,8 @@ import ErrorPage from '@/pages/error'
 import ErrorPage2 from '@/pages/error/error2'
 // Loading
 import Loader from "@/components/loading/loading-react";
+import { HelpCenterPage } from "@/pages/helpCenter";
+import { ContactUsPage } from "@/pages/contactUs";
 // import Spinner from "@/components/spinner";
 // import { patch } from "@mui/material";
 
@@ -210,6 +213,20 @@ function Routes() {
               element: <ProfileHistoryAccess />
             }
           ]
+        }
+      ]
+    },
+    {
+      path: 'help',
+      element: <OnlyContact />,
+      children: [
+        {
+          path: '',
+          element: <ContactUsPage />
+        },
+        {
+          path: 'contact-us',
+          element: <HelpCenterPage />
         }
       ]
     },

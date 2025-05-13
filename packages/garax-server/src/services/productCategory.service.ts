@@ -1,8 +1,8 @@
 'use strict';
-// import slugify from 'slugify';
 import { db } from '@/models';
 import { BadRequestError, InternalServerError } from '@/middlewares';
 import { AddNewCategoryRequest } from '@/common/requests/productCategory';
+import { CategoryProduct } from '@/common/interfaces';
 
 export class ProductCategoryService {
   static async addNewCategory({
@@ -13,7 +13,7 @@ export class ProductCategoryService {
     imageId,
     parentId
   }: AddNewCategoryRequest) {
-    console.log('name::', name);
+    // console.log('name::', name);
 
     // const isExist = await db.ProductCategory.findOne({ where: { title: title } });
     // console.log('isExist::', isExist)
@@ -49,25 +49,14 @@ export class ProductCategoryService {
     return allProductCate;
   }
 
-  static async updateTitleCategory(name: string) {
-    const isExist = db.CategoryProduct.findOne({ where: { name: name } });
+  static async updateTitleCategory(data: Partial<CategoryProduct>): Promise<[affectedCount: number]> {
+    const isExist = db.CategoryProduct.findOne({ where: { id: data.id } });
 
     if (!isExist) throw new BadRequestError('Product category is not exist!!!');
 
-    // const alias = slugify(name, {
-    //   lower: true,
-    //   strict: true,
-    //   locale: 'vi',
-    // });
-
-    const newProductCate = await db.CategoryProduct.update(
-      {
-        name: name
-      },
-      {
-        where: {}
-      }
-    );
+    const newProductCate = await db.CategoryProduct.update(data, {
+      where: { id: data.id }
+    });
 
     console.log('newProductCate:', newProductCate);
 

@@ -1,9 +1,9 @@
-import { BASE } from "./baseUrl";
 import { ver_API, ROUTES_AUTH } from "./constants";
 import API_CONFIG from '@/utils/axios';
 import { AccountLoginRequest } from "./requests";
 import { AxiosResponse } from "axios";
 import { AccountLoginResponse, AccountLogoutResponse } from "./responses";
+import { BASE } from "./bases";
 
 export const BASE_LOGIN = `${BASE(ver_API, ROUTES_AUTH)}/login`;
 export const BASE_LOGOUT = `${BASE(ver_API, ROUTES_AUTH)}/logout`;

@@ -10,7 +10,7 @@ export type VariantKeysCreationAttributes = Optional<
 
 export class VariantKeysModel extends Model<VariantKeys, VariantKeysCreationAttributes> {
   public static associations: {
-    variantValues: Association<VariantKeysModel, VariantValuesModel>;
+    variantValue: Association<VariantKeysModel, VariantValuesModel>;
   };
   /**
    * Helper method for defining associations.
@@ -20,7 +20,7 @@ export class VariantKeysModel extends Model<VariantKeys, VariantKeysCreationAttr
   static associate(models: Models) {
     this.hasOne(models.VariantValues, {
       foreignKey: 'variantKeyId',
-      as: 'variant_values'
+      as: 'variant_value'
     });
   }
 }

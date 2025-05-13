@@ -142,7 +142,7 @@ export function ProductPage() {
   } = useGetProductsList({
     request: pagedListRequest,
   });
-  console.log("pagedListResponse::", pagedListResponse)
+  // console.log("pagedListResponse::", pagedListResponse)
 
   return (
     <div className="flex flex-col bg-white justify-center mt-24 w-[1222px]">
@@ -175,7 +175,7 @@ export function ProductPage() {
         <div className="md:w-full bg-white h-auto">
           {/* <Products result={result} /> */}
           <section className="grid md:grid-cols-4 gap-2 z-[-2]">
-            {pagedListResponse?.map((item) => (
+            {pagedListResponse?.metadata.map((item) => (
                 <ProductsCard
                   key={item.id}
                   image={""}

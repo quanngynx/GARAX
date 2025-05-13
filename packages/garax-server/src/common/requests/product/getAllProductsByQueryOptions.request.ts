@@ -4,7 +4,7 @@ import { ProductModel } from '@/models';
 
 export type GetAllProductsByQueryOptions = QueryOptions<ProductModel>;
 
-export type GetAllProductsByQueryOptionsQueryState = Pick<
+export type GetAllProductsRequest = Pick<
   GetAllProductsByQueryOptionsQuery,
   'filters' | 'search' | 'sort' | 'pagination'
 >;

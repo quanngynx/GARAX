@@ -41,20 +41,20 @@ class BrandController {
   //   }).send(res)
   // }
 
-  // deleteTitleCategoryByTitle = async (req: Request, res: Response, _next: NextFunction) => {
-  //   const { name } = req.params;
-  //   new SuccessResponse({
-  //     message: 'Delete product category by title success!',
-  //     metadata: await BrandService.deleteTitleCategoryByTitle(name)
-  //   }).send(res)
-  // }
+  deleteBrandById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
+    new SuccessResponse({
+      message: 'Delete brand by id success!',
+      metadata: await BrandService.deleteBrandById(Number(id))
+    }).send(res);
+  };
 
-  // deleteAllTitleCategory = async (req: Request, res: Response, _next: NextFunction) => {
-  //   new SuccessResponse({
-  //     message: 'Delete all product category success!',
-  //     metadata: await BrandService.deleteAllTitleCategory(req.body)
-  //   }).send(res)
-  // }
+  deleteAllBrand = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Delete all brand success!',
+      metadata: await BrandService.deleteAllBrand(req.body)
+    }).send(res);
+  };
 }
 
 export default new BrandController();

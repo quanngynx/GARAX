@@ -6,11 +6,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from 'react-redux';
 
 import { store } from './redux/stores';
-// import reportPerformance from "./utils/reportPerformance.ts";
 
 import App from "./App";
 import "./index.css";
 import "./i18n";
+import { ConfigProvider } from "antd";
 
 const client = new QueryClient();
 const rootElement = document.getElementById("root");
@@ -23,11 +23,27 @@ createRoot(rootElement).render(
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-      <QueryClientProvider client={client}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </QueryClientProvider>
+        <QueryClientProvider client={client}>
+          <Provider store={store}>
+            <ConfigProvider
+              theme={{
+                components: {
+                  Carousel: {
+                    /* here is your component tokens */
+                    // arrows offset to Carousel edge
+                    arrowOffset: 10,
+                    arrowSize: 24,
+                  },
+                },
+                token: {
+                  /* here is your global tokens */
+                },
+              }}
+            >
+              <App />
+            </ConfigProvider>
+          </Provider>
+        </QueryClientProvider>
       </BrowserRouter>
     </HelmetProvider>
   </StrictMode>

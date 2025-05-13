@@ -8,17 +8,17 @@ import { SuccessResponse } from '../middlewares/success.response';
 import { PerrmissionService } from '../services/permission.service';
 
 class PermissionController {
-  createAccessForAdmin = async (req: Request, res: Response, _next: NextFunction) => {
+  createAccessForAdmin = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get all product success!',
-      metadata: await PerrmissionService.createAccessForAdmin(req.body)
+      metadata: await PerrmissionService.createAccessForAdmin()
     }).send(res);
   };
 
-  createAccessForUser = async (req: Request, res: Response, _next: NextFunction) => {
+  createAccessForUser = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Get all product success!',
-      metadata: await PerrmissionService.createAccessForUser(req.body)
+      metadata: await PerrmissionService.createAccessForUser()
     }).send(res);
   };
 }

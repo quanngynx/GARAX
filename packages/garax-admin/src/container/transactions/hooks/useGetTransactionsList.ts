@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { OrderListMetadata, OrderListResponse } from "@/apis/responses";
+import { OrderListResponse } from "@/apis/responses";
 import { orderQueryKey } from "@/apis/constants";
 import { OrderListRequest } from "@/apis/requests/orders";
 import { orderApi } from "@/apis/orderUrl";

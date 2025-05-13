@@ -1,23 +1,41 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-empty-pattern */
 'use strict';
 import { default as slugify } from 'slugify';
 
 import {
-  AddManyNewProductRequest,
   AddNewProductRequest,
-  GetAllBestSellerProducts,
-  // GetAllProductsByQueryOptions,
-  GetAllProductsByQueryOptionsQueryState
+  DeleteProductAttributesByIdRequest,
+  DeleteProductVariantByIdRequest,
+  FindAllProductByQueryRequest,
+  GetAllProductsRequest,
+  UpdateProductAttributeByIdRequest,
+  UpdateProductByIdRequest,
+  UpdateProductVariantByIdRequest
 } from '@/common/requests/product';
 
 import { db, ProductModel } from '@/models';
-import { BadRequestError, NotFoundError } from '@/middlewares';
+import { BadRequestError, InternalServerError, NotFoundError } from '@/middlewares';
 import { getProductById } from '@/common/repositories';
 import { generateSKU } from '@/common/utils';
-import { QueryOptionsByBuilder } from './queryOptions';
-
-const productOptionsQuery = new QueryOptionsByBuilder<ProductModel>(ProductModel);
+import {
+  attributeValuesOptionsQuery,
+  categoryProductOptionsQuery,
+  imageOptionsQuery,
+  productAttributeValuesOptionsQuery,
+  productOptionsQuery,
+  productVariantValuesOptionsQuery,
+  variantKeysOptionsQuery,
+  variantValuesOptionsQuery
+} from './queryOptions';
+import { literal } from 'sequelize';
+import {
+  AddNewProductResponse,
+  DeleteAllProductResponse,
+  DeleteProductAttributesByIdResponse,
+  DeleteProductVariantByIdResponse,
+  FindAllProductByQueryResponse,
+  GetAllProductsByQueryOptionsResponse,
+  GetViewestProductResponse
+} from '@/common/responses/product';
 
 export class ProductService {
   static async addNewProduct({
@@ -43,7 +61,7 @@ export class ProductService {
     attributes = [],
     variants = [],
     variantValues = []
-  }: AddNewProductRequest) {
+  }: AddNewProductRequest): Promise<AddNewProductResponse> {
     /**
      * 1. Check categoryId & brandId?
      */
@@ -222,17 +240,19 @@ export class ProductService {
       ...newProduct.get({ plain: true }),
       attributes: createAttributes,
       variants: variants.map((variant) => ({
-        name: variant.key,
+        key: variant.key,
         values: variant.values
       })),
       variantValues: createdVariantValues
     };
   }
 
-  static async addManyNewProduct({}: AddManyNewProductRequest) {}
+  static async addManyNewProduct() {}
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static async addVariantProduct(productId: number, _data: any) {
+  static async addVariantProduct(
+    productId: number
+    // _data: any
+  ) {
     const getProductFromId = await getProductById(productId);
 
     if (!getProductFromId) {
@@ -242,7 +262,7 @@ export class ProductService {
     // Create variant from id
   }
 
-  static async getAllProducts(_options = {}) {
+  static async getAllProducts() {
     // const {
     //   fields,
     //   limit = 10,
@@ -298,22 +318,14 @@ export class ProductService {
   /**
    * @refference: https://sequelize.org/docs/v6/other-topics/typescript/#utility-types
    * @param options: GetAllProductsByQueryOptionsQueryState
-   * @returns {Promise<{
-   *   totalPage: number;
-   *   totalRows: number;
-   *   rows: ProductModel[];
-   * }>}
+   * @returns Promise: GetAllProductsByQueryOptionsResponse
    */
   static async getAllProductsByQueryOptions({
     filters,
     search,
     sort,
     pagination
-  }: GetAllProductsByQueryOptionsQueryState): Promise<{
-    totalPage: number;
-    totalRows: number;
-    rows: ProductModel[];
-  }> {
+  }: GetAllProductsRequest): Promise<GetAllProductsByQueryOptionsResponse> {
     const optionsParse = await productOptionsQuery.optionsParse({
       filters,
       search,
@@ -332,7 +344,7 @@ export class ProductService {
     return allPro;
   }
 
-  static async getAllBestSellerProducts(_options: GetAllBestSellerProducts = {}) {
+  static async getAllBestSellerProducts() {
     // const {
     //   fields,
     //   limit = 10,
@@ -352,7 +364,7 @@ export class ProductService {
     };
   }
 
-  static async getViewestProduct(limit: number) {
+  static async getViewestProductSparePart(limit: number): Promise<GetViewestProductResponse> {
     const topViewedProducts = await db.Product.findAll({
       order: [['views', 'DESC']],
       limit: limit
@@ -360,18 +372,77 @@ export class ProductService {
 
     return {
       limit: limit,
-      result: {
-        topViewedProducts
-      }
+      result: topViewedProducts
     };
   }
 
-  static async updateProductById(id: number, {}) {
-    return id;
+  static async getViewestProductSupportTools(limit: number): Promise<GetViewestProductResponse> {
+    const topViewedProducts = await db.Product.findAll({
+      order: [['views', 'DESC']],
+      limit: limit
+    });
+
+    return {
+      limit: limit,
+      result: topViewedProducts
+    };
   }
 
-  static async updatePartProductById(id: number, {}) {
-    return id;
+  static async getViewestProductOthers(limit: number): Promise<GetViewestProductResponse> {
+    const topViewedProducts = await db.Product.findAll({
+      order: [['views', 'DESC']],
+      limit: limit
+    });
+
+    return {
+      limit: limit,
+      result: topViewedProducts
+    };
+  }
+
+  static async updateProductById(
+    id: number,
+    data: Partial<UpdateProductByIdRequest>
+  ): Promise<[affectedCount: number]> {
+    try {
+      return await db.Product.update(data, {
+        where: {
+          id
+        }
+      });
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
+  }
+
+  static async updateProductAttributeById(
+    id: number,
+    data: Partial<UpdateProductAttributeByIdRequest>
+  ): Promise<[affectedCount: number]> {
+    try {
+      return await db.ProductAttributeValues.update(data, {
+        where: {
+          id
+        }
+      });
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
+  }
+
+  static async updateProductVariantById(
+    id: number,
+    data: Partial<UpdateProductVariantByIdRequest>
+  ): Promise<[affectedCount: number]> {
+    try {
+      return await db.ProductVariantValues.update(data, {
+        where: {
+          id
+        }
+      });
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
   }
 
   static async removeProductById(id: number) {
@@ -426,11 +497,106 @@ export class ProductService {
     return id;
   }
 
-  static async deleteAllProduct() {}
+  static async deleteProductAttributesById({
+    id,
+    attributeValuesIds
+  }: DeleteProductAttributesByIdRequest): Promise<DeleteProductAttributesByIdResponse> {
+    try {
+      const deleteAttributeValuesProps = attributeValuesOptionsQuery.deleteMany(attributeValuesIds);
+      const deleteProductAttributeValuesProps = productAttributeValuesOptionsQuery.deleteMany(id);
+      return {
+        resVariantProps: deleteAttributeValuesProps,
+        resProductVariantProps: deleteProductAttributeValuesProps
+      };
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
+  }
+
+  /**
+   * @returns Promise<number> The number of destroyed rows
+   */
+  static async deleteProductVariantById({
+    id,
+    variantValuesIds
+  }: DeleteProductVariantByIdRequest): Promise<DeleteProductVariantByIdResponse> {
+    try {
+      const deleteVariantProps = productVariantValuesOptionsQuery.deleteMany(variantValuesIds);
+      const deleteProductVariantProps = variantValuesOptionsQuery.deleteMany(id);
+      return {
+        resVariantProps: deleteVariantProps,
+        resProductVariantProps: deleteProductVariantProps
+      };
+    } catch (error) {
+      throw new InternalServerError(`${error}`);
+    }
+  }
+
+  static async deleteAllProduct(confirm: boolean): Promise<DeleteAllProductResponse | null> {
+    const transaction = await db.sequelize.transaction();
+    try {
+      if (confirm) {
+        const deleteCategoryProduct = await categoryProductOptionsQuery.deleteAll(true, transaction);
+
+        const deleteImage = await imageOptionsQuery.deleteAll(true, transaction);
+
+        const getAllVariantValues = await db.VariantValues.findAll({
+          attributes: ['variantKeyId'],
+          transaction
+        });
+
+        const variantKeyIds = getAllVariantValues.map((v) => v.dataValues.variantKeyId);
+        const deleteVariantKeys = variantKeysOptionsQuery.deleteMany(variantKeyIds, transaction);
+
+        const deleteVariantValues = await variantValuesOptionsQuery.deleteAll(true, transaction);
+
+        const deleteProduct = await productOptionsQuery.deleteAll(true, transaction);
+
+        return {
+          categoryProduct: deleteCategoryProduct,
+          image: deleteImage,
+          variantKeys: deleteVariantKeys,
+          variantValues: deleteVariantValues,
+          product: deleteProduct
+        };
+      }
+
+      await transaction.commit();
+
+      return null;
+    } catch (error) {
+      await transaction.rollback();
+      throw new InternalServerError(`Error delete all product:: ${error}`);
+    }
+  }
 
   static async findAllProductPublishByQuery() {}
 
   static async findAllProductUnpublishByQuery() {}
 
-  static async findAllProductByQuery() {}
+  static async findAllProductByQuery({
+    keyword,
+    limit,
+    offset
+  }: FindAllProductByQueryRequest): Promise<FindAllProductByQueryResponse | null> {
+    // const safeKeyword = db.sequelize.escape(keyword);
+    const fullTextCondition = literal(`MATCH(name, slug) AGAINST("${keyword}" IN NATURAL LANGUAGE MODE)`);
+    const result = await db.Product.findAndCountAll({
+      where: fullTextCondition,
+      attributes: {
+        include: [[literal(`MATCH(name, slug) AGAINST(${keyword} IN NATURAL LANGUAGE MODE)`), 'relevance']]
+      },
+      order: [[literal('relevance'), 'DESC']],
+      limit,
+      offset,
+      // distinct: true,
+      nest: true
+    });
+
+    if (result.count === 0) {
+      return null;
+    }
+    console.log('result::', result);
+    return result;
+  }
 }

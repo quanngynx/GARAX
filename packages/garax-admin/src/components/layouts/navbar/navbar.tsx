@@ -1,16 +1,19 @@
 
 import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
+import { useDispatch } from "react-redux";
 import { Breadcrumb } from "../../breadcrumb";
-
 import { SearchOutlined } from "../../icons";
 import { UserOutlined } from "../../icons";
 import { SunOutlined } from "../../icons";
 import { ToggleSidenav } from "../../icons";
 import { LineFullWidth } from "../../line";
 import { MingcuteNotificationLine } from "@/components/icons/notification";
-import { Dispatch, SetStateAction } from "react";
-import { useDispatch } from "react-redux";
 import { toggleSidenav } from "@/stores/slices/sidenavSlice";
+import { useAppSelector } from "@/stores/hooks";
+import { selectAccessToken, selectAccountGeneralInfo } from "@/stores/slices/authSlice";
+import { localStorageService } from "@/utils";
+import { AccountModel } from "@/apis/models";
 
 interface INavbar {
     collapsed: boolean
@@ -20,6 +23,11 @@ interface INavbar {
 function Navbar({collapsed, setCollapsed} : INavbar) {
     const dispatch = useDispatch();
     // const isExpanded = useSelector((state: RootState) => state.sidenav.isExpanded);
+
+    const accessToken: string | null = useAppSelector(selectAccessToken) ?? localStorageService.get('accessToken');
+    const accountGeneralInfo: AccountModel | null = useAppSelector(
+        selectAccountGeneralInfo,
+    );
 
     const toggleCollapsed = () => {
       setCollapsed(!collapsed);

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Flex, Form, FormProps, Input, notification } from 'antd';
 import { AccountRegisterRequest } from '@/api/requests/accounts';
 import BackGroundGarax from '@/assets/auth/images/background1.webp';
-import { authApi } from '@/api/authUrl';
+import { authApi } from '@/api/urls/authUrl';
 
 function Register() {
   const navigate = useNavigate();

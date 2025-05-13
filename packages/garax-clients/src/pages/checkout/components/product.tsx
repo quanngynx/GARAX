@@ -269,47 +269,7 @@ function product({
                 <div className="">1</div>
               </div>
 
-              <div className="flex justify-between items-center border-b-[1px] mb-4 pb-2">
-                <div className="">Giá khuyến mại:</div>
-                <div className="">1</div>
-              </div>
-
-              <div className="flex justify-between items-center border-b-[1px] mb-4 pb-2">
-                <div className="">Số lượng:</div>
-                <div className="">1</div>
-              </div>
-
-              <div className="flex justify-between items-start border-b-[1px] mb-4 pb-2">
-                <div className="w-[40%]">Thuộc tính:</div>
-                <div className="grid grid-cols-3 gap-1">
-                  {btnAttribute.map(({attributeId, attributeName}) => (
-                    <Button 
-                      onClick={() => handleClickSelectAttribute(attributeId)} 
-                      color={selectAttribute === attributeId ? "blue" : "default"} 
-                      variant={selectAttribute === attributeId ? "solid" : "outlined"}
-                      className={cn('min-w-16')}
-                      >
-                      {attributeName ?? ''}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex justify-between items-start border-b-[1px] mb-4 pb-2">
-                <div className="w-[40%]">Biến thể:</div>
-                <div className="grid grid-cols-3 gap-1">
-                  {btnVariant.map(({variantId, variantName}) => (
-                    <Button 
-                      onClick={() => handleClickSelectVariant(variantId)} 
-                      color={selectVariant === variantId ? "blue" : "default"} 
-                      variant={selectVariant === variantId ? "solid" : "outlined"}
-                      className={cn('min-w-16')}
-                      >
-                      {variantName ?? ''}
-                    </Button>
-                  ))}
-                </div>
-              </div>
+              
 
               <ConfigProvider
                 button={{

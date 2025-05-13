@@ -3,7 +3,11 @@ import { NextFunction, Request, Response } from 'express';
 
 import { SuccessResponse } from '@/middlewares';
 import { ProductService } from '@/services';
-import { getProductById, getProductVariantValueByIdProduct } from '@/common/repositories';
+import {
+  getProductAttributeValuesByIdProduct,
+  getProductById,
+  getProductVariantValueByIdProduct
+} from '@/common/repositories';
 import { QueryOptions, RequestBody, RequestParams, RequestQuery, ResponseBody } from '@/common/interfaces';
 import { ProductModel } from '@/models';
 
@@ -19,6 +23,12 @@ export interface GetAllProductsByQueryOptionsQuery
   pagination: string;
 }
 
+export interface FindAllProductByQueryOptionsQuery extends RequestQuery {
+  keyword: string;
+  limit: number;
+  offset: number;
+}
+
 class ProductController {
   getAllProducts = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
@@ -32,11 +42,6 @@ class ProductController {
     res: Response,
     _next: NextFunction
   ) => {
-    // const { filters, search, sort, pagination } = req.query;
-    // console.log('filters::', filters);
-    // console.log('search::', search);
-    // console.log('sort::', sort);
-    // console.log('pagination::', pagination);
     new SuccessResponse({
       message: 'Lấy tất cả hàng hóa thành công!',
       metadata: await ProductService.getAllProductsByQueryOptions(req.query)
@@ -50,11 +55,27 @@ class ProductController {
     }).send(res);
   };
 
-  getViewestProduct = async (req: Request, res: Response, _next: NextFunction) => {
+  getViewestProductSparePart = async (req: Request, res: Response, _next: NextFunction) => {
     const { limit } = req.params;
     new SuccessResponse({
       message: `Lấy ${limit} hàng hóa có lượt xem nhiều nhất thành công!`,
-      metadata: await ProductService.getViewestProduct(Number(limit))
+      metadata: await ProductService.getViewestProductSparePart(Number(limit))
+    }).send(res);
+  };
+
+  getViewestProductSupportTools = async (req: Request, res: Response, _next: NextFunction) => {
+    const { limit } = req.params;
+    new SuccessResponse({
+      message: `Lấy ${limit} hàng hóa có lượt xem nhiều nhất thành công!`,
+      metadata: await ProductService.getViewestProductSupportTools(Number(limit))
+    }).send(res);
+  };
+
+  getViewestProductOthers = async (req: Request, res: Response, _next: NextFunction) => {
+    const { limit } = req.params;
+    new SuccessResponse({
+      message: `Lấy ${limit} hàng hóa có lượt xem nhiều nhất thành công!`,
+      metadata: await ProductService.getViewestProductOthers(Number(limit))
     }).send(res);
   };
 
@@ -74,6 +95,14 @@ class ProductController {
     }).send(res);
   };
 
+  getProductAttributeValuesByIdProduct = async (req: Request, res: Response, _next: NextFunction) => {
+    const { productId } = req.params;
+    new SuccessResponse({
+      message: `Lấy biến thể hàng hóa bằng id sản phẩm :${productId}: thành công!`,
+      metadata: await getProductAttributeValuesByIdProduct({ productId })
+    }).send(res);
+  };
+
   addNewProduct = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Thêm mới hàng hóa thành công!',
@@ -81,10 +110,10 @@ class ProductController {
     }).send(res);
   };
 
-  addManyNewProduct = async (req: Request, res: Response, _next: NextFunction) => {
+  addManyNewProduct = async (_req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Thêm mới nhiều hàng hóa thành công!',
-      metadata: await ProductService.addManyNewProduct(req.body)
+      metadata: await ProductService.addManyNewProduct()
     }).send(res);
   };
 
@@ -96,11 +125,19 @@ class ProductController {
     }).send(res);
   };
 
-  updatePartProductById = async (req: Request, res: Response, _next: NextFunction) => {
+  updateProductAttributeById = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
     new SuccessResponse({
       message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
-      metadata: await ProductService.updatePartProductById(Number(id), req.body)
+      metadata: await ProductService.updateProductAttributeById(Number(id), req.body)
+    }).send(res);
+  };
+
+  updateProductVariantById = async (req: Request, res: Response, _next: NextFunction) => {
+    const { id } = req.params;
+    new SuccessResponse({
+      message: `Cập nhật hàng hóa ${req.params.id} thành công!`,
+      metadata: await ProductService.updateProductVariantById(Number(id), req.body)
     }).send(res);
   };
 
@@ -127,10 +164,24 @@ class ProductController {
     }).send(res);
   };
 
-  deleteAllProduct = async (_req: Request, res: Response, _next: NextFunction) => {
+  deleteProductAttributesById = async (req: Request, res: Response, _next: NextFunction) => {
     new SuccessResponse({
       message: 'Delete all product success!',
-      metadata: await ProductService.deleteAllProduct()
+      metadata: await ProductService.deleteProductAttributesById(req.body)
+    }).send(res);
+  };
+
+  deleteProductVariantById = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Delete all product success!',
+      metadata: await ProductService.deleteProductVariantById(req.body)
+    }).send(res);
+  };
+
+  deleteAllProduct = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Delete all product success!',
+      metadata: await ProductService.deleteAllProduct(req.body)
     }).send(res);
   };
 
@@ -141,10 +192,15 @@ class ProductController {
     }).send(res);
   };
 
-  findAllProduct = async (req: Request, res: Response, _next: NextFunction) => {
+  findAllProductByQuery = async (
+    req: Request<RequestParams, ResponseBody, RequestBody, FindAllProductByQueryOptionsQuery>,
+    res: Response,
+    _next: NextFunction
+  ) => {
+    console.log('query::', req.query);
     new SuccessResponse({
-      message: `Find all product with query::${req.query.nameProd} success!`,
-      metadata: await ProductService.findAllProductByQuery()
+      message: `Find all product with query::${req.query} success!`,
+      metadata: await ProductService.findAllProductByQuery(req.query)
     }).send(res);
   };
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import Image from "next/image";
 // import { useNavigate } from 'react-router-dom'
 import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
 // import { useForm, Controller } from "react-hook-form";
@@ -13,7 +12,7 @@ import styles from "../styles/Home.module.css";
 // import dayjs from "dayjs";
 
 // import { TValuesMediaProduct } from "../types";
-import { UploadOutline } from "@/components/icons";
+import { CloseOutline, UploadOutline } from "@/components/icons";
 import { cn } from "@/lib";
 import { Col, Row } from "antd";
 
@@ -49,7 +48,30 @@ function SecondaryGroupColumn() {
         isDragActive,
         // isDragAccept,
         // isDragReject,
+        acceptedFiles,
+        fileRejections,
     } = useDropzone({ onDrop });
+
+    const acceptedFileItems = acceptedFiles.map(file => (
+        <li key={file.path}>
+            {file.path} - {file.size} bytes
+        </li>
+    ));
+
+    const fileRejectionItems = fileRejections.map(({ file, errors }) => (
+        <li key={file.path}>
+            {file.path} - {file.size} bytes
+            <ul>
+                {errors.map(e => (
+                    <li key={e.code}>{e.message}</li>
+                ))}
+            </ul>
+        </li>
+    ));
+
+    const handleClosePreviewImage = (image: { preview: string; }) => {
+        URL.revokeObjectURL(image.preview);
+    }
 
     const handleNavivateToUnplash = () => {
         window.open("https://unsplash.com/");
@@ -65,7 +87,7 @@ function SecondaryGroupColumn() {
     // });
 
     return (
-        <div className="w-[40%] border-[0.5px] border-solid border-slate-300 rounded-2xl px-[16px] py-[24px]">
+        <div className="w-[40%] border-[0.5px] border-solid border-slate-300 rounded-2xl px-[16px] py-[24px] h-[825px]">
             <div className="">
                 <div className="flex flex-col">
                     <label className="text-lg font-semibold font-['Roboto'] leading-normal text-gray-700">Hình ảnh sản phẩm</label>
@@ -84,23 +106,31 @@ function SecondaryGroupColumn() {
                                         </div>
                                     )}
                                 </div>
-                                <div className={styles.images}>
+                                <div className={cn('overflow-auto max-h-[320px]' ,styles.images)}>
                                     {selectedImages.length > 0 &&
                                         selectedImages.map((image, index) => (
-                                            <Image
-                                                width={100}
-                                                height={60}
-                                                src={`${URL.createObjectURL(image)}`}
-                                                key={index}
-                                                alt=""
-                                            />
+                                            <div className="relative">
+                                                <button 
+                                                    className="absolute top-0 right-0 bg-red-500 rounded-sm"
+                                                    onClick={() => handleClosePreviewImage(image)}
+                                                >
+                                                    <CloseOutline width={20} height={20} className="p-1"/>
+                                                </button>
+                                                <img
+                                                    className="w-auto h-full rounded-sm border border-solid border-[#eaeaea] p-1"
+                                                    src={`${URL.createObjectURL(image)}`}
+                                                    key={index}
+                                                    alt=""
+                                                    onLoad={() => { URL.revokeObjectURL(`${URL.createObjectURL(image)}`) }}
+                                                />
+                                            </div>
                                         ))}
                                 </div>
                             </div>
                         </Col>
                     </Row>
                     
-                    <Row gutter={[8, 8]}>
+                    {/* <Row gutter={[8, 8]}>
                         <Col span={8}>
                             <div className={cn(styles.container)}>
                                 <div className={cn(styles.dropzone)} {...getRootProps()}>
@@ -128,68 +158,26 @@ function SecondaryGroupColumn() {
                                 </div>
                             </div>
                         </Col>
-                        {/* <Col span={8}>
-                            <div className={cn(styles.container)}>
-                                <div className={cn(styles.dropzone)} {...getRootProps()}>
-                                    <input {...getInputProps()} />
-                                    {isDragActive ? (
-                                        <p>Drop file(s) here ...</p>
-                                    ) : (
-                                        <div className="flex flex-col justify-center items-center">
-                                            <UploadOutline ClassName="text-3xl" />
-                                            <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className={styles.images}>
-                                    {selectedImages.length > 0 &&
-                                        selectedImages.map((image, index) => (
-                                            <Image
-                                            width={100}
-                                                height={60}
-                                                src={`${URL.createObjectURL(image)}`}
-                                                key={index}
-                                                alt=""
-                                            />
-                                        ))}
-                                </div>
-                            </div>
-                        </Col>
+                    </Row> */}
 
-                        <Col span={8}>
-                            <div className={cn(styles.container)}>
-                                <div className={cn(styles.dropzone)} {...getRootProps()}>
-                                    <input {...getInputProps()} />
-                                    {isDragActive ? (
-                                        <p>Drop file(s) here ...</p>
-                                    ) : (
-                                        <div className="flex flex-col justify-center items-center">
-                                            <UploadOutline ClassName="text-3xl" />
-                                            <div>Kéo hoặc thả tệp ở đây, hoặc nhấn để chọn tệp</div>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className={styles.images}>
-                                    {selectedImages.length > 0 &&
-                                        selectedImages.map((image, index) => (
-                                            <Image
-                                            width={100}
-                                                height={60}
-                                                src={`${URL.createObjectURL(image)}`}
-                                                key={index}
-                                                alt=""
-                                            />
-                                        ))}
-                                </div>
-                            </div>
-                        </Col> */}
-                    </Row>
-                    
+                    <Col span={24}>
+                        <Row>
+                            <aside>
+                                {acceptedFileItems.length === 0 
+                                ? <></> 
+                                : <><h4>Accepted files</h4>
+                                    <ul>{acceptedFileItems}</ul></>}
 
-                    
+                                {fileRejectionItems.length === 0 
+                                ? <></> 
+                                : <><h4>Rejected files</h4>
+                                    <ul>{fileRejectionItems}</ul></>}
+                            </aside>
+                        </Row>
+                    </Col>
                 </div>
 
-                <div className="">
+                {/* <div className="">
                     <button
                         className="mt-4 mb-2.5 hover:font-bold"
                         onClick={handleNavivateToUnplash}
@@ -201,7 +189,7 @@ function SecondaryGroupColumn() {
                         risus fringilla. Fusce bibendum vulputate scelerisque.
                         Donec in nunc quam. Suspendisse at lorem eleifend
                     </p>
-                </div>
+                </div> */}
 
                 {/* <div className="field-wrapper flex flex-col mt-5">
                     <label className="field-label mb-[16px]" htmlFor="description">

@@ -17,7 +17,7 @@ import iconBrand from "@/assets/layout/GRAX.svg";
 import iconPhone from "@/assets/layout/noun-display-big-notch-4064633.svg";
 import CartTiny from "@/assets/layout/cart-tity.svg?react";
 import { useScrollDirectionV2 } from "./hooks";
-import { accountAPI } from "@/api/accountUrl";
+import { accountAPI } from "@/api/urls/accountUrl";
 
 function Header() {
   // const [fullname, setFullname] = useState(localStorage.getItem("fullname"));
@@ -125,7 +125,6 @@ function Header() {
   };
 
   const scrollDirection = useScrollDirectionV2(10);
-  // console.log(scrollDirection);
   return (
     <div className={
       cn(`bg-white w-full flex fixed z-10 justify-center border-b-gray-100 border-2 shadow-md py-3 ${scrollDirection === "down" ? "top-0" : "top-11"}`,

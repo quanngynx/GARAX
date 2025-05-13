@@ -4,9 +4,10 @@ import JWT, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { KeyTokenService } from '@/services';
-import { AuthFailureError, InternalServerError, NotFoundError, asyncHandler } from '@/middlewares';
+import { AuthFailureError, InternalServerError, NotFoundError } from '@/middlewares';
 import { HEADER } from '@/common/constants';
 import { KeyStore } from '@/common/interfaces';
+import { PairToken } from '@/common/responses/access';
 
 interface SendOtpByNodemailerProps {
   title: string;
@@ -32,11 +33,15 @@ const verifyCallbackOption = (
   }
 };
 
-const createTokenPair = async (
+const createTokenPair: (
   payLoad: string | Buffer | object,
   publicKey: string | Buffer<ArrayBufferLike>,
   privateKey: string
-) => {
+) => Promise<PairToken> = async (
+  payLoad: string | Buffer | object,
+  publicKey: string | Buffer<ArrayBufferLike>,
+  privateKey: string
+): Promise<PairToken> => {
   try {
     const accessToken = JWT.sign(payLoad, privateKey, {
       algorithm: 'RS256',
@@ -55,7 +60,11 @@ const createTokenPair = async (
   }
 };
 
-const authentication = asyncHandler(async (req: AuthenticationProps, _res: Response, next: NextFunction) => {
+const authentication: (req: AuthenticationProps, _res: Response, next: NextFunction) => Promise<void> = async (
+  req: AuthenticationProps,
+  _res: Response,
+  next: NextFunction
+): Promise<void> => {
   /**
    * @author Quan
    * 1 - Check userId missing??
@@ -108,9 +117,12 @@ const authentication = asyncHandler(async (req: AuthenticationProps, _res: Respo
   req.user = decodeUser;
 
   return next();
-});
+};
 
-const verifyJWT = async (token: string, keySecret: string) => {
+const verifyJWT: (token: string, keySecret: string) => Promise<string | JWT.JwtPayload> = async (
+  token: string,
+  keySecret: string
+): Promise<string | JWT.JwtPayload> => {
   return JWT.verify(token, keySecret);
 };
 

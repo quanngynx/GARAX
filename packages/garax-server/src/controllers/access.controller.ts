@@ -1,22 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-require('dotenv').config();
 import { NextFunction, Request, Response } from 'express';
 // import bcrypt from 'bcryptjs';
 // import jwt from 'jsonwebtoken';
 // import nodemailer from 'nodemailer';
-
 // import crypto from 'crypto';
 import { SuccessResponse } from '../middlewares/success.response';
-
 import { AccessService } from '../services/access.service';
 import { KeyTokenModel } from '@/models';
-// import { KeyStoreRequest } from '@/common/requests/auth';
+import { UserPayload } from '@/common/requests/access';
 
 export interface HandleRefreshTokenProps extends Request {
   refreshToken: string;
-  user: any;
+  user: UserPayload;
   keyStore: KeyTokenModel;
 }
 
