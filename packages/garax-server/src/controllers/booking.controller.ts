@@ -9,6 +9,13 @@ class BookingController {
       metadata: await BookingService.addNewBooking(req.body)
     }).send(res);
   };
+
+  getAllBooking = async (req: Request, res: Response, _next: NextFunction) => {
+    new SuccessResponse({
+      message: 'Get all booking success!',
+      metadata: await BookingService.getAllBooking()
+    }).send(res);
+  };
 }
 
 export default new BookingController();

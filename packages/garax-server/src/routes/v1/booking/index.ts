@@ -5,6 +5,6 @@ import { BookingController } from '@/controllers';
 export const routerBooking = express.Router();
 
 const bookingController = BookingController.default;
-// routerBooking.get('/Bookings/all', asyncHandler(BookingController.getAllBooking));
+routerBooking.get('/bookings/all', asyncHandler(bookingController.getAllBooking));
 // routerBooking.get('/products/:id', asyncHandler(BookingController.getProductById));
 routerBooking.post('/bookings', asyncHandler(bookingController.addNewBooking));
