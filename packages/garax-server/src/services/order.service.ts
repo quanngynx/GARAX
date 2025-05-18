@@ -2,7 +2,7 @@
 'use strict';
 
 import { Order } from '@/common/interfaces';
-import { GetAllProductsByQueryOptionsQueryState } from '@/common/requests/product';
+import { GetAllProductsRequest } from '@/common/requests/product';
 import { NotFoundError } from '@/middlewares';
 import { db, OrderModel } from '@/models';
 import { orderOptionsQuery } from './queryOptions';
@@ -45,12 +45,7 @@ export class OrdersService {
    *   rows: OrderModel[];
    * }>}
    */
-  static async getAllOrdersByQueryOptions({
-    filters,
-    search,
-    sort,
-    pagination
-  }: GetAllProductsByQueryOptionsQueryState): Promise<{
+  static async getAllOrdersByQueryOptions({ filters, search, sort, pagination }: GetAllProductsRequest): Promise<{
     totalPage: number;
     totalRows: number;
     rows: OrderModel[];

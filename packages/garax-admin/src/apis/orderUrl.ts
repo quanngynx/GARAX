@@ -1,4 +1,7 @@
 import { 
+    AxiosResponse 
+} from "axios";
+import { 
     BASE 
 } from "./bases/baseUrl";
 import { 
@@ -7,7 +10,6 @@ import {
 } from "./constants";
 import API_CONFIG from '@/utils/axios';
 import { OrderListRequest, TransactionsListRequest } from "./requests/orders";
-import { AxiosResponse } from "axios";
 import { OrderListResponse } from "./responses";
 
 export const BASE_ORDER_LIST = `${BASE(ver_API, ROUTES_ORDERS)}/all`;

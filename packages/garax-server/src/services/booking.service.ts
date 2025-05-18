@@ -30,6 +30,6 @@ export class BookingService {
     return allBooking;
   }
 
-//   static async deleteBooking(id: number) {
-//   }
+  //   static async deleteBooking(id: number) {
+  //   }
 }

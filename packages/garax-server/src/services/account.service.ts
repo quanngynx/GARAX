@@ -4,10 +4,14 @@ import { db } from '../models';
 import { GetInforAccountResponse } from '@/common/responses/access';
 
 export class AccountService {
-  static findByEmail = async ({
-    email,
-    select = ['id', 'email', 'password', 'userName', 'phone', 'roleId']
-  }: FindByEmail) => {
+  static findByEmail: ({ email, select }: FindByEmail) => Promise<{
+    id: number;
+    email: string;
+    password: string;
+    userName: string;
+    phone: string;
+    roleId: number;
+  }> = async ({ email, select = ['id', 'email', 'password', 'userName', 'phone', 'roleId'] }: FindByEmail) => {
     const result = (await db.Account.findOne({
       where: { email },
       attributes: select,

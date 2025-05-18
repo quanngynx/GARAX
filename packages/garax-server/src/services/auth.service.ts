@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt';
 // import otpGenerator from 'otp-generator';
 
 // depenc...
-import { db } from '../models';
+import { db, OtpCodeModel } from '../models';
 import { BadRequestError, AuthFailureError, InternalServerError } from '../middlewares/error.response';
 import { AccountService } from './account.service';
 // const PartnerService = require('./partner.service')
@@ -25,7 +25,7 @@ import {
 import { GENDER_VALUES } from '@/common/constants';
 import { KeyStoreRequest, LoginRequest, RegisterRequest, VerifyOtpRequest } from '@/common/requests/auth';
 import { error } from 'node:console';
-import { Account } from '@/common/interfaces';
+import { Account, OtpCode } from '@/common/interfaces';
 import { GetInforAccountResponse } from '@/common/responses/access';
 
 type GetInforDataAccount = Pick<GetInforAccountResponse, 'id' | 'userName' | 'email' | 'roleId'>;
@@ -197,7 +197,10 @@ export class AuthJWTService {
     return delKey;
   };
 
-  static verifyOtp = async ({ email, otp }: VerifyOtpRequest) => {
+  static verifyOtp: ({ email, otp }: VerifyOtpRequest) => Promise<{
+    isValid: boolean | undefined;
+    lastOtp: OtpCode;
+  }> = async ({ email, otp }: VerifyOtpRequest) => {
     try {
       const otpHolder = await db.OtpCode.findAll({
         where: {
@@ -213,7 +216,7 @@ export class AuthJWTService {
 
       return {
         isValid,
-        lastOtp
+        lastOtp: lastOtp.dataValues
       };
       // if(!isValid) throw new AuthFailureError('OTP is valid!')
 
@@ -223,7 +226,7 @@ export class AuthJWTService {
       //   // deleteMany OTP in model
       // }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       throw new InternalServerError(`error::${error}`);
     }
   };

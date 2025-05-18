@@ -1,6 +1,6 @@
 'use strict';
 import { BadRequestError, InternalServerError, NotFoundError } from '@/middlewares';
-import { BrandModel, db } from '../models';
+import { BrandCreationAttributes, BrandModel, db } from '../models';
 import { AddNewBrandRequest } from '@/common/requests/brand';
 import { QueryOptionsByBuilder } from './queryOptions';
 import { GetAllProductsRequest } from '@/common/requests/product';
@@ -8,7 +8,7 @@ import { GetAllProductsRequest } from '@/common/requests/product';
 const brandOptionsQuery = new QueryOptionsByBuilder<BrandModel>(BrandModel);
 
 export class BrandService {
-  static async addNewBrand({ name }: AddNewBrandRequest) {
+  static async addNewBrand({ name }: AddNewBrandRequest): Promise<BrandCreationAttributes> {
     try {
       const newProductCate = await db.Brand.create({
         name
@@ -16,9 +16,8 @@ export class BrandService {
 
       if (!newProductCate) throw new BadRequestError('error::create new Product');
 
-      return newProductCate;
+      return newProductCate.dataValues;
     } catch (error) {
-      console.error('Error in addNewCategory:', error);
       throw new InternalServerError(`${error}`);
     }
   }
@@ -51,23 +50,34 @@ export class BrandService {
       sort,
       pagination
     });
-    const response = brandOptionsQuery.getList(optionsParse);
+    const response = await brandOptionsQuery.getList(optionsParse);
     return response;
   }
 
-  static async deleteBrandById(id: number): Promise<number> {
+  static async deleteBrandById(id: number): Promise<{
+    numberRowsIsDeleted: number;
+  }> {
     const isExist = db.Brand.findOne({ where: { id } });
 
     if (!isExist) throw new BadRequestError('Brand is not exist!!!');
 
-    return await db.Brand.destroy({
-      where: {
-        id
-      }
-    });
+    return {
+      numberRowsIsDeleted: await db.Brand.destroy({
+        where: {
+          id
+        }
+      })
+    };
   }
 
-  static async deleteAllBrand({ confirm }: { confirm: boolean }): Promise<number | null> {
-    return confirm ? await db.Brand.destroy({ truncate: true }) : null;
+  static async deleteAllBrand({ confirm }: { confirm: boolean }): Promise<{
+    numberRowsIsDeleted: number;
+  } | null> {
+    const result = await db.Brand.destroy({ truncate: true });
+    return confirm
+      ? {
+          numberRowsIsDeleted: result
+        }
+      : null;
   }
 }
