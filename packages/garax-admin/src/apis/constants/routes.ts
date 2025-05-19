@@ -4,6 +4,7 @@ export const ROUTES_PRODUCTS_VARIANT: string = 'products-variant';
 
 export const ROUTES_ORDERS: string = 'orders';
 export const ROUTES_BRANDS: string = 'brands';
+export const ROUTES_BOOKINGS: string = 'bookings';
 
 export const ROUTES_OAUTH: string = 'oauth';
 export const ROUTES_BOOKING: string = 'booking';

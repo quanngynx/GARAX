@@ -16,5 +16,6 @@ export * from './order.model';
 export * from './orderDetails.model';
 
 export * from './brand.interface';
+export * from './booking.model';
 
 export * from './permission.model';

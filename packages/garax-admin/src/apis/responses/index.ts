@@ -25,3 +25,4 @@ export * from './categoryProducts/categoryProductsCreation.response';
 export * from './orders/orderList.response';
 
 export * from './brands/brandList.response';
+export * from './bookings/bookingList.response';

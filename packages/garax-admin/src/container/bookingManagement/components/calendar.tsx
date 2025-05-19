@@ -8,7 +8,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import ModalEvent from "@/container/bookingManagement/components/modalEvent";
 import "./calendar.css"
 import { IEventData } from "@/container/bookingManagement/types";
-
+import { useGetBookingList } from '../hooks/useGetBookingsList';
+import { BookingListRequest } from '@/apis/requests/bookings/bookingList.request';
+import { message } from "antd";
  
 const Calendar = () => {
     const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
@@ -16,12 +18,30 @@ const Calendar = () => {
     const [newEventTitle, setNewEventTitle] = useState<string>("");
     const [selectedDate, setSelectedDate] = useState<DateSelectArg | null>(null);
     const [error, setError] = useState<string>('');
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const [
+        pagedListRequest, 
+        // setPagedListRequest
+    ] = useState<BookingListRequest>({});
+
+    const {
+        data: pagedListResponse,
+        isLoading: fetchingPagedList,
+        isError: isErrorPagedList,
+        error: errorPagedList,
+    } = useGetBookingList({
+        request: pagedListRequest,
+    });
 
     useEffect(() => {
-        if (typeof window !== "undefined"){
-            
+        if (errorPagedList) {
+            messageApi.open({
+                type: 'error',
+                content: `Đã xảy ra lỗi: \n ${errorPagedList}`,
+            });
         }
-    })
+    }, [errorPagedList, messageApi]);
 
     useEffect(() => {
     if (typeof window !== "undefined") {
@@ -79,9 +99,11 @@ const Calendar = () => {
         setError("");
     };
 
-    
     return (
         <div>
+            {contextHolder}
+            {fetchingPagedList && <p>Đang tải dữ liệu...</p>}
+            {isErrorPagedList && <p>Đã xảy ra lỗi</p>}
             <div className="flex w-full justify-start items-start gap-8">
                 <div className="w-3/12">
                     <div className="py-10 text-2xl font-extrabold px-7">
