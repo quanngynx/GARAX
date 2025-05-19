@@ -10,4 +10,4 @@ routerAddress.get('/address/:id', asyncHandler(addressController.getAddressById)
 
 routerAddress.post('/address', asyncHandler(addressController.addNewAddress));
 
-routerAddress.delete('/address', asyncHandler(addressController.addNewAddress));
+routerAddress.delete('/address', asyncHandler(addressController.deleteAddressById));

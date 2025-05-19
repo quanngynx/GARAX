@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Models, Booking } from '@/common/interfaces';
-import { Association, DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 export type BookingCreationAttributes = Optional<Booking, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'updatedBy'>;
 
